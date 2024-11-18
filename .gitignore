@@ -1,0 +1,57 @@
+# Ignore build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDE-specific files
+.vscode/
+.idea/
+*.code-workspace
+
+# Rider-specific files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Visual Studio-specific
+.vs/
+
+# ASP.NET Razor-specific
+wwwroot/**/node_modules/
+wwwroot/**/dist/
+
+# Node.js dependencies
+Node/node_modules/
+Node/dist/
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# System-specific files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Configuration
+appsettings*.json
+secrets.json
+
+# Other
+*.bak
+*.old
+*.orig
+*.rej
+*.swp
+*.lock
