@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <UserSecretsId>ea461263-770c-473f-847b-f322a130c92f</UserSecretsId>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Validators\**" />
+        <Content Remove="Validators\**" />
+        <EmbeddedResource Remove="Validators\**" />
+        <None Remove="Validators\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dfe.RegionalImprovementForStandardsAndExcellence.Data\Dfe.RegionalImprovementForStandardsAndExcellence.Data.csproj" /><PackageReference Include="Dfe.Academies.Contracts" Version="1.0.10" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Dfe.Academies.Contracts" Version="1.0.10" />
+        <PackageReference Include="Dfe.Academisation.CorrelationIdMiddleware" Version="2.0.2" />
+        <PackageReference Include="Dfe.Academisation.ExtensionMethods" Version="2.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.4.0" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.20.0" />
+        <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.20.0" />
+        <PackageReference Include="FluentValidation" Version="11.9.2" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+        <PackageReference Include="Scrutor" Version="4.2.2" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.22.0" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="0.22.0" />
+        <PackageReference Include="Sentry.AspNetCore" Version="3.28.0" />
+        <PackageReference Include="Sentry.Serilog" Version="3.28.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Shared\_AddtionalInformation.cshtml" />
+      <AdditionalFiles Include="Pages\Shared\_AutoComplete.cshtml" />
+      <AdditionalFiles Include="Pages\Shared\_ErrorSummary.cshtml" />
+    </ItemGroup>
+
+</Project>
