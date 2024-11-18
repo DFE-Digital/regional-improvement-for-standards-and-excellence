@@ -32,15 +32,15 @@ public class WhichSchoolNeedsHelpModel : PageModel
 
    public AutoCompleteSearchModel AutoCompleteSearchModel { get; set; }
 
-   public async Task<IActionResult> OnGet(string urn)
+   public async Task<IActionResult> OnGet()
    {
       ProjectListFilters.ClearFiltersFrom(TempData);
 
-      EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(urn);
-      if (!string.IsNullOrWhiteSpace(establishment.Urn))
-      {
-         SearchQuery = $"{establishment.Name} ({establishment.Urn})";
-      }
+     // EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(urn);
+     // if (!string.IsNullOrWhiteSpace(establishment.Urn))
+      //{
+     //    SearchQuery = $"{establishment.Name} ({establishment.Urn})";
+     // }
 
       AutoCompleteSearchModel = new AutoCompleteSearchModel(SEARCH_LABEL, SearchQuery, SEARCH_ENDPOINT);
 
