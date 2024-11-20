@@ -35,4 +35,23 @@ public class SupportProjectRepository : ISupportProjectRepository
         };
         return new ApiResponse<IEnumerable<SupportProject>>((HttpStatusCode)200,supportProjects);
     }
+
+    public async Task<ApiResponse<SupportProject>> CreateSupportProject(CreateNewSupportProject newProject)
+    {
+        
+        
+        //if (result.Success is false)
+        //{
+          //  throw new ApiResponseException($"Request to Api failed | StatusCode - {result.StatusCode}");
+        //}
+
+        return new ApiResponse<SupportProject>((HttpStatusCode)200,
+            
+            new SupportProject
+            {
+                Id = 4,
+                SchoolName = "Dog View College",
+                SchoolUrn = "789312"
+            });
+    }
 }

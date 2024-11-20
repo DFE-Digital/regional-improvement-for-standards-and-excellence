@@ -6,17 +6,16 @@
 
 @{
     Layout = "_Layout";
-    ViewBag.Title = (!ViewData.ModelState.IsValid ? "Error: " : "") + "Which school is involved";
+    ViewBag.Title = (!ViewData.ModelState.IsValid ? "Error: " : "") + "Which school requires help?";
     var routeParams = new Dictionary<string, string>
     {
-        { "urn", Request.Query["urn"] },
         { "ukprn", Request.Query["ukprn"] }
     };
 }
 
 @section BeforeMain
 {
-    <partial name="_BackLink" model="@(new BackLink(Links.NewProject.NewConversionInformation.Page, routeParams))" />
+    <partial name="_BackLink" model="@(new BackLink(Links.ProjectList.Index.Page, routeParams))" />
     <partial name="_ErrorSummary" />
 }
 

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Models.Establishment;
@@ -27,7 +28,7 @@ public class WhichSchoolNeedsHelpModel : PageModel
    }
 
    [BindProperty]
-
+   [Required(ErrorMessage = "Enter the school name or URN")]
    public string SearchQuery { get; set; } = "";
 
    public AutoCompleteSearchModel AutoCompleteSearchModel { get; set; }
@@ -35,13 +36,7 @@ public class WhichSchoolNeedsHelpModel : PageModel
    public async Task<IActionResult> OnGet()
    {
       ProjectListFilters.ClearFiltersFrom(TempData);
-
-     // EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(urn);
-     // if (!string.IsNullOrWhiteSpace(establishment.Urn))
-      //{
-     //    SearchQuery = $"{establishment.Name} ({establishment.Urn})";
-     // }
-
+      
       AutoCompleteSearchModel = new AutoCompleteSearchModel(SEARCH_LABEL, SearchQuery, SEARCH_ENDPOINT);
 
       return Page();
@@ -56,7 +51,7 @@ public class WhichSchoolNeedsHelpModel : PageModel
       return new JsonResult(schools.Select(s => new { suggestion = HighlightSearchMatch($"{s.Name} ({s.Urn})", searchSplit[0].Trim(), s), value = $"{s.Name} ({s.Urn})" }));
    }
 
-   public async Task<IActionResult> OnPost(string ukprn, string redirect, string hasSchoolApplied, string hasPreferredTrust, string proposedTrustName, string isFormAMat, string isProjectInPrepare, string famReference)
+   public async Task<IActionResult> OnPost()
    {
       AutoCompleteSearchModel = new AutoCompleteSearchModel(SEARCH_LABEL, SearchQuery, SEARCH_ENDPOINT);
 
@@ -86,9 +81,7 @@ public class WhichSchoolNeedsHelpModel : PageModel
          return Page();
       }
 
-      redirect = string.IsNullOrEmpty(redirect) ? Links.NewProject.SchoolApply.Page : redirect;
-
-      return RedirectToPage(redirect, new { urn = expectedUrn, ukprn, hasSchoolApplied, hasPreferredTrust, proposedTrustName, isFormAMat, isProjectInPrepare, famReference });
+      return RedirectToPage(Links.NewProject.Summary.Page, new { expectedEstablishment.Urn});
    }
 
    private static string HighlightSearchMatch(string input, string toReplace, EstablishmentSearchResponse school)

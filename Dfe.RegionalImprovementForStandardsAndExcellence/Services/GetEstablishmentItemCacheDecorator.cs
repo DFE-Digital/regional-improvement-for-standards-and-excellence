@@ -44,6 +44,6 @@ public class GetEstablishmentItemCacheDecorator : IGetEstablishment
 
       _httpContext.Items[key] = establishments;
 
-      return establishments;
+    return establishments;
    }
 }
