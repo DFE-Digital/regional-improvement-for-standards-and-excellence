@@ -18,7 +18,11 @@ public static class Links
       LinkItem item = new() { Page = page, BackText = backText };
       _links.Add(item);
       return item;
- 
+   }
+   public static void InitializeTransfersUrl(string transfersUrl)
+   {
+      _transfersUrl = transfersUrl;
+   }
 
    public static void InializeProjectDocumentsEnabled(bool isApplicationDocumentsEnabled) {
       _isApplicationDocumentsEnabled = isApplicationDocumentsEnabled;
@@ -27,6 +31,7 @@ public static class Links
    {
       return _links.Find(x => string.Equals(page, x.Page, StringComparison.InvariantCultureIgnoreCase));
    }
+   
    
    public static class SupportProject
    {
@@ -41,6 +46,11 @@ public static class Links
 
   
 
+   public static class TaskList
+   {
+      public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/TaskList/Index");
+      public static readonly LinkItem SchoolImprovementPlan = AddLinkItem(backText: "Back", page: "/TaskList/SchoolImprovementPlan/SchoolImprovementPlan");
+   }
 
 
  

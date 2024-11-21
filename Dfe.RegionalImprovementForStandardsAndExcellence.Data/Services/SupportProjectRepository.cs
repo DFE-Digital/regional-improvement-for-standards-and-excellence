@@ -10,6 +10,36 @@ public class SupportProjectRepository : ISupportProjectRepository
     public async Task<ApiResponse<IEnumerable<SupportProject>>> GetAllSupportProjects()
     {
         
+        
+        return new ApiResponse<IEnumerable<SupportProject>>((HttpStatusCode)200,SupportProjects());
+    }
+
+    public async Task<ApiResponse<SupportProject>> CreateSupportProject(CreateNewSupportProject newProject)
+    {
+        
+        return new ApiResponse<SupportProject>((HttpStatusCode)200,
+            
+            new SupportProject
+            {
+                Id = 4,
+                SchoolName = "Dog View College",
+                SchoolUrn = "789312"
+            });
+    }
+    
+    public async Task<ApiResponse<SupportProject>> GetSupportProject(string urn)
+    {
+        
+        
+        var supportProjects = SupportProjects();
+        var supportProject = supportProjects.FirstOrDefault(sp => sp.SchoolUrn == urn);
+        
+        return new ApiResponse<SupportProject>((HttpStatusCode)200,supportProject);
+    }
+
+
+    private IEnumerable<SupportProject> SupportProjects()
+    {
         IEnumerable<SupportProject> supportProjects = new List<SupportProject>
         {
             new SupportProject
@@ -33,25 +63,7 @@ public class SupportProjectRepository : ISupportProjectRepository
                 SchoolUrn = "789012"
             }
         };
-        return new ApiResponse<IEnumerable<SupportProject>>((HttpStatusCode)200,supportProjects);
-    }
 
-    public async Task<ApiResponse<SupportProject>> CreateSupportProject(CreateNewSupportProject newProject)
-    {
-        
-        
-        //if (result.Success is false)
-        //{
-          //  throw new ApiResponseException($"Request to Api failed | StatusCode - {result.StatusCode}");
-        //}
-
-        return new ApiResponse<SupportProject>((HttpStatusCode)200,
-            
-            new SupportProject
-            {
-                Id = 4,
-                SchoolName = "Dog View College",
-                SchoolUrn = "789312"
-            });
+        return supportProjects;
     }
 }

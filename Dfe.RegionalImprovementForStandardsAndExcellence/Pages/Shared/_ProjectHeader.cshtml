@@ -1,0 +1,35 @@
+@using Dfe.Academisation.ExtensionMethods
+
+<div class="govuk-grid-row">
+   <div class="govuk-grid-column-full">
+        <span class="govuk-caption-xl" data-cy=".govuk-caption-xl">URN: @Model.SchoolUrn</span>
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-cy="select-heading">
+         @Model.SchoolName
+      </h1>
+</div>
+   
+<div class="govuk-grid-column-full">
+   <p class="govuk-body govuk-!-margin-bottom-5">
+      Project owner:
+
+      @if (Model.AssignedUser == null || string.IsNullOrWhiteSpace(Model?.AssignedUser.FullName))
+      {
+         <span data-id="assigned-user" class="empty">Empty</span>
+      }
+      else
+      {
+         <strong data-id="assigned-user">Dave David</strong>
+      }
+         
+   </p>
+   <p class="govuk-!-margin-top-0  govuk-!-margin-bottom-5">
+      <strong class="govuk-tag govuk-tag--blue" id="project-status-@Model.Id">Testing</strong>
+   </p>
+
+</div>
+     <div class="govuk-grid-column-full">
+         <partial name="_SubMenu" model="@Model"/>
+   
+      </div>
+   
+</div>
