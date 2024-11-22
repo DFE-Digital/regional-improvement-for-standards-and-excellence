@@ -9,4 +9,6 @@ public class SupportProject
     public string SchoolUrn { get; set; }
     
     public string Region { get; set; }
+    
+    public string AssignedUser { get; set; }
 }

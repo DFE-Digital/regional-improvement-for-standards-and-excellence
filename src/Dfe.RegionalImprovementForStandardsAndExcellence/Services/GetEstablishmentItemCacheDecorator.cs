@@ -40,11 +40,10 @@ public class GetEstablishmentItemCacheDecorator : IGetEstablishment
       {
          return Task.FromResult(cached);
       }
-
       Task<IEnumerable<EstablishmentSearchResponse>> establishments = _getEstablishment.SearchEstablishments(searchQuery);
 
       _httpContext.Items[key] = establishments;
 
-      return establishments;
+    return establishments;
    }
 }
