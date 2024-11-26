@@ -1,4 +1,4 @@
-﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Extensions;
+﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Extensions;
 
 using Dfe.Academisation.ExtensionMethods;
 

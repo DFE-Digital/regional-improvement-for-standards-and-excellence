@@ -1,11 +1,9 @@
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Services;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+
 using Microsoft.AspNetCore.CookiePolicy;
 
 using Dfe.Academisation.CorrelationIdMiddleware;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,20 +12,12 @@ var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .Build();
 
-builder.Services.AddHttpClient(DfeHttpClientFactory.TramsClientName, (sp, client) =>
+builder.Services.AddHttpClient(DfeHttpClientFactory.AcademiesClientName, (sp, client) =>
 {
-    client.BaseAddress = new Uri(config["TramsApi:BaseUrl"]);
+    client.BaseAddress = new Uri(config["AcademiesApi:BaseUrl"]);
     client.DefaultRequestHeaders.Add("ApiKey", config["TramsApi:ApiKey"]);
     client.DefaultRequestHeaders.Add("User-Agent", "PrepareConversions/1.0");
 
-});
-
-builder.Services.AddHttpClient(DfeHttpClientFactory.AcademisationClientName, (sp, client) =>
-{
-    //AcademisationApiOptions apiOptions = GetTypedConfigurationFor<AcademisationApiOptions>();
-    client.BaseAddress = new Uri(config["AcademisationApi:BaseUrl"]);
-    client.DefaultRequestHeaders.Add("x-api-key", config["AcademisationApi:ApiKey"]);
-    client.DefaultRequestHeaders.Add("User-Agent", "PrepareConversions/1.0");
 });
 
 builder.Services.AddSession(options =>

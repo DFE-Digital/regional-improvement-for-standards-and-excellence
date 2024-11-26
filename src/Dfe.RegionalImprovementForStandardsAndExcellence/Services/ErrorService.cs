@@ -1,12 +1,8 @@
 ﻿using Dfe.Academisation.ExtensionMethods;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Models;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Models;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Services;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
 public class ErrorService
 {

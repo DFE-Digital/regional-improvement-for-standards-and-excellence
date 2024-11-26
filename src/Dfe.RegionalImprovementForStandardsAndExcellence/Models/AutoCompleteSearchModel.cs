@@ -1,4 +1,4 @@
-﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Models;
+﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
 public class AutoCompleteSearchModel
 {

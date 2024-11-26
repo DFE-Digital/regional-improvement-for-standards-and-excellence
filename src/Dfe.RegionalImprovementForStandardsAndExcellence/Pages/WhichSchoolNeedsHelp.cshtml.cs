@@ -1,17 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Models.Establishment;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Services;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Models;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Services;
-using EstablishmentDto = Dfe.Academies.Contracts.V4.Establishments.EstablishmentDto;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Pages;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
 
 public class WhichSchoolNeedsHelpModel : PageModel
 {

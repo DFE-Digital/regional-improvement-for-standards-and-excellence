@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Models;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
 public static class Links
 {

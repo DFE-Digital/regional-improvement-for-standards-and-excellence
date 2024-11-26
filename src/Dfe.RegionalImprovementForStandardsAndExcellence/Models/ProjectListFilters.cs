@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Models;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
 public class ProjectListFilters
 {

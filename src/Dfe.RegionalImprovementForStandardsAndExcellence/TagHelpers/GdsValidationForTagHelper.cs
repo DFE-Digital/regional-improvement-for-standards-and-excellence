@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.TagHelpers;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers;
 
 [HtmlTargetElement("p", Attributes = GdsValidationForAttributeName)]
 public class GdsValidationForTagHelper : TagHelper

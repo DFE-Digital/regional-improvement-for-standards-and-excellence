@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Data.Services;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 
 public interface IHttpClientService
 {

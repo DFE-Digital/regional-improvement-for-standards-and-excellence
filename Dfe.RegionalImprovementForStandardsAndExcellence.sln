@@ -28,9 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common\Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.csproj", "{8380EFBB-A438-4044-B610-3B786E4BE6E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence", "src\Dfe.RegionalImprovementForStandardsAndExcellence\Dfe.RegionalImprovementForStandardsAndExcellence.csproj", "{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Data", "src\Dfe.RegionalImprovementForStandardsAndExcellence.Data\Dfe.RegionalImprovementForStandardsAndExcellence.Data.csproj", "{DB0DF324-3D7A-4618-AA5E-A8FFDD5356B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Frontend", "src\Dfe.RegionalImprovementForStandardsAndExcellence\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.csproj", "{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,10 +84,6 @@ Global
 		{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB0DF324-3D7A-4618-AA5E-A8FFDD5356B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB0DF324-3D7A-4618-AA5E-A8FFDD5356B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB0DF324-3D7A-4618-AA5E-A8FFDD5356B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB0DF324-3D7A-4618-AA5E-A8FFDD5356B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

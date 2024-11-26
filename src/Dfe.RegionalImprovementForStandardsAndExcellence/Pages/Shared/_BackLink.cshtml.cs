@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Pages.Shared;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Shared;
 
 public class BackLink
 {

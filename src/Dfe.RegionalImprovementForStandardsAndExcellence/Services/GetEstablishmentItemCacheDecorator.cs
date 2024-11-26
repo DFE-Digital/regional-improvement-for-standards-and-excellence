@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Models.Establishment;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Services;
-using EstablishmentDto = Dfe.Academies.Contracts.V4.Establishments.EstablishmentDto;
+﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
+using DfE.CoreLibs.Contracts.Academies.V4.Establishments;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Services;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
 public class GetEstablishmentItemCacheDecorator : IGetEstablishment
 {

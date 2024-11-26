@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Models;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
 public class Error
 {

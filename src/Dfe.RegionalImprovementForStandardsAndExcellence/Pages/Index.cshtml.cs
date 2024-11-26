@@ -1,10 +1,10 @@
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Models;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Data.Services;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Models;
+
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Pages;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
 
 public class IndexModel : PageModel
 {
@@ -16,7 +16,7 @@ public class IndexModel : PageModel
     //    _repository = repository;
     //}
 
-    public IEnumerable<SupportProject> SupportProjects;
+    public IEnumerable<SupportProjectViewModel> SupportProjects;
     
     [BindProperty]
     public ProjectListFilters Filters { get; set; } = new();

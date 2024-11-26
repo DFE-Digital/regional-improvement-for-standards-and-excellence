@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
 using System.Linq;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Extensions;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Extensions;
 
 public static class DisplayExtensions
 {
