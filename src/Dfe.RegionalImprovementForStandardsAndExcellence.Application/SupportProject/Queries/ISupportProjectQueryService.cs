@@ -5,6 +5,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
 {
     public interface ISupportProjectQueryService
     {
-        Task<Result<SupportProjectDto?>> GetSupportProject(string id);
+        Task<Result<IEnumerable<SupportProjectDto>>> GetAllSupportProjects(CancellationToken cancellationToken);
+        Task<Result<SupportProjectDto?>> GetSupportProject(string id, CancellationToken cancellationToken);
     }
 }

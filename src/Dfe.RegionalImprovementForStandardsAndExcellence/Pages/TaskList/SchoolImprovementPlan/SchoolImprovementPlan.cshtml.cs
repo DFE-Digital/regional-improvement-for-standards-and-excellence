@@ -13,14 +13,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 
         public SupportProjectViewModel SupportProject { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string id, CancellationToken cancellationToken)
         {
 
             ReturnPage = @Links.ProjectList.Index.Page;
 
-            var result = await supportProjectQueryService.GetSupportProject(id);
+            var result = await supportProjectQueryService.GetSupportProject(id, cancellationToken);
 
-            if (result.IsSuccess)
+            if (result.IsSuccess && result.Value != null)
             {
                 SupportProject = SupportProjectViewModel.Create(result.Value);
             }

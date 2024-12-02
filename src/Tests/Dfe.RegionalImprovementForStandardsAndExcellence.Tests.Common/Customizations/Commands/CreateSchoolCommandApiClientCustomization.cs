@@ -1,5 +1,4 @@
 using AutoFixture;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Client.Contracts;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customizations.Commands
 {
@@ -7,30 +6,30 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customiz
     {
         public void Customize(IFixture fixture)
         {
-            fixture.Customize<CreateSchoolCommand>(composer => composer.FromFactory(() =>
-            {
-                var nameDetails = new NameDetailsModel()
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    MiddleName = ""
-                };
+            //fixture.Customize<CreateSchoolCommand>(composer => composer.FromFactory(() =>
+            //{
+            //    var nameDetails = new NameDetailsModel()
+            //    {
+            //        FirstName = "John",
+            //        LastName = "Doe",
+            //        MiddleName = ""
+            //    };
 
-                var lastRefresh = fixture.Create<DateTime>().Date;
-                if (lastRefresh > DateTime.Now.Date)
-                {
-                    lastRefresh = DateTime.Now.Date.AddDays(-1);
-                }
+            //    var lastRefresh = fixture.Create<DateTime>().Date;
+            //    if (lastRefresh > DateTime.Now.Date)
+            //    {
+            //        lastRefresh = DateTime.Now.Date.AddDays(-1);
+            //    }
 
-                return new CreateSchoolCommand()
-                {
-                    SchoolName = fixture.Create<string>(), 
-                    LastRefresh = lastRefresh,
-                    EndDate = fixture.Create<DateTime>(),
-                    NameDetails = nameDetails,
-                    PrincipalDetails = fixture.Create<PrincipalDetailsModel>()
-                };
-            }));
+            //    return new CreateSchoolCommand()
+            //    {
+            //        SchoolName = fixture.Create<string>(), 
+            //        LastRefresh = lastRefresh,
+            //        EndDate = fixture.Create<DateTime>(),
+            //        NameDetails = nameDetails,
+            //        PrincipalDetails = fixture.Create<PrincipalDetailsModel>()
+            //    };
+            //}));
         }
     }
 }

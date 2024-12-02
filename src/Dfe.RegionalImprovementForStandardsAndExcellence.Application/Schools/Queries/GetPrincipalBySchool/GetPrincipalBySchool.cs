@@ -1,36 +1,36 @@
-using AutoMapper;
-using DfE.CoreLibs.Caching.Helpers;
-using DfE.CoreLibs.Caching.Interfaces;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Common.Models;
-using MediatR;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
+//using AutoMapper;
+//using DfE.CoreLibs.Caching.Helpers;
+//using DfE.CoreLibs.Caching.Interfaces;
+//using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Common.Models;
+//using MediatR;
+//using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Schools.Queries.GetPrincipalBySchool
-{
-    public record GetPrincipalBySchoolQuery(string SchoolName) : IRequest<Result<Principal?>>;
+//namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Schools.Queries.GetPrincipalBySchool
+//{
+//    public record GetPrincipalBySchoolQuery(string SchoolName) : IRequest<Result<Principal?>>;
 
-    public class GetPrincipalBySchoolQueryHandler(
-        ISchoolRepository schoolRepository,
-        IMapper mapper,
-        ICacheService<IMemoryCacheType> cacheService)
-        : IRequestHandler<GetPrincipalBySchoolQuery, Result<Principal?>>
-    {
-        public async Task<Result<Principal?>> Handle(GetPrincipalBySchoolQuery request, CancellationToken cancellationToken)
-        {
-            var cacheKey = $"Principal_{CacheKeyHelper.GenerateHashedCacheKey(request.SchoolName)}";
+//    public class GetPrincipalBySchoolQueryHandler(
+//        ISchoolRepository schoolRepository,
+//        IMapper mapper,
+//        ICacheService<IMemoryCacheType> cacheService)
+//        : IRequestHandler<GetPrincipalBySchoolQuery, Result<Principal?>>
+//    {
+//        public async Task<Result<Principal?>> Handle(GetPrincipalBySchoolQuery request, CancellationToken cancellationToken)
+//        {
+//            var cacheKey = $"Principal_{CacheKeyHelper.GenerateHashedCacheKey(request.SchoolName)}";
 
-            var methodName = nameof(GetPrincipalBySchoolQueryHandler);
+//            var methodName = nameof(GetPrincipalBySchoolQueryHandler);
 
-            return await cacheService.GetOrAddAsync(cacheKey, async () =>
-            {
-                var principal= await schoolRepository
-                    .GetPrincipalBySchoolAsync(request.SchoolName, cancellationToken);
+//            return await cacheService.GetOrAddAsync(cacheKey, async () =>
+//            {
+//                var principal= await schoolRepository
+//                    .GetPrincipalBySchoolAsync(request.SchoolName, cancellationToken);
 
-                var result = mapper.Map<Principal?>(principal);
+//                var result = mapper.Map<Principal?>(principal);
 
-                return result == null ? Result<Principal?>.Failure("") : Result<Principal?>.Success(result);
+//                return result == null ? Result<Principal?>.Failure("") : Result<Principal?>.Success(result);
 
-            }, methodName);
-        }
-    }
-}
+//            }, methodName);
+//        }
+//    }
+//}

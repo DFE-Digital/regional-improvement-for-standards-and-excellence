@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.CookiePolicy;
 using Dfe.Academisation.CorrelationIdMiddleware;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,6 +44,9 @@ builder.Services.AddScoped<IGetEstablishment, EstablishmentService>();
 builder.Services.Decorate<IGetEstablishment, GetEstablishmentItemCacheDecorator>();
 builder.Services.AddScoped<ICorrelationContext, CorrelationContext>();
 builder.Services.AddScoped<IHttpClientService, HttpClientService>();
+
+builder.Services.AddApplicationDependencyGroup(builder.Configuration);
+builder.Services.AddInfrastructureDependencyGroup(builder.Configuration);
 
 var app = builder.Build();
 

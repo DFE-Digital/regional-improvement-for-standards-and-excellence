@@ -1,9 +1,6 @@
 using AutoFixture;
 using DfE.CoreLibs.Testing.Mocks.Authentication;
 using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Api.Client.Extensions;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Client;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Client.Contracts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,14 +49,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customiz
 
                 var services = new ServiceCollection();
                 services.AddSingleton<IConfiguration>(config);
-                services.AddApiClient<ISchoolsClient, SchoolsClient>(config, client);
+                //services.AddApiClient<ISchoolsClient, SchoolsClient>(config, client);
 
                 var serviceProvider = services.BuildServiceProvider();
 
                 fixture.Inject(factory);
                 fixture.Inject(serviceProvider);
                 fixture.Inject(client);
-                fixture.Inject(serviceProvider.GetRequiredService<ISchoolsClient>());
+                //fixture.Inject(serviceProvider.GetRequiredService<ISchoolsClient>());
                 fixture.Inject(new List<Claim>());
 
                 return factory;

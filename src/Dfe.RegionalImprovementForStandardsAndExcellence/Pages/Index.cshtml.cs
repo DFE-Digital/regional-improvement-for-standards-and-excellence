@@ -1,4 +1,5 @@
 
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Microsoft.AspNetCore.Mvc;
@@ -8,21 +9,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
 
 public class IndexModel : PageModel
 {
-    
-    //private readonly ISupportProjectRepository _repository;
 
-    //public IndexModel(ISupportProjectRepository repository)
-    //{
-    //    _repository = repository;
-    //}
+    private readonly ISupportProjectQueryService _supportProjectQueryService;
 
-    public IEnumerable<SupportProjectViewModel> SupportProjects;
+    public IndexModel(ISupportProjectQueryService supportProjectQueryService)
+    {
+        _supportProjectQueryService = supportProjectQueryService;
+    }
+
+    public IEnumerable<SupportProjectViewModel> SupportProjects = new List<SupportProjectViewModel>();
     
     [BindProperty]
     public ProjectListFilters Filters { get; set; } = new();
     
-    public void OnGet()
+    
+    public async Task<IActionResult> OnGetAync(CancellationToken cancellationToken)
     {
-        //SupportProjects = _repository.GetAllSupportProjects().Result.Body;
+        var result = await _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
+
+        if(result.IsSuccess && result.Value != null) {
+            SupportProjects = result.Value.Select(SupportProjectViewModel.Create);
+        }
+
+        return Page();
     }
 }

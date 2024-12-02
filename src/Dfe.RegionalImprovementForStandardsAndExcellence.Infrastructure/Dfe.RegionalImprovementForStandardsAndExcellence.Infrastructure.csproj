@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Dfe.RegionalImprovementForStandardsAndExcellence.Application\Dfe.RegionalImprovementForStandardsAndExcellence.Application.csproj" />
     <ProjectReference Include="..\Dfe.RegionalImprovementForStandardsAndExcellence.Domain\Dfe.RegionalImprovementForStandardsAndExcellence.Domain.csproj" />
   </ItemGroup>
 

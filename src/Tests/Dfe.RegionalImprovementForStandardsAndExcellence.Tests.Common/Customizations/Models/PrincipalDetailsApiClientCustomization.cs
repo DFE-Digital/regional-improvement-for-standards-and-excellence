@@ -1,6 +1,4 @@
-using System.Net.Mail;
 using AutoFixture;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Client.Contracts;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customizations.Models
 {
@@ -12,10 +10,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customiz
 
         public void Customize(IFixture fixture)
         {
-            fixture.Customize<PrincipalDetailsModel>(composer => composer
-                .With(x => x.Email, Email ?? fixture.Create<MailAddress>().Address)
-                .With(x => x.Phone, Phone ?? fixture.Create<int>().ToString())
-                .With(x => x.TypeId, TypeId ?? fixture.Create<int>()));
+            //fixture.Customize<PrincipalDetailsModel>(composer => composer
+            //    .With(x => x.Email, Email ?? fixture.Create<MailAddress>().Address)
+            //    .With(x => x.Phone, Phone ?? fixture.Create<int>().ToString())
+            //    .With(x => x.TypeId, TypeId ?? fixture.Create<int>()));
         }
     }
 }

@@ -2,9 +2,6 @@ using AutoFixture;
 using DfE.CoreLibs.Testing.Mocks.Authentication;
 using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Api;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Api.Client.Extensions;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Client;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Client.Contracts;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Seeders;
 using Microsoft.AspNetCore.Authentication;
@@ -27,7 +24,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customiz
                 {
                     SeedData = new Dictionary<Type, Action<DbContext>>
                     {
-                        { typeof(SclContext), context => SclContextSeeder.Seed((SclContext)context) },
+                        { typeof(RegionalImprovementForStandardsAndExcellenceContext), context => SclContextSeeder.Seed((RegionalImprovementForStandardsAndExcellenceContext)context) },
                     },
                     ExternalServicesConfiguration = services =>
                     {
@@ -57,14 +54,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customiz
 
                 var services = new ServiceCollection();
                 services.AddSingleton<IConfiguration>(config);
-                services.AddApiClient<ISchoolsClient, SchoolsClient>(config, client);
+                //services.AddApiClient<ISchoolsClient, SchoolsClient>(config, client);
 
                 var serviceProvider = services.BuildServiceProvider();
 
                 fixture.Inject(factory);
                 fixture.Inject(serviceProvider);
                 fixture.Inject(client);
-                fixture.Inject(serviceProvider.GetRequiredService<ISchoolsClient>());
+                //fixture.Inject(serviceProvider.GetRequiredService<ISchoolsClient>());
                 fixture.Inject(new List<Claim>());
 
                 return factory;

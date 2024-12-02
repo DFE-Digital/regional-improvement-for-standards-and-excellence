@@ -29,4 +29,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public string Region { get; set; }
 
     public string AssignedUser { get; set; }
+
+    public static SupportProject Create(
+        string schoolName,
+        string schoolUrn,
+        string region,
+        string assignedUser)
+    {
+
+        return new SupportProject();
+    }
 }

@@ -1,5 +1,4 @@
 using AutoFixture;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Schools.Commands.CreateSchool;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Schools.Models;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customizations.Commands
@@ -8,42 +7,42 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customiz
     {
         public void Customize(IFixture fixture)
         {
-            fixture.Customize<DateOnly?>(composer => composer.FromFactory(() =>
-            {
-                var generateNull = fixture.Create<bool>();
-                if (generateNull)
-                {
-                    return null;
-                }
-                else
-                {
-                    var safeDateTime = fixture.Create<DateTime>().Date;
-                    return DateOnly.FromDateTime(safeDateTime);
-                }
-            }));
+            //fixture.Customize<DateOnly?>(composer => composer.FromFactory(() =>
+            //{
+            //    var generateNull = fixture.Create<bool>();
+            //    if (generateNull)
+            //    {
+            //        return null;
+            //    }
+            //    else
+            //    {
+            //        var safeDateTime = fixture.Create<DateTime>().Date;
+            //        return DateOnly.FromDateTime(safeDateTime);
+            //    }
+            //}));
 
-            fixture.Customize<CreateSchoolCommand>(composer => composer.FromFactory(() =>
-            {
-                var nameDetails = new NameDetailsModel{
-                   FirstName = "John",
-                   LastName = "Doe",
-                   MiddleName = ""
-                };
+            //fixture.Customize<CreateSchoolCommand>(composer => composer.FromFactory(() =>
+            //{
+            //    var nameDetails = new NameDetailsModel{
+            //       FirstName = "John",
+            //       LastName = "Doe",
+            //       MiddleName = ""
+            //    };
 
-                var lastRefresh = fixture.Create<DateTime>().Date;
-                if (lastRefresh > DateTime.Now.Date)
-                {
-                    lastRefresh = DateTime.Now.Date.AddDays(-1);
-                }
+            //    var lastRefresh = fixture.Create<DateTime>().Date;
+            //    if (lastRefresh > DateTime.Now.Date)
+            //    {
+            //        lastRefresh = DateTime.Now.Date.AddDays(-1);
+            //    }
 
-                return new CreateSchoolCommand(
-                    fixture.Create<string>(),
-                    lastRefresh,
-                    fixture.Create<DateOnly?>(),
-                    nameDetails,
-                    fixture.Create<PrincipalDetailsModel>()
-                );
-            }));
+            //    return new CreateSchoolCommand(
+            //        fixture.Create<string>(),
+            //        lastRefresh,
+            //        fixture.Create<DateOnly?>(),
+            //        nameDetails,
+            //        fixture.Create<PrincipalDetailsModel>()
+            //    );
+            //}));
         }
     }
 }
