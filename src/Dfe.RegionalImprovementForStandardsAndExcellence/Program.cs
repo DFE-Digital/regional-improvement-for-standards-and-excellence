@@ -15,8 +15,8 @@ var config = new ConfigurationBuilder()
 
 builder.Services.AddHttpClient(DfeHttpClientFactory.AcademiesClientName, (sp, client) =>
 {
-    client.BaseAddress = new Uri(config["AcademiesApi:BaseUrl"]);
-    client.DefaultRequestHeaders.Add("ApiKey", config["TramsApi:ApiKey"]);
+    client.BaseAddress = new Uri(config["AcademiesApi:Url"]);
+    client.DefaultRequestHeaders.Add("ApiKey", config["AcademiesApi:ApiKey"]);
     client.DefaultRequestHeaders.Add("User-Agent", "PrepareConversions/1.0");
 
 });
