@@ -1,5 +1,6 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Common.Behaviours;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.MappingProfiles;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddAutoMapper(typeof(SchoolProfile));
 
             services.AddBackgroundService();
+
+            services.AddScoped<ISupportProjectQueryService, SupportProjectQueryService>();
 
             return services;
         }
