@@ -21,9 +21,8 @@ public class IndexModel : PageModel
     
     [BindProperty]
     public ProjectListFilters Filters { get; set; } = new();
-    
-    
-    public async Task<IActionResult> OnGetAync(CancellationToken cancellationToken)
+
+    public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
     {
         var result = await _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
 

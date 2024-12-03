@@ -37,7 +37,7 @@ public class SummaryModel : PageModel
     {
         DfE.CoreLibs.Contracts.Academies.V4.Establishments.EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(urn);
 
-        var request = new CreateSupportProjectCommand(establishment.Name, establishment.Urn, establishment.Gor.Name, null);
+        var request = new CreateSupportProjectCommand(establishment.Name, establishment.Urn, establishment.Gor.Name, "Test");
 
         var id = await _mediator.Send(request);
 

@@ -37,6 +37,6 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         string assignedUser)
     {
 
-        return new SupportProject();
+        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn, Region = region, AssignedUser = assignedUser};
     }
 }

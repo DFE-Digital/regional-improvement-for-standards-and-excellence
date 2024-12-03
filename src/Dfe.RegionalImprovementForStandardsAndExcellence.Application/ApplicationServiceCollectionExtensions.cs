@@ -29,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 }
             });
 
-            services.AddAutoMapper(typeof(SchoolProfile));
+            services.AddAutoMapper(typeof(RiseProfile));
 
             services.AddBackgroundService();
 

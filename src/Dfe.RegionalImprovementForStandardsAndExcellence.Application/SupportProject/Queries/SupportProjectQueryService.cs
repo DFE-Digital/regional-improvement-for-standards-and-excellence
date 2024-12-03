@@ -9,9 +9,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
     {
         public async Task<Result<IEnumerable<SupportProjectDto>>> GetAllSupportProjects(CancellationToken cancellationToken)
         {
-            var supportProjects = await supportProjectRepository.FetchAsync(sp => sp.Id.Value > 0, cancellationToken);
+            var supportProjects = await supportProjectRepository.FetchAsync(sp => true, cancellationToken);
 
-            var result = supportProjects.Select(x => mapper.Map<SupportProjectDto?>(x));
+            var result = supportProjects.Select(x => mapper.Map<SupportProjectDto?>(x)).ToList();
 
             return Result<IEnumerable<SupportProjectDto>>.Success(result);
         }
