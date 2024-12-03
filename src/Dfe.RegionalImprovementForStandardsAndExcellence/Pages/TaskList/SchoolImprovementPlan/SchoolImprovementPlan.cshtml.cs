@@ -13,7 +13,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 
         public SupportProjectViewModel SupportProject { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id, CancellationToken cancellationToken)
+        public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
         {
 
             ReturnPage = @Links.ProjectList.Index.Page;

@@ -2,12 +2,15 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
+using System.Threading;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
 
 public class IndexModel(
-    //ISupportProjectRepository _supportProjectRepository,
-                  //ErrorService errorService
+    ISupportProjectQueryService _supportProjectQueryService,
+                  ErrorService errorService
     ) : PageModel
 {
    //protected readonly ISession _session = session;
@@ -19,21 +22,24 @@ public class IndexModel(
       TempData["ErrorPage"] = errorPage;
    }
 
-   public async Task<IActionResult> OnGetAsync(string id)
-   {
-      ProjectListFilters.ClearFiltersFrom(TempData);
+   public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
+    {
+        ProjectListFilters.ClearFiltersFrom(TempData);
 
-     // ApiResponse<SupportProject> result = await _supportProjectRepository.GetSupportProject(id);
+        var result = await _supportProjectQueryService.GetSupportProject(id, cancellationToken);
 
-      //SupportProject = SupportProjectViewModel.Build(result.Body);
-      
-      ReturnPage = @Links.ProjectList.Index.Page;
-      
-      //if (result.StatusCode != HttpStatusCode.OK)
-      //{
-      //   return NotFound();
-      //}
-      
-      return Page();
+        if (result.IsSuccess && result.Value != null)
+        {
+            SupportProject = SupportProjectViewModel.Create(result.Value);
+        }
+
+        ReturnPage = @Links.ProjectList.Index.Page;
+
+        if (!result.IsSuccess)
+        {
+            return NotFound();
+        }
+
+        return Page();
    }
 }

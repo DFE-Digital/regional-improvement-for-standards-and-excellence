@@ -6,7 +6,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 {
     public class SupportProjectViewModel
     {
-        public SupportProjectId Id { get; set; }
+        public int Id { get; set; }
 
         public string SchoolName { get; set; }
 

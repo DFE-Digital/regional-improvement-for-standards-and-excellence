@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models
 {
-    public record SupportProjectDto(SupportProjectId id,
+    public record SupportProjectDto(int id,
         string schoolName,
         string schoolUrn,
         string region,
