@@ -45,7 +45,6 @@ Desktop.ini
 .DS_Store
 
 # Configuration
-appsettings*.json
 secrets.json
 
 # Other
