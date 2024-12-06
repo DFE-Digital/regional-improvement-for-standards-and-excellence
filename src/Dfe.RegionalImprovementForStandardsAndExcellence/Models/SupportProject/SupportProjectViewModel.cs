@@ -11,6 +11,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string SchoolName { get; set; }
 
         public string SchoolUrn { get; set; }
+        
+        public string LocalAuthority { get; set; }
 
         public string Region { get; set; }
 
@@ -21,6 +23,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
             {
                 Id = supportProjectDto.id,
                 AssignedUser = supportProjectDto.assignedUser,
+                LocalAuthority = supportProjectDto.localAuthority,
                 Region = supportProjectDto.region,
                 SchoolName = supportProjectDto.schoolName,
                 SchoolUrn = supportProjectDto.schoolUrn

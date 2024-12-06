@@ -10,12 +10,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         SupportProjectId id,
         string schoolName,
         string schoolUrn,
+        string localAuthority,
         string region,
         string assignedUser)
     {
         Id = id;
         SchoolName = schoolName;
         SchoolUrn = schoolUrn;
+        LocalAuthority = localAuthority;
         Region = region;
         AssignedUser = assignedUser;
     }
@@ -34,6 +36,8 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public string CreatedBy { get; private set; }
 
+    public string LocalAuthority { get; set; }
+    public string Region { get; set; }
     public DateTime? LastModifiedOn { get; private set; }
 
     public string? LastModifiedBy { get; private set; }
@@ -41,10 +45,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public static SupportProject Create(
         string schoolName,
         string schoolUrn,
+        string localAuthority,
         string region,
         string assignedUser)
     {
 
-        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn, Region = region, AssignedUser = assignedUser};
+        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedUser = assignedUser};
     }
 }

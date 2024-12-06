@@ -18,8 +18,19 @@
                   </strong>
                </div>
                 <div class="govuk-!-margin-top-1">
-                  <span id="@("urn-" + index)"><strong>URN:</strong> @project.SchoolUrn</span>
-               </div>
+                    <span id="@("urn-" + index)"><strong>URN:</strong> @project.SchoolUrn</span>
+                </div>
+                <div id="@("localauthority-" + project.Id)" class="govuk-!-margin-top-1">
+                    <strong>Local Authority:</strong>
+                    @if (@project.LocalAuthority.IsEmpty())
+                    {
+                        <span class="empty">Empty</span>
+                    }
+                    else
+                    {
+                        <span >@project.LocalAuthority</span>
+                    }
+                </div>
                <div id="@("region-" + project.Id)" class="govuk-!-margin-top-1">
                    <strong>Region:</strong>
                    @if (@project.Region.IsEmpty())
@@ -32,7 +43,7 @@
                    }
                </div>
                 <div class="govuk-!-margin-top-2 govuk-!-margin-bottom-3">
-                  <strong class="govuk-tag govuk-tag--blue" id="project-status-dave">Banana</strong>
+                  <strong class="govuk-tag govuk-tag--blue" id="project-status-dave">Identified as in need of support</strong>
                </div>
             </td>
         </tr>

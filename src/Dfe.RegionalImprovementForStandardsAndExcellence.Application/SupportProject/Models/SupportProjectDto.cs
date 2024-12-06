@@ -10,6 +10,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
     public record SupportProjectDto(int id,
         string schoolName,
         string schoolUrn,
+        string localAuthority,
         string region,
         string assignedUser);
 
