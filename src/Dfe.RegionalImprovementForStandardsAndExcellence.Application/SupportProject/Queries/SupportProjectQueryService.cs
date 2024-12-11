@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Common.Models;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Factories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using DfE.CoreLibs.Contracts.Academies.V4;
-using System.Threading;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries
 {
@@ -25,21 +25,20 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
             IEnumerable<string>? advisors,      
             IEnumerable<string>? regions, 
             IEnumerable<string>? localAuthorities,
+            string pagePath,
             int page, 
             int count, 
             CancellationToken cancellationToken)
         {
             var (projects, totalCount) = await supportProjectRepository.SearchForSupportProjects(title, states, advisors, regions, localAuthorities, page, count, cancellationToken);
 
-            var pageResponse = PagingResponseFactory.Create("transfer-projects/projects", page, count, totalCount,
-                new Dictionary<string, object?> {
-                {"states", states},
-                });
+            var pageResponse = PagingResponseFactory.Create(pagePath, page, count, totalCount,
+            new Dictionary<string, object?> {});
 
-            return new PagedDataResponse<AcademyTransferProjectSummaryResponse>(data,
-                pageResponse);
+            var result = projects.Select(x => mapper.Map<SupportProjectDto>(x)).ToList();
 
-            return Result<IEnumerable<SupportProjectDto>>.Success(result);
+            return Result<PagedDataResponse<SupportProjectDto>?>.Success(new PagedDataResponse<SupportProjectDto>(result,
+                pageResponse));
         }
 
         public async Task<Result<SupportProjectDto?>> GetSupportProject(int id, CancellationToken cancellationToken)

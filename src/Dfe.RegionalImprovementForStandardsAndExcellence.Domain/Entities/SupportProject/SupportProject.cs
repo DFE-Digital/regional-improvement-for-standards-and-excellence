@@ -36,8 +36,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public string CreatedBy { get; private set; }
 
-    public string LocalAuthority { get; set; }
-    public string Region { get; set; }
+    public string LocalAuthority { get; private set; }
     public DateTime? LastModifiedOn { get; private set; }
 
     public string? LastModifiedBy { get; private set; }

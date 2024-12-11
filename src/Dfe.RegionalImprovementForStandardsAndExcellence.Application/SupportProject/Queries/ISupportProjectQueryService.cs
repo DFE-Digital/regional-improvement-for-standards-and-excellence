@@ -14,6 +14,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
             IEnumerable<string>? advisors,
             IEnumerable<string>? regions,
             IEnumerable<string>? localAuthorities,
+            string pagePath,
             int page,
             int count,
             CancellationToken cancellationToken);
