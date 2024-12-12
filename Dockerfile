@@ -1,35 +1,38 @@
-# Stage 1 - Restore and publish .NET layers
-ARG ASPNET_IMAGE_TAG=8.0-bookworm-slim
-ARG NODEJS_IMAGE_TAG=18.20-bullseye
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS publish
+# Set the major version of dotnet
+ARG DOTNET_VERSION=8.0
+# Set the major version of nodejs
+ARG NODEJS_VERSION_MAJOR=22
+
+# Build assets
+# FROM "node:${NODEJS_VERSION_MAJOR}-bullseye-slim" AS assets
+# WORKDIR /app
+# COPY ./src/Dfe.RegionalImprovementForStandardsAndExcellence/wwwroot /app
+# RUN npm install
+# RUN npm run build
+
+# Build the app using the dotnet SDK
+FROM "mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0" AS build
 WORKDIR /build
+COPY ./Dfe.RegionalImprovementForStandardsAndExcellence.sln /build
+COPY ./Directory.Build.props /build
+COPY ./src/ /build/src
+COPY ./scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
 
-COPY ./src/Dfe.RegionalImprovementForStandardsAndExcellence/ ./Dfe.RegionalImprovementForStandardsAndExcellence/
-
-# for info on secrets see https://docs.docker.com/build/ci/github-actions/secrets/
-# and https://render.com/docs/docker-secrets
-
-WORKDIR /build/Dfe.RegionalImprovementForStandardsAndExcellence
+# Mount GitHub Token as a Docker secret so that NuGet Feed can be accessed
 RUN --mount=type=secret,id=github_token dotnet nuget add source --username USERNAME --password $(cat /run/secrets/github_token) --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
-RUN dotnet restore Dfe.RegionalImprovementForStandardsAndExcellence.sln
-RUN dotnet build -c Release Dfe.RegionalImprovementForStandardsAndExcellence.sln --no-restore
-RUN dotnet publish Dfe.RegionalImprovementForStandardsAndExcellence -c Release -o /app --no-restore
 
-# Stage 2 - Build assets
-FROM node:${NODEJS_IMAGE_TAG} as build
-COPY --from=publish /app /app
-WORKDIR /app/wwwroot
-RUN npm install
-RUN npm run build
+RUN ["dotnet", "restore", "Dfe.RegionalImprovementForStandardsAndExcellence.sln"]
+WORKDIR /build/src
+RUN ["dotnet", "build", "Dfe.RegionalImprovementForStandardsAndExcellence", "--no-restore", "-c", "Release"]
+RUN ["dotnet", "publish", "Dfe.RegionalImprovementForStandardsAndExcellence", "--no-build", "-o", "/app"]
 
-# Stage 3 - Final
-ARG ASPNET_IMAGE_TAG
-FROM "mcr.microsoft.com/dotnet/aspnet:${ASPNET_IMAGE_TAG}" AS final
-LABEL org.opencontainers.image.source=https://github.com/DFE-Digital/prepare-academy-conversions
-COPY --from=build /app /app
-
+# Build a runtime environment
+FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS base
 WORKDIR /app
-COPY ./script/web-docker-entrypoint.sh ./docker-entrypoint.sh
-RUN chmod +x ./docker-entrypoint.sh
-ENV ASPNETCORE_HTTP_PORTS=80
-EXPOSE 80/tcp
+LABEL org.opencontainers.image.source="https://github.com/DFE-Digital/regional-improvement-for-standards-and-excellence"
+
+COPY --from=build /app /app
+# COPY --from=assets /app /app/wwwroot
+RUN ["chmod", "+x", "./docker-entrypoint.sh"]
+
+USER $APP_UID
