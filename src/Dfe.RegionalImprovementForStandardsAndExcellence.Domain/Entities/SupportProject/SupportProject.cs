@@ -12,14 +12,16 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedUser)
+        string assignedAdviserFullName,
+        string assignedAdviserEmailAddress)
     {
         Id = id;
         SchoolName = schoolName;
         SchoolUrn = schoolUrn;
         LocalAuthority = localAuthority;
         Region = region;
-        AssignedUser = assignedUser;
+        AssignedAdviserFullName = assignedAdviserFullName;
+        AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
     }
 
     public SupportProjectId Id { get; set; }
@@ -31,16 +33,26 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public string LocalAuthority { get; set; }
     public string Region { get; set; }
 
-    public string AssignedUser { get; set; }
+    public string? AssignedAdviserFullName { get; set; }
+    
+    public string? AssignedAdviserEmailAddress { get; set; }
 
     public static SupportProject Create(
         string schoolName,
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedUser)
+        string assignedAdviserFullName,
+        string assignedAdviserEmailAddress)
     {
 
-        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedUser = assignedUser};
+        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedAdviserFullName = assignedAdviserFullName,AssignedAdviserEmailAddress = assignedAdviserEmailAddress};
+    }
+
+    public void SetAdviser(string assignedAdviserFullName, string assignedAdviserEmailAddress)
+    {
+        AssignedAdviserFullName = assignedAdviserFullName;
+        AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
+
     }
 }

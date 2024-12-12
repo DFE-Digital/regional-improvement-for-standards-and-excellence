@@ -12,6 +12,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedUser);
+        string assignedAdviserFullName,
+        string assignedAdviserEmailAddress);
 
 }

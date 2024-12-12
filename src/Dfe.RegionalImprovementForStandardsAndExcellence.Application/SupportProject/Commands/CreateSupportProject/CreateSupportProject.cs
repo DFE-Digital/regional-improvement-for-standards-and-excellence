@@ -9,7 +9,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedUser
+        string assignedAdviserEmailFullName,
+        string assignedAdviserEmailAddress
     ) : IRequest<SupportProjectId>;
 
     public class CreateSupportProjectCommandHandler(ISupportProjectRepository supportProjectRepository)
@@ -17,7 +18,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
     {
         public async Task<SupportProjectId> Handle(CreateSupportProjectCommand request, CancellationToken cancellationToken)
         {
-            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(request.schoolName, request.schoolUrn, request.localAuthority,request.region, request.assignedUser);
+            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(request.schoolName, request.schoolUrn, request.localAuthority,request.region, request.assignedAdviserEmailFullName,request.assignedAdviserEmailAddress);
 
             await supportProjectRepository.AddAsync(supportProject, cancellationToken);
 

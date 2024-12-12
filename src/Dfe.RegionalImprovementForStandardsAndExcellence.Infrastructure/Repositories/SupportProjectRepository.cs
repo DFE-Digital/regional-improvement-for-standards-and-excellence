@@ -9,5 +9,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
     internal class SupportProjectRepository(RegionalImprovementForStandardsAndExcellenceContext dbContext)
         : Repository<SupportProject, RegionalImprovementForStandardsAndExcellenceContext>(dbContext), ISupportProjectRepository
     {
+        
     }
 }

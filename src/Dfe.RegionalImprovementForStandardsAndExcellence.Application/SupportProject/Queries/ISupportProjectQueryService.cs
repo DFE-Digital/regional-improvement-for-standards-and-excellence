@@ -7,5 +7,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
     {
         Task<Result<IEnumerable<SupportProjectDto>>> GetAllSupportProjects(CancellationToken cancellationToken);
         Task<Result<SupportProjectDto?>> GetSupportProject(int id, CancellationToken cancellationToken);
+        
     }
 }
