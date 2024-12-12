@@ -1,0 +1,25 @@
+environment               = ""
+tfvars_filename            = ""
+project_name              = ""
+azure_location            = "westeurope"
+image_name                = ""
+
+enable_container_registry = true
+enable_mssql_database     = false
+enable_cdn_frontdoor      = true
+
+virtual_network_address_space = ""
+
+container_command = ["/bin/bash", "-c", "./docker-entrypoint.sh dotnet Dfe.RegionalImprovementForStandardsAndExcellence.dll"]
+
+container_secret_environment_variables = {
+
+}
+
+key_vault_access_users = [
+  "someone_example.com#EXT#@tenantname.onmicrosoft.com",
+]
+
+tags = {
+  "Key" = "Value"
+}
