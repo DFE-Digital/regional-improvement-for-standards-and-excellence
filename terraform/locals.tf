@@ -57,4 +57,12 @@ locals {
   enable_cdn_frontdoor_vdp_redirects              = var.enable_cdn_frontdoor_vdp_redirects
   cdn_frontdoor_vdp_destination_hostname          = var.cdn_frontdoor_vdp_destination_hostname
   enable_container_app_file_share                 = var.enable_container_app_file_share
+  enable_mssql_database                           = var.enable_mssql_database
+  mssql_server_admin_password                     = var.mssql_server_admin_password
+  mssql_azuread_admin_username                    = var.mssql_azuread_admin_username
+  mssql_azuread_admin_object_id                   = var.mssql_azuread_admin_object_id
+  mssql_database_name                             = var.mssql_database_name
+  mssql_firewall_ipv4_allow_list                  = var.mssql_firewall_ipv4_allow_list
+  mssql_server_public_access_enabled              = var.mssql_server_public_access_enabled
+  mssql_managed_identity_assign_role              = var.mssql_managed_identity_assign_role
 }
