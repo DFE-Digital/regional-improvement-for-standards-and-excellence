@@ -1,4 +1,3 @@
-
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
@@ -22,12 +21,30 @@ public class IndexModel : PageModel
     [BindProperty]
     public ProjectListFilters Filters { get; set; } = new();
 
+    public PaginationViewModel Pagination { get; set; } = new();
+    public int ProjectCount => SupportProjects.Count();
+
+
+    [BindProperty(SupportsGet = true)]
+    public int TotalProjects { get; set; }
     public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
     {
-        var result = await _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
+        Filters.PersistUsing(TempData).PopulateFrom(Request.Query);
+
+        Pagination.PagePath = "/schools-requiring-improvement";
+
+        var result =
+           await _supportProjectQueryService.SearchForSupportProjects(
+               Filters.Title, Filters.SelectedStatuses, Filters.SelectedOfficers, Filters.SelectedRegions,
+               Filters.SelectedLocalAuthorities, Pagination.PagePath, Pagination.CurrentPage, Pagination.PageSize,
+               cancellationToken);
+
+        //var result = await _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
 
         if(result.IsSuccess && result.Value != null) {
-            SupportProjects = result.Value.Select(SupportProjectViewModel.Create);
+            Pagination.Paging = result.Value.Paging;
+            TotalProjects = result.Value?.Paging?.RecordCount ?? 0;
+            SupportProjects = result.Value?.Data.Select(SupportProjectViewModel.Create);
         }
 
         return Page();
