@@ -50,5 +50,17 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
 
             return result == null ? Result<SupportProjectDto?>.Failure("") : Result<SupportProjectDto?>.Success(result);
         }
+
+        public async Task<Result<IEnumerable<string>>> GetAllProjectLocalAuthorities(CancellationToken cancellationToken)
+        {
+            var result =  await supportProjectRepository.GetAllProjectLocalAuthorities(cancellationToken);
+            return result == null ? Result<IEnumerable<string>>.Failure("") : Result<IEnumerable<string>>.Success(result);
+        }
+
+        public async Task<Result<IEnumerable<string>>> GetAllProjectRegions(CancellationToken cancellationToken)
+        {
+            var result = await supportProjectRepository.GetAllProjectRegions(cancellationToken);
+            return result == null ? Result<IEnumerable<string>>.Failure("") : Result<IEnumerable<string>>.Success(result);
+        }
     }
 }

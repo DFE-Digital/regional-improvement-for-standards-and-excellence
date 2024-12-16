@@ -46,9 +46,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedUser)
+        string assignedUser,
+        string createdBy,
+        DateTime createdOn)
     {
 
-        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedUser = assignedUser};
+        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedUser = assignedUser, CreatedBy = createdBy, CreatedOn = createdOn};
     }
 }

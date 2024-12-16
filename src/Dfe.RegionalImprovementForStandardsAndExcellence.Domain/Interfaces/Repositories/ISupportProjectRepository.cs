@@ -13,5 +13,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Rep
             int page,
             int count, 
             CancellationToken cancellationToken);
+
+        Task<IEnumerable<string>> GetAllProjectRegions(CancellationToken cancellationToken);
+        Task<IEnumerable<string>> GetAllProjectLocalAuthorities(CancellationToken cancellationToken);
     }
 }

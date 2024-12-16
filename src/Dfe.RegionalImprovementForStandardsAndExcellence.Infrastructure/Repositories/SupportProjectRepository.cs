@@ -2,6 +2,7 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories
@@ -75,15 +76,35 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
 
         private static IQueryable<SupportProject> FilterByLocalAuthority(IEnumerable<string>? localAuthorities, IQueryable<SupportProject> queryable)
         {
-            //if (localAuthorities != null && localAuthorities.Any())
-            //{
-            //    var lowerCaseRegions = localAuthorities.Select(la => la.ToLower());
-            //    queryable = queryable.Where(p =>
-            //        !string.IsNullOrEmpty(p.) && lowerCaseRegions.Contains(p.Details.LocalAuthority.ToLower()));
-            //}
+            if (localAuthorities != null && localAuthorities.Any())
+            {
+                var lowerCaseRegions = localAuthorities.Select(la => la.ToLower());
+                queryable = queryable.Where(p =>
+                    !string.IsNullOrEmpty(p.LocalAuthority) && lowerCaseRegions.Contains(p.LocalAuthority.ToLower()));
+            }
 
             return queryable;
         }
 
+        public async Task<IEnumerable<string>> GetAllProjectRegions(CancellationToken cancellationToken)
+        {
+            return await DbSet().OrderByDescending(p => p.Region)
+                    .AsNoTracking()
+                    .Select(p => p.Region)
+                    .Where(p => !string.IsNullOrEmpty(p))
+                    .Distinct()
+                    .ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetAllProjectLocalAuthorities(CancellationToken cancellationToken)
+        {
+            return await DbSet().OrderByDescending(p => p.LocalAuthority)
+                    .AsNoTracking()
+                    .Select(p => p.LocalAuthority)
+                    .Where(p => !string.IsNullOrEmpty(p))
+                    .Distinct()
+                    .ToListAsync();
+
+        }
     }
 }

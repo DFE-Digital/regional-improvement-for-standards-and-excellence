@@ -39,12 +39,24 @@ public class IndexModel : PageModel
                Filters.SelectedLocalAuthorities, Pagination.PagePath, Pagination.CurrentPage, Pagination.PageSize,
                cancellationToken);
 
-        //var result = await _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
-
         if(result.IsSuccess && result.Value != null) {
             Pagination.Paging = result.Value.Paging;
             TotalProjects = result.Value?.Paging?.RecordCount ?? 0;
             SupportProjects = result.Value?.Data.Select(SupportProjectViewModel.Create);
+        }
+
+        var regionsResult = await _supportProjectQueryService.GetAllProjectRegions(cancellationToken);
+
+        if (regionsResult.IsSuccess && regionsResult.Value != null)
+        {
+            Filters.AvailableRegions = regionsResult.Value.ToList();
+        }
+
+        var localAuthoritiesResult = await _supportProjectQueryService.GetAllProjectLocalAuthorities(cancellationToken);
+
+        if (localAuthoritiesResult.IsSuccess && localAuthoritiesResult.Value != null)
+        {
+            Filters.AvailableLocalAuthorities = localAuthoritiesResult.Value.ToList();
         }
 
         return Page();
