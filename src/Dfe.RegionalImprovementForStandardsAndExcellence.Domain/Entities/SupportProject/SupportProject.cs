@@ -24,14 +24,24 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
     }
 
-    public SupportProjectId Id { get; set; }
+    public SupportProjectId Id { get; private set; }
 
-    public string SchoolName { get; set; }
+    public string SchoolName { get; private set; }
 
-    public string SchoolUrn { get; set; }
+    public string SchoolUrn { get; private set; }
 
-    public string LocalAuthority { get; set; }
-    public string Region { get; set; }
+    public string Region { get; private set; }
+
+    public string AssignedUser { get; private set; }
+
+    public DateTime CreatedOn { get; private set; }
+
+    public string CreatedBy { get; private set; }
+
+    public string LocalAuthority { get; private set; }
+    public DateTime? LastModifiedOn { get; private set; }
+
+    public string? LastModifiedBy { get; private set; }
 
     public string? AssignedAdviserFullName { get; set; }
     
@@ -42,6 +52,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         string schoolUrn,
         string localAuthority,
         string region,
+        string assignedUser,
+        string createdBy,
+        DateTime createdOn)
         string assignedAdviserFullName,
         string assignedAdviserEmailAddress)
     {
@@ -54,5 +67,6 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AssignedAdviserFullName = assignedAdviserFullName;
         AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
 
+        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedUser = assignedUser, CreatedBy = createdBy, CreatedOn = createdOn};
     }
 }

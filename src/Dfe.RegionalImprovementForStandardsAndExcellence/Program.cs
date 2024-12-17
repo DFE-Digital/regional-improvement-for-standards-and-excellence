@@ -46,7 +46,7 @@ builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpCont
 builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ErrorService>();
-//builder.Services.AddScoped<ISupportProjectRepository, SupportProjectRepository>();
+
 builder.Services.AddScoped<IDfeHttpClientFactory, DfeHttpClientFactory>();
 builder.Services.AddScoped<IGetEstablishment, EstablishmentService>();
 builder.Services.Decorate<IGetEstablishment, GetEstablishmentItemCacheDecorator>();

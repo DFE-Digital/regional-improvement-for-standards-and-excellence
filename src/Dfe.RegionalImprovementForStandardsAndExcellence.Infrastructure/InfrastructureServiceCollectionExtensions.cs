@@ -2,6 +2,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Reposit
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security.Authorization;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -26,6 +27,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // Authentication
             //services.AddCustomAuthorization(config);
+
+            // Utils
+            services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
             return services;
         }
