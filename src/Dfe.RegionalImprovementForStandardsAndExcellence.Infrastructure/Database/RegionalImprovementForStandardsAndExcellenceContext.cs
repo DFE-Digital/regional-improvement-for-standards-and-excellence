@@ -44,7 +44,7 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
     private static void ConfigureSupportProject(EntityTypeBuilder<SupportProject> supportProjectConfiguration)
     {
         supportProjectConfiguration.HasKey(s => s.Id);
-        supportProjectConfiguration.ToTable("SupportProject", DefaultSchema);
+        supportProjectConfiguration.ToTable("SupportProject", DefaultSchema, b => b.IsTemporal());
         supportProjectConfiguration.Property(e => e.Id)
             .ValueGeneratedOnAdd()
             .HasConversion(
