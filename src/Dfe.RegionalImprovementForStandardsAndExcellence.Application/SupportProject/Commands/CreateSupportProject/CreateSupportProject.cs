@@ -10,9 +10,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedAdviserEmailFullName,
-        string assignedAdviserEmailAddress
-        string assignedUser,
         string createdBy
     ) : IRequest<SupportProjectId>;
 
@@ -21,7 +18,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
     {
         public async Task<SupportProjectId> Handle(CreateSupportProjectCommand request, CancellationToken cancellationToken)
         {
-            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(request.schoolName, request.schoolUrn, request.localAuthority,request.region, request.assignedAdviserEmailFullName,request.assignedAdviserEmailAddress, request.assignedUser, request.createdBy, _dateTimeProvider.Now);
+            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(request.schoolName, request.schoolUrn, request.localAuthority,request.region, request.createdBy, _dateTimeProvider.Now);
 
             await supportProjectRepository.AddAsync(supportProject, cancellationToken);
 

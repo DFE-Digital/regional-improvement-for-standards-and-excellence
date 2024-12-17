@@ -2,6 +2,9 @@ using DfE.CoreLibs.Testing.AutoFixture.Attributes;
 using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.Customizations;
 using System.Net;
+using Xunit;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Api.Tests.Integration.OpenApiTests;
 

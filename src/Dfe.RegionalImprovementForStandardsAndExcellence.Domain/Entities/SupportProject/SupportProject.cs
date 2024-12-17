@@ -32,7 +32,6 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public string Region { get; private set; }
 
-    public string AssignedUser { get; private set; }
 
     public DateTime CreatedOn { get; private set; }
 
@@ -43,30 +42,32 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public string? LastModifiedBy { get; private set; }
 
-    public string? AssignedAdviserFullName { get; set; }
+    public string? AssignedAdviserFullName { get; private set; }
     
-    public string? AssignedAdviserEmailAddress { get; set; }
+    public string? AssignedAdviserEmailAddress { get; private set; }
 
     public static SupportProject Create(
         string schoolName,
         string schoolUrn,
         string localAuthority,
         string region,
-        string assignedUser,
         string createdBy,
         DateTime createdOn)
-        string assignedAdviserFullName,
-        string assignedAdviserEmailAddress)
     {
 
-        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedAdviserFullName = assignedAdviserFullName,AssignedAdviserEmailAddress = assignedAdviserEmailAddress};
+        return new SupportProject() { 
+            SchoolName = schoolName, 
+            SchoolUrn = schoolUrn,
+            LocalAuthority = localAuthority,
+            Region = region, 
+            CreatedBy = createdBy,
+            CreatedOn = createdOn
+        };
     }
 
     public void SetAdviser(string assignedAdviserFullName, string assignedAdviserEmailAddress)
     {
         AssignedAdviserFullName = assignedAdviserFullName;
         AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
-
-        return new SupportProject() { SchoolName = schoolName, SchoolUrn = schoolUrn,LocalAuthority = localAuthority,Region = region, AssignedUser = assignedUser, CreatedBy = createdBy, CreatedOn = createdOn};
     }
 }
