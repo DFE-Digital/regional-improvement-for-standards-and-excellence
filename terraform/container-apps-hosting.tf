@@ -52,6 +52,15 @@ module "azure_container_apps_hosting" {
   cdn_frontdoor_vdp_destination_hostname          = local.cdn_frontdoor_vdp_destination_hostname
   container_apps_allow_ips_inbound                = local.container_apps_allow_ips_inbound
 
+  enable_mssql_database              = local.enable_mssql_database
+  mssql_server_admin_password        = local.mssql_server_admin_password
+  mssql_azuread_admin_username       = local.mssql_azuread_admin_username
+  mssql_azuread_admin_object_id      = local.mssql_azuread_admin_object_id
+  mssql_database_name                = local.mssql_database_name
+  mssql_firewall_ipv4_allow_list     = local.mssql_firewall_ipv4_allow_list
+  mssql_server_public_access_enabled = local.mssql_server_public_access_enabled
+  mssql_managed_identity_assign_role = local.mssql_managed_identity_assign_role
+
   enable_monitoring               = local.enable_monitoring
   monitor_email_receivers         = local.monitor_email_receivers
   container_health_probe_path     = local.container_health_probe_path
