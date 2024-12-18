@@ -1,10 +1,10 @@
-﻿@page "/task-list/{id:int}"
+﻿@page "/about-the-school/{id:int}"
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers
-@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.IndexModel
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AboutTheSchool.IndexModel
 @{
     Model.SetErrorPage(Links.ProjectList.Index.Page);
-    ViewData["Title"] = "Task List";
+    ViewData["Title"] = "About The School";
 }
 
 @section BeforeMain
@@ -20,10 +20,10 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <h2 class="govuk-heading-l govuk-!-margin-bottom-2" data-test="prepare-project-doc">TaskList</h2>
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-2" data-test="prepare-project-doc">About The school</h2>
         <p class="govuk-body">
-            TaskList
+            About the school
         </p>
-        <p class="govuk-body">Task List</p>
+        <p class="govuk-body">About the school</p>
     </div>
 </div>

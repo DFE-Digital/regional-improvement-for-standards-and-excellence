@@ -18,7 +18,11 @@ public static class DisplayExtensions
          "2" => "Good",
          "3" => "Requires improvement",
          "4" => "Inadequate",
-         _ => NoData
+         "5" => "Insufficient evidence",
+         "6" => "No judgement",
+         "7" => "Does not apply",
+         "8" => "Not yet inspected",
+         _ => "Unknown"
       };
    }
 
