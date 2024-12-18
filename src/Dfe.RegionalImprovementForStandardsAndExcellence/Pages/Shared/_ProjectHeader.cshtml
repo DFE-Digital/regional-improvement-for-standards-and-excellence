@@ -10,16 +10,17 @@
    
 <div class="govuk-grid-column-full">
    <p class="govuk-body govuk-!-margin-bottom-5">
-      Project owner:
-@* 
-      @if (Model.AssignedUser == null || string.IsNullOrWhiteSpace(Model?.AssignedUser.FullName))
+      Assigned Adviser:
+    @if (@Model.AssignedAdviserFullName == null || string.IsNullOrWhiteSpace(@Model.AssignedAdviserFullName))
       {
          <span data-id="assigned-user" class="empty">Empty</span>
       }
       else
       {
-         <strong data-id="assigned-user">Dave David</strong>
-      } *@
+         <strong data-id="assigned-user">@Model.AssignedAdviserFullName</strong>
+      } 
+      
+      <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.ProjectAssignment.Index.Page" asp-route-id="@Model.Id">Change</a>
          
    </p>
    <p class="govuk-!-margin-top-0  govuk-!-margin-bottom-5">
@@ -29,7 +30,6 @@
 </div>
      <div class="govuk-grid-column-full">
          <partial name="_SubMenu" model="@Model"/>
-   
       </div>
    
 </div>

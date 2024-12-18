@@ -16,13 +16,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public string Region { get; set; }
 
-        public string AssignedUser { get; set; }
+        public string AssignedAdviserFullName { get; set; }
+        
+        public string AssignedAdviserEmailAddress { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
             {
                 Id = supportProjectDto.id,
-                AssignedUser = supportProjectDto.assignedUser,
+                AssignedAdviserFullName = supportProjectDto.assignedAdviserFullName,
+                AssignedAdviserEmailAddress = supportProjectDto.assignedAdviserEmailAddress,
                 LocalAuthority = supportProjectDto.localAuthority,
                 Region = supportProjectDto.region,
                 SchoolName = supportProjectDto.schoolName,

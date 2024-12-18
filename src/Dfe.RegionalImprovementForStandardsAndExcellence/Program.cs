@@ -1,10 +1,14 @@
 
+using System.Collections.Specialized;
 using Microsoft.AspNetCore.CookiePolicy;
 
 using Dfe.Academisation.CorrelationIdMiddleware;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Graph.ExternalConnectors;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,10 @@ var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .Build();
 
+builder.Services.Configure<AzureAdOptions>(builder.Configuration.GetSection("AzureAd"));
+
+
+
 builder.Services.AddHttpClient(DfeHttpClientFactory.AcademiesClientName, (sp, client) =>
 {
     client.BaseAddress = new Uri(config["AcademiesApi:Url"]);
@@ -20,6 +28,7 @@ builder.Services.AddHttpClient(DfeHttpClientFactory.AcademiesClientName, (sp, cl
     client.DefaultRequestHeaders.Add("User-Agent", "PrepareConversions/1.0");
 
 });
+
 
 builder.Services.AddSession(options =>
 {
@@ -35,15 +44,17 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
 // Add services to the container.
 builder.Services.AddRazorPages();
-
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ErrorService>();
-//builder.Services.AddScoped<ISupportProjectRepository, SupportProjectRepository>();
+
 builder.Services.AddScoped<IDfeHttpClientFactory, DfeHttpClientFactory>();
 builder.Services.AddScoped<IGetEstablishment, EstablishmentService>();
 builder.Services.Decorate<IGetEstablishment, GetEstablishmentItemCacheDecorator>();
 builder.Services.AddScoped<ICorrelationContext, CorrelationContext>();
 builder.Services.AddScoped<IHttpClientService, HttpClientService>();
+builder.Services.AddScoped<IGraphClientFactory, GraphClientFactory>();
+builder.Services.AddScoped<IGraphUserService, GraphUserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddApplicationDependencyGroup(builder.Configuration);
 builder.Services.AddInfrastructureDependencyGroup(builder.Configuration);
