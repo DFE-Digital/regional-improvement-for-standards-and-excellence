@@ -62,5 +62,4 @@ jobs:
         dotnet-sonarscanner begin /d:sonar.scanner.skipJreProvisioning=true /k:"DFE-Digital_regional-improvement-for-standards-and-excellence" /o:"dfe-digital" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
         dotnet build Dfe.RegionalImprovementForStandardsAndExcellence.sln --no-restore
         dotnet test Dfe.RegionalImprovementForStandardsAndExcellence.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
-        #reportgenerator -reports:"./**/coverage.cobertura.xml" -targetdir:./Dfe.PrepareConversions/CoverageReport -reporttypes:SonarQube
         dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
