@@ -15,6 +15,9 @@ locals {
   container_max_replicas                          = var.container_max_replicas
   container_scale_http_concurrency                = var.container_scale_http_concurrency
   container_port                                  = var.container_port
+  enable_init_container                           = var.enable_init_container
+  init_container_image                            = var.init_container_image
+  init_container_command                          = var.init_container_command
   enable_event_hub                                = var.enable_event_hub
   enable_logstash_consumer                        = var.enable_logstash_consumer
   eventhub_export_log_analytics_table_names       = var.eventhub_export_log_analytics_table_names
