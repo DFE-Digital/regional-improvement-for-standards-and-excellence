@@ -65,4 +65,5 @@ locals {
   mssql_firewall_ipv4_allow_list                  = var.mssql_firewall_ipv4_allow_list
   mssql_server_public_access_enabled              = var.mssql_server_public_access_enabled
   mssql_managed_identity_assign_role              = var.mssql_managed_identity_assign_role
+  storage_account_public_access_enabled           = var.storage_account_public_access_enabled
 }
