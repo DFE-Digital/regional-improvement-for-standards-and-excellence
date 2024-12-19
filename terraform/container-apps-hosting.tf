@@ -35,6 +35,10 @@ module "azure_container_apps_hosting" {
   health_insights_api_ipv4_allow_list    = local.health_insights_api_ipv4_allow_list
   enable_container_app_file_share        = local.enable_container_app_file_share
 
+  enable_init_container  = local.enable_init_container
+  init_container_image   = local.init_container_image
+  init_container_command = local.init_container_command
+
   enable_cdn_frontdoor                            = local.enable_cdn_frontdoor
   cdn_frontdoor_forwarding_protocol               = local.cdn_frontdoor_forwarding_protocol
   cdn_frontdoor_origin_host_header_override       = local.cdn_frontdoor_origin_host_header_override

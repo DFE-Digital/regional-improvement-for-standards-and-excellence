@@ -28,21 +28,21 @@ RUN ["dotnet", "publish", "Dfe.RegionalImprovementForStandardsAndExcellence", "-
 
 # Generate an Entity Framework bundle
 FROM build AS efbuilder
-WORKDIR /build/src
 ENV PATH=$PATH:/root/.dotnet/tools
-RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
 RUN ["mkdir", "/sql"]
-RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "--configuration", "Release", "-p", "Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure", "--no-build", "-o", "/sql/migratedb"]
+RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
+RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "-p", "Dfe.RegionalImprovementForStandardsAndExcellence", "--configuration", "Release", "--no-build", "-o", "/sql/migratedb"]
 
 # Create a runtime environment for Entity Framework
 FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS initcontainer
 WORKDIR /sql
+COPY --from=efbuilder /app /Dfe.RegionalImprovementForStandardsAndExcellence
 COPY --from=efbuilder /sql /sql
 RUN chown "$APP_UID" "/sql" -R
 USER $APP_UID
 
 # Build a runtime environment
-FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS base
+FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS final
 WORKDIR /app
 LABEL org.opencontainers.image.source="https://github.com/DFE-Digital/regional-improvement-for-standards-and-excellence"
 
