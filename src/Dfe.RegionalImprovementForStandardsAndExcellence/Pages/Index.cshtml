@@ -12,7 +12,7 @@
             Schools requiring improvement
         </h1>
         <a asp-page="/WhichSchoolNeedsHelp" role="button" draggable="false" class="govuk-button" data-module="govuk-button" data-cy="create_new_conversion_btn">
-            Create a new support project
+            Select a new school
         </a>
     </div>
     <div class="govuk-grid-column-one-third">
@@ -20,12 +20,12 @@
     </div>
     <div class="govuk-grid-column-two-thirds">
 
-        <h2 class="govuk-heading-l" test-id="projectCount" data-cy="select-projectlist-filter-count">@Model.SupportProjects.Count() projects found</h2>
+        <h2 class="govuk-heading-l" test-id="projectCount" data-cy="select-projectlist-filter-count">@Model.SupportProjects.Count() schools found</h2>
          <table class="govuk-table">
-                <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Projects @Model.SupportProjects.Count() </caption>
+                <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools @Model.SupportProjects.Count() </caption>
                     <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
-                        <th class="govuk-table__header app-!-width-three-fifths">Application information</th>
+                        <th class="govuk-table__header app-!-width-three-fifths">School information</th>
                     </tr>
                     </thead>
                 <tbody class="govuk-table__body">
