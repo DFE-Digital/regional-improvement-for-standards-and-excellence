@@ -70,4 +70,6 @@ module "azure_container_apps_hosting" {
   existing_logic_app_workflow                  = local.existing_logic_app_workflow
   existing_network_watcher_name                = local.existing_network_watcher_name
   existing_network_watcher_resource_group_name = local.existing_network_watcher_resource_group_name
+
+  storage_account_public_access_enabled = local.storage_account_public_access_enabled
 }

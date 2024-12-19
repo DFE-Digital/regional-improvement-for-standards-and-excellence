@@ -429,3 +429,9 @@ variable "mssql_managed_identity_assign_role" {
   type        = bool
   default     = false
 }
+
+variable "storage_account_public_access_enabled" {
+  description = "Should the Azure Storage Account have Public visibility?"
+  type        = bool
+  default     = true
+}
