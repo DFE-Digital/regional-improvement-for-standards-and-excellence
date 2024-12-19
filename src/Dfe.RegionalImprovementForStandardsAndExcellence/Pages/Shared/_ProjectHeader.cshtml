@@ -7,27 +7,49 @@
          @Model.SchoolName
       </h1>
 </div>
-   
-<div class="govuk-grid-column-full">
-   <p class="govuk-body govuk-!-margin-bottom-5">
-      Assigned Adviser:
-    @if (@Model.AssignedAdviserFullName == null || string.IsNullOrWhiteSpace(@Model.AssignedAdviserFullName))
-      {
-         <span data-id="assigned-user" class="empty">Empty</span>
-      }
-      else
-      {
-         <strong data-id="assigned-user">@Model.AssignedAdviserFullName</strong>
-      } 
-      
-      <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.ProjectAssignment.Index.Page" asp-route-id="@Model.Id">Change</a>
-         
-   </p>
-   <p class="govuk-!-margin-top-0  govuk-!-margin-bottom-5">
-      <strong class="govuk-tag govuk-tag--blue" id="project-status-@Model.Id">Testing</strong>
-   </p>
 
-</div>
+   <div class="govuk-grid-column-full">
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Date of last inspection:
+         @if (@Model.LastInspectionDate == null || string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
+         {
+            <span data-id="last-inspection" class="empty">Unknown</span>
+         }
+         else
+         {
+            <a data-id="last-inspection">@Model.LastInspectionDate</a>
+         }
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Quality of education:
+         <partial name="_OfstedJudgement" model="Model.QualityOfEducation"/>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Behaviour and attitudes:
+         <partial name="_OfstedJudgement" model="Model.BehaviourAndAttitudes"/>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Personal development:
+         <partial name="_OfstedJudgement" model="Model.PersonalDevelopment"/>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Leadership and management:
+         <partial name="_OfstedJudgement" model="Model.LeadershipAndManagement"/>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Assigned Adviser:
+         @if (@Model.AssignedAdviserFullName == null || string.IsNullOrWhiteSpace(@Model.AssignedAdviserFullName))
+         {
+            <span data-id="assigned-user" class="empty">Empty</span>
+         }
+         else
+         {
+            <strong data-id="assigned-user">@Model.AssignedAdviserFullName</strong>
+         }
+
+         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.ProjectAssignment.Index.Page" asp-route-id="@Model.Id">Change</a>
+      </p>
+   </div>
      <div class="govuk-grid-column-full">
          <partial name="_SubMenu" model="@Model"/>
       </div>
