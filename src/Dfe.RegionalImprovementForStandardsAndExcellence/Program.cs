@@ -1,5 +1,4 @@
 
-using System.Collections.Specialized;
 using Microsoft.AspNetCore.CookiePolicy;
 
 using Dfe.Academisation.CorrelationIdMiddleware;
@@ -7,43 +6,85 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Graph.ExternalConnectors;
-
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var config = new ConfigurationBuilder()
+var config = builder.Configuration
     .AddUserSecrets<Program>()
     .Build();
 
-builder.Services.Configure<AzureAdOptions>(builder.Configuration.GetSection("AzureAd"));
+var _authenticationExpiration = TimeSpan.FromMinutes(int.Parse(config["AuthenticationExpirationInMinutes"] ?? "60"));
 
-
+builder.Services.Configure<AzureAdOptions>(config.GetSection("AzureAd"));
 
 builder.Services.AddHttpClient(DfeHttpClientFactory.AcademiesClientName, (sp, client) =>
 {
-    client.BaseAddress = new Uri(config["AcademiesApi:Url"]);
-    client.DefaultRequestHeaders.Add("ApiKey", config["AcademiesApi:ApiKey"]);
-    client.DefaultRequestHeaders.Add("User-Agent", "PrepareConversions/1.0");
+    var academiesApiSection = config.GetSection("AcademiesApi");
+    client.BaseAddress = new Uri(academiesApiSection["Url"]);
+    client.DefaultRequestHeaders.Add("ApiKey", academiesApiSection["ApiKey"]);
+    client.DefaultRequestHeaders.Add("User-Agent", "RISE/1.0");
 
 });
-
 
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = new TimeSpan(10000);
-    options.Cookie.Name = ".ManageAnAcademyConversion.Session";
+    options.Cookie.Name = ".RISE.Session";
     options.Cookie.IsEssential = true;
     options.Cookie.HttpOnly = true;
 
     //if (string.IsNullOrWhiteSpace(Configuration["CI"]))
-      //  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    //  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+        {
+            options.Conventions.AuthorizeFolder("/");
+        })
+        .AddViewOptions(options =>
+        {
+            options.HtmlHelperOptions.ClientValidationEnabled = false;
+        }).AddMvcOptions(options =>
+        {
+            options.MaxModelValidationErrors = 50;
+        });
+
+//builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
+
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(options =>
+    {
+        builder.Configuration.Bind("AzureAd", options);
+        // Add custom scopes here
+        options.Scope.Clear();
+        options.Scope.Add("openid");
+        options.Scope.Add("profile");
+        options.Scope.Add("User.Read");
+    });
+
+builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme,
+   options =>
+   {
+       options.AccessDeniedPath = "/access-denied";
+       options.Cookie.Name = ".Rise.Login";
+       options.Cookie.HttpOnly = true;
+       options.Cookie.IsEssential = true;
+       options.ExpireTimeSpan = _authenticationExpiration;
+       options.SlidingExpiration = true;
+
+       if (string.IsNullOrEmpty(config["CI"]))
+           options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+   });
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ErrorService>();
 
@@ -58,6 +99,19 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddApplicationDependencyGroup(builder.Configuration);
 builder.Services.AddInfrastructureDependencyGroup(builder.Configuration);
+builder.Services.AddAuthorization(options =>
+{
+    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+    .RequireAssertion(context =>
+    {
+        string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"];
+        // Check if the user has any of the required roles
+        return context.User.Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Any(c => allowedRoles.Contains(c.Value));
+    })
+    .Build();
+});
 
 var app = builder.Build();
 
@@ -74,6 +128,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseCookiePolicy(new CookiePolicyOptions { Secure = CookieSecurePolicy.Always, HttpOnly = HttpOnlyPolicy.Always });
