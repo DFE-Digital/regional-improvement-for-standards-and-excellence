@@ -13,36 +13,51 @@ ARG NODEJS_VERSION_MAJOR=22
 # Build the app using the dotnet SDK
 FROM "mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0" AS build
 WORKDIR /build
-COPY ./Dfe.RegionalImprovementForStandardsAndExcellence.sln /build
 COPY ./Directory.Build.props /build
-COPY ./src/ /build/src
 COPY ./scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
+
+## START: Restore Packages
+ARG PROJECT_NAME="Dfe.RegionalImprovementForStandardsAndExcellence"
+COPY ./${PROJECT_NAME}.sln ./Directory.Build.props ./
+COPY ./src/${PROJECT_NAME}/${PROJECT_NAME}.Frontend.csproj                      ./src/${PROJECT_NAME}/
+COPY ./src/${PROJECT_NAME}.Api/${PROJECT_NAME}.Api.csproj                       ./src/${PROJECT_NAME}.Api/
+COPY ./src/${PROJECT_NAME}.Api.Client/${PROJECT_NAME}.Api.Client.csproj         ./src/${PROJECT_NAME}.Api.Client/
+COPY ./src/${PROJECT_NAME}.Application/${PROJECT_NAME}.Application.csproj       ./src/${PROJECT_NAME}.Application/
+COPY ./src/${PROJECT_NAME}.Domain/${PROJECT_NAME}.Domain.csproj                 ./src/${PROJECT_NAME}.Domain/
+COPY ./src/${PROJECT_NAME}.Infrastructure/${PROJECT_NAME}.Infrastructure.csproj ./src/${PROJECT_NAME}.Infrastructure/
+COPY ./src/${PROJECT_NAME}.Utils/${PROJECT_NAME}.Utils.csproj                   ./src/${PROJECT_NAME}.Utils/
+
+COPY ./src/Tests/${PROJECT_NAME}.Api.Tests.Integration/${PROJECT_NAME}.Api.Tests.Integration.csproj ./src/Tests/${PROJECT_NAME}.Api.Tests.Integration/
+COPY ./src/Tests/${PROJECT_NAME}.Application.Tests/${PROJECT_NAME}.Application.Tests.csproj         ./src/Tests/${PROJECT_NAME}.Application.Tests/
+COPY ./src/Tests/${PROJECT_NAME}.Domain.Tests/${PROJECT_NAME}.Domain.Tests.csproj                   ./src/Tests/${PROJECT_NAME}.Domain.Tests/
+COPY ./src/Tests/${PROJECT_NAME}.Tests.Common/${PROJECT_NAME}.Tests.Common.csproj                   ./src/Tests/${PROJECT_NAME}.Tests.Common/
 
 # Mount GitHub Token as a Docker secret so that NuGet Feed can be accessed
 RUN --mount=type=secret,id=github_token dotnet nuget add source --username USERNAME --password $(cat /run/secrets/github_token) --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
-
 RUN ["dotnet", "restore", "Dfe.RegionalImprovementForStandardsAndExcellence.sln"]
+## END: Restore Packages
+
 WORKDIR /build/src
-RUN ["dotnet", "build", "Dfe.RegionalImprovementForStandardsAndExcellence", "--no-restore", "-c", "Release"]
-RUN ["dotnet", "publish", "Dfe.RegionalImprovementForStandardsAndExcellence", "--no-build", "-o", "/app"]
+COPY ./src/ .
+RUN ["dotnet", "publish", "Dfe.RegionalImprovementForStandardsAndExcellence", "-c", "Release", "--no-restore", "-o", "/app"]
 
 # Generate an Entity Framework bundle
 FROM build AS efbuilder
-WORKDIR /build/src
 ENV PATH=$PATH:/root/.dotnet/tools
-RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
 RUN ["mkdir", "/sql"]
-RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "--configuration", "Release", "-p", "Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure", "--no-build", "-o", "/sql/migratedb"]
+RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
+RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "-p", "Dfe.RegionalImprovementForStandardsAndExcellence", "--configuration", "Release", "--no-build", "-o", "/sql/migratedb"]
 
 # Create a runtime environment for Entity Framework
 FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS initcontainer
 WORKDIR /sql
+COPY --from=efbuilder /app/appsettings.json /Dfe.RegionalImprovementForStandardsAndExcellence/
 COPY --from=efbuilder /sql /sql
 RUN chown "$APP_UID" "/sql" -R
 USER $APP_UID
 
 # Build a runtime environment
-FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS base
+FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS final
 WORKDIR /app
 LABEL org.opencontainers.image.source="https://github.com/DFE-Digital/regional-improvement-for-standards-and-excellence"
 

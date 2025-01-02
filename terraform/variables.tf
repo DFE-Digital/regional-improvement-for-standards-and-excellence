@@ -429,3 +429,27 @@ variable "mssql_managed_identity_assign_role" {
   type        = bool
   default     = false
 }
+
+variable "storage_account_public_access_enabled" {
+  description = "Should the Azure Storage Account have Public visibility?"
+  type        = bool
+  default     = true
+}
+
+variable "enable_init_container" {
+  description = "Deploy an Init Container. Init containers run before the primary app container and are used to perform initialization tasks such as downloading data or preparing the environment"
+  type        = bool
+  default     = false
+}
+
+variable "init_container_image" {
+  description = "Image name for the Init Container. Leave blank to use the same Container image from the primary app"
+  type        = string
+  default     = ""
+}
+
+variable "init_container_command" {
+  description = "Container command for the Init Container"
+  type        = list(any)
+  default     = []
+}
