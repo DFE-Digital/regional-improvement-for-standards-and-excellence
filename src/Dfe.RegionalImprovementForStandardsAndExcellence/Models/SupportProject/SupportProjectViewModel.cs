@@ -19,6 +19,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string AssignedAdviserFullName { get; set; }
         
         public string AssignedAdviserEmailAddress { get; set; }
+        
+        public string QualityOfEducation { get; set; }
+        
+        public string BehaviourAndAttitudes { get; set; }
+        
+        public string PersonalDevelopment { get; set; }
+        
+        public string LeadershipAndManagement { get; set; }
+        public string LastInspectionDate { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
