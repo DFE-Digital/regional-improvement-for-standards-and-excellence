@@ -6,7 +6,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProjec
 using System.Threading;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AboutTheSchool;
 
 public class IndexModel(
     ISupportProjectQueryService _supportProjectQueryService,
