@@ -14,11 +14,11 @@ public class BaseSupportProjectPageModel(ISupportProjectQueryService supportProj
 
     public SupportProjectViewModel SupportProject { get; set; }
     
-    public virtual async Task<IActionResult> OnGetAsync1(int id, CancellationToken cancellationToken)
+    public virtual async Task<IActionResult> GetSupportProject(int id, CancellationToken cancellationToken)
     {
-        return await GetSupportProject(id,cancellationToken);
+        return await GetProject(id,cancellationToken);
     }
-    protected async Task<IActionResult> GetSupportProject(int id, CancellationToken cancellationToken)
+    protected async Task<IActionResult> GetProject(int id, CancellationToken cancellationToken)
     {
         
         var result = await _supportProjectQueryService.GetSupportProject(id, cancellationToken);

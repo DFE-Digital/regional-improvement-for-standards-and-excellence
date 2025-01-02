@@ -28,7 +28,7 @@ public class IndexModel : BaseSupportProjectPageModel
 
         ReturnPage = @Links.ProjectList.Index.Page;
         
-        await base.OnGetAsync1(id, cancellationToken);
+        await base.GetSupportProject(id, cancellationToken);
 
         return Page();
    }
