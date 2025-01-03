@@ -20,10 +20,24 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <h2 class="govuk-heading-l govuk-!-margin-bottom-2" data-test="prepare-project-doc">TaskList</h2>
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-2" data-test="prepare-project-doc">Task list</h2>
         <p class="govuk-body">
-            TaskList
+            you can do something here.
         </p>
-        <p class="govuk-body">Task List</p>
+        <p class="govuk-body">and something else here too.</p>
+
+        <h3 class="app-task-list__section govuk-!-margin-top-8">Begin the project</h3>
+        <div class="app-task-list">
+            <ul class="app-task-list__items govuk-!-padding-left-0">
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ContactTheSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="confirm_project_dates">
+                            Contact the school
+                        </a>
+                    </span>
+                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag" id="project-dates-status">Not Started</strong>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
