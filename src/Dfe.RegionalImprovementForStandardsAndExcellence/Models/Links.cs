@@ -7,8 +7,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 public static class Links
 {
    private static readonly List<LinkItem> _links = [];
-   private static string _transfersUrl;
-   public static string TransfersUrl => _transfersUrl;
 
    private static bool _isApplicationDocumentsEnabled;
    public static bool IsApplicationDocumentsEnabled => _isApplicationDocumentsEnabled;
@@ -18,10 +16,6 @@ public static class Links
       LinkItem item = new() { Page = page, BackText = backText };
       _links.Add(item);
       return item;
-   }
-   public static void InitializeTransfersUrl(string transfersUrl)
-   {
-      _transfersUrl = transfersUrl;
    }
 
    public static void InializeProjectDocumentsEnabled(bool isApplicationDocumentsEnabled) {
