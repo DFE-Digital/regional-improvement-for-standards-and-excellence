@@ -49,6 +49,9 @@ builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpCont
 builder.Services.AddRazorPages(options =>
         {
             options.Conventions.AuthorizeFolder("/");
+            options.Conventions.AllowAnonymousToPage("/public/maintenance");
+            options.Conventions.AllowAnonymousToPage("/public/accessibilitystatement");
+            options.Conventions.AllowAnonymousToPage("/public/cookiepreferences");
         })
         .AddViewOptions(options =>
         {
@@ -144,3 +147,5 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
+
+public partial class Program { } // Make the Program class partial for testing
