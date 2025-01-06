@@ -30,6 +30,7 @@ COPY ./src/${PROJECT_NAME}.Utils/${PROJECT_NAME}.Utils.csproj                   
 COPY ./src/Tests/${PROJECT_NAME}.Api.Tests.Integration/${PROJECT_NAME}.Api.Tests.Integration.csproj ./src/Tests/${PROJECT_NAME}.Api.Tests.Integration/
 COPY ./src/Tests/${PROJECT_NAME}.Application.Tests/${PROJECT_NAME}.Application.Tests.csproj         ./src/Tests/${PROJECT_NAME}.Application.Tests/
 COPY ./src/Tests/${PROJECT_NAME}.Domain.Tests/${PROJECT_NAME}.Domain.Tests.csproj                   ./src/Tests/${PROJECT_NAME}.Domain.Tests/
+COPY ./src/Tests/${PROJECT_NAME}.Frontend.Tests/${PROJECT_NAME}.Frontend.Tests.csproj                   ./src/Tests/${PROJECT_NAME}.Frontend.Tests/
 COPY ./src/Tests/${PROJECT_NAME}.Tests.Common/${PROJECT_NAME}.Tests.Common.csproj                   ./src/Tests/${PROJECT_NAME}.Tests.Common/
 
 # Mount GitHub Token as a Docker secret so that NuGet Feed can be accessed
