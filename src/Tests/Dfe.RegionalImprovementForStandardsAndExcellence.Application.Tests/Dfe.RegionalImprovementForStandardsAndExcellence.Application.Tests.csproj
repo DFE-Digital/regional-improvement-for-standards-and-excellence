@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Dfe.RegionalImprovementForStandardsAndExcellence.Application\Dfe.RegionalImprovementForStandardsAndExcellence.Application.csproj" />
+    <ProjectReference Include="..\..\Dfe.RegionalImprovementForStandardsAndExcellence.Domain\Dfe.RegionalImprovementForStandardsAndExcellence.Domain.csproj" />
     <ProjectReference Include="..\Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common\Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.csproj" />
   </ItemGroup>
 
