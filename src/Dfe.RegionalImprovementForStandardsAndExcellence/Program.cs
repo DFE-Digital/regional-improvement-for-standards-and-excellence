@@ -74,6 +74,15 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         options.Scope.Add("User.Read");
     });
 
+// Enforce HTTPS in ASP.NET Core
+// @link https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(365);
+});
+
 builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme,
    options =>
    {
