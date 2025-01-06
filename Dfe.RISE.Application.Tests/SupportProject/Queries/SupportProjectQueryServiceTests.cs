@@ -8,6 +8,8 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Reposit
 using AutoMapper;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using System;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.SupportProject.Queries
 {
@@ -98,6 +100,90 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Sup
                 It.IsAny<int>(),
                 It.IsAny<int>(),
                 It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task GetSupportProject_ShouldReturnSuccessResult_WhenSupportProjectIsFoundAndMapped()
+        {
+            // Arrange
+            string schoolName1 = "High School A";
+            string schoolUrn1 = "URN123";
+            string localAuthority1 = "Local Authority A";
+            string region1 = "Region A";
+            string createdBy1 = "User A";
+            DateTime createdOn1 = new DateTime(2023, 01, 01);
+
+            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(schoolName1, schoolUrn1, localAuthority1, region1, createdBy1, createdOn1);
+
+            // Mock the repository call to return the mock supportProject
+            _repositoryMock.Setup(repo => repo.FindAsync(It.Is<Func<Domain.Entities.SupportProject.SupportProject, bool>>(predicate => predicate.Invoke(It.IsAny<Domain.Entities.SupportProject.SupportProject>())), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(supportProject);
+
+            // Act
+            var result = await _service.GetSupportProject(1, CancellationToken.None);
+
+            // Assert
+            Assert.True(result.IsSuccess);
+            Assert.NotNull(result.Value);
+            Assert.Equal(supportProject.SchoolName, result.Value.schoolName);
+            Assert.Equal(supportProject.SchoolUrn, result.Value.schoolUrn);
+            Assert.Equal(supportProject.LocalAuthority, result.Value.localAuthority);
+            Assert.Equal(supportProject.Region, result.Value.region);
+        }
+
+        [Fact]
+        public async Task GetSupportProject_ShouldReturnFailureResult_WhenSupportProjectIsNotFound()
+        {
+            // Arrange
+            var supportProjectId = 1;
+
+            // Mock the repository to return null, simulating that the project was not found
+            _repositoryMock
+                .Setup(repo => repo.FindAsync(It.IsAny<Func<Domain.Entities.SupportProject.SupportProject, bool>>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync((Domain.Entities.SupportProject.SupportProject?)null);
+
+            // Act
+            var result = await _service.GetSupportProject(supportProjectId, CancellationToken.None);
+
+            // Assert
+            Assert.False(result.IsSuccess);
+            Assert.Null(result.Value);
+        }
+
+        [Fact]
+        public async Task GetAllProjectLocalAuthorities_ShouldReturnSuccessResult_WhenLocalAuthoritiesAreFound()
+        {
+            // Arrange
+            var localAuthorities = new List<string> { "Authority1", "Authority2", "Authority3" };
+
+            // Mock the repository to return the mock list of local authorities
+            _repositoryMock
+                .Setup(repo => repo.GetAllProjectLocalAuthorities(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(localAuthorities);
+
+            // Act
+            var result = await _service.GetAllProjectLocalAuthorities(CancellationToken.None);
+
+            // Assert
+            Assert.True(result.IsSuccess);
+            Assert.Equal(localAuthorities, result.Value);
+        }
+
+        [Fact]
+        public async Task GetAllProjectLocalAuthorities_ShouldReturnFailureResult_WhenNoLocalAuthoritiesAreFound()
+        {
+            // Arrange
+            // Mock the repository to return null, simulating no local authorities found
+            _repositoryMock
+                .Setup(repo => repo.GetAllProjectLocalAuthorities(It.IsAny<CancellationToken>()))
+                .ReturnsAsync((IEnumerable<string>)null);
+
+            // Act
+            var result = await _service.GetAllProjectLocalAuthorities(CancellationToken.None);
+
+            // Assert
+            Assert.False(result.IsSuccess);
+            Assert.Null(result.Value);
         }
     }
 
