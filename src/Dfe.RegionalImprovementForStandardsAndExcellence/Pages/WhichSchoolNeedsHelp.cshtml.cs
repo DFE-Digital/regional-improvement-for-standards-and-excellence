@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
@@ -12,11 +14,13 @@ public class WhichSchoolNeedsHelpModel : PageModel
    private const string SEARCH_ENDPOINT = "/which-school-needs-help?handler=Search&searchQuery=";
    private readonly ErrorService _errorService;
    private readonly IGetEstablishment _getEstablishment;
+   private readonly ISupportProjectQueryService _supportProjectQueryService;
 
-   public WhichSchoolNeedsHelpModel(IGetEstablishment getEstablishment, ErrorService errorService)
+   public WhichSchoolNeedsHelpModel(IGetEstablishment getEstablishment, ErrorService errorService, ISupportProjectQueryService supportProjectQueryService)
    {
       _getEstablishment = getEstablishment;
       _errorService = errorService;
+      _supportProjectQueryService = supportProjectQueryService;
 
    }
 
@@ -50,11 +54,10 @@ public class WhichSchoolNeedsHelpModel : PageModel
 
       if (string.IsNullOrWhiteSpace(SearchQuery))
       {
-         ModelState.AddModelError(nameof(SearchQuery), "Enter the school name or URN");
+         ModelState.AddModelError(nameof(SearchQuery), "Enter the school name or URN.");
          _errorService.AddErrors(ModelState.Keys, ModelState);
          return Page();
       }
-
       string[] splitSearch = SplitOnBrackets(SearchQuery);
       if (splitSearch.Length < 2)
       {
@@ -70,6 +73,16 @@ public class WhichSchoolNeedsHelpModel : PageModel
       if (expectedEstablishment.Name == null)
       {
          ModelState.AddModelError(nameof(SearchQuery), "We could not find a school matching your search criteria");
+         _errorService.AddErrors(ModelState.Keys, ModelState);
+         return Page();
+      }
+
+      CancellationToken cancellationToken = new CancellationToken();
+      var existingSupportProjects = await  _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
+
+      if (existingSupportProjects.Value != null && existingSupportProjects.Value.Any(a => a.schoolUrn == expectedEstablishment.Urn))
+      {
+         ModelState.AddModelError(nameof(SearchQuery), "This school is already getting support, choose a different school");
          _errorService.AddErrors(ModelState.Keys, ModelState);
          return Page();
       }
