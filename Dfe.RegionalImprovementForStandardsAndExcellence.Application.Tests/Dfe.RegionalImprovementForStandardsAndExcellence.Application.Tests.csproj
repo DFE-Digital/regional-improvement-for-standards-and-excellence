@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Dfe.RegionalImprovementForStandardsAndExcellence.Application\Dfe.RegionalImprovementForStandardsAndExcellence.Application.csproj" />
-    <ProjectReference Include="..\..\Dfe.RegionalImprovementForStandardsAndExcellence.Domain\Dfe.RegionalImprovementForStandardsAndExcellence.Domain.csproj" />
+    <ProjectReference Include="..\src\Dfe.RegionalImprovementForStandardsAndExcellence.Application\Dfe.RegionalImprovementForStandardsAndExcellence.Application.csproj" />
+    <ProjectReference Include="..\src\Dfe.RegionalImprovementForStandardsAndExcellence.Domain\Dfe.RegionalImprovementForStandardsAndExcellence.Domain.csproj" />
   </ItemGroup>
 
 </Project>
