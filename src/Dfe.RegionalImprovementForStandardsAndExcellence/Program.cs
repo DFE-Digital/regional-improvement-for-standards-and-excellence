@@ -124,6 +124,15 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
+var forwardOptions = new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.All,
+    RequireHeaderSymmetry = false
+};
+forwardOptions.KnownNetworks.Clear();
+forwardOptions.KnownProxies.Clear();
+app.UseForwardedHeaders(forwardOptions);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
