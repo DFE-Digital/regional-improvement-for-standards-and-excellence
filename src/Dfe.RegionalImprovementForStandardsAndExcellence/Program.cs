@@ -41,8 +41,6 @@ builder.Services.AddSession(options =>
     //  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
-builder.Services.AddHealthChecks();
-
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
