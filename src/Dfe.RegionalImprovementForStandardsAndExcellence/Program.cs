@@ -1,6 +1,4 @@
-
 using Microsoft.AspNetCore.CookiePolicy;
-
 using Dfe.Academisation.CorrelationIdMiddleware;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
@@ -8,11 +6,10 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
