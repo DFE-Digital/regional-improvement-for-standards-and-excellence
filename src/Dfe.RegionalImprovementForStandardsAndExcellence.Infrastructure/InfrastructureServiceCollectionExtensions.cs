@@ -31,7 +31,15 @@ namespace Microsoft.Extensions.DependencyInjection
             // Utils
             services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
+            // Health check
+            AddInfrastructureHealthCheck(services);
+
             return services;
+        }
+
+        public static void AddInfrastructureHealthCheck(this IServiceCollection services) {
+            services.AddHealthChecks()
+                .AddDbContextCheck<RegionalImprovementForStandardsAndExcellenceContext>("RISE Database");
         }
     }
 }

@@ -1,6 +1,4 @@
-
 using Microsoft.AspNetCore.CookiePolicy;
-
 using Dfe.Academisation.CorrelationIdMiddleware;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
@@ -8,11 +6,10 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,11 +71,20 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         options.Scope.Add("User.Read");
     });
 
+// Enforce HTTPS in ASP.NET Core
+// @link https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(365);
+});
+
 builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme,
    options =>
    {
        options.AccessDeniedPath = "/access-denied";
-       options.Cookie.Name = ".Rise.Login";
+       options.Cookie.Name = ".RISE.Login";
        options.Cookie.HttpOnly = true;
        options.Cookie.IsEssential = true;
        options.ExpireTimeSpan = _authenticationExpiration;
@@ -118,12 +124,23 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
+var forwardOptions = new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.All,
+    RequireHeaderSymmetry = false
+};
+forwardOptions.KnownNetworks.Clear();
+forwardOptions.KnownProxies.Clear();
+app.UseForwardedHeaders(forwardOptions);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+} else {
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
@@ -145,6 +162,8 @@ app.UseEndpoints(endpoints =>
     endpoints.MapRazorPages();
     endpoints.MapControllerRoute("default", "{controller}/{action}/");
 });
+
+app.UseHealthChecks("/health");
 
 app.Run();
 
