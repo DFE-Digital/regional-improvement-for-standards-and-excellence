@@ -86,7 +86,7 @@ builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefa
    options =>
    {
        options.AccessDeniedPath = "/access-denied";
-       options.Cookie.Name = ".Rise.Login";
+       options.Cookie.Name = ".RISE.Login";
        options.Cookie.HttpOnly = true;
        options.Cookie.IsEssential = true;
        options.ExpireTimeSpan = _authenticationExpiration;
