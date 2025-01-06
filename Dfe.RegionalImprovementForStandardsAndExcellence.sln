@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.csproj", "{0C57CBCC-0C59-48E9-942B-5E0695AD2231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests", "Dfe.RISE.Application.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.csproj", "{6BC38097-9D2B-406A-B302-3F1FA5A156BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.csproj", "{2594A316-8AE7-407E-A945-6D42096235DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +72,10 @@ Global
 		{0C57CBCC-0C59-48E9-942B-5E0695AD2231}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C57CBCC-0C59-48E9-942B-5E0695AD2231}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C57CBCC-0C59-48E9-942B-5E0695AD2231}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BC38097-9D2B-406A-B302-3F1FA5A156BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BC38097-9D2B-406A-B302-3F1FA5A156BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BC38097-9D2B-406A-B302-3F1FA5A156BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BC38097-9D2B-406A-B302-3F1FA5A156BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2594A316-8AE7-407E-A945-6D42096235DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2594A316-8AE7-407E-A945-6D42096235DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2594A316-8AE7-407E-A945-6D42096235DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2594A316-8AE7-407E-A945-6D42096235DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,7 +84,7 @@ Global
 		{24013A30-D950-4025-B1F1-B8A7AC23DE6F} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
 		{8380EFBB-A438-4044-B610-3B786E4BE6E9} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
 		{0C57CBCC-0C59-48E9-942B-5E0695AD2231} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
-		{6BC38097-9D2B-406A-B302-3F1FA5A156BD} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
+		{2594A316-8AE7-407E-A945-6D42096235DF} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4C4F019-D87A-4303-8802-0FD892EFE991}
