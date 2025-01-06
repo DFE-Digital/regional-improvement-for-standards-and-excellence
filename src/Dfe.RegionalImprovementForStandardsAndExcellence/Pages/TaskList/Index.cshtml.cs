@@ -19,7 +19,7 @@ public class IndexModel : BaseSupportProjectPageModel
    
    public IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment) : base(supportProjectQueryService,getEstablishment)
    {
-       
+     
    }
 
    public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)

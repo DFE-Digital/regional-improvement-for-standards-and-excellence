@@ -1,0 +1,30 @@
+@page "/task-list/contact-the-school/{id:int}"
+@using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject
+@using Dfe.Academisation.ExtensionMethods
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.ContactTheSchool.ContactTheSchoolModel
+
+@{
+    ViewData["Title"] = "Contact the school";
+}
+
+@section BeforeMain
+{
+	<a asp-page="@Model.ReturnPage" class="govuk-back-link" asp-route-id="@Model.SupportProject.Id">@Links.TaskList.Index.BackText</a>
+}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">@Model.SupportProject.SchoolName</span>
+        <h1 class="govuk-heading-l">
+            Contact the school
+        </h1>
+    </div>
+    <div class="govuk-grid-column-full">
+        <dl class="govuk-summary-list">
+            <govuk-summary-list-row name="contact-the-school" label="School contacted date" value="@Model.SchoolContactedDate.ToDateString()" asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" hidden-text="Contact the school date"/>
+        </dl>
+    </div>
+</div>
+
