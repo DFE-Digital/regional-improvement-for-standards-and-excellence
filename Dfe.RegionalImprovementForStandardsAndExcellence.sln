@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Frontend", "src\Dfe.RegionalImprovementForStandardsAndExcellence\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.csproj", "{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.csproj", "{0C57CBCC-0C59-48E9-942B-5E0695AD2231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.csproj", "{0C57CBCC-0C59-48E9-942B-5E0695AD2231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

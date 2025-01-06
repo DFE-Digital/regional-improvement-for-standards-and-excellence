@@ -18,7 +18,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.MappingPr
                 .ConvertUsing(value => new SupportProjectId(value));
 
             CreateMap<Domain.Entities.SupportProject.SupportProject, SupportProjectDto>()
-                .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.Id.Value))
+               .ForCtorParam("id", opt =>
+           opt.MapFrom(src => src.Id != null ? src.Id.Value : (int?)null)) // Map Id only if not null
+           //     .ForMember(dest => dest.id, opt => {
+           //         opt.Condition(src => src.Id != null); // Map only if Id is not null
+           //         opt.MapFrom(src => src.Id.Value);    // Map the actual value from the ValueObject
+           //     })
                 .ReverseMap();
                 //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PrincipalId.Value))
                 //.ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.NameDetails.NameListAs!.Split(",", StringSplitOptions.None)[1].Trim()))
