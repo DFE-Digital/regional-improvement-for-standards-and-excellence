@@ -16,10 +16,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Utils", "src\Dfe.RegionalImprovementForStandardsAndExcellence.Utils\Dfe.RegionalImprovementForStandardsAndExcellence.Utils.csproj", "{B3336B47-A5D4-4894-A121-8C78C6A46F25}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Api.Tests.Integration", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Api.Tests.Integration\Dfe.RegionalImprovementForStandardsAndExcellence.Api.Tests.Integration.csproj", "{62AABBB9-73D4-43BB-ACFD-367DDFE27E6C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.csproj", "{EBD53896-11C7-4C3E-BDB2-08C7F41937F7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.csproj", "{24013A30-D950-4025-B1F1-B8A7AC23DE6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common", "src\Tests\Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common\Dfe.RegionalImprovementForStandardsAndExcellence.Tests.Common.csproj", "{8380EFBB-A438-4044-B610-3B786E4BE6E9}"
@@ -58,14 +54,6 @@ Global
 		{B3336B47-A5D4-4894-A121-8C78C6A46F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3336B47-A5D4-4894-A121-8C78C6A46F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3336B47-A5D4-4894-A121-8C78C6A46F25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62AABBB9-73D4-43BB-ACFD-367DDFE27E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62AABBB9-73D4-43BB-ACFD-367DDFE27E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62AABBB9-73D4-43BB-ACFD-367DDFE27E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62AABBB9-73D4-43BB-ACFD-367DDFE27E6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBD53896-11C7-4C3E-BDB2-08C7F41937F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBD53896-11C7-4C3E-BDB2-08C7F41937F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBD53896-11C7-4C3E-BDB2-08C7F41937F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBD53896-11C7-4C3E-BDB2-08C7F41937F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24013A30-D950-4025-B1F1-B8A7AC23DE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24013A30-D950-4025-B1F1-B8A7AC23DE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24013A30-D950-4025-B1F1-B8A7AC23DE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,8 +75,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{62AABBB9-73D4-43BB-ACFD-367DDFE27E6C} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
-		{EBD53896-11C7-4C3E-BDB2-08C7F41937F7} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
 		{24013A30-D950-4025-B1F1-B8A7AC23DE6F} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
 		{8380EFBB-A438-4044-B610-3B786E4BE6E9} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
 		{0C57CBCC-0C59-48E9-942B-5E0695AD2231} = {0BD5A3FB-191B-43C6-A983-C9663BCFAF31}
