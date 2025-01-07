@@ -104,6 +104,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).A
             // Log the details of the redirect request
             Console.WriteLine("Redirecting to Identity Provider");
             Console.WriteLine($"Redirect URI: {context.ProtocolMessage.RedirectUri}");
+            Console.WriteLine($"Request Type: {context.ProtocolMessage.RequestType}");
             return Task.CompletedTask;
         }
     };
