@@ -27,7 +27,6 @@ COPY ./src/${PROJECT_NAME}.Domain/${PROJECT_NAME}.Domain.csproj                 
 COPY ./src/${PROJECT_NAME}.Infrastructure/${PROJECT_NAME}.Infrastructure.csproj ./src/${PROJECT_NAME}.Infrastructure/
 COPY ./src/${PROJECT_NAME}.Utils/${PROJECT_NAME}.Utils.csproj                   ./src/${PROJECT_NAME}.Utils/
 
-COPY ./src/Tests/${PROJECT_NAME}.Api.Tests.Integration/${PROJECT_NAME}.Api.Tests.Integration.csproj ./src/Tests/${PROJECT_NAME}.Api.Tests.Integration/
 COPY ./src/Tests/${PROJECT_NAME}.Application.Tests/${PROJECT_NAME}.Application.Tests.csproj         ./src/Tests/${PROJECT_NAME}.Application.Tests/
 COPY ./src/Tests/${PROJECT_NAME}.Domain.Tests/${PROJECT_NAME}.Domain.Tests.csproj                   ./src/Tests/${PROJECT_NAME}.Domain.Tests/
 COPY ./src/Tests/${PROJECT_NAME}.Frontend.Tests/${PROJECT_NAME}.Frontend.Tests.csproj                   ./src/Tests/${PROJECT_NAME}.Frontend.Tests/
