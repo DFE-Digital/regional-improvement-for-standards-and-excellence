@@ -10,6 +10,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Authorization;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Security;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,20 +65,64 @@ builder.Services.AddRazorPages(options =>
             options.MaxModelValidationErrors = 50;
         });
 
-builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
-builder.Services.AddAuthorization(options =>
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp(options =>
 {
-    options.DefaultPolicy = new AuthorizationPolicyBuilder()
-    .RequireAssertion(context =>
+    builder.Configuration.Bind("AzureAd", options);
+
+    options.Events = new OpenIdConnectEvents
     {
-        string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"];
-        // Check if the user has any of the required roles
-        return context.User.Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Any(c => allowedRoles.Contains(c.Value));
-    })
-    .Build();
+        OnRemoteFailure = context =>
+        {
+            // Log error details
+            Console.WriteLine("Authentication failure: " + context.Failure?.Message);
+            if (context.Failure?.InnerException != null)
+            {
+                Console.WriteLine("Inner exception: " + context.Failure.InnerException.Message);
+            }
+
+            // Redirect to a custom error page or show the error
+            context.Response.Redirect("/Account/Error");
+            context.HandleResponse();
+            return Task.CompletedTask;
+        },
+
+        OnTokenValidated = context =>
+        {
+            // Log claims received
+            var claims = context.Principal?.Claims;
+            Console.WriteLine("User claims:");
+            foreach (var claim in claims ?? Enumerable.Empty<System.Security.Claims.Claim>())
+            {
+                Console.WriteLine($"{claim.Type}: {claim.Value}");
+            }
+
+            return Task.CompletedTask;
+        },
+
+        OnRedirectToIdentityProvider = context =>
+        {
+            // Log the details of the redirect request
+            Console.WriteLine("Redirecting to Identity Provider");
+            Console.WriteLine($"Redirect URI: {context.ProtocolMessage.RedirectUri}");
+            return Task.CompletedTask;
+        }
+    };
 });
+builder.Services.AddAuthorization(options => { options.DefaultPolicy = SetupAuthorizationPolicyBuilder().Build(); });
+
+AuthorizationPolicyBuilder SetupAuthorizationPolicyBuilder()
+{
+    AuthorizationPolicyBuilder policyBuilder = new();
+    policyBuilder.RequireAuthenticatedUser();
+
+    string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"];
+    if (string.IsNullOrWhiteSpace(allowedRoles) is false)
+    {
+        policyBuilder.RequireClaim(ClaimTypes.Role, allowedRoles.Split(','));
+    }
+
+    return policyBuilder;
+}
 
 // Enforce HTTPS in ASP.NET Core
 // @link https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?
@@ -102,7 +149,6 @@ builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefa
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ErrorService>();
-
 builder.Services.AddScoped<IDfeHttpClientFactory, DfeHttpClientFactory>();
 builder.Services.AddScoped<IGetEstablishment, EstablishmentService>();
 builder.Services.Decorate<IGetEstablishment, GetEstablishmentItemCacheDecorator>();
@@ -111,6 +157,9 @@ builder.Services.AddScoped<IHttpClientService, HttpClientService>();
 builder.Services.AddScoped<IGraphClientFactory, GraphClientFactory>();
 builder.Services.AddScoped<IGraphUserService, GraphUserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddSingleton<IAuthorizationHandler, HeaderRequirementHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
 builder.Services.AddApplicationDependencyGroup(builder.Configuration);
 builder.Services.AddInfrastructureDependencyGroup(builder.Configuration);
@@ -132,15 +181,16 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-} else {
+}
+else
+{
     app.UseDeveloperExceptionPage();
 }
 
+app.UseSecurityHeaders(SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment()));
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<CorrelationIdMiddleware>();
