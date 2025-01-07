@@ -13,9 +13,13 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var config = builder.Configuration
-    .AddUserSecrets<Program>()
-    .Build();
+// Add User Secrets in Development
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
+var config = builder.Configuration;
 
 var _authenticationExpiration = TimeSpan.FromMinutes(int.Parse(config["AuthenticationExpirationInMinutes"] ?? "60"));
 
@@ -37,8 +41,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
     options.Cookie.HttpOnly = true;
 
-    //if (string.IsNullOrWhiteSpace(Configuration["CI"]))
-    //  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    if (string.IsNullOrWhiteSpace(config["CI"]))
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
@@ -58,18 +62,20 @@ builder.Services.AddRazorPages(options =>
             options.MaxModelValidationErrors = 50;
         });
 
-//builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
-
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(options =>
+builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
+builder.Services.AddAuthorization(options =>
+{
+    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+    .RequireAssertion(context =>
     {
-        builder.Configuration.Bind("AzureAd", options);
-        // Add custom scopes here
-        options.Scope.Clear();
-        options.Scope.Add("openid");
-        options.Scope.Add("profile");
-        options.Scope.Add("User.Read");
-    });
+        string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"];
+        // Check if the user has any of the required roles
+        return context.User.Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Any(c => allowedRoles.Contains(c.Value));
+    })
+    .Build();
+});
 
 // Enforce HTTPS in ASP.NET Core
 // @link https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?
@@ -108,19 +114,6 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddApplicationDependencyGroup(builder.Configuration);
 builder.Services.AddInfrastructureDependencyGroup(builder.Configuration);
-builder.Services.AddAuthorization(options =>
-{
-    options.DefaultPolicy = new AuthorizationPolicyBuilder()
-    .RequireAssertion(context =>
-    {
-        string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"];
-        // Check if the user has any of the required roles
-        return context.User.Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Any(c => allowedRoles.Contains(c.Value));
-    })
-    .Build();
-});
 
 var app = builder.Build();
 
