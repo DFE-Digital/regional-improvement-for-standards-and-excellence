@@ -41,8 +41,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
     options.Cookie.HttpOnly = true;
 
-    //if (string.IsNullOrWhiteSpace(Configuration["CI"]))
-    //  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    if (string.IsNullOrWhiteSpace(config["CI"]))
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 builder.Services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
