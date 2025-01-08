@@ -108,7 +108,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
 
         }
         
-        public async Task<SupportProject> GetSuportProjectById(SupportProjectId id, CancellationToken cancellationToken)
+        public async Task<SupportProject> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken)
         {
             return await DefaultIncludes().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
