@@ -65,50 +65,7 @@ builder.Services.AddRazorPages(options =>
             options.MaxModelValidationErrors = 50;
         });
 
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp(options =>
-{
-    builder.Configuration.Bind("AzureAd", options);
-
-    options.Events = new OpenIdConnectEvents
-    {
-        OnRemoteFailure = context =>
-        {
-            // Log error details
-            Console.WriteLine("Authentication failure: " + context.Failure?.Message);
-            if (context.Failure?.InnerException != null)
-            {
-                Console.WriteLine("Inner exception: " + context.Failure.InnerException.Message);
-            }
-
-            // Redirect to a custom error page or show the error
-            context.Response.Redirect("/Account/Error");
-            context.HandleResponse();
-            return Task.CompletedTask;
-        },
-
-        OnTokenValidated = context =>
-        {
-            // Log claims received
-            var claims = context.Principal?.Claims;
-            Console.WriteLine("User claims:");
-            foreach (var claim in claims ?? Enumerable.Empty<System.Security.Claims.Claim>())
-            {
-                Console.WriteLine($"{claim.Type}: {claim.Value}");
-            }
-
-            return Task.CompletedTask;
-        },
-
-        OnRedirectToIdentityProvider = context =>
-        {
-            // Log the details of the redirect request
-            Console.WriteLine("Redirecting to Identity Provider");
-            Console.WriteLine($"Redirect URI: {context.ProtocolMessage.RedirectUri}");
-            Console.WriteLine($"Request Type: {context.ProtocolMessage.RequestType}");
-            return Task.CompletedTask;
-        }
-    };
-});
+builder.Services.AddMicrosoftIdentityWebAppAuthentication(config);
 builder.Services.AddAuthorization(options => { options.DefaultPolicy = SetupAuthorizationPolicyBuilder().Build(); });
 
 AuthorizationPolicyBuilder SetupAuthorizationPolicyBuilder()
