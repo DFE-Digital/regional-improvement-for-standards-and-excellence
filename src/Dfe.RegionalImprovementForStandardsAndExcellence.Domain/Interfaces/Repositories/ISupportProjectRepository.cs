@@ -1,10 +1,12 @@
 ﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories
 {
     public interface ISupportProjectRepository : IRepository<SupportProject>
     {
+        Task<SupportProject> GetSuportProjectById(SupportProjectId id, CancellationToken cancellationToken);
         Task<(IEnumerable<SupportProject> projects, int totalCount)> SearchForSupportProjects(
             string? title,
             IEnumerable<string>? states,

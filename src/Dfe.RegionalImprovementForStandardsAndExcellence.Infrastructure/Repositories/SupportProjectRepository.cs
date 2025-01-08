@@ -1,5 +1,6 @@
 ﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -105,6 +106,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
                     .Distinct()
                     .ToListAsync();
 
+        }
+
+        public async Task<SupportProject> GetSuportProjectById(SupportProjectId id, CancellationToken cancellationToken)
+        {
+            return await DefaultIncludes().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+        }
+
+        private IQueryable<SupportProject> DefaultIncludes() 
+        {
+            return DbSet().Include(x => x.Notes).AsQuerable();
         }
     }
 }
