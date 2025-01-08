@@ -1,0 +1,44 @@
+@page "/notes/{id:int}"
+@using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes.IndexModel
+@section BeforeMain
+{
+     <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.ProjectList.Index.BackText</a>
+}
+
+<partial name="_ProjectHeader" model="Model.SupportProject" />
+
+<div class="govuk-grid-column-two-thirds-full">
+    <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Project notes</h2>
+  
+    <a asp-page="@Links.Notes.NewNote.Page" asp-route-id="@Model.SupportProject.Id" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Add note
+    </a>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="app-notes">
+            @{ var index = 0; }
+            @foreach (SupportProjectNote note in Model.SupportProject.Notes)
+            {
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                <div class="app-notes__note">
+                    <p class="govuk-!-margin-bottom-1 govuk-body-m" id="@("project-note-body-" + index)">@note.Note</p>
+                    <p class="govuk-body-s" id="@("project-note-date-" + index)">
+                        @if (!string.IsNullOrEmpty(note.CreatedBy))
+                        {
+                            @(note.CreatedBy + ", " + note.CreatedOn)
+                        }
+                        else
+                        {
+                            @note.CreatedOn
+                        }
+                    </p>
+                </div>
+                index++;
+            }
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+        </div>
+    </div>
+</div>

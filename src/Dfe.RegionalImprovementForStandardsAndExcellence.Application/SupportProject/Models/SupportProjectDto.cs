@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models
 {
@@ -13,6 +14,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string localAuthority,
         string region,
         string assignedAdviserFullName,
-        string assignedAdviserEmailAddress);
+        string assignedAdviserEmailAddress,
+        IEnumerable<SupportProjectNote> notes);
 
 }

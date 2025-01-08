@@ -2,16 +2,17 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProjec
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
 
-public class BaseSupportProjectPageModel(ISupportProjectQueryService supportProjectQueryService,IGetEstablishment getEstablishment) : PageModel
+public class BaseSupportProjectPageModel(ISupportProjectQueryService supportProjectQueryService,IGetEstablishment getEstablishment,ErrorService errorService) : PageModel
 {
     protected readonly ISupportProjectQueryService _supportProjectQueryService = supportProjectQueryService;
     protected readonly IGetEstablishment _getEstablishment = getEstablishment;
-
+    protected readonly ErrorService _errorService = errorService;
     public SupportProjectViewModel SupportProject { get; set; }
     
     public virtual async Task<IActionResult> GetSupportProject(int id, CancellationToken cancellationToken)
@@ -42,5 +43,4 @@ public class BaseSupportProjectPageModel(ISupportProjectQueryService supportProj
         }
         return Page();
     }
-    
 }

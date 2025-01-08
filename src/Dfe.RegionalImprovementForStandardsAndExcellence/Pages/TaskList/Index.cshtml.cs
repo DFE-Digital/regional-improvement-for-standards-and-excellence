@@ -5,6 +5,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportPr
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using System.Threading;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
 
@@ -17,7 +18,7 @@ public class IndexModel : BaseSupportProjectPageModel
       TempData["ErrorPage"] = errorPage;
    }
    
-   public IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment) : base(supportProjectQueryService,getEstablishment)
+   public IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment,ErrorService errorService) : base(supportProjectQueryService,getEstablishment,errorService)
    {
      
    }

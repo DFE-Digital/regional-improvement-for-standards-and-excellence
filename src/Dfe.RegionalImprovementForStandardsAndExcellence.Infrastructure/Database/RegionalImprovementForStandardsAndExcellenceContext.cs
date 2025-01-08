@@ -22,6 +22,8 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
         _mediator = mediator;
     }
     public DbSet<SupportProject> SupportProjects { get; set; } = null!;
+    
+    public DbSet<SupportProjectNote> ProjectNotes { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -37,6 +39,7 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SupportProject>(ConfigureSupportProject);
+        modelBuilder.Entity<SupportProjectNote>(ConfigureSupportProjectNotes);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -50,6 +53,22 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
             .HasConversion(
                 v => v!.Value,
                 v => new SupportProjectId(v));
+        
+        supportProjectConfiguration
+            .HasMany(a => a.Notes)
+            .WithOne()
+            .HasForeignKey("SupportProjectId")
+            .IsRequired();
+    }
+    
+    private static void ConfigureSupportProjectNotes(EntityTypeBuilder<SupportProjectNote> supportProjectNoteConfiguration)
+    {
+        supportProjectNoteConfiguration.ToTable("SupportProjectNotes", DefaultSchema, b => b.IsTemporal());
+        supportProjectNoteConfiguration.HasKey(a => a.Id);
+        supportProjectNoteConfiguration.Property(e => e.Id)
+            .HasConversion(
+                v => v!.Value,
+                v => new SupportProjectNoteId(v));
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using System.Runtime.InteropServices;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject
 {
@@ -28,6 +29,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         
         public string LeadershipAndManagement { get; set; }
         public string LastInspectionDate { get; set; }
+        
+        public IEnumerable<SupportProjectNote> Notes { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -38,7 +41,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 LocalAuthority = supportProjectDto.localAuthority,
                 Region = supportProjectDto.region,
                 SchoolName = supportProjectDto.schoolName,
-                SchoolUrn = supportProjectDto.schoolUrn
+                SchoolUrn = supportProjectDto.schoolUrn,
+                Notes = supportProjectDto.notes
+                
             };
         }
     }
