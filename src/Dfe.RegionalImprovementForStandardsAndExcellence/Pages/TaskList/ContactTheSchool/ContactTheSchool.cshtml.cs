@@ -27,4 +27,9 @@ public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQue
         return Page(); 
     }
     
+    private static string NoteDateAndTime(DateTime date)
+    {
+        return $"{date.Day} {date:MMMM} {date.Year} at {date:hh:mm}{date.ToString("tt").ToLower()}";
+    }
+    
 }

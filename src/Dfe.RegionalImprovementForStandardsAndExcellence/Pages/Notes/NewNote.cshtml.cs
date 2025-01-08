@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.CreateSupportProjectNote;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
@@ -5,12 +6,12 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes;
 
 
-public class NewNoteModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment,ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, getEstablishment,errorService)
+public class NewNoteModel(ISupportProjectQueryService supportProjectQueryService,ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService,errorService)
 {
     public string ReturnPage { get; set; }
     
@@ -42,7 +43,7 @@ public class NewNoteModel(ISupportProjectQueryService supportProjectQueryService
 
         var supportProjectId = new SupportProjectId(id);
 
-        var request = new CreateSupportProjectNote.CreateSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,"test user");
+        var request = new CreateSupportProjectNote.CreateSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,User.FindFirstValue("Name"));
 
         var result = await mediator.Send(request, cancellationToken);
 

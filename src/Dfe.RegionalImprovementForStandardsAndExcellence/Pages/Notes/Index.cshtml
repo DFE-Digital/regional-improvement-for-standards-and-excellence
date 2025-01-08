@@ -1,9 +1,17 @@
 @page "/notes/{id:int}"
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject
+@using Dfe.Academisation.ExtensionMethods
 @model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes.IndexModel
+@{
+    string DisplayDate(DateTime date) =>
+        $"{date:dd MMMM yyyy} at {date:hh:mm tt}".ToLower();
+}
+
 @section BeforeMain
 {
-     <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.ProjectList.Index.BackText</a>
+    <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.ProjectList.Index.BackText</a>
+    
+    
 }
 
 <partial name="_ProjectHeader" model="Model.SupportProject" />
@@ -20,7 +28,7 @@
     <div class="govuk-grid-column-two-thirds">
         <div class="app-notes">
             @{ var index = 0; }
-            @foreach (SupportProjectNote note in Model.SupportProject.Notes)
+            @foreach (SupportProjectNote note in Model.SupportProject.Notes.OrderByDescending(x => x.CreatedOn))
             {
                 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                 <div class="app-notes__note">
@@ -28,11 +36,11 @@
                     <p class="govuk-body-s" id="@("project-note-date-" + index)">
                         @if (!string.IsNullOrEmpty(note.CreatedBy))
                         {
-                            @(note.CreatedBy + ", " + note.CreatedOn)
+                            @(note.CreatedBy + ", " + DisplayDate(note.CreatedOn))
                         }
                         else
                         {
-                            @note.CreatedOn
+                            DisplayDate(note.CreatedOn);
                         }
                     </p>
                 </div>

@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
 
-public class IndexModel : BaseSupportProjectPageModel
+public class IndexModel : BaseSupportProjectEstablishmentPageModel
 {
    public string ReturnPage { get; set; }
 
