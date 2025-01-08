@@ -30,19 +30,4 @@ public class SupportProjectNote : BaseAggregateRoot, IEntity<SupportProjectNoteI
 
     public string? LastModifiedBy { get; private set; }
     
-    // public static SupportProjectNote Create(
-    //     int supportProjectId,
-    //     string note,
-    //     string author,
-    //     DateTime createdOn)
-    // {
-    //
-    //     return new SupportProjectNote() { 
-    //         Id = new SupportProjectNoteId(Guid.NewGuid()),
-    //         SupportProjectId = supportProjectId,
-    //         Note = note, 
-    //         CreatedBy = author,
-    //         CreatedOn = createdOn
-    //     };
-    // }
 }
