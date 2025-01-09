@@ -117,7 +117,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Sup
             var supportProject = Domain.Entities.SupportProject.SupportProject.Create(schoolName1, schoolUrn1, localAuthority1, region1, createdBy1, createdOn1);
 
             // Mock the repository call to return the mock supportProject
-            _repositoryMock.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>()))
+            _repositoryMock.Setup(repo => repo.GetSupportProjectById(It.IsAny<SupportProjectId>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(supportProject);
 
             // Act
