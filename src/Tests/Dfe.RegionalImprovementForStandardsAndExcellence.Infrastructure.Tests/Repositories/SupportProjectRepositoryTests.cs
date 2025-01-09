@@ -17,7 +17,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositori
 using MediatR;
 using Microsoft.Extensions.Configuration;
 
-namespace Dfe.RISE.Infrastructure.Tests.Repositories
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.Repositories
 {
     public class SupportProjectRepositoryTests
     {
