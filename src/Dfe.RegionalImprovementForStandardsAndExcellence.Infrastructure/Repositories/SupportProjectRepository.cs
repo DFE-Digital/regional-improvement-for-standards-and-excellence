@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories
 {
     [ExcludeFromCodeCoverage]
-    internal class SupportProjectRepository(RegionalImprovementForStandardsAndExcellenceContext dbContext)
+    public class SupportProjectRepository(RegionalImprovementForStandardsAndExcellenceContext dbContext)
         : Repository<SupportProject, RegionalImprovementForStandardsAndExcellenceContext>(dbContext), ISupportProjectRepository
     {
         public async Task<(IEnumerable<SupportProject> projects, int totalCount)> SearchForSupportProjects(
