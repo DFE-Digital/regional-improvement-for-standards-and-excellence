@@ -12,20 +12,21 @@ public class EditSupportProjectNote
     public record EditSupportProjectNoteCommand(
         SupportProjectId SupportProjectId,
         string Note,
-        SupportProjectNoteId Id
+        SupportProjectNoteId Id,
+        string Author
     ) : IRequest<SupportProjectNoteId>;
     
-    public class EditSupportProjectNoteCommandHandler(ISupportProjectRepository supportProjectRepository)
+    public class EditSupportProjectNoteCommandHandler(ISupportProjectRepository supportProjectRepository,IDateTimeProvider _dateTimeProvider)
         : IRequestHandler<EditSupportProjectNoteCommand, SupportProjectNoteId>
     {
         public async Task<SupportProjectNoteId> Handle(EditSupportProjectNoteCommand request, CancellationToken cancellationToken)
         {
             var supportProject = await supportProjectRepository.GetSupportProjectById(request.SupportProjectId, cancellationToken);
 
-            supportProject.Notes.FirstOrDefault(a => a.Id == request.Id).Note = request.Note;
+            supportProject.EditSupportProjectNote(request.Id,request.Note,request.Author,_dateTimeProvider.Now);
             
             await supportProjectRepository.UpdateAsync(supportProject);
-
+            
             return request.Id;
         }
     }

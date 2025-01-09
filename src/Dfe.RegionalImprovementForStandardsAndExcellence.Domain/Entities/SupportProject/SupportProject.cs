@@ -75,9 +75,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
     }
     
-    public void AddNote(SupportProjectNoteId subject, string note, string author, DateTime date, SupportProjectId supportProjectId)
+    public void AddNote(SupportProjectNoteId id, string note, string author, DateTime date, SupportProjectId supportProjectId)
     {
-        _notes.Add(new SupportProjectNote(subject, note, author, date,supportProjectId));
+        _notes.Add(new SupportProjectNote(id, note, author, date,supportProjectId));
     }
-    
+
+    public void EditSupportProjectNote(SupportProjectNoteId id, string note, string author, DateTime date)
+    {
+        var noteToUpdate = _notes.SingleOrDefault(x => x.Id == id);
+        noteToUpdate.SetNote(note,author,date);
+    }
 }

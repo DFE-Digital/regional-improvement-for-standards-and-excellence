@@ -19,6 +19,8 @@ public class EditNoteModel(ISupportProjectQueryService supportProjectQueryServic
     [BindProperty(Name = "project-note-body")]
     public string ProjectNoteBody { get; set; }
     
+    public string ProjectNoteAuthor { get; set; }
+    
     public Guid ProjectNoteId { get; set; }
     public bool ShowError => _errorService.HasErrors();
     
@@ -52,7 +54,7 @@ public class EditNoteModel(ISupportProjectQueryService supportProjectQueryServic
         
         var supportProjectNoteId = new SupportProjectNoteId(projectNoteId);
 
-        var request = new EditSupportProjectNote.EditSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,supportProjectNoteId);
+        var request = new EditSupportProjectNote.EditSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,supportProjectNoteId,User.FindFirstValue("Name"));
         
         var result = await mediator.Send(request, cancellationToken);
 
