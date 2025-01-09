@@ -79,4 +79,5 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         _notes.Add(new SupportProjectNote(subject, note, author, date,supportProjectId));
     }
+    
 }
