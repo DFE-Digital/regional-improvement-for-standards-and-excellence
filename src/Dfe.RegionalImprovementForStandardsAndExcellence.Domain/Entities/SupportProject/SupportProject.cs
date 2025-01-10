@@ -83,6 +83,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public void EditSupportProjectNote(SupportProjectNoteId id, string note, string author, DateTime date)
     {
         var noteToUpdate = _notes.SingleOrDefault(x => x.Id == id);
-        noteToUpdate.SetNote(note,author,date);
+        if (noteToUpdate != null)
+        {
+            noteToUpdate.SetNote(note, author, date);
+        }
     }
 }

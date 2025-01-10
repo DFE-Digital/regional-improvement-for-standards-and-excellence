@@ -8,8 +8,8 @@ public class SupportProjectNote : BaseAggregateRoot, IEntity<SupportProjectNoteI
     private SupportProjectNote() { }
     
     public SupportProjectNote(SupportProjectNoteId id,
-        string? note,
-        string? author,
+        string note,
+        string author,
         DateTime date, SupportProjectId supportProjectId)
     {
         Id = id;
@@ -21,7 +21,7 @@ public class SupportProjectNote : BaseAggregateRoot, IEntity<SupportProjectNoteI
     
     public SupportProjectId SupportProjectId { get; private set; }
     public SupportProjectNoteId Id { get; private set; }
-    public string? Note { get; private set; }
+    public string Note { get; private set; }
     public DateTime CreatedOn { get; private set; }
     public string CreatedBy { get; private set; }
     
