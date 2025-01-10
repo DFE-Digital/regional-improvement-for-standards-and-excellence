@@ -38,6 +38,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public string CreatedBy { get; private set; }
 
     public string LocalAuthority { get; private set; }
+    
     public DateTime? LastModifiedOn { get; private set; }
 
     public string? LastModifiedBy { get; private set; }
@@ -45,7 +46,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public string? AssignedAdviserFullName { get; private set; }
     
     public string? AssignedAdviserEmailAddress { get; private set; }
-
+    
+    public IEnumerable<SupportProjectNote> Notes => _notes.AsReadOnly();
+    
+    private readonly List<SupportProjectNote> _notes = new();
     public static SupportProject Create(
         string schoolName,
         string schoolUrn,
@@ -69,5 +73,19 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         AssignedAdviserFullName = assignedAdviserFullName;
         AssignedAdviserEmailAddress = assignedAdviserEmailAddress;
+    }
+    
+    public void AddNote(SupportProjectNoteId id, string note, string author, DateTime date, SupportProjectId supportProjectId)
+    {
+        _notes.Add(new SupportProjectNote(id, note, author, date,supportProjectId));
+    }
+
+    public void EditSupportProjectNote(SupportProjectNoteId id, string note, string author, DateTime date)
+    {
+        var noteToUpdate = _notes.SingleOrDefault(x => x.Id == id);
+        if (noteToUpdate != null)
+        {
+            noteToUpdate.SetNote(note, author, date);
+        }
     }
 }

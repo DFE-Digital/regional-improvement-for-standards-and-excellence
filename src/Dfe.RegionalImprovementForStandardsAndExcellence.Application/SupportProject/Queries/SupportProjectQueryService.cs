@@ -44,7 +44,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         public async Task<Result<SupportProjectDto?>> GetSupportProject(int id, CancellationToken cancellationToken)
         {
             var supportProjectId = new SupportProjectId(id);
-            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == supportProjectId, cancellationToken);
+            var supportProject = await supportProjectRepository.GetSupportProjectById(supportProjectId, cancellationToken);
 
             var result = mapper.Map<SupportProjectDto?>(supportProject);
 

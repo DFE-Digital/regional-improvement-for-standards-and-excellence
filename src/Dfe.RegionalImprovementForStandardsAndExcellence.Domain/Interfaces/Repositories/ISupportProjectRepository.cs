@@ -1,4 +1,5 @@
 ﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories
@@ -17,5 +18,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Rep
 
         Task<IEnumerable<string>> GetAllProjectRegions(CancellationToken cancellationToken);
         Task<IEnumerable<string>> GetAllProjectLocalAuthorities(CancellationToken cancellationToken);
+        
+        Task<SupportProject> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken);
     }
 }

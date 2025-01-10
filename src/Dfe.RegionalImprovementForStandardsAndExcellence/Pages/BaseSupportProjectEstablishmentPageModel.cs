@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
 
-public class BaseSupportProjectPageModel(ISupportProjectQueryService supportProjectQueryService,ErrorService errorService) : PageModel
+public class BaseSupportProjectEstablishmentPageModel(ISupportProjectQueryService supportProjectQueryService,IGetEstablishment getEstablishment,ErrorService errorService) : PageModel
 {
     protected readonly ISupportProjectQueryService _supportProjectQueryService = supportProjectQueryService;
+    protected readonly IGetEstablishment _getEstablishment = getEstablishment;
     protected readonly ErrorService _errorService = errorService;
     public SupportProjectViewModel SupportProject { get; set; }
     
@@ -23,12 +24,23 @@ public class BaseSupportProjectPageModel(ISupportProjectQueryService supportProj
         
         var result = await _supportProjectQueryService.GetSupportProject(id, cancellationToken);
         
+        if (result.IsSuccess && result.Value != null)
+        {
+            SupportProject = SupportProjectViewModel.Create(result.Value);
+            
+            DfE.CoreLibs.Contracts.Academies.V4.Establishments.EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(result.Value.schoolUrn);
+            
+            SupportProject.QualityOfEducation = establishment.MISEstablishment.QualityOfEducation;
+            SupportProject.LastInspectionDate = establishment.OfstedLastInspection;
+            SupportProject.BehaviourAndAttitudes = establishment.MISEstablishment.BehaviourAndAttitudes;
+            SupportProject.PersonalDevelopment = establishment.MISEstablishment.PersonalDevelopment;
+            SupportProject.LeadershipAndManagement = establishment.MISEstablishment.EffectivenessOfLeadershipAndManagement;
+        }
+        
         if (!result.IsSuccess)
         {
             return NotFound();
         }
-        
-        SupportProject = SupportProjectViewModel.Create(result.Value);
         return Page();
     }
 }

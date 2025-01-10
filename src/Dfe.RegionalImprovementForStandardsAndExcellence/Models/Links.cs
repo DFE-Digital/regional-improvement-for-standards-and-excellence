@@ -48,6 +48,13 @@ public static class Links
       public static readonly LinkItem ContactTheSchool = AddLinkItem(backText: "Back", page: "/TaskList/ContactTheSchool/ContactTheSchool");
    }
    
+   public static class Notes
+   {
+      public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/Notes/Index");
+      public static readonly LinkItem NewNote = AddLinkItem(backText: "Back", page: "/Notes/NewNote");
+      public static readonly LinkItem EditNote = AddLinkItem(backText: "Back", page: "/Notes/EditNote");
+   }
+   
    public static class NewProject
    {
       public static readonly LinkItem NewConversionInformation = AddLinkItem(page: "/NewProject/NewConversionInformation");

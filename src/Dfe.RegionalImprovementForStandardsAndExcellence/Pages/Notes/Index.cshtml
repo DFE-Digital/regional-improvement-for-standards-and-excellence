@@ -1,0 +1,69 @@
+@page "/notes/{id:int}"
+@using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject
+@using Dfe.Academisation.ExtensionMethods
+@using Dfe.RegionalImprovementForStandardsAndExcellence.Utils
+
+
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes.IndexModel
+@{
+    string DisplayDate(DateTime date) =>
+        $"{date:dd MMMM yyyy} at {date:hh:mm tt}".ToLower();
+}
+
+@section BeforeMain
+{
+    <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.ProjectList.Index.BackText</a>
+}
+
+@if (Model.NewNote || Model.EditNote)
+{
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+            </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+            @if (Model.NewNote)
+            {
+                <h3 class="govuk-notification-banner__heading" id="project-note-added">
+                    Note added
+                </h3>
+            }
+            @if (Model.EditNote)
+            {
+                <h3 class="govuk-notification-banner__heading" id="project-note-added">
+                    Note edited
+                </h3>
+            }
+        </div>
+    </div>
+}
+
+<partial name="_ProjectHeader" model="Model.SupportProject" />
+
+<div class="govuk-grid-column-two-thirds-full">
+    <h2 class="govuk-heading-l govuk-!-margin-bottom govuk-!-font-size-36">Project notes</h2>
+    <a asp-page="@Links.Notes.NewNote.Page" asp-route-id="@Model.SupportProject.Id" role="button" draggable="false" class="govuk-button govuk-button" data-module="govuk-button">
+        Add note
+    </a>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="app-notes">
+            @{ var index = 0; }
+            @foreach (SupportProjectNote note in Model.SupportProject.Notes.OrderByDescending(x => x.CreatedOn))
+            {
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                <div class="app-notes__note">
+                    <span class="govuk-caption-m" id="@("project-note-date-" + index)">@DisplayDate(note.CreatedOn)</span>
+                    <h3 class="govuk-heading-m" id="@("project-note-date-" + index)">@note.CreatedBy.FullNameFromEmail()</h3>
+                    <p class="govuk-body-m">@note.Note</p>
+                    <p class="govuk-body govuk-!-font-size-16"><a asp-page="@Links.Notes.EditNote.Page" asp-route-id="@note.SupportProjectId.Value" asp-route-noteid="@note.Id.Value">Edit note</a></p>
+                </div>
+                index++;
+            }
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories
 {
@@ -105,6 +106,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
                     .Distinct()
                     .ToListAsync();
 
+        }
+        
+        public async Task<SupportProject> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken)
+        {
+            return await DefaultIncludes().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+        }
+        
+        private IQueryable<SupportProject> DefaultIncludes() 
+        {
+            return DbSet().Include(x => x.Notes).AsQueryable();
         }
     }
 }
