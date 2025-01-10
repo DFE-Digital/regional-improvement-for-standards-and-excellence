@@ -1,20 +1,13 @@
 @page "/notes/{id:int}"
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject
 @using Dfe.Academisation.ExtensionMethods
+@using Dfe.RegionalImprovementForStandardsAndExcellence.Utils
+
+
 @model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes.IndexModel
 @{
     string DisplayDate(DateTime date) =>
         $"{date:dd MMMM yyyy} at {date:hh:mm tt}".ToLower();
-
-    string SplitName(string name)
-    {
-        string[] nameParts = name.Split(',');
-        string surname = nameParts[0].Trim();
-        string firstname = nameParts[1].Trim();
-        surname = char.ToUpper(surname[0]) + surname.Substring(1).ToLower();
-        string result = $"{firstname} {surname}";
-        return result;
-    }
 }
 
 @section BeforeMain
@@ -64,7 +57,7 @@
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
                 <div class="app-notes__note">
                     <span class="govuk-caption-m" id="@("project-note-date-" + index)">@DisplayDate(note.CreatedOn)</span>
-                    <h3 class="govuk-heading-m" id="@("project-note-date-" + index)">@SplitName(note.CreatedBy)</h3>
+                    <h3 class="govuk-heading-m" id="@("project-note-date-" + index)">@note.CreatedBy.FullNameFromEmail()</h3>
                     <p class="govuk-body-m">@note.Note</p>
                     <p class="govuk-body govuk-!-font-size-16"><a asp-page="@Links.Notes.EditNote.Page" asp-route-id="@note.SupportProjectId.Value" asp-route-noteid="@note.Id.Value">Edit note</a></p>
                 </div>

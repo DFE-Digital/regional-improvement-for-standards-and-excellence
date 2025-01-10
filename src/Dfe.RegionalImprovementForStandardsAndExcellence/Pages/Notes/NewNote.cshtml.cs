@@ -40,10 +40,8 @@ public class NewNoteModel(ISupportProjectQueryService supportProjectQueryService
             await base.GetSupportProject(id, cancellationToken);
             return Page();
         }
-
-        var supportProjectId = new SupportProjectId(id);
-
-        var request = new CreateSupportProjectNote.CreateSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,User.FindFirstValue("Name"));
+        
+        var request = new CreateSupportProjectNote.CreateSupportProjectNoteCommand(new SupportProjectId(id),ProjectNoteBody,User.Identity.Name);
 
         var result = await mediator.Send(request, cancellationToken);
 

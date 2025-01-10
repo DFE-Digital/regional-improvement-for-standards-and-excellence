@@ -55,7 +55,7 @@ public class EditNoteModel(ISupportProjectQueryService supportProjectQueryServic
         
         var supportProjectNoteId = new SupportProjectNoteId(projectNoteId);
 
-        var request = new EditSupportProjectNote.EditSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,supportProjectNoteId,User.FindFirstValue("Name"));
+        var request = new EditSupportProjectNote.EditSupportProjectNoteCommand(supportProjectId,ProjectNoteBody,supportProjectNoteId,User.Identity.Name);
         
         var result = await mediator.Send(request, cancellationToken);
 
