@@ -7,7 +7,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models
     {
         public int PageSize { get; set; } = 10;
 
-        public PagingResponse Paging { get; set; } = null;
+        public PagingResponse Paging { get; set; } = new();
 
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
