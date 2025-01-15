@@ -4,7 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportPr
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.SchoolList;
 
 public class IndexModel : PageModel
 {
@@ -17,13 +17,12 @@ public class IndexModel : PageModel
     }
 
     public IEnumerable<SupportProjectViewModel> SupportProjects = new List<SupportProjectViewModel>();
-    
+
     [BindProperty]
     public ProjectListFilters Filters { get; set; } = new();
 
+    [BindProperty(SupportsGet = true)]
     public PaginationViewModel Pagination { get; set; } = new();
-    public int ProjectCount => SupportProjects.Count();
-
 
     [BindProperty(SupportsGet = true)]
     public int TotalProjects { get; set; }
@@ -31,7 +30,7 @@ public class IndexModel : PageModel
     {
         Filters.PersistUsing(TempData).PopulateFrom(Request.Query);
 
-        Pagination.PagePath = "/schools-requiring-improvement";
+        Pagination.PagePath = "/SchoolList/Index";
 
         var result =
            await _supportProjectQueryService.SearchForSupportProjects(
@@ -39,7 +38,8 @@ public class IndexModel : PageModel
                Filters.SelectedLocalAuthorities, Pagination.PagePath, Pagination.CurrentPage, Pagination.PageSize,
                cancellationToken);
 
-        if(result.IsSuccess && result.Value != null) {
+        if (result.IsSuccess && result.Value != null)
+        {
             Pagination.Paging = result.Value.Paging;
             TotalProjects = result.Value?.Paging?.RecordCount ?? 0;
             SupportProjects = result.Value?.Data.Select(SupportProjectViewModel.Create);

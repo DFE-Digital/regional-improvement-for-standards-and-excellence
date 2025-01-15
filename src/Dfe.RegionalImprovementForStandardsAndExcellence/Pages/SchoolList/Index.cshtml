@@ -1,0 +1,38 @@
+﻿@page "/schools-requiring-improvement"
+@using Microsoft.Extensions.Configuration
+@model IndexModel
+@inject IConfiguration Configuration
+
+@{
+    Layout = "_Layout";
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-cy="select-heading">
+            Schools requiring improvement
+        </h1>
+        <a asp-page="/WhichSchoolNeedsHelp" role="button" draggable="false" class="govuk-button" data-module="govuk-button" data-cy="create_new_conversion_btn">
+            Add a school
+        </a>
+    </div>
+    <div class="govuk-grid-column-one-third">
+        <partial name="Shared/_ProjectListFilters" model="Model.Filters" />
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+        <h2 class="govuk-heading-l" test-id="projectCount" data-cy="select-projectlist-filter-count">@Model.TotalProjects schools found</h2>
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools @Model.SupportProjects.Count() </caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__header app-!-width-three-fifths">School information</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                @{
+                    <partial name="Shared/_ProjectListRows" model="Model.SupportProjects" />
+                }
+            </tbody>
+        </table><partial name="Shared/_Pagination" model="Model.Pagination" />
+    </div>
+</div>
