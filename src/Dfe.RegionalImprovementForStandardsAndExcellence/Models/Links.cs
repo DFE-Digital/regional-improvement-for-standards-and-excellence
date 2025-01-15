@@ -27,14 +27,15 @@ public static class Links
    }
    
    
-   public static class SupportProject
+   public static class AddSchool
    {
-      public static readonly LinkItem WhichSchoolNeedsHelp = AddLinkItem(backText: "Back", page: "/which-school-needs-help");
-   }
+      public static readonly LinkItem WhichSchoolNeedsHelp = AddLinkItem(backText: "Back", page: "/AddSchool/WhichSchoolNeedsHelp");
+      public static readonly LinkItem Summary = AddLinkItem(page: "/AddSchool/Summary");
+    }
    
-   public static class ProjectList
+   public static class SchoolList
    {
-      public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/Index");
+      public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/SchoolList/Index");
    }
    
    public static class AboutTheSchool
@@ -53,13 +54,6 @@ public static class Links
       public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/Notes/Index");
       public static readonly LinkItem NewNote = AddLinkItem(backText: "Back", page: "/Notes/NewNote");
       public static readonly LinkItem EditNote = AddLinkItem(backText: "Back", page: "/Notes/EditNote");
-   }
-   
-   public static class NewProject
-   {
-      public static readonly LinkItem NewConversionInformation = AddLinkItem(page: "/NewProject/NewConversionInformation");
-      public static readonly LinkItem WhichSchoolNeedsHelp = AddLinkItem(page: "WhichSchoolNeedsHelp");
-      public static readonly LinkItem Summary = AddLinkItem(page: "/Summary");
    }
    
    public static class ProjectAssignment

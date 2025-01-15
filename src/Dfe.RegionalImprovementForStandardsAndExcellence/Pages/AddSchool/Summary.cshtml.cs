@@ -6,7 +6,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using MediatR;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.CreateSupportProject;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AddSchool;
 
 public class SummaryModel : PageModel
 {
@@ -15,7 +15,7 @@ public class SummaryModel : PageModel
     private readonly IMediator _mediator;
 
     public SummaryModel(IGetEstablishment getEstablishment,
-                        ISupportProjectQueryService supportProjectQueryService, 
+                        ISupportProjectQueryService supportProjectQueryService,
                         IMediator mediator
         )
     {
@@ -37,18 +37,18 @@ public class SummaryModel : PageModel
     {
         DfE.CoreLibs.Contracts.Academies.V4.Establishments.EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(urn);
 
-        var request = new CreateSupportProjectCommand(establishment.Name, establishment.Urn, establishment.LocalAuthorityName,establishment.Gor.Name, "user@test.com");
+        var request = new CreateSupportProjectCommand(establishment.Name, establishment.Urn, establishment.LocalAuthorityName, establishment.Gor.Name, "user@test.com");
 
         var id = await _mediator.Send(request);
 
         if (id != null)
         {
-            return RedirectToPage(Links.ProjectList.Index.Page);
+            return RedirectToPage(Links.SchoolList.Index.Page);
         }
 
         else
         {
-            return RedirectToPage(Links.NewProject.Summary.Page);
+            return RedirectToPage(Links.AddSchool.Summary.Page);
         }
     }
 

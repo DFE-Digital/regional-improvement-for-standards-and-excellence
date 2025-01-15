@@ -19,7 +19,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         
         EditNote = (bool)(TempData["editNote"] ?? false);
 
-        ReturnPage = @Links.ProjectList.Index.Page;
+        ReturnPage = @Links.SchoolList.Index.Page;
         
         await base.GetSupportProject(id, cancellationToken);
         

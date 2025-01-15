@@ -2,7 +2,7 @@
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Shared
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Extensions
-@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.WhichSchoolNeedsHelpModel
+@model WhichSchoolNeedsHelpModel
 
 @{
     Layout = "_Layout";
@@ -15,7 +15,7 @@
 
 @section BeforeMain
 {
-    <partial name="_BackLink" model="@(new BackLink(Links.ProjectList.Index.Page, routeParams))" />
+    <partial name="_BackLink" model="@(new BackLink(Links.SchoolList.Index.Page, routeParams))" />
     <partial name="_ErrorSummary" />
 }
 

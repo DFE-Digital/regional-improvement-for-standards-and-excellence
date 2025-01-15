@@ -3,13 +3,13 @@
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers
 @model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AboutTheSchool.IndexModel
 @{
-    Model.SetErrorPage(Links.ProjectList.Index.Page);
+    Model.SetErrorPage(Links.SchoolList.Index.Page);
     ViewData["Title"] = "About The School";
 }
 
 @section BeforeMain
 {
-   <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.ProjectList.Index.BackText</a>
+   <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.SchoolList.Index.BackText</a>
 }
 
 
