@@ -2,7 +2,7 @@
 @using System.Globalization
 @using Dfe.Academisation.ExtensionMethods
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Shared
-@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.SummaryModel
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AddSchool.SummaryModel
 @{
     Layout = "_Layout";
     ViewBag.Title = "Check school details";
@@ -22,7 +22,7 @@
 
 @section BeforeMain
 {
-    <partial name="_BackLink" model="@(new BackLink(Links.NewProject.WhichSchoolNeedsHelp.Page, routeParams))" />
+    <partial name="_BackLink" model="@(new BackLink(Links.AddSchool.WhichSchoolNeedsHelp.Page, routeParams))" />
 }
 
 <div class="govuk-grid-row">
@@ -50,7 +50,7 @@
                     @Model.Establishment.Name
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                    <a asp-page="@Links.NewProject.WhichSchoolNeedsHelp.Page" class="govuk-link" data-cy="change-school"
+                    <a asp-page="@Links.AddSchool.WhichSchoolNeedsHelp.Page" class="govuk-link" data-cy="change-school"
                        asp-all-route-data="@backLinkRouteParams">
                         Change<span class="govuk-visually-hidden">School name</span>
                     </a>

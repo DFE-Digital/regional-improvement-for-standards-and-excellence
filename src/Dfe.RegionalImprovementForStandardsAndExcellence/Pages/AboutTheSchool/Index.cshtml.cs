@@ -27,7 +27,7 @@ public class IndexModel : BaseSupportProjectEstablishmentPageModel
     {
         ProjectListFilters.ClearFiltersFrom(TempData);
 
-        ReturnPage = @Links.ProjectList.Index.Page;
+        ReturnPage = @Links.SchoolList.Index.Page;
         
         await base.GetSupportProject(id, cancellationToken);
 
