@@ -2,7 +2,7 @@
 
 @{
    DateTime createdDate = @Model.CreatedOn;
-   DateTime lastInspectionDate = DateTime.Parse(@Model.LastInspectionDate);
+   
 
 }
 
@@ -28,7 +28,7 @@
          }
          else
          {
-            <a data-id="last-inspection">@lastInspectionDate.ToDateString()</a>
+            <a data-id="last-inspection">@Model.LastInspectionDate</a>
          }
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
