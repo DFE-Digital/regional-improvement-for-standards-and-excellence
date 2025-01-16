@@ -1,5 +1,11 @@
 @using Dfe.Academisation.ExtensionMethods
 
+@{
+   DateTime createdDate = @Model.CreatedOn;
+   DateTime lastInspectionDate = DateTime.Parse(@Model.LastInspectionDate);
+
+}
+
 <div class="govuk-grid-row">
    <div class="govuk-grid-column-full">
         <span class="govuk-caption-xl" data-cy=".govuk-caption-xl">URN: @Model.SchoolUrn</span>
@@ -9,6 +15,11 @@
 </div>
 
    <div class="govuk-grid-column-full">
+      
+      <p class="govuk-body govuk-!-margin-bottom-1">
+         Date added:
+         <a>@createdDate.ToDateString()</a>
+      </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
          Date of last inspection:
          @if (@Model.LastInspectionDate == null || string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
@@ -17,7 +28,7 @@
          }
          else
          {
-            <a data-id="last-inspection">@Model.LastInspectionDate</a>
+            <a data-id="last-inspection">@lastInspectionDate.ToDateString()</a>
          }
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">

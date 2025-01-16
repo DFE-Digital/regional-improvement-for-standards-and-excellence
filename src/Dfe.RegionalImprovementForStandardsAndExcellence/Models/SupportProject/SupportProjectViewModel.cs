@@ -8,6 +8,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
     public class SupportProjectViewModel
     {
         public int Id { get; set; }
+        
+        public DateTime CreatedOn { get; set; }
 
         public string SchoolName { get; set; }
 
@@ -45,6 +47,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
             return new SupportProjectViewModel()
             {
                 Id = supportProjectDto.id,
+                CreatedOn = supportProjectDto.createdOn,
                 AssignedAdviserFullName = supportProjectDto.assignedAdviserFullName,
                 AssignedAdviserEmailAddress = supportProjectDto.assignedAdviserEmailAddress,
                 LocalAuthority = supportProjectDto.localAuthority,
