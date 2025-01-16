@@ -18,19 +18,21 @@
         <h1 class="govuk-heading-l">
             Contact the school
         </h1>
+        <div class="govuk-hint">Get in touch with the school to tell them they are eligible for support</div>
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 <form method="post" novalidate>
-                     <govuk-text-input label="Enter some text" id="text" name="text" asp-for="@Model.Text" hint="For example, 27 3 2026" />
-                    <govuk-checkbox-input label="Enter the date the school was contacted" id="school-email-address-found" name="school-email-address-found" asp-for="@Model.SchoolEmailAddressFound" hint="For example, 27 3 2026"/>
-                    <govuk-date-input heading-label="false" label="Enter the date the school was contacted" id="school-contacted-date" name="school-contacted-date" asp-for="@Model.SchoolContactedDate" hint="For example, 27 3 2026"/>
+                    <govuk-checkbox-input label="Find the school's email address" id="school-email-address-found" name="school-email-address-found" asp-for="@Model.SchoolEmailAddressFound"/>
+                    <govuk-checkbox-input label="Use the template notification letter to create the email" id="notification-letter-to-create-email" name="notification-letter-to-create-email" asp-for="@Model.UseTheNotificationLetterToCreateEmail"/>
+                    <govuk-checkbox-input label="Attach the RISE information pack to the email" id="attach-rise-info-to-email" name="attach-rise-info-to-email" asp-for="@Model.AttachRiseInfoToEmail"/>
+                    <govuk-date-input heading-label="false" label="Enter the date the school was contacted" id="school-contacted-date" name="school-contacted-date" asp-for="@Model.SchoolContactedDate" hint="For example, 1 7 2025"/>
                     <button class="govuk-button" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
-                        Save and continue
+                        Save and return
                     </button>
                 </form>
             </div>
         </div>
-    
-        </div>
+
     </div>
+</div>

@@ -1,13 +1,16 @@
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.ContactTheSchool;
 
-public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQueryService,ErrorService errorService) : BaseSupportProjectPageModel(supportProjectQueryService,errorService),IDateValidationMessageProvider
+public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQueryService,ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService,errorService),IDateValidationMessageProvider
 {
     
     [BindProperty(Name = "school-contacted-date", BinderType = typeof(DateInputModelBinder))]
@@ -16,9 +19,13 @@ public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQue
     [BindProperty(Name = "school-email-address-found")]
     public bool? SchoolEmailAddressFound { get; set; }
     
-    [BindProperty(Name = "text")]
+    [BindProperty(Name = "notification-letter-to-create-email")]
     
-    public string? Text { get; set; }
+    public bool? UseTheNotificationLetterToCreateEmail { get; set; }
+    
+    [BindProperty(Name = "attach-rise-info-to-email")]
+    
+    public bool? AttachRiseInfoToEmail { get; set; }
     
     public bool ShowError { get; set; }
     
@@ -37,21 +44,19 @@ public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQue
         
         await base.GetSupportProject(id, cancellationToken);
         
-        SchoolContactedDate = DateTime.Now;
+        SchoolContactedDate = SupportProject.ContactedTheSchoolDate ?? null;
 
-        SchoolEmailAddressFound = true;
+        SchoolEmailAddressFound = SupportProject.FindSchoolEmailAddress;
 
-        Text = "text here";
+        UseTheNotificationLetterToCreateEmail = SupportProject.UseTheNotificationLetterToCreateEmail;
+
+        AttachRiseInfoToEmail = SupportProject.AttachRiseInfoToEmail;
         
         return Page(); 
     }
 
     public async Task<IActionResult> OnPost(int id,CancellationToken cancellationToken)
     {
-        var schoolEmail = SchoolEmailAddressFound; 
-        var schoolContacted = SchoolContactedDate;
-        var text = Text;
-
         if (!ModelState.IsValid)
         {
             _errorService.AddErrors(Request.Form.Keys, ModelState);
@@ -59,7 +64,17 @@ public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQue
             return await base.GetSupportProject(id, cancellationToken);
         }
         
-        return Page();
+        var request = new SetContactTheSchoolDetailsCommand(new SupportProjectId(id),  SchoolEmailAddressFound ,UseTheNotificationLetterToCreateEmail,AttachRiseInfoToEmail,SchoolContactedDate );
+
+        var result = await mediator.Send(request, cancellationToken);
+       
+        if (result != true)
+        {
+            _errorService.AddApiError();
+            return await base.GetSupportProject(id, cancellationToken);;
+        }
+        
+        return RedirectToPage(@Links.TaskList.Index.Page, new { id });
     }
 
 }

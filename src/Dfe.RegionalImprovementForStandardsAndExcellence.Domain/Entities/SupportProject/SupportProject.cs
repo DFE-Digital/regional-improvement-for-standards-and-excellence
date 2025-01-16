@@ -47,6 +47,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     
     public string? AssignedAdviserEmailAddress { get; private set; }
     
+    public bool? FindSchoolEmailAddress { get; private set; }
+    
+    public bool? UseTheNotificationLetterToCreateEmail { get; private set; }
+    
+    public bool? AttachRiseInfoToEmail { get; private set; }
+    
+    public DateTime? ContactedTheSchoolDate { get; private set; }
     public IEnumerable<SupportProjectNote> Notes => _notes.AsReadOnly();
     
     private readonly List<SupportProjectNote> _notes = new();
@@ -87,5 +94,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         {
             noteToUpdate.SetNote(note, author, date);
         }
+    }
+    public void SetContactTheSchoolDetails(bool? findSchoolEmailAddress,bool? useTheNotificationLetterToCreateEmail,bool? attachRiseInfoToEmail,DateTime? schoolContactedDate)
+    {
+        FindSchoolEmailAddress = findSchoolEmailAddress;
+        UseTheNotificationLetterToCreateEmail = useTheNotificationLetterToCreateEmail;
+        AttachRiseInfoToEmail = attachRiseInfoToEmail;
+        ContactedTheSchoolDate = schoolContactedDate;
     }
 }
