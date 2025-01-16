@@ -9,6 +9,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportPr
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models
 {
     public record SupportProjectDto(int id,
+        DateTime createdOn,
         string schoolName,
         string schoolUrn,
         string localAuthority,
