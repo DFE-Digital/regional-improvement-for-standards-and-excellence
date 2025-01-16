@@ -4,23 +4,23 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.TaskList.SetAdviserConflictOfInterestDetails.SetAdviserConflictOfInterestDetails;
+using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserConflictOfInterestDetails;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.ContactTheSchool;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.AdviserConflictOfIntereset;
 
 public class AdviserConflictOfIntereset(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
     [BindProperty(Name = "send-conflict-of-interest-form-to-proposed-adviser-and-the-school")]
-    public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; private set; }
+    public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; set; }
 
     [BindProperty(Name = "recieve-completed-conflict-of-interest-form")]
-    public bool? RecieveCompletedConflictOfInteresetForm { get; private set; }
+    public bool? RecieveCompletedConflictOfInteresetForm { get; set; }
 
     [BindProperty(Name = "save-completed-conflict-of-interest-form-in-sharepoint")]
-    public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; private set; }
+    public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; set; }
 
     [BindProperty(Name = "date-conflicts-of-interest-were-checked", BinderType = typeof(DateInputModelBinder))]
-    public DateTime? DateConflictsOfInterestWereChecked { get; private set; }
+    public DateTime? DateConflictsOfInterestWereChecked { get; set; }
 
     public bool ShowError { get; set; }
 

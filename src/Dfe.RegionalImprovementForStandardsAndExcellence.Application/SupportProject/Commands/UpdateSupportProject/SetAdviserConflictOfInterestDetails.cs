@@ -3,7 +3,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using MediatR;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.TaskList.SetAdviserConflictOfInterestDetails;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 
 public class SetAdviserConflictOfInterestDetails
 {
