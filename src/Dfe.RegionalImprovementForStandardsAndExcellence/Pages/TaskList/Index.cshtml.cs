@@ -5,6 +5,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportPr
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using System.Threading;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
@@ -12,6 +13,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 public class IndexModel : BaseSupportProjectEstablishmentPageModel
 {
    public string ReturnPage { get; set; }
+   
+   public TaskListStatus ContactTheSchoolTaskListStatus { get; set; }
 
    public void SetErrorPage(string errorPage)
    {
@@ -30,6 +33,8 @@ public class IndexModel : BaseSupportProjectEstablishmentPageModel
         ReturnPage = @Links.SchoolList.Index.Page;
         
         await base.GetSupportProject(id, cancellationToken);
+
+        ContactTheSchoolTaskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(SupportProject);
 
         return Page();
    }

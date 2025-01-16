@@ -15,6 +15,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string region,
         string assignedAdviserFullName,
         string assignedAdviserEmailAddress,
+        bool FindSchoolEmailAddress,
+        bool UseTheNotificationLetterToCreateEmail,
+        bool AttachRiseInfoToEmail, 
+        DateTime? ContactedTheSchoolDate,
         IEnumerable<SupportProjectNote> notes);
 
 }

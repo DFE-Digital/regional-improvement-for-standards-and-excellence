@@ -30,7 +30,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string LeadershipAndManagement { get; set; }
         public string LastInspectionDate { get; set; }
         
+        public bool? FindSchoolEmailAddress { get; private set; }
+    
+        public bool? UseTheNotificationLetterToCreateEmail { get; private set; }
+    
+        public bool? AttachRiseInfoToEmail { get; private set; }
+    
+        public DateTime? ContactedTheSchoolDate { get; private set; }
+        
         public IEnumerable<SupportProjectNote> Notes { get; set; }
+        
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -42,8 +51,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 Region = supportProjectDto.region,
                 SchoolName = supportProjectDto.schoolName,
                 SchoolUrn = supportProjectDto.schoolUrn,
-                Notes = supportProjectDto.notes
-                
+                Notes = supportProjectDto.notes,
+                FindSchoolEmailAddress = supportProjectDto.FindSchoolEmailAddress,
+                UseTheNotificationLetterToCreateEmail = supportProjectDto.UseTheNotificationLetterToCreateEmail,
+                AttachRiseInfoToEmail = supportProjectDto.AttachRiseInfoToEmail,
+                ContactedTheSchoolDate = supportProjectDto.ContactedTheSchoolDate,
             };
         }
     }
