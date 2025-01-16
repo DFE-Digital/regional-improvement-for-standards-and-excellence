@@ -20,6 +20,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool UseTheNotificationLetterToCreateEmail,
         bool AttachRiseInfoToEmail, 
         DateTime? ContactedTheSchoolDate,
+        bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool,
+        bool? RecieveCompletedConflictOfInteresetForm,
+        bool? SaveCompletedConflictOfinterestFormInSharePoint,
+        DateTime? DateConflictsOfInterestWereChecked,
         IEnumerable<SupportProjectNote> notes);
 
 }
