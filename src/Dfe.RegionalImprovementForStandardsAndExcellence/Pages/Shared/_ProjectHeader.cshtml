@@ -17,11 +17,11 @@
    <div class="govuk-grid-column-full">
       
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Date added:
+         <b>Date added:</b>
          <a>@createdDate.ToDateString()</a>
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Date of last inspection:
+        <b>Date of last inspection:</b>
          @if (@Model.LastInspectionDate == null || string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
          {
             <span data-id="last-inspection" class="empty">Unknown</span>
@@ -32,23 +32,23 @@
          }
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Quality of education:
+         <b>Quality of education:</b>
          <partial name="_OfstedJudgement" model="Model.QualityOfEducation"/>
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Behaviour and attitudes:
+         <b>Behaviour and attitudes:</b>
          <partial name="_OfstedJudgement" model="Model.BehaviourAndAttitudes"/>
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Personal development:
+         <b>Personal development:</b>
          <partial name="_OfstedJudgement" model="Model.PersonalDevelopment"/>
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Leadership and management:
+         <b>Leadership and management:</b>
          <partial name="_OfstedJudgement" model="Model.LeadershipAndManagement"/>
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
-         Assigned Adviser:
+         <b>Assigned Adviser:</b>
          @if (@Model.AssignedAdviserFullName == null || string.IsNullOrWhiteSpace(@Model.AssignedAdviserFullName))
          {
             <span data-id="assigned-user" class="empty">Empty</span>
