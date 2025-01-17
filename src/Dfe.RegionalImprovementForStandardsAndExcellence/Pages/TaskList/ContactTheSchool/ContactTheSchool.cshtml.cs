@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
@@ -12,6 +14,8 @@ public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQue
 {
     
     [BindProperty(Name = "school-contacted-date", BinderType = typeof(DateInputModelBinder))]
+    [DateValidation(Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.DateRangeValidationService.DateRange.PastOrToday)]
+    [Display(Name = "Contacted the school")]
     public DateTime? SchoolContactedDate  { get; set; }
     
     [BindProperty(Name = "school-email-address-found")]
@@ -55,6 +59,8 @@ public class ContactTheSchoolModel(ISupportProjectQueryService supportProjectQue
 
     public async Task<IActionResult> OnPost(int id,CancellationToken cancellationToken)
     {
+      
+        
         if (!ModelState.IsValid)
         {
             _errorService.AddErrors(Request.Form.Keys, ModelState);

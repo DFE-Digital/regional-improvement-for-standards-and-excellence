@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250116153654_SetAdviserConflictOfInterestDetails")]
+    partial class SetAdviserConflictOfInterestDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,12 +58,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<bool?>("FindSchoolEmailAddress")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("HasAcceeptedTargetedSupport")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("HasSavedSchoolResponseinSharePoint")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -94,9 +91,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<string>("SchoolName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("SchoolResponseDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("SchoolUrn")
                         .IsRequired()

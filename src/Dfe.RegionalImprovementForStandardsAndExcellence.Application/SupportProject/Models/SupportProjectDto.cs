@@ -3,6 +3,7 @@
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models
 {
     public record SupportProjectDto(int id,
+        DateTime createdOn,
         string schoolName,
         string schoolUrn,
         string localAuthority,
@@ -13,6 +14,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool UseTheNotificationLetterToCreateEmail,
         bool AttachRiseInfoToEmail, 
         DateTime? ContactedTheSchoolDate,
+        bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool,
+        bool? RecieveCompletedConflictOfInteresetForm,
+        bool? SaveCompletedConflictOfinterestFormInSharePoint,
+        DateTime? DateConflictsOfInterestWereChecked,
         DateTime? SchoolResponseDate,
         bool? HasAcceeptedTargetedSupport,
         bool? HasSavedSchoolResponseinSharePoint,

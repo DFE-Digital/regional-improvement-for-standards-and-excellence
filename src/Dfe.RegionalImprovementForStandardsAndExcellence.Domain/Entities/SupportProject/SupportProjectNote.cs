@@ -22,12 +22,12 @@ public class SupportProjectNote : BaseAggregateRoot, IEntity<SupportProjectNoteI
     public SupportProjectId SupportProjectId { get; private set; }
     public SupportProjectNoteId Id { get; private set; }
     public string Note { get; private set; }
-    public DateTime CreatedOn { get; private set; }
-    public string CreatedBy { get; private set; }
+    public DateTime CreatedOn { get; set; }
+    public string CreatedBy { get; set; }
     
-    public DateTime? LastModifiedOn { get; private set; }
+    public DateTime? LastModifiedOn { get; set; }
 
-    public string? LastModifiedBy { get; private set; }
+    public string? LastModifiedBy { get; set; }
 
     public void SetNote(string note, string author, DateTime dateUpdated)
     {

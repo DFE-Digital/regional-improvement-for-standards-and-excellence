@@ -49,7 +49,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.
             // Assert
             totalCount.Should().Be(3); // Assert total count
             projects.Should().HaveCount(3);              // Assert paged results
-            projects.First().SchoolName.Should().Be("School A");
+            projects.First().SchoolName.Should().Be("School C");
         }
 
         [Fact]

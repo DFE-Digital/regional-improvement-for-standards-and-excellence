@@ -1,6 +1,7 @@
 ﻿
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +21,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
+            var mockUserService = Mock.Of<IUserContextService>();
+            Mock.Get(mockUserService).Setup(x => x.GetCurrentUsername()).Returns("test@user.com");
+
             // Initialize the context
-            Context = new RegionalImprovementForStandardsAndExcellenceContext(options, Mock.Of<IConfiguration>(), Mock.Of<IMediator>());
+            Context = new RegionalImprovementForStandardsAndExcellenceContext(options, Mock.Of<IConfiguration>(), Mock.Of<IMediator>(), mockUserService);
 
             // Seed data
             SeedData();
@@ -34,25 +38,19 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.
                 "School A",
                 "100001",
                 "Authority1",
-                "Region1",
-                "User1",
-                DateTime.UtcNow
+                "Region1"
             ),
             SupportProject.Create(
                 "School B",
                 "100002",
                 "Authority2",
-                "Region2",
-                "User2",
-                DateTime.UtcNow.AddDays(-1)
+                "Region2"
             ),
             SupportProject.Create(
                 "School C",
                 "100003",
                 "Authority3",
-                "Region2",
-                "User3",
-                DateTime.UtcNow.AddDays(-2)
+                "Region2"
             ));
             Context.SaveChanges();
         }

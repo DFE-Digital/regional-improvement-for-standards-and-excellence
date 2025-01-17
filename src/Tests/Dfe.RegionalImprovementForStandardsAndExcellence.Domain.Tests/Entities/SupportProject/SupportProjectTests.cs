@@ -64,21 +64,43 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             mockRepository.VerifyAll();
         }
 
+        [Fact]
+        public void SetAdviserConflictOfInterestDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = true;
+            bool? recieveCompletedConflictOfInteresetForm = true;
+            bool? saveCompletedConflictOfinterestFormInSharePoint = true;
+            DateTime? dateConflictsOfInterestWereChecked = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetAdviserConflictOfInterestDetails(
+                sendConflictOfInterestFormToProposedAdviserAndTheSchool,
+                recieveCompletedConflictOfInteresetForm,
+                saveCompletedConflictOfinterestFormInSharePoint,
+                dateConflictsOfInterestWereChecked);
+
+            // Assert
+            supportProject.SendConflictOfInterestFormToProposedAdviserAndTheSchool.Should().Be(sendConflictOfInterestFormToProposedAdviserAndTheSchool);
+            supportProject.RecieveCompletedConflictOfInteresetForm.Should().Be(recieveCompletedConflictOfInteresetForm);
+            supportProject.SaveCompletedConflictOfinterestFormInSharePoint.Should().Be(saveCompletedConflictOfinterestFormInSharePoint);
+            supportProject.DateConflictsOfInterestWereChecked.Should().Be(dateConflictsOfInterestWereChecked);
+            this.mockRepository.VerifyAll();
+        }
+
         private static Domain.Entities.SupportProject.SupportProject CreateSupportProject(
             string schoolName = "Default School",
             string schoolUrn = "DefaultURN",
             string localAuthority = "Default Authority",
-            string region = "Default Region",
-            string createdBy = "Default Creator",
-            DateTime createdOn = default)
+            string region = "Default Region")
         {
             return Domain.Entities.SupportProject.SupportProject.Create(
                  schoolName,
                  schoolUrn,
                  localAuthority,
-                 region,
-                 createdBy,
-                 createdOn == default ? DateTime.UtcNow : createdOn);
+                 region);
         }
     }
 }

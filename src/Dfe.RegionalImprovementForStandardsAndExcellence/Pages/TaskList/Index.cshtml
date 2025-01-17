@@ -40,6 +40,14 @@
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.RecordTheSchoolResponseTaskListStatus" />
                 </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.CheckPotentialAdviserConflictsOfInterest.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="CheckPotentialAdviserConflictsOfInterest">
+                            Check potential adviser conflicts of interest
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.CheckThePotentialAdviserConflictsOfInterestTaskListStatus" />
+                </li>
             </ul>
         </div>
     </div>

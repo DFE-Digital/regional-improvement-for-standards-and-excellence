@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database
 {
@@ -33,11 +34,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Databa
                 cfg.RegisterServicesFromAssembly(typeof(ApplicationServiceCollectionExtensions).Assembly);
             });
 
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserContextService, UserContextService>();
+
             var serviceProvider = services.BuildServiceProvider();
 
             var mediator = serviceProvider.GetRequiredService<IMediator>();
+            var userContext = serviceProvider.GetRequiredService<IUserContextService>();
 
-            return new RegionalImprovementForStandardsAndExcellenceContext(optionsBuilder.Options, configuration, mediator);
+            return new RegionalImprovementForStandardsAndExcellenceContext(optionsBuilder.Options, configuration, mediator, userContext);
         }
     }
 }
