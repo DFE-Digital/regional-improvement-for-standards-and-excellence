@@ -8,16 +8,16 @@
     {
         case TaskListStatus.Complete:
             output = "Completed";
-            colour = "";
+            colour = "green";
             break;
         case TaskListStatus.InProgress:
             output = "In Progress";
-            colour = "blue";
+            colour = "orange";
             break;
         case TaskListStatus.NotStarted:
         default:
             output = "Not Started";
-            colour = "grey";
+            colour = "blue";
             break;
     }
 }
