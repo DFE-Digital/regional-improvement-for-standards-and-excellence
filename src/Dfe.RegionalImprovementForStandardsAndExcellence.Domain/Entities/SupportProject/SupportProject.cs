@@ -65,6 +65,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; private set; }
 
     public DateTime? DateConflictsOfInterestWereChecked { get; private set; }
+
+    public DateTime? SchoolResponseDate { get; set; }
+
+    public bool? HasAcceeptedTargetedSupport { get; set; }
+
+    public bool? HasSavedSchoolResponseinSharePoint { get; set; }
     #endregion
 
     public static SupportProject Create(
@@ -117,6 +123,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         RecieveCompletedConflictOfInteresetForm = recieveCompletedConflictOfInteresetForm;
         SaveCompletedConflictOfinterestFormInSharePoint = saveCompletedConflictOfinterestFormInSharePoint;
         DateConflictsOfInterestWereChecked = dateConflictsOfInterestWereChecked;
+    }
+    public void SetSchoolResponse(DateTime? schoolResponseDate,bool? hasAcceeptedTargetedSupport, bool? hasSavedSchoolResponseinSharePoint)
+    {
+        SchoolResponseDate = schoolResponseDate;
+        HasAcceeptedTargetedSupport = hasAcceeptedTargetedSupport;
+        HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
     }
     #endregion
 }

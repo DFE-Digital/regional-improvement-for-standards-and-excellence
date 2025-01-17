@@ -1,10 +1,4 @@
-﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
+﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models
 {
@@ -24,6 +18,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? RecieveCompletedConflictOfInteresetForm,
         bool? SaveCompletedConflictOfinterestFormInSharePoint,
         DateTime? DateConflictsOfInterestWereChecked,
-        IEnumerable<SupportProjectNote> notes);
+        DateTime? SchoolResponseDate,
+        bool? HasAcceeptedTargetedSupport,
+        bool? HasSavedSchoolResponseinSharePoint,
+        IEnumerable<SupportProjectNote> notes
+        );
 
 }

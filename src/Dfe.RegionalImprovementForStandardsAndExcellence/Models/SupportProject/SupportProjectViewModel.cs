@@ -2,6 +2,7 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using System.Runtime.InteropServices;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject
 {
@@ -50,6 +51,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public IEnumerable<SupportProjectNote> Notes { get; set; }
 
+        public DateTime? SchoolResponseDate { get; set; }
+         
+        public bool? HasAcceeptedTargetedSupport { get; set; }
+         
+        public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -70,7 +77,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 SendConflictOfInterestFormToProposedAdviserAndTheSchool = supportProjectDto.SendConflictOfInterestFormToProposedAdviserAndTheSchool,
                 RecieveCompletedConflictOfInteresetForm = supportProjectDto.RecieveCompletedConflictOfInteresetForm,
                 SaveCompletedConflictOfinterestFormInSharePoint = supportProjectDto.SaveCompletedConflictOfinterestFormInSharePoint,
-                DateConflictsOfInterestWereChecked = supportProjectDto.DateConflictsOfInterestWereChecked
+                DateConflictsOfInterestWereChecked = supportProjectDto.DateConflictsOfInterestWereChecked,
+                SchoolResponseDate = supportProjectDto.SchoolResponseDate,
+                HasAcceeptedTargetedSupport = supportProjectDto.HasAcceeptedTargetedSupport,
+                HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint
             };
         }
     }

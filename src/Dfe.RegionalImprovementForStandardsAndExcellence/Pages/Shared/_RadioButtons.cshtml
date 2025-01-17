@@ -1,0 +1,22 @@
+﻿@using Dfe.RegionalImprovementForStandardsAndExcellence.Utils
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels.RadioButtonViewModel
+<div class="govuk-form-group">
+    <div class="govuk-radios" data-module="govuk-radios">
+        @if (!string.IsNullOrEmpty(Model.Hint))
+        {
+            <div id="radio-hint" class="govuk-hint">
+                @Model.Hint
+            </div>
+        }
+   
+        @foreach (var radioButton in Model.RadioButtons)
+        {
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="@radioButton.Id" name="@Model.Name" type="radio" data-cy="select-radio-@radioButton.Id" value="@radioButton.Value" @(@radioButton.Value == Model.Value ? "checked" : "")>
+                <label class="govuk-label govuk-radios__label" for="@radioButton.Id">
+                    @radioButton.Name
+                </label>
+            </div>
+        }
+    </div>
+</div>

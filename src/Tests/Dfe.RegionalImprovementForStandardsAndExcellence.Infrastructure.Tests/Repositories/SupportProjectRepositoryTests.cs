@@ -1,38 +1,15 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentAssertions;
-using Xunit;
-using Moq;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
-using Microsoft.EntityFrameworkCore;
+﻿using FluentAssertions;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories;
-using MediatR;
-using Microsoft.Extensions.Configuration;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.Repositories
 {
-    public class SupportProjectRepositoryTests : IClassFixture<DatabaseFixture>
+    public class SupportProjectRepositoryTests(DatabaseFixture fixture) : IClassFixture<DatabaseFixture>
     {
-        private readonly DatabaseFixture _fixture;
-
-        public SupportProjectRepositoryTests(DatabaseFixture fixture)
-        {
-            _fixture = fixture;
-        }
-
         [Fact]
         public async Task SearchForSupportProjects_ShouldReturnFilteredAndPagedResults()
         {
             // Arrange
-            var service = new SupportProjectRepository(_fixture.Context);
+            var service = new SupportProjectRepository(fixture.Context);
 
             // Act 
             var (projects, totalCount) = await service.SearchForSupportProjects(
@@ -56,7 +33,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.
         public async Task SearchForSupportProjectsWithSchoolNameLikeSchool_ShouldReturnFilteredAndPagedResults()
         {
             // Arrange
-            var service = new SupportProjectRepository(_fixture.Context);
+            var service = new SupportProjectRepository(fixture.Context);
 
             var (projects, totalCount) = await service.SearchForSupportProjects(
                 title: "School",
@@ -79,7 +56,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.
         public async Task SearchForSupportProjectsWithUrn_ShouldReturnFilteredAndPagedResults()
         {
             // Arrange
-            var service = new SupportProjectRepository(_fixture.Context);
+            var service = new SupportProjectRepository(fixture.Context);
 
             var (projects, totalCount) = await service.SearchForSupportProjects(
                 title: "100001",

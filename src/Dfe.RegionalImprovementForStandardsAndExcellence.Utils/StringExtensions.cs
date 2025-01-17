@@ -1,9 +1,3 @@
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 
 #nullable enable
@@ -13,14 +7,14 @@ public static class StringExtensions
 
     public static bool IsPresent(this string input) => !input.IsEmpty();
 
-    public static string FullNameFromEmail(this string input) => NameFromEmail(input); 
+    public static string FullNameFromEmail(this string input) => NameFromEmail(input);
     public static string NameFromEmail(string email)
     {
-        if(!email.EndsWith("@EDUCATION.GOV.UK", StringComparison.OrdinalIgnoreCase))
+        if (!email.EndsWith("@EDUCATION.GOV.UK", StringComparison.OrdinalIgnoreCase))
         {
             return email;
         }
-        
+
         string namePart = email.Substring(0, email.IndexOf("@EDUCATION.GOV.UK", StringComparison.Ordinal));
         string[] nameParts = namePart.Split('.');
 
@@ -34,5 +28,11 @@ public static class StringExtensions
         }
 
         return email;
+    }
+    public static string ToHtmlName(this string propertyName)
+    {
+        return propertyName.Replace('.', '_')
+            .Replace('[', '_')
+            .Replace(']', '_');
     }
 }
