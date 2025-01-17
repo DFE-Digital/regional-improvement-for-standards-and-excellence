@@ -52,8 +52,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Sup
 
             var projects = new List<Domain.Entities.SupportProject.SupportProject>
         {
-             Domain.Entities.SupportProject.SupportProject.Create(schoolName1, schoolUrn1, localAuthority1, region1, createdBy1, createdOn1),
-             Domain.Entities.SupportProject.SupportProject.Create(schoolName2, schoolUrn2, localAuthority2, region2, createdBy2, createdOn2)
+             Domain.Entities.SupportProject.SupportProject.Create(schoolName1, schoolUrn1, localAuthority1, region1),
+             Domain.Entities.SupportProject.SupportProject.Create(schoolName2, schoolUrn2, localAuthority2, region2)
         };
 
             _repositoryMock
@@ -114,7 +114,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Sup
             string createdBy1 = "User A";
             DateTime createdOn1 = new DateTime(2023, 01, 01);
 
-            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(schoolName1, schoolUrn1, localAuthority1, region1, createdBy1, createdOn1);
+            var supportProject = Domain.Entities.SupportProject.SupportProject.Create(schoolName1, schoolUrn1, localAuthority1, region1);
 
             // Mock the repository call to return the mock supportProject
             _repositoryMock.Setup(repo => repo.GetSupportProjectById(It.IsAny<SupportProjectId>(), It.IsAny<CancellationToken>()))

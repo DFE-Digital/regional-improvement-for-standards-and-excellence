@@ -1,6 +1,7 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security.Authorization;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // Utils
             services.AddScoped<IDateTimeProvider, DateTimeProvider>();
+            services.AddScoped<IUserContextService, UserContextService>();
 
             // Health check
             AddInfrastructureHealthCheck(services);

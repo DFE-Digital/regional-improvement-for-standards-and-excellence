@@ -15,8 +15,9 @@ public class IndexModel : BaseSupportProjectEstablishmentPageModel
    public string ReturnPage { get; set; }
    
    public TaskListStatus ContactTheSchoolTaskListStatus { get; set; }
+   public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
 
-   public void SetErrorPage(string errorPage)
+    public void SetErrorPage(string errorPage)
    {
       TempData["ErrorPage"] = errorPage;
    }
@@ -35,6 +36,7 @@ public class IndexModel : BaseSupportProjectEstablishmentPageModel
         await base.GetSupportProject(id, cancellationToken);
 
         ContactTheSchoolTaskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(SupportProject);
+        CheckThePotentialAdviserConflictsOfInterestTaskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProject);
 
         return Page();
    }

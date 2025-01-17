@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Http.HttpResults;
 using System;
 using System.Collections.Generic;
 
@@ -47,7 +48,8 @@ public static class Links
    {
       public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/TaskList/Index");
       public static readonly LinkItem ContactTheSchool = AddLinkItem(backText: "Back", page: "/TaskList/ContactTheSchool/ContactTheSchool");
-   }
+      public static readonly LinkItem CheckPotentialAdviserConflictsOfInterest = AddLinkItem(backText: "Back", page: "/TaskList/AdviserConflictOfIntereset/AdviserConflictOfIntereset");
+    }
    
    public static class Notes
    {
