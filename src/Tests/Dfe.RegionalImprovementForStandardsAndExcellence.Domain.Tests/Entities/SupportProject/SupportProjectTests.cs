@@ -84,5 +84,31 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
                  localAuthority,
                  region);
         }
+        
+        [Fact]
+        public void SetContactTheSchool_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? schoolEmailAddressFound =  true;
+            bool? useTheNotificationLetterToCreateEmail = true; 
+            bool? attachRiseInfoToEmail = true;
+            DateTime? schoolContactedDate = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetContactTheSchoolDetails(
+                schoolEmailAddressFound,
+                useTheNotificationLetterToCreateEmail,
+                attachRiseInfoToEmail,
+                schoolContactedDate);
+
+            // Assert
+            supportProject.FindSchoolEmailAddress.Should().Be(schoolEmailAddressFound);
+            supportProject.UseTheNotificationLetterToCreateEmail.Should().Be(useTheNotificationLetterToCreateEmail);
+            supportProject.AttachRiseInfoToEmail.Should().Be(attachRiseInfoToEmail);
+            supportProject.ContactedTheSchoolDate.Should().Be(schoolContactedDate);
+            this.mockRepository.VerifyAll();
+        }
     }
 }
