@@ -34,6 +34,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Databa
                 cfg.RegisterServicesFromAssembly(typeof(ApplicationServiceCollectionExtensions).Assembly);
             });
 
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserContextService, UserContextService>();
+
             var serviceProvider = services.BuildServiceProvider();
 
             var mediator = serviceProvider.GetRequiredService<IMediator>();
