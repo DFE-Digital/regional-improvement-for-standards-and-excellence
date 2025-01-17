@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserConflictOfInterestDetails;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.AdviserConflictOfIntereset;
@@ -20,6 +21,8 @@ public class AdviserConflictOfIntereset(ISupportProjectQueryService supportProje
     public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; set; }
 
     [BindProperty(Name = "date-conflicts-of-interest-were-checked", BinderType = typeof(DateInputModelBinder))]
+    [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
+    [Display(Name = "date conflicts of interest were checked")]
     public DateTime? DateConflictsOfInterestWereChecked { get; set; }
 
     public bool ShowError { get; set; }

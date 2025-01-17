@@ -32,15 +32,15 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public string Region { get; private set; }
 
-    public DateTime CreatedOn { get; private set; }
+    public DateTime CreatedOn { get; set; }
 
-    public string CreatedBy { get; private set; }
+    public string CreatedBy { get; set; }
 
     public string LocalAuthority { get; private set; }
 
-    public DateTime? LastModifiedOn { get; private set; }
+    public DateTime? LastModifiedOn { get; set; }
 
-    public string? LastModifiedBy { get; private set; }
+    public string? LastModifiedBy { get; set; }
 
     public string? AssignedAdviserFullName { get; private set; }
 
@@ -71,9 +71,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         string schoolName,
         string schoolUrn,
         string localAuthority,
-        string region,
-        string createdBy,
-        DateTime createdOn)
+        string region)
     {
 
         return new SupportProject()
@@ -81,9 +79,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
             SchoolName = schoolName,
             SchoolUrn = schoolUrn,
             LocalAuthority = localAuthority,
-            Region = region,
-            CreatedBy = createdBy,
-            CreatedOn = createdOn
+            Region = region
         };
     }
 

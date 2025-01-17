@@ -23,7 +23,10 @@ public class SetAdviserConflictOfInterestDetails
 
             var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
 
-            var supportProjectNoteId = new SupportProjectNoteId(Guid.NewGuid());
+            if (supportProject is null)
+            {
+                return false;
+            }
 
             supportProject.SetAdviserConflictOfInterestDetails(request.SendConflictOfInterestFormToProposedAdviserAndTheSchool,
                                                                request.RecieveCompletedConflictOfInteresetForm,
