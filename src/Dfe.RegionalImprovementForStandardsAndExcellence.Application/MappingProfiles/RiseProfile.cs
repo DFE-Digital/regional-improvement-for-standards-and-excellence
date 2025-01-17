@@ -1,7 +1,5 @@
 using AutoMapper;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Common.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.MappingProfiles

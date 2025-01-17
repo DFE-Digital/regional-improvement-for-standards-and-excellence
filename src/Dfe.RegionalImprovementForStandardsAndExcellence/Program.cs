@@ -7,12 +7,10 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Authorization;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Security;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,8 +71,8 @@ AuthorizationPolicyBuilder SetupAuthorizationPolicyBuilder()
     AuthorizationPolicyBuilder policyBuilder = new();
     policyBuilder.RequireAuthenticatedUser();
 
-    string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"];
-    if (string.IsNullOrWhiteSpace(allowedRoles) is false)
+    string allowedRoles = config.GetSection("AzureAd")["AllowedRoles"]!;
+    if (!string.IsNullOrWhiteSpace(allowedRoles))
     {
         policyBuilder.RequireClaim(ClaimTypes.Role, allowedRoles.Split(','));
     }
@@ -166,6 +164,6 @@ app.UseEndpoints(endpoints =>
 
 app.UseHealthChecks("/health");
 
-app.Run();
+await app.RunAsync();
 
 public partial class Program { } // Make the Program class partial for testing

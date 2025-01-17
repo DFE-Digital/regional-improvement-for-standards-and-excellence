@@ -1,28 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices.JavaScript;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AddSchool;
 
-public class WhichSchoolNeedsHelpModel : PageModel
+public class WhichSchoolNeedsHelpModel(IGetEstablishment getEstablishment, ErrorService errorService, ISupportProjectQueryService supportProjectQueryService) : PageModel
 {
     private const string SEARCH_LABEL = "Enter school name or URN (Unique Reference Number).";
     private const string SEARCH_ENDPOINT = "/which-school-needs-help?handler=Search&searchQuery=";
-    private readonly ErrorService _errorService;
-    private readonly IGetEstablishment _getEstablishment;
-    private readonly ISupportProjectQueryService _supportProjectQueryService;
-
-    public WhichSchoolNeedsHelpModel(IGetEstablishment getEstablishment, ErrorService errorService, ISupportProjectQueryService supportProjectQueryService)
-    {
-        _getEstablishment = getEstablishment;
-        _errorService = errorService;
-        _supportProjectQueryService = supportProjectQueryService;
-
-    }
 
     [BindProperty]
     [Required(ErrorMessage = "Enter the school name or URN")]
@@ -30,7 +18,7 @@ public class WhichSchoolNeedsHelpModel : PageModel
 
     public AutoCompleteSearchModel AutoCompleteSearchModel { get; set; }
 
-    public async Task<IActionResult> OnGet()
+    public IActionResult OnGet()
     {
         ProjectListFilters.ClearFiltersFrom(TempData);
 
@@ -43,7 +31,7 @@ public class WhichSchoolNeedsHelpModel : PageModel
     {
         string[] searchSplit = SplitOnBrackets(searchQuery);
 
-        IEnumerable<EstablishmentSearchResponse> schools = await _getEstablishment.SearchEstablishments(searchSplit[0].Trim());
+        IEnumerable<EstablishmentSearchResponse> schools = await getEstablishment.SearchEstablishments(searchSplit[0].Trim());
 
         return new JsonResult(schools.Select(s => new { suggestion = HighlightSearchMatch($"{s.Name} ({s.Urn})", searchSplit[0].Trim(), s), value = $"{s.Name} ({s.Urn})" }));
     }
@@ -55,35 +43,35 @@ public class WhichSchoolNeedsHelpModel : PageModel
         if (string.IsNullOrWhiteSpace(SearchQuery))
         {
             ModelState.AddModelError(nameof(SearchQuery), "Enter the school name or URN.");
-            _errorService.AddErrors(ModelState.Keys, ModelState);
+            errorService.AddErrors(ModelState.Keys, ModelState);
             return Page();
         }
         string[] splitSearch = SplitOnBrackets(SearchQuery);
         if (splitSearch.Length < 2)
         {
             ModelState.AddModelError(nameof(SearchQuery), "We could not find any schools matching your search criteria");
-            _errorService.AddErrors(ModelState.Keys, ModelState);
+            errorService.AddErrors(ModelState.Keys, ModelState);
             return Page();
         }
 
         string expectedUrn = splitSearch[splitSearch.Length - 1];
 
-        var expectedEstablishment = await _getEstablishment.GetEstablishmentByUrn(expectedUrn);
+        var expectedEstablishment = await getEstablishment.GetEstablishmentByUrn(expectedUrn);
 
         if (expectedEstablishment.Name == null)
         {
             ModelState.AddModelError(nameof(SearchQuery), "We could not find a school matching your search criteria");
-            _errorService.AddErrors(ModelState.Keys, ModelState);
+            errorService.AddErrors(ModelState.Keys, ModelState);
             return Page();
         }
 
         CancellationToken cancellationToken = new CancellationToken();
-        var existingSupportProjects = await _supportProjectQueryService.GetAllSupportProjects(cancellationToken);
+        var existingSupportProjects = await supportProjectQueryService.GetAllSupportProjects(cancellationToken);
 
         if (existingSupportProjects.Value != null && existingSupportProjects.Value.Any(a => a.schoolUrn == expectedEstablishment.Urn))
         {
             ModelState.AddModelError(nameof(SearchQuery), "This school is already getting support, choose a different school");
-            _errorService.AddErrors(ModelState.Keys, ModelState);
+            errorService.AddErrors(ModelState.Keys, ModelState);
             return Page();
         }
 
