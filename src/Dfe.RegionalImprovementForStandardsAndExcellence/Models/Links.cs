@@ -47,7 +47,8 @@ public static class Links
    {
       public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/TaskList/Index");
       public static readonly LinkItem ContactTheSchool = AddLinkItem(backText: "Back", page: "/TaskList/ContactTheSchool/ContactTheSchool");
-   }
+        public static readonly LinkItem RecordTheSchoolResponse = AddLinkItem(backText: "Back", page: "/TaskList/RecordTheSchoolResponse/Index");
+    }
    
    public static class Notes
    {

@@ -1,11 +1,6 @@
-using AutoMapper;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.Common.Models;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 

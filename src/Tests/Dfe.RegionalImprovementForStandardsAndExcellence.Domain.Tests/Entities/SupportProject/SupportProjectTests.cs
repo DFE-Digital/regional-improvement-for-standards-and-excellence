@@ -1,19 +1,15 @@
-﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
-using FluentAssertions;
-using Moq;
-using System;
-using Xunit;
+﻿using FluentAssertions;
+using Moq; 
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities.SupportProject
 {
     public class SupportProjectTests
     {
-        private MockRepository mockRepository;
-
+        private readonly MockRepository mockRepository;
 
         public SupportProjectTests()
         {
-            this.mockRepository = new MockRepository(MockBehavior.Strict);
+            mockRepository = new MockRepository(MockBehavior.Strict);
         }
 
         [Fact]
@@ -24,7 +20,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
 
             // Assert
             supportProject.Should().NotBeNull();
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
         }
 
         [Fact]
@@ -43,7 +39,29 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Assert
             supportProject.AssignedAdviserFullName.Should().Be(assignedAdviserFullName);
             supportProject.AssignedAdviserEmailAddress.Should().Be(assignedAdviserEmailAddress);
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetSchoolResponse_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            DateTime? schoolResponseDate = DateTime.Now;
+            bool? hasAcceeptedTargetedSupport = true;
+            bool? hasSavedSchoolResponseinSharePoint = true;
+
+            // Act
+            supportProject.SetSchoolResponse(
+                schoolResponseDate,
+                hasAcceeptedTargetedSupport,
+                hasSavedSchoolResponseinSharePoint);
+
+            // Assert
+            supportProject.SchoolResponseDate.Should().Be(schoolResponseDate);
+            supportProject.HasAcceeptedTargetedSupport.Should().Be(hasAcceeptedTargetedSupport);
+            supportProject.HasSavedSchoolResponseinSharePoint.Should().Be(hasSavedSchoolResponseinSharePoint); 
+            mockRepository.VerifyAll();
         }
 
         private static Domain.Entities.SupportProject.SupportProject CreateSupportProject(

@@ -3,9 +3,8 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportPr
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 
-public class TaskStatusViewModel
+public static class TaskStatusViewModel
 {
-
     public static TaskListStatus ContactedTheSchoolTaskStatus(SupportProjectViewModel SupportProject)
     {
         if (SupportProject.AttachRiseInfoToEmail.Equals(true) &&
@@ -20,6 +19,24 @@ public class TaskStatusViewModel
             SupportProject.FindSchoolEmailAddress.Equals(false)  &&
             SupportProject.UseTheNotificationLetterToCreateEmail.Equals(false)  &&
             !SupportProject.ContactedTheSchoolDate.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
+    public static TaskListStatus RecordTheSchoolResponseTaskStatus(SupportProjectViewModel SupportProject)
+    {
+        if (SupportProject.HasSavedSchoolResponseinSharePoint.Equals(true) &&
+            SupportProject.HasAcceeptedTargetedSupport.Equals(true) &&
+            SupportProject.SchoolResponseDate.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (SupportProject.HasSavedSchoolResponseinSharePoint.HasValue &&
+            SupportProject.HasAcceeptedTargetedSupport.HasValue &&
+            !SupportProject.SchoolResponseDate.HasValue)
         {
             return TaskListStatus.NotStarted;
         }

@@ -1,32 +1,25 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
-using System.Threading;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
 
-public class IndexModel : BaseSupportProjectEstablishmentPageModel
+public class IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment, ErrorService errorService, IMediator mediator) : BaseSupportProjectEstablishmentPageModel(supportProjectQueryService, getEstablishment, errorService)
 {
    public string ReturnPage { get; set; }
    
    public TaskListStatus ContactTheSchoolTaskListStatus { get; set; }
+   public TaskListStatus RecordTheSchoolResponseTaskListStatus { get; set; }
 
-   public void SetErrorPage(string errorPage)
+    public void SetErrorPage(string errorPage)
    {
       TempData["ErrorPage"] = errorPage;
    }
-   
-   public IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment,ErrorService errorService) : base(supportProjectQueryService,getEstablishment,errorService)
-   {
-     
-   }
 
-   public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
     {
         ProjectListFilters.ClearFiltersFrom(TempData);
 
@@ -35,6 +28,7 @@ public class IndexModel : BaseSupportProjectEstablishmentPageModel
         await base.GetSupportProject(id, cancellationToken);
 
         ContactTheSchoolTaskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(SupportProject);
+        RecordTheSchoolResponseTaskListStatus = TaskStatusViewModel.RecordTheSchoolResponseTaskStatus(SupportProject);
 
         return Page();
    }

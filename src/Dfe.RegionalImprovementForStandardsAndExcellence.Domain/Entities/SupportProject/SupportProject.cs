@@ -55,7 +55,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     
     public DateTime? ContactedTheSchoolDate { get; private set; }
     public IEnumerable<SupportProjectNote> Notes => _notes.AsReadOnly();
-    
+
+    public DateTime? SchoolResponseDate { get; set; }
+
+    public bool? HasAcceeptedTargetedSupport { get; set; }
+
+    public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+
     private readonly List<SupportProjectNote> _notes = new();
     public static SupportProject Create(
         string schoolName,
@@ -74,6 +80,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
             CreatedBy = createdBy,
             CreatedOn = createdOn
         };
+    }
+
+    public void SetSchoolResponse(DateTime? schoolResponseDate,
+        bool? hasAcceeptedTargetedSupport, bool? hasSavedSchoolResponseinSharePoint)
+    {
+        SchoolResponseDate = schoolResponseDate;
+        HasAcceeptedTargetedSupport = hasAcceeptedTargetedSupport;
+        HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
     }
 
     public void SetAdviser(string assignedAdviserFullName, string assignedAdviserEmailAddress)

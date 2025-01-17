@@ -2,6 +2,7 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using System.Runtime.InteropServices;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject
 {
@@ -39,7 +40,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? ContactedTheSchoolDate { get; private set; }
         
         public IEnumerable<SupportProjectNote> Notes { get; set; }
-        
+
+        public DateTime? SchoolResponseDate { get; set; }
+         
+        public bool? HasAcceeptedTargetedSupport { get; set; }
+         
+        public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -56,6 +63,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 UseTheNotificationLetterToCreateEmail = supportProjectDto.UseTheNotificationLetterToCreateEmail,
                 AttachRiseInfoToEmail = supportProjectDto.AttachRiseInfoToEmail,
                 ContactedTheSchoolDate = supportProjectDto.ContactedTheSchoolDate,
+                SchoolResponseDate = supportProjectDto.SchoolResponseDate,
+                HasAcceeptedTargetedSupport = supportProjectDto.HasAcceeptedTargetedSupport,
+                HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint
             };
         }
     }

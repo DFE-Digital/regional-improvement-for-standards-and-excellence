@@ -40,7 +40,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.Pages
 
             var endpoints = endpointDataSource.Endpoints
                .OfType<RouteEndpoint>()
-               .Where(x => !x.RoutePattern.RawText.Contains("MicrosoftIdentity") &&
+               .Where(x => !x.RoutePattern.RawText!.Contains("MicrosoftIdentity") &&
                            !x.RoutePattern.RawText.Equals("/") &&
                            !x.Metadata.Any(m => m is RouteNameMetadata && ((RouteNameMetadata)m).RouteName == "default"));
 
