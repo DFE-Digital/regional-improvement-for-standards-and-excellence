@@ -12,6 +12,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
     public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
     {
         [BindProperty(Name = "school-response-date", BinderType = typeof(DateInputModelBinder))]
+        [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
         public DateTime? SchoolResponseDate { get; set; }
 
         [BindProperty(Name = "HasAcceeptedTargetedSupport")]

@@ -11,6 +11,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
     public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
     {
         [BindProperty(Name = "introductory-email-sent-date", BinderType = typeof(DateInputModelBinder))]
+        [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
         public DateTime? IntroductoryEmailSentDate { get; set; }
 
         [BindProperty(Name = "share-email-template-with-advisor")]
