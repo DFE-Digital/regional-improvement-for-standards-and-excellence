@@ -59,19 +59,19 @@ public class DateInputTagHelper(IHtmlHelper htmlHelper, ErrorService errorServic
          model.DayInvalid = error.InvalidInputs.Contains($"{Name}-day");
          if (ViewContext.HttpContext.Request.Form.TryGetValue($"{Name}-day", out StringValues dayValue))
          {
-            model.Day = dayValue;
+            model.Day = dayValue!;
          }
 
          model.MonthInvalid = error.InvalidInputs.Contains($"{Name}-month");
          if (ViewContext.HttpContext.Request.Form.TryGetValue($"{Name}-month", out StringValues monthValue))
          {
-            model.Month = monthValue;
+            model.Month = monthValue!;
          }
 
          model.YearInvalid = error.InvalidInputs.Contains($"{Name}-year");
          if (ViewContext.HttpContext.Request.Form.TryGetValue($"{Name}-year", out StringValues yearValue))
          {
-            model.Year = yearValue;
+            model.Year = yearValue!;
          }
 
          if (!model.DayInvalid && !model.MonthInvalid && model.YearInvalid)

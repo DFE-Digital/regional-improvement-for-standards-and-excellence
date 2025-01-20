@@ -1,0 +1,34 @@
+﻿@page "/task-list/send-introductory-email-and-request-improvement-plan/{id:int}"
+@model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.SendIntroductoryEmailAndRequestImprovementPlan.IndexModel
+@{
+    ViewData["Title"] = "Send introductory email and request improvement plan";
+}
+
+@section BeforeMain
+{
+    <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">@Model.SupportProject.SchoolName</span>
+        <h1 class="govuk-heading-l">
+            Send introductory email and request improvement plan
+        </h1>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <form method="post" novalidate>
+                    <p class="govuk-body">The advisor should email to school to introduce themselves to the school's responsible body. They should ask for the school's improvement plan and any other relevant documents.</p>
+                    <govuk-checkbox-input label="Share template email with advisor" id="share-email-template-with-advisor" name="share-email-template-with-advisor" asp-for="@Model.HasShareEmailTemplateWithAdvisor" />
+                    <govuk-checkbox-input label="Remind the advisor to copy in the RISE team when they send the email" id="remind-advisor-to-copy-in-rise-team-on-email-sent" name="remind-advisor-to-copy-in-rise-team-on-email-sent" asp-for="@Model.RemindAdvisorToCopyRiseTeamWhenSentEmail" />
+                    <govuk-date-input heading-label="false" label="Enter date the introductory email was sent" id="introductory-email-sent-date" name="introductory-email-sent-date" asp-for="@Model.IntroductoryEmailSentDate" hint="For example, 1 1 2025." />
+                    <button class="govuk-button" type="submit" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
+                        Save and return
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

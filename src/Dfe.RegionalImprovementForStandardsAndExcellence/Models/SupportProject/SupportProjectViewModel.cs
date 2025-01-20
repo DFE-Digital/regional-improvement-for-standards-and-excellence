@@ -53,6 +53,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasAcceeptedTargetedSupport { get; set; }
          
         public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+        public DateTime? IntroductoryEmailSentDate { get; set; }
+
+        public bool? HasShareEmailTemplateWithAdvisor { get; set; }
+
+        public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -77,7 +82,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DateConflictsOfInterestWereChecked = supportProjectDto.DateConflictsOfInterestWereChecked,
                 SchoolResponseDate = supportProjectDto.SchoolResponseDate,
                 HasAcceeptedTargetedSupport = supportProjectDto.HasAcceeptedTargetedSupport,
-                HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint
+                HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint,
+                HasShareEmailTemplateWithAdvisor = supportProjectDto.HasShareEmailTemplateWithAdvisor,
+                RemindAdvisorToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail,
+                IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
+
             };
         }
     }

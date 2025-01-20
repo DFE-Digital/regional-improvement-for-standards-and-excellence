@@ -12,7 +12,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string assignedAdviserEmailAddress,
         bool FindSchoolEmailAddress,
         bool UseTheNotificationLetterToCreateEmail,
-        bool AttachRiseInfoToEmail, 
+        bool AttachRiseInfoToEmail,
         DateTime? ContactedTheSchoolDate,
         bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool,
         bool? RecieveCompletedConflictOfInteresetForm,
@@ -21,7 +21,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? SchoolResponseDate,
         bool? HasAcceeptedTargetedSupport,
         bool? HasSavedSchoolResponseinSharePoint,
+        DateTime? IntroductoryEmailSentDate,
+        bool? HasShareEmailTemplateWithAdvisor,
+        bool? RemindAdvisorToCopyRiseTeamWhenSentEmail,
         IEnumerable<SupportProjectNote> notes
-        );
-
+    );
 }
