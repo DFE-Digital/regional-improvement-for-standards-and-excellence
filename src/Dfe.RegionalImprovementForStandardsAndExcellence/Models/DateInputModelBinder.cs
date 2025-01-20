@@ -1,4 +1,3 @@
-
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
@@ -103,8 +102,7 @@ public class DateInputModelBinder : IModelBinder
       if (bindingContext.ModelMetadata is DefaultModelMetadata defaultModelMetadata
           && defaultModelMetadata.Attributes.Attributes.FirstOrDefault(a => a.GetType() == typeof(DateValidationAttribute)) is DateValidationAttribute dateValidation)
       {
-         DateRangeValidationService rangeValidator = new();
-         return rangeValidator.Validate(date, dateValidation.DateValidationEnum, displayName);
+         return DateRangeValidationService.Validate(date, dateValidation.DateValidationEnum, displayName);
       }
 
       return (true, string.Empty);

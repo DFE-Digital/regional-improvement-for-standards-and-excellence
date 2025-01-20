@@ -39,7 +39,7 @@ public class ErrorService
 
    public Error GetError(string key)
    {
-      return _errors.SingleOrDefault(e => e.Key == key);
+      return _errors.SingleOrDefault(e => e.Key == key)!;
    }
 
    public IEnumerable<Error> GetErrors()

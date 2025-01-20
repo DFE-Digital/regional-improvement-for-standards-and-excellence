@@ -1,15 +1,11 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
-using System.Threading;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
-using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AboutTheSchool;
 
-public class IndexModel : BaseSupportProjectEstablishmentPageModel
+public class IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment, ErrorService errorService) : BaseSupportProjectEstablishmentPageModel(supportProjectQueryService,getEstablishment,errorService)
 {
    public string ReturnPage { get; set; }
 
@@ -18,12 +14,7 @@ public class IndexModel : BaseSupportProjectEstablishmentPageModel
       TempData["ErrorPage"] = errorPage;
    }
 
-   public IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment,ErrorService errorService,IMediator mediator) : base(supportProjectQueryService,getEstablishment,errorService)
-   {
-       
-   }
-
-   public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
     {
         ProjectListFilters.ClearFiltersFrom(TempData);
 

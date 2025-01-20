@@ -54,6 +54,8 @@ builder.Services.AddRazorPages(options =>
             options.Conventions.AllowAnonymousToPage("/public/maintenance");
             options.Conventions.AllowAnonymousToPage("/public/accessibilitystatement");
             options.Conventions.AllowAnonymousToPage("/public/cookiepreferences");
+            options.Conventions.AllowAnonymousToPage("/AccessDenied");
+            options.Conventions.AllowAnonymousToPage("/Privacy");
         })
         .AddViewOptions(options =>
         {

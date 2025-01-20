@@ -2,11 +2,11 @@
 @model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels.RadioButtonViewModel
 <div class="govuk-form-group">
     <div class="govuk-radios" data-module="govuk-radios">
-        @if (!string.IsNullOrEmpty(Model.Hint))
+        @if (!string.IsNullOrEmpty(Model.Heading))
         {
-            <div id="radio-hint" class="govuk-hint">
-                @Model.Hint
-            </div>
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                @Model.Heading
+            </legend>
         }
    
         @foreach (var radioButton in Model.RadioButtons)

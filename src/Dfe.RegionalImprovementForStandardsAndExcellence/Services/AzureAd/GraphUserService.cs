@@ -5,16 +5,10 @@ using User = Microsoft.Graph.User;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd;
 
-public class GraphUserService : IGraphUserService
+public class GraphUserService(IGraphClientFactory graphClientFactory, IOptions<AzureAdOptions> azureAdOptions) : IGraphUserService
 {
-    private readonly AzureAdOptions _azureAdOptions;
-    private readonly GraphServiceClient _client;
-    
-    public GraphUserService(IGraphClientFactory graphClientFactory, IOptions<AzureAdOptions> azureAdOptions)
-    {
-        _client = graphClientFactory.Create();
-        _azureAdOptions = azureAdOptions.Value;
-    }
+    private readonly AzureAdOptions _azureAdOptions = azureAdOptions.Value;
+    private readonly GraphServiceClient _client = graphClientFactory.Create();
 
     public async Task<IEnumerable<User>> GetAllUsers()
     {

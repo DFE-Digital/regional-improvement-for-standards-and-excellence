@@ -1,17 +1,10 @@
 ﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
-public class AutoCompleteSearchModel
+public class AutoCompleteSearchModel(string label, string searchQuery, string searchEndpoint)
 {
-   public AutoCompleteSearchModel(string label, string searchQuery, string searchEndpoint)
-   {
-      Label = label;
-      SearchQuery = searchQuery?.Replace("'", "\\'");
-      SearchEndpoint = searchEndpoint;
-   }
+    public string Label { get; set; } = label;
 
-   public string Label { get; set; }
+    public string SearchQuery { get; set; } = searchQuery?.Replace("'", "\\'")!;
 
-   public string SearchQuery { get; set; }
-
-   public string SearchEndpoint { get; set; }
+    public string SearchEndpoint { get; set; } = searchEndpoint;
 }

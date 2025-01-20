@@ -1,10 +1,8 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -23,8 +21,8 @@ public class IndexModel(IUserRepository userRepository, ISupportProjectQueryServ
    {
       var projectResponse = await supportProjectQueryService.GetSupportProject(id,cancellationToken);
       Id = id;
-      SchoolName = projectResponse.Value.schoolName;
-      SelectedAdviser = projectResponse.Value.assignedAdviserFullName;
+      SchoolName = projectResponse.Value?.schoolName!;
+      SelectedAdviser = projectResponse.Value?.assignedAdviserFullName!;
 
       Advisers = await userRepository.GetAllUsers();
 
@@ -35,7 +33,7 @@ public class IndexModel(IUserRepository userRepository, ISupportProjectQueryServ
    {
       var projectResponse = await supportProjectQueryService.GetSupportProject(id, cancellationToken);
       
-      SupportProjectId supportProjectId = new(projectResponse.Value.id);
+      SupportProjectId supportProjectId = new(projectResponse.Value!.id);
       
       if (string.IsNullOrWhiteSpace(adviserInput))
       {
@@ -44,7 +42,7 @@ public class IndexModel(IUserRepository userRepository, ISupportProjectQueryServ
 
       if (unassignAdviser)
       {
-         var request = new SetAdviserCommand(supportProjectId, null,null);
+         var request = new SetAdviserCommand(supportProjectId, null!, null!);
          await _mediator.Send(request);
       }
       else if (!string.IsNullOrEmpty(selectedName))
@@ -52,7 +50,7 @@ public class IndexModel(IUserRepository userRepository, ISupportProjectQueryServ
          IEnumerable<User> deliveryOfficers = await userRepository.GetAllUsers();
 
          var assignedAdviser = deliveryOfficers.SingleOrDefault(u => u.FullName == selectedName);
-         var request = new SetAdviserCommand(supportProjectId, assignedAdviser.FullName,assignedAdviser.EmailAddress);
+            var request = new SetAdviserCommand(supportProjectId, assignedAdviser?.FullName!, assignedAdviser?.EmailAddress!);
 
          await _mediator.Send(request);
       }

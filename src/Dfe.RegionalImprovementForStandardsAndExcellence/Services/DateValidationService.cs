@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
-public class DateValidationService
+public class DateValidationService(IDateValidationMessageProvider messages)
 {
-   private readonly IDateValidationMessageProvider _messages;
+   private readonly IDateValidationMessageProvider _messages = messages ?? new DefaultDateValidationMessageProvider();
 
-   public DateValidationService(IDateValidationMessageProvider messages)
-   {
-      _messages = messages ?? new DefaultDateValidationMessageProvider();
-   }
-
-   public (bool, string) Validate(string dayInput, string monthInput, string yearInput, string displayName)
+    public (bool, string) Validate(string dayInput, string monthInput, string yearInput, string displayName)
    {
       List<string> missingParts = new();
 
@@ -35,7 +28,7 @@ public class DateValidationService
       bool monthParsed = int.TryParse(monthInput, out int month);
       bool dayParsed = int.TryParse(dayInput, out int day);
       (bool, string) validatedDateParts = ValidateDateParts(dayParsed, monthParsed, yearParsed, month, year, day);
-      if (validatedDateParts.Item1 is false) return validatedDateParts;
+      if (!validatedDateParts.Item1) return validatedDateParts;
 
       (bool valid, string message) = _messages.ContextSpecificValidation(day, month, year);
       if (!valid) return (false, message);

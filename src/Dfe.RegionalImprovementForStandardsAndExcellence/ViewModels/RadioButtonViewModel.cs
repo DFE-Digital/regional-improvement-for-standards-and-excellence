@@ -2,7 +2,7 @@
 
 public class RadioButtonViewModel
 {
-    public string? Hint { get; set; } = null;
+    public string? Heading { get; set; } = null;
     public string? Name { get; set; }= null;
     public IList<RadioButtonsLabelViewModel> RadioButtons { get; set; } = [];
     public string? Value { get; set; } = null;

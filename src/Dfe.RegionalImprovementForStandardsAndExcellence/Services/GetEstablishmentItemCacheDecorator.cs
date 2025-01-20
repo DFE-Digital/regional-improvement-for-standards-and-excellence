@@ -3,18 +3,11 @@ using DfE.CoreLibs.Contracts.Academies.V4.Establishments;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
-public class GetEstablishmentItemCacheDecorator : IGetEstablishment
+public class GetEstablishmentItemCacheDecorator(IGetEstablishment getEstablishment, IHttpContextAccessor httpContextAccessor) : IGetEstablishment
 {
-   private readonly IGetEstablishment _getEstablishment;
-   private readonly HttpContext _httpContext;
+    private readonly HttpContext _httpContext = httpContextAccessor.HttpContext!;
 
-   public GetEstablishmentItemCacheDecorator(IGetEstablishment getEstablishment, IHttpContextAccessor httpContextAccessor)
-   {
-      _getEstablishment = getEstablishment;
-      _httpContext = httpContextAccessor.HttpContext;
-   }
-
-   public async Task<EstablishmentDto> GetEstablishmentByUrn(string urn)
+    public async Task<EstablishmentDto> GetEstablishmentByUrn(string urn)
    {
       string key = $"establishment-{urn}";
       if (_httpContext.Items.ContainsKey(key) && _httpContext.Items[key] is EstablishmentDto cached)
@@ -22,7 +15,7 @@ public class GetEstablishmentItemCacheDecorator : IGetEstablishment
          return cached;
       }
 
-      EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(urn);
+      EstablishmentDto establishment = await getEstablishment.GetEstablishmentByUrn(urn);
 
       _httpContext.Items[key] = establishment;
 
@@ -36,7 +29,7 @@ public class GetEstablishmentItemCacheDecorator : IGetEstablishment
       {
          return Task.FromResult(cached);
       }
-      Task<IEnumerable<EstablishmentSearchResponse>> establishments = _getEstablishment.SearchEstablishments(searchQuery);
+      Task<IEnumerable<EstablishmentSearchResponse>> establishments = getEstablishment.SearchEstablishments(searchQuery);
 
       _httpContext.Items[key] = establishments;
 

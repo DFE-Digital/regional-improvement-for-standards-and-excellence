@@ -6,15 +6,10 @@ using Microsoft.Identity.Client;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd;
 
-public class GraphClientFactory: IGraphClientFactory
+public class GraphClientFactory(IOptions<AzureAdOptions> azureAdOptions) : IGraphClientFactory
 {
-    private readonly AzureAdOptions _azureAdOptions;
-    
-    public GraphClientFactory(IOptions<AzureAdOptions> azureAdOptions)
-    {
-        _azureAdOptions = azureAdOptions.Value;
-    }
-    
+    private readonly AzureAdOptions _azureAdOptions = azureAdOptions.Value;
+
     public GraphServiceClient Create()
     {
         IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(_azureAdOptions.ClientId.ToString())

@@ -2,7 +2,6 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Public;
 

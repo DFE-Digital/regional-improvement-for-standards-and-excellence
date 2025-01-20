@@ -13,8 +13,12 @@
          "ExpectedSecurity": "AllowAnonymous"
       },
       {
-         "Route": "/Public/Maintenance",
-         "ExpectedSecurity": "AllowAnonymous"
+        "Route": "/Public/Maintenance",
+        "ExpectedSecurity": "AllowAnonymous"
+      },
+      {
+        "Route": "/Privacy",
+        "ExpectedSecurity": "AllowAnonymous"
       }
    ]
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
+﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 
 public class SummaryListRowViewModel
 {

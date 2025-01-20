@@ -2,7 +2,6 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
@@ -30,7 +29,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
             //queryable = FilterByAdvisors(advisors, queryable);
             queryable = FilterByLocalAuthority(localAuthorities, queryable);
 
-            var totalProjects = queryable.Count();
+            var totalProjects = await queryable.CountAsync();
             var projects = await queryable
                 .OrderByDescending(acp => acp.CreatedOn)
                 .Skip((page - 1) * count)

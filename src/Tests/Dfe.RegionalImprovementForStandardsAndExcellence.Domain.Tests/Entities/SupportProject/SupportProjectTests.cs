@@ -87,7 +87,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.RecieveCompletedConflictOfInteresetForm.Should().Be(recieveCompletedConflictOfInteresetForm);
             supportProject.SaveCompletedConflictOfinterestFormInSharePoint.Should().Be(saveCompletedConflictOfinterestFormInSharePoint);
             supportProject.DateConflictsOfInterestWereChecked.Should().Be(dateConflictsOfInterestWereChecked);
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
         }
 
         private static Domain.Entities.SupportProject.SupportProject CreateSupportProject(
