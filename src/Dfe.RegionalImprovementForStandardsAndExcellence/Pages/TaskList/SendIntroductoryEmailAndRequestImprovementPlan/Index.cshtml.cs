@@ -5,6 +5,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.SendIntroductoryEmailAndRequestImprovementPlan
 {
@@ -12,6 +13,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
     {
         [BindProperty(Name = "introductory-email-sent-date", BinderType = typeof(DateInputModelBinder))]
         [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
+        [Display(Name = "introductory email sent")]
         public DateTime? IntroductoryEmailSentDate { get; set; }
 
         [BindProperty(Name = "share-email-template-with-advisor")]

@@ -5,7 +5,8 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 using MediatR;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.RecordTheSchoolResponse
 {
@@ -13,6 +14,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
     {
         [BindProperty(Name = "school-response-date", BinderType = typeof(DateInputModelBinder))]
         [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
+        [Display(Name = "school response")]
         public DateTime? SchoolResponseDate { get; set; }
 
         [BindProperty(Name = "HasAcceeptedTargetedSupport")]
