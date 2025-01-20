@@ -1,5 +1,3 @@
-using System.Security.Claims;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.CreateSupportProjectNote;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.EditSupportProjectNote;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
@@ -12,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes;
 
 
-public class EditNoteModel(ISupportProjectQueryService supportProjectQueryService,ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService,errorService)
+public class EditNoteModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService)
 {
     public string ReturnPage { get; set; }
     

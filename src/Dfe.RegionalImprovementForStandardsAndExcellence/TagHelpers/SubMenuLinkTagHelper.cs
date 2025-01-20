@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers;
 
-public class SubMenuLinkTagHelper : AnchorTagHelper
+public class SubMenuLinkTagHelper(IHtmlGenerator generator) : AnchorTagHelper(generator)
 {
    private const string PAGE = "page";
-   public SubMenuLinkTagHelper(IHtmlGenerator generator) : base(generator) { }
 
-   public override void Process(TagHelperContext context, TagHelperOutput output)
+    public override void Process(TagHelperContext context, TagHelperOutput output)
    {
       string page = ViewContext.RouteData.Values[PAGE]!.ToString();
       if (page == Page)

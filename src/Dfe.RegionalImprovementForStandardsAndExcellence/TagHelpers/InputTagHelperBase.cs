@@ -2,18 +2,12 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Threading.Tasks;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers;
 
-public abstract class InputTagHelperBase : TagHelper
+public abstract class InputTagHelperBase(IHtmlHelper htmlHelper) : TagHelper
 {
-    protected readonly IHtmlHelper _htmlHelper;
-
-    protected InputTagHelperBase(IHtmlHelper htmlHelper)
-    {
-        _htmlHelper = htmlHelper;
-    }
+    protected readonly IHtmlHelper _htmlHelper = htmlHelper;
 
     [HtmlAttributeName("id")]
     public string Id { get; set; }
@@ -49,6 +43,9 @@ public abstract class InputTagHelperBase : TagHelper
 
     [HtmlAttributeName("heading")]
     public string Heading { get; set; }
+
+    [HtmlAttributeName("heading-style")]
+    public string HeadingStyle { get; set; }
 
     [ViewContext]
     public ViewContext ViewContext { get; set; }

@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Security;
 
 public static class SecurityHeadersDefinitions

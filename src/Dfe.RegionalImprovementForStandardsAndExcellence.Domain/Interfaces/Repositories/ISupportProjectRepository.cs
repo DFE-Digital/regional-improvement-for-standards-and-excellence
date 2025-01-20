@@ -1,7 +1,6 @@
 ﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
-
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories
 {
     public interface ISupportProjectRepository : IRepository<SupportProject>
