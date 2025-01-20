@@ -49,10 +49,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public IEnumerable<SupportProjectNote> Notes { get; set; }
 
         public DateTime? SchoolResponseDate { get; set; }
-         
+
         public bool? HasAcceeptedTargetedSupport { get; set; }
-         
+
         public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+        public DateTime? DateAdviserAssigned { get; private set; }
+        public string? AdviserEmailAddress { get; private set; }
+
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -60,8 +63,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
             {
                 Id = supportProjectDto.id,
                 CreatedOn = supportProjectDto.createdOn,
+                // ToDo: we will repurpose these fields as the assigned delivery officer
                 AssignedAdviserFullName = supportProjectDto.assignedAdviserFullName,
                 AssignedAdviserEmailAddress = supportProjectDto.assignedAdviserEmailAddress,
+                // ***
                 LocalAuthority = supportProjectDto.localAuthority,
                 Region = supportProjectDto.region,
                 SchoolName = supportProjectDto.schoolName,
@@ -77,7 +82,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DateConflictsOfInterestWereChecked = supportProjectDto.DateConflictsOfInterestWereChecked,
                 SchoolResponseDate = supportProjectDto.SchoolResponseDate,
                 HasAcceeptedTargetedSupport = supportProjectDto.HasAcceeptedTargetedSupport,
-                HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint
+                HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint,
+                AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
+                DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
             };
         }
     }

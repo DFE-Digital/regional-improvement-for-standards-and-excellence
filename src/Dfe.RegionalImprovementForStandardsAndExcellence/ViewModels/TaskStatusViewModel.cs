@@ -64,4 +64,21 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+
+    public static TaskListStatus CheckAssignAdviserTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.AdviserEmailAddress != null
+            && supportProject.DateAdviserAssigned.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (supportProject.AdviserEmailAddress == null
+            && !supportProject.DateAdviserAssigned.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }

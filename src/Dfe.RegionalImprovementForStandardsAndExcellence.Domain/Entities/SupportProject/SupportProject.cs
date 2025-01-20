@@ -71,6 +71,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasAcceeptedTargetedSupport { get; private set; }
 
     public bool? HasSavedSchoolResponseinSharePoint { get; private set; }
+
+    public DateTime? DateAdviserAssigned { get; private set; }
+    public string? AdviserEmailAddress { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -124,11 +127,17 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         SaveCompletedConflictOfinterestFormInSharePoint = saveCompletedConflictOfinterestFormInSharePoint;
         DateConflictsOfInterestWereChecked = dateConflictsOfInterestWereChecked;
     }
-    public void SetSchoolResponse(DateTime? schoolResponseDate,bool? hasAcceeptedTargetedSupport, bool? hasSavedSchoolResponseinSharePoint)
+    public void SetSchoolResponse(DateTime? schoolResponseDate, bool? hasAcceeptedTargetedSupport, bool? hasSavedSchoolResponseinSharePoint)
     {
         SchoolResponseDate = schoolResponseDate;
         HasAcceeptedTargetedSupport = hasAcceeptedTargetedSupport;
         HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
+    }
+
+    public void SetAdviserDetails(string? adviserEmailAddress, DateTime? dateAdviserAssigned)
+    {
+        DateAdviserAssigned = dateAdviserAssigned;
+        AdviserEmailAddress = adviserEmailAddress;
     }
     #endregion
 }

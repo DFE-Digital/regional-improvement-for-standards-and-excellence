@@ -48,6 +48,14 @@
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.CheckThePotentialAdviserConflictsOfInterestTaskListStatus" />
                 </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="AssignAdviser">
+                            Assign an adviser
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.AssignAdviserTaskListStatus" />
+                </li>
             </ul>
         </div>
     </div>

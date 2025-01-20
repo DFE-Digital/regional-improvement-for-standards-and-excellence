@@ -34,7 +34,7 @@ public class AdviserConflictOfIntereset(ISupportProjectQueryService supportProje
 
     string IDateValidationMessageProvider.AllMissing(string displayName)
     {
-        return $"Enter the school contacted date";
+        return $"Enter the date conflicts of interest were checked";
     }
 
     public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
