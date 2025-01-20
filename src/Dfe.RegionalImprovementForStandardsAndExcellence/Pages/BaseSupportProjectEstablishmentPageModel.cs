@@ -1,8 +1,6 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

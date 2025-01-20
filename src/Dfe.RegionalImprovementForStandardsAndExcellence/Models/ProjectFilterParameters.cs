@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dfe.PrepareConversions.Data.Models;
+﻿namespace Dfe.PrepareConversions.Data.Models;
 
 public class ProjectFilterParameters
 {

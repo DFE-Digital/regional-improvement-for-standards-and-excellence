@@ -3,11 +3,8 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Primitives;
-using System;
-using System.Threading.Tasks;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers;

@@ -1,57 +1,55 @@
-using System;
-
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 
 public class DateRangeValidationService
 {
-   public enum DateRange
-   {
-      Past,
-      PastOrToday,
-      Future,
-      FutureOrToday,
-      PastOrFuture
-   }
+    public enum DateRange
+    {
+        Past,
+        PastOrToday,
+        Future,
+        FutureOrToday,
+        PastOrFuture
+    }
 
-   public (bool, string) Validate(DateTime date, DateRange dateRange, string displayName)
-   {
-      switch (dateRange)
-      {
-         case DateRange.Past:
-            if (date >= DateTime.Today)
-            {
-               return (false, $"{displayName} date must be in the past");
-            }
+    public static (bool, string) Validate(DateTime date, DateRange dateRange, string displayName)
+    {
+        switch (dateRange)
+        {
+            case DateRange.Past:
+                if (date >= DateTime.Today)
+                {
+                    return (false, $"{displayName} date must be in the past");
+                }
 
-            break;
+                break;
 
-         case DateRange.PastOrToday:
-            if (date > DateTime.Today)
-            {
-               return (false, $"{displayName} date must be today or in the past");
-            }
+            case DateRange.PastOrToday:
+                if (date > DateTime.Today)
+                {
+                    return (false, $"{displayName} date must be today or in the past");
+                }
 
-            break;
+                break;
 
-         case DateRange.Future:
-            if (date <= DateTime.Today)
-            {
-               return (false, $"{displayName} date must be in the future");
-            }
+            case DateRange.Future:
+                if (date <= DateTime.Today)
+                {
+                    return (false, $"{displayName} date must be in the future");
+                }
 
-            break;
+                break;
 
-         case DateRange.FutureOrToday:
-            if (date < DateTime.Today)
-            {
-               return (false, $"{displayName} date must be today or in the future");
-            }
+            case DateRange.FutureOrToday:
+                if (date < DateTime.Today)
+                {
+                    return (false, $"{displayName} date must be today or in the future");
+                }
 
-            break;
-         case DateRange.PastOrFuture:
-            return (true, "");
-      }
+                break;
+            case DateRange.PastOrFuture:
+                return (true, "");
+        }
 
-      return (true, "");
-   }
+        return (true, "");
+    }
 }

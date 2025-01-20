@@ -7,25 +7,25 @@ using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
 
-public class IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment, ErrorService errorService, IMediator mediator) : BaseSupportProjectEstablishmentPageModel(supportProjectQueryService, getEstablishment, errorService)
+public class IndexModel(ISupportProjectQueryService supportProjectQueryService, IGetEstablishment getEstablishment, ErrorService errorService) : BaseSupportProjectEstablishmentPageModel(supportProjectQueryService, getEstablishment, errorService)
 {
-   public string ReturnPage { get; set; }
-   
-   public TaskListStatus ContactTheSchoolTaskListStatus { get; set; }
-   public TaskListStatus RecordTheSchoolResponseTaskListStatus { get; set; }
-   public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
+    public string ReturnPage { get; set; }
+
+    public TaskListStatus ContactTheSchoolTaskListStatus { get; set; }
+    public TaskListStatus RecordTheSchoolResponseTaskListStatus { get; set; }
+    public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
 
     public void SetErrorPage(string errorPage)
-   {
-      TempData["ErrorPage"] = errorPage;
-   }
+    {
+        TempData["ErrorPage"] = errorPage;
+    }
 
     public async Task<IActionResult> OnGetAsync(int id, CancellationToken cancellationToken)
     {
         ProjectListFilters.ClearFiltersFrom(TempData);
 
         ReturnPage = @Links.SchoolList.Index.Page;
-        
+
         await base.GetSupportProject(id, cancellationToken);
 
         ContactTheSchoolTaskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(SupportProject);
@@ -33,6 +33,5 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         CheckThePotentialAdviserConflictsOfInterestTaskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProject);
 
         return Page();
-   }
-   
+    }
 }

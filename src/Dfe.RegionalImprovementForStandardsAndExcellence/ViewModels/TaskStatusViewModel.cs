@@ -1,4 +1,3 @@
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
 
@@ -35,8 +34,8 @@ public static class TaskStatusViewModel
             return TaskListStatus.Complete;
         }
 
-        if (SupportProject.HasSavedSchoolResponseinSharePoint.HasValue &&
-            SupportProject.HasAcceeptedTargetedSupport.HasValue &&
+        if (!SupportProject.HasSavedSchoolResponseinSharePoint.HasValue &&
+            !SupportProject.HasAcceeptedTargetedSupport.HasValue &&
             !SupportProject.SchoolResponseDate.HasValue)
         {
             return TaskListStatus.NotStarted;

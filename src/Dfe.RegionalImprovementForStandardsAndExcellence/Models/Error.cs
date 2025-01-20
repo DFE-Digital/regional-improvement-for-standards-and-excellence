@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
+﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 
 public class Error
 {

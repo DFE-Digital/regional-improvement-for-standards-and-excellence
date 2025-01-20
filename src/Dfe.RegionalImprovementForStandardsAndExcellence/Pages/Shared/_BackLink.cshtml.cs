@@ -2,16 +2,9 @@ using System.Collections.Generic;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Shared;
 
-public class BackLink
+public class BackLink(string linkPage, Dictionary<string, string> linkRouteValues, string linkText = "Back")
 {
-   public BackLink(string linkPage, Dictionary<string, string> linkRouteValues, string linkText = "Back")
-   {
-      LinkPage = linkPage;
-      LinkRouteValues = linkRouteValues;
-      LinkText = linkText;
-   }
-
-   public string LinkPage { get; set; }
-   public Dictionary<string, string> LinkRouteValues { get; set; }
-   public string LinkText { get; set; }
+    public string LinkPage { get; set; } = linkPage;
+    public Dictionary<string, string> LinkRouteValues { get; set; } = linkRouteValues;
+    public string LinkText { get; set; } = linkText;
 }

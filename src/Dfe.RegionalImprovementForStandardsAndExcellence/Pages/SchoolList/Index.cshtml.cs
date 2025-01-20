@@ -16,7 +16,7 @@ public class IndexModel : PageModel
         _supportProjectQueryService = supportProjectQueryService;
     }
 
-    public IEnumerable<SupportProjectViewModel> SupportProjects = new List<SupportProjectViewModel>();
+    public IEnumerable<SupportProjectViewModel> SupportProjects = [];
 
     [BindProperty]
     public ProjectListFilters Filters { get; set; } = new();
@@ -42,7 +42,7 @@ public class IndexModel : PageModel
         {
             Pagination.Paging = result.Value.Paging;
             TotalProjects = result.Value?.Paging?.RecordCount ?? 0;
-            SupportProjects = result.Value?.Data.Select(SupportProjectViewModel.Create);
+            SupportProjects = result.Value?.Data.Select(SupportProjectViewModel.Create)!;
         }
 
         var regionsResult = await _supportProjectQueryService.GetAllProjectRegions(cancellationToken);

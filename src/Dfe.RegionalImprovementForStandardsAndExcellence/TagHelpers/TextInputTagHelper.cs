@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Threading.Tasks;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.TagHelpers;
@@ -24,7 +23,7 @@ public class TextInputTagHelper : InputTagHelperBase
          Id = Id,
          Name = Name,
          Label = Label,
-         Value = For.Model?.ToString(),
+         Value = For.Model?.ToString()!,
          Width = Width,
          Hint = Hint,
          HeadingLabel = HeadingLabel

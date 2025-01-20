@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security
 {
@@ -12,18 +7,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Securi
         string GetCurrentUsername();
     }
 
-    public class UserContextService : IUserContextService
+    public class UserContextService(IHttpContextAccessor httpContextAccessor) : IUserContextService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public UserContextService(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
-
         public string GetCurrentUsername()
         {
-            return _httpContextAccessor.HttpContext?.User?.Identity?.Name ?? "System"; // Default to "System" if null
+            return httpContextAccessor.HttpContext?.User?.Identity?.Name ?? "System"; // Default to "System" if null
         }
     }
 

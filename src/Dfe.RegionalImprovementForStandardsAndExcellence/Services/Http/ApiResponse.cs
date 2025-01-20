@@ -2,16 +2,9 @@
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 
-public class ApiResponse<TBody>
+public class ApiResponse<TBody>(HttpStatusCode statusCode, TBody body)
 {
-    public ApiResponse(HttpStatusCode statusCode, TBody body)
-    {
-        Success = (int)statusCode >= 200 && (int)statusCode < 300;
-        Body = body;
-        StatusCode = statusCode;
-    }
-
-    public bool Success { get; }
-    public HttpStatusCode StatusCode { get; }
-    public TBody Body { get; }
+    public bool Success { get; } = (int)statusCode >= 200 && (int)statusCode < 300;
+    public HttpStatusCode StatusCode { get; } = statusCode;
+    public TBody Body { get; } = body;
 }

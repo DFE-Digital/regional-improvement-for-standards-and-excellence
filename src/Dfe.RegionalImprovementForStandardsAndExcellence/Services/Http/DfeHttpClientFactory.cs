@@ -1,5 +1,4 @@
 ﻿using Dfe.Academisation.CorrelationIdMiddleware;
-using System.Net.Http;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 

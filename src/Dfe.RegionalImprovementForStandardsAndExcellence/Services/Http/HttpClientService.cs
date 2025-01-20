@@ -51,7 +51,7 @@ public class HttpClientService : IHttpClientService
 
         string json = await result.Content.ReadAsStringAsync();
 
-        return new ApiResponse<TResponse>(result.StatusCode, JsonConvert.DeserializeObject<TResponse>(json));
+        return new ApiResponse<TResponse>(result.StatusCode, JsonConvert.DeserializeObject<TResponse>(json)!);
     }
 
     private async Task<ApiResponse<TResponse>> HandleUnsuccessfulRequest<TResponse>(HttpResponseMessage result)
@@ -62,6 +62,6 @@ public class HttpClientService : IHttpClientService
         _logger.LogError("Request to Api failed | StatusCode - {StatusCode} | Content - {content}",
            result.StatusCode, content);
 
-        return new ApiResponse<TResponse>(result.StatusCode, null);
+        return new ApiResponse<TResponse>(result.StatusCode, null!);
     }
 }

@@ -1,12 +1,10 @@
-﻿
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
+﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using System;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Tests.Repositories
 {

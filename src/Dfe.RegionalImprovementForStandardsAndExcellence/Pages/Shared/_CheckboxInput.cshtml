@@ -3,7 +3,7 @@
    <div class="govuk-checkboxes">
         @if (!string.IsNullOrEmpty(Model.Heading))
         {
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            <legend class="govuk-fieldset__legend @Model.HeadingStyle">
                 @Model.Heading
             </legend>
         }

@@ -1,14 +1,8 @@
 ﻿using Moq;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.MappingProfiles;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using AutoMapper;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
-using System;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using System.Linq.Expressions;
 

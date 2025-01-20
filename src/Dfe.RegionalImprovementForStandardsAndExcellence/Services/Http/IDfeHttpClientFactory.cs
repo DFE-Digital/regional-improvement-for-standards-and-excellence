@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
+﻿namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
 
 public interface IDfeHttpClientFactory : IHttpClientFactory
 {
