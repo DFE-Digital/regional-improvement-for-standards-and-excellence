@@ -71,6 +71,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasAcceeptedTargetedSupport { get; private set; }
 
     public bool? HasSavedSchoolResponseinSharePoint { get; private set; }
+
+    public DateTime? IntroductoryEmailSentDate { get; private set; }
+
+    public bool? HasShareEmailTemplateWithAdvisor { get; private set; }
+
+    public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; private set; } 
     #endregion
 
     public static SupportProject Create(
@@ -129,6 +135,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         SchoolResponseDate = schoolResponseDate;
         HasAcceeptedTargetedSupport = hasAcceeptedTargetedSupport;
         HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
+    }
+
+    public void SetSentroductEmailAndRequestImprovementPlan(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail)
+    {
+        IntroductoryEmailSentDate = introductoryEmailSentDate;
+        HasShareEmailTemplateWithAdvisor = hasShareEmailTemplateWithAdvisor;
+        RemindAdvisorToCopyRiseTeamWhenSentEmail = remindAdvisorToCopyRiseTeamWhenSentEmail;
     }
     #endregion
 }

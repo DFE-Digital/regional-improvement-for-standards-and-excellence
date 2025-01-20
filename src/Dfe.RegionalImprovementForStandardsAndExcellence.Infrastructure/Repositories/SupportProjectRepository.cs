@@ -29,11 +29,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
             //queryable = FilterByAdvisors(advisors, queryable);
             queryable = FilterByLocalAuthority(localAuthorities, queryable);
 
-            var totalProjects = await queryable.CountAsync();
+            var totalProjects = await queryable.CountAsync(cancellationToken);
             var projects = await queryable
                 .OrderByDescending(acp => acp.CreatedOn)
                 .Skip((page - 1) * count)
-                .Take(count).ToListAsync();
+                .Take(count).ToListAsync(cancellationToken);
 
             return (projects, totalProjects);
         }
@@ -67,7 +67,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
             {
 
                 queryable = queryable.Where(p => p.SchoolName!.ToLower().Contains(title!.ToLower()) ||
-                p.SchoolUrn.ToString().ToLower().Contains(title!.ToLower())
+                p.SchoolUrn.ToString().Contains(title!, StringComparison.CurrentCultureIgnoreCase)
                 );
             }
 
@@ -93,7 +93,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
                     .Select(p => p.Region)
                     .Where(p => !string.IsNullOrEmpty(p))
                     .Distinct()
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<string>> GetAllProjectLocalAuthorities(CancellationToken cancellationToken)
@@ -103,7 +103,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
                     .Select(p => p.LocalAuthority)
                     .Where(p => !string.IsNullOrEmpty(p))
                     .Distinct()
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
 
         }
         
