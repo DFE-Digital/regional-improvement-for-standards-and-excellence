@@ -1,7 +1,4 @@
-using System;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoFixture;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
@@ -84,7 +81,4 @@ public class SetAdviserCommandHandlerTests
         // Verify
         Assert.False(result);
     }
-
-
-  
 }

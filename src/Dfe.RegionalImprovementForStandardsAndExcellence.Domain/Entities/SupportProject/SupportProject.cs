@@ -66,11 +66,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? DateConflictsOfInterestWereChecked { get; private set; }
 
-    public DateTime? SchoolResponseDate { get; set; }
+    public DateTime? SchoolResponseDate { get; private set; }
 
-    public bool? HasAcceeptedTargetedSupport { get; set; }
+    public bool? HasAcceeptedTargetedSupport { get; private set; }
 
-    public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+    public bool? HasSavedSchoolResponseinSharePoint { get; private set; }
     #endregion
 
     public static SupportProject Create(
