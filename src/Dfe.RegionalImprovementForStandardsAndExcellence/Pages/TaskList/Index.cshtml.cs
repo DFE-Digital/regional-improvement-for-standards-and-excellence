@@ -15,6 +15,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
     public TaskListStatus SendIntroductoryEmailTaskListStatus { get; set; }
     public TaskListStatus AssignAdviserTaskListStatus { get; set; }
+    
+    public TaskListStatus AdviserVisitToSchoolTaskListStatus { get; set; }
 
     public void SetErrorPage(string errorPage)
     {
@@ -34,6 +36,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         CheckThePotentialAdviserConflictsOfInterestTaskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProject);
         AssignAdviserTaskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(SupportProject);
         SendIntroductoryEmailTaskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(SupportProject);
+        AdviserVisitToSchoolTaskListStatus = TaskStatusViewModel.AdviserVisitToSchoolTaskListStatus(SupportProject);
 
         return Page();
     }

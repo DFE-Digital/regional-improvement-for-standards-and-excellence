@@ -25,6 +25,7 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+
     public static TaskListStatus RecordTheSchoolResponseTaskStatus(SupportProjectViewModel SupportProject)
     {
         if (SupportProject.HasSavedSchoolResponseinSharePoint.Equals(true) &&
@@ -44,7 +45,8 @@ public static class TaskStatusViewModel
         return TaskListStatus.InProgress;
     }
 
-    public static TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProjectViewModel supportProject)
+    public static TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus(
+        SupportProjectViewModel supportProject)
     {
         if (supportProject.SendConflictOfInterestFormToProposedAdviserAndTheSchool.HasValue
             && supportProject.ReceiveCompletedConflictOfInterestForm.HasValue
@@ -81,6 +83,7 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+
     public static TaskListStatus SendIntroductoryEmailTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.HasShareEmailTemplateWithAdvisor.HasValue
@@ -99,4 +102,15 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+
+    public static TaskListStatus AdviserVisitToSchoolTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.AdviserVisitDate.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        return TaskListStatus.NotStarted;
+    }
+
 }

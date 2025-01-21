@@ -9,14 +9,14 @@
 
 @section BeforeMain
 {
-   <a asp-page="@Model.ReturnPage"  class="govuk-back-link">@Links.SchoolList.Index.BackText</a>
+    <a asp-page="@Model.ReturnPage" class="govuk-back-link">@Links.SchoolList.Index.BackText</a>
 }
 
 
-    <partial name="_ErrorSummary" />
+<partial name="_ErrorSummary"/>
 
 
-<partial name="_ProjectHeader" model="Model.SupportProject" />
+<partial name="_ProjectHeader" model="Model.SupportProject"/>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -30,7 +30,7 @@
                             Contact the school
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.ContactTheSchoolTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.ContactTheSchoolTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -38,7 +38,7 @@
                             Record the School's Response
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.RecordTheSchoolResponseTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordTheSchoolResponseTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -46,7 +46,7 @@
                             Check potential adviser conflicts of interest
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.CheckThePotentialAdviserConflictsOfInterestTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.CheckThePotentialAdviserConflictsOfInterestTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -54,7 +54,7 @@
                             Assign an adviser
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.AssignAdviserTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.AssignAdviserTaskListStatus"/>
                 </li>
             </ul>
         </div>
@@ -67,7 +67,15 @@
                             Send introductory email
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailTaskListStatus"/>
+                </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ArrangeAdviserVisitToSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="adviser-school-visit">
+                            Arrange adviser visit to school
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.AdviserVisitToSchoolTaskListStatus"/>
                 </li>
             </ul>
         </div>
