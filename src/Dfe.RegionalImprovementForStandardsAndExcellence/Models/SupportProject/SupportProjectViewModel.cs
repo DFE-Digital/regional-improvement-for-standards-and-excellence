@@ -40,7 +40,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; private set; }
 
-        public bool? RecieveCompletedConflictOfInteresetForm { get; private set; }
+        public bool? ReceiveCompletedConflictOfInterestForm { get; private set; }
 
         public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; private set; }
 
@@ -77,7 +77,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 AttachRiseInfoToEmail = supportProjectDto.AttachRiseInfoToEmail,
                 ContactedTheSchoolDate = supportProjectDto.ContactedTheSchoolDate,
                 SendConflictOfInterestFormToProposedAdviserAndTheSchool = supportProjectDto.SendConflictOfInterestFormToProposedAdviserAndTheSchool,
-                RecieveCompletedConflictOfInteresetForm = supportProjectDto.RecieveCompletedConflictOfInteresetForm,
+                ReceiveCompletedConflictOfInterestForm = supportProjectDto.ReceiveCompletedConflictOfInterestForm,
                 SaveCompletedConflictOfinterestFormInSharePoint = supportProjectDto.SaveCompletedConflictOfinterestFormInSharePoint,
                 DateConflictsOfInterestWereChecked = supportProjectDto.DateConflictsOfInterestWereChecked,
                 SchoolResponseDate = supportProjectDto.SchoolResponseDate,

@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Moq; 
+using Moq;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities.SupportProject
 {
@@ -60,7 +60,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Assert
             supportProject.SchoolResponseDate.Should().Be(schoolResponseDate);
             supportProject.HasAcceeptedTargetedSupport.Should().Be(hasAcceeptedTargetedSupport);
-            supportProject.HasSavedSchoolResponseinSharePoint.Should().Be(hasSavedSchoolResponseinSharePoint); 
+            supportProject.HasSavedSchoolResponseinSharePoint.Should().Be(hasSavedSchoolResponseinSharePoint);
             mockRepository.VerifyAll();
         }
 
@@ -71,22 +71,42 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             var supportProject = CreateSupportProject();
 
             bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = true;
-            bool? recieveCompletedConflictOfInteresetForm = true;
+            bool? receiveCompletedConflictOfInterestForm = true;
             bool? saveCompletedConflictOfinterestFormInSharePoint = true;
             DateTime? dateConflictsOfInterestWereChecked = DateTime.UtcNow;
 
             // Act
             supportProject.SetAdviserConflictOfInterestDetails(
                 sendConflictOfInterestFormToProposedAdviserAndTheSchool,
-                recieveCompletedConflictOfInteresetForm,
+                receiveCompletedConflictOfInterestForm,
                 saveCompletedConflictOfinterestFormInSharePoint,
                 dateConflictsOfInterestWereChecked);
 
             // Assert
             supportProject.SendConflictOfInterestFormToProposedAdviserAndTheSchool.Should().Be(sendConflictOfInterestFormToProposedAdviserAndTheSchool);
-            supportProject.RecieveCompletedConflictOfInteresetForm.Should().Be(recieveCompletedConflictOfInteresetForm);
+            supportProject.ReceiveCompletedConflictOfInterestForm.Should().Be(receiveCompletedConflictOfInterestForm);
             supportProject.SaveCompletedConflictOfinterestFormInSharePoint.Should().Be(saveCompletedConflictOfinterestFormInSharePoint);
             supportProject.DateConflictsOfInterestWereChecked.Should().Be(dateConflictsOfInterestWereChecked);
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetAdviserDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            string? adviserEmailAddress = "test";
+            DateTime? dateAssigned = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetAdviserDetails(
+                adviserEmailAddress,
+                dateAssigned);
+
+            // Assert
+            supportProject.AdviserEmailAddress.Should().Be(adviserEmailAddress);
+            supportProject.DateAdviserAssigned.Should().Be(dateAssigned);
             mockRepository.VerifyAll();
         }
 
@@ -102,15 +122,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
                  localAuthority,
                  region);
         }
-        
+
         [Fact]
         public void SetContactTheSchool_WithValidDetails_SetsTheCorrectProperties()
         {
             // Arrange
             var supportProject = CreateSupportProject();
 
-            bool? schoolEmailAddressFound =  true;
-            bool? useTheNotificationLetterToCreateEmail = true; 
+            bool? schoolEmailAddressFound = true;
+            bool? useTheNotificationLetterToCreateEmail = true;
             bool? attachRiseInfoToEmail = true;
             DateTime? schoolContactedDate = DateTime.UtcNow;
 

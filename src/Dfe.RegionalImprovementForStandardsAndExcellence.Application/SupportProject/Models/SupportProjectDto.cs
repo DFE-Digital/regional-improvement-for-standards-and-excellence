@@ -15,7 +15,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool AttachRiseInfoToEmail,
         DateTime? ContactedTheSchoolDate,
         bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool,
-        bool? RecieveCompletedConflictOfInteresetForm,
+        bool? ReceiveCompletedConflictOfInterestForm,
         bool? SaveCompletedConflictOfinterestFormInSharePoint,
         DateTime? DateConflictsOfInterestWereChecked,
         DateTime? SchoolResponseDate,

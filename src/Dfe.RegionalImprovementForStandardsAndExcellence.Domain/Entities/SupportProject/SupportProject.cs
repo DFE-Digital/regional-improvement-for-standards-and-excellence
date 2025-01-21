@@ -60,7 +60,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; private set; }
 
-    public bool? RecieveCompletedConflictOfInteresetForm { get; private set; }
+    public bool? ReceiveCompletedConflictOfInterestForm { get; private set; }
 
     public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; private set; }
 
@@ -120,10 +120,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         ContactedTheSchoolDate = schoolContactedDate;
     }
 
-    public void SetAdviserConflictOfInterestDetails(bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool, bool? recieveCompletedConflictOfInteresetForm, bool? saveCompletedConflictOfinterestFormInSharePoint, DateTime? dateConflictsOfInterestWereChecked)
+    public void SetAdviserConflictOfInterestDetails(bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool, bool? receiveCompletedConflictOfInterestForm, bool? saveCompletedConflictOfinterestFormInSharePoint, DateTime? dateConflictsOfInterestWereChecked)
     {
         SendConflictOfInterestFormToProposedAdviserAndTheSchool = sendConflictOfInterestFormToProposedAdviserAndTheSchool;
-        RecieveCompletedConflictOfInteresetForm = recieveCompletedConflictOfInteresetForm;
+        ReceiveCompletedConflictOfInterestForm = receiveCompletedConflictOfInterestForm;
         SaveCompletedConflictOfinterestFormInSharePoint = saveCompletedConflictOfinterestFormInSharePoint;
         DateConflictsOfInterestWereChecked = dateConflictsOfInterestWereChecked;
     }

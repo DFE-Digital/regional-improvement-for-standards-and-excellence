@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserConflictOfInterestDetails;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.AdviserConflictOfIntereset;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.AdviserConflictOfInterest;
 
-public class AdviserConflictOfIntereset(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
+public class AdviserConflictOfInterest(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
     [BindProperty(Name = "send-conflict-of-interest-form-to-proposed-adviser-and-the-school")]
     public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; set; }
 
-    [BindProperty(Name = "recieve-completed-conflict-of-interest-form")]
-    public bool? RecieveCompletedConflictOfInteresetForm { get; set; }
+    [BindProperty(Name = "receive-completed-conflict-of-interest-form")]
+    public bool? ReceiveCompletedConflictOfInterestForm { get; set; }
 
     [BindProperty(Name = "save-completed-conflict-of-interest-form-in-sharepoint")]
     public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; set; }
@@ -43,7 +43,7 @@ public class AdviserConflictOfIntereset(ISupportProjectQueryService supportProje
 
         SendConflictOfInterestFormToProposedAdviserAndTheSchool = SupportProject.SendConflictOfInterestFormToProposedAdviserAndTheSchool;
 
-        RecieveCompletedConflictOfInteresetForm = SupportProject.RecieveCompletedConflictOfInteresetForm;
+        ReceiveCompletedConflictOfInterestForm = SupportProject.ReceiveCompletedConflictOfInterestForm;
 
         SaveCompletedConflictOfinterestFormInSharePoint = SupportProject.SaveCompletedConflictOfinterestFormInSharePoint;
 
@@ -61,7 +61,7 @@ public class AdviserConflictOfIntereset(ISupportProjectQueryService supportProje
             return await base.GetSupportProject(id, cancellationToken);
         }
 
-        var request = new SetAdviserConflictOfInterestDetailsCommand(new SupportProjectId(id), SendConflictOfInterestFormToProposedAdviserAndTheSchool, RecieveCompletedConflictOfInteresetForm, SaveCompletedConflictOfinterestFormInSharePoint, DateConflictsOfInterestWereChecked);
+        var request = new SetAdviserConflictOfInterestDetailsCommand(new SupportProjectId(id), SendConflictOfInterestFormToProposedAdviserAndTheSchool, ReceiveCompletedConflictOfInterestForm, SaveCompletedConflictOfinterestFormInSharePoint, DateConflictsOfInterestWereChecked);
 
         var result = await mediator.Send(request, cancellationToken);
 
