@@ -1,8 +1,8 @@
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
-using Microsoft.AspNetCore.Mvc;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList;
 
@@ -14,6 +14,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus RecordTheSchoolResponseTaskListStatus { get; set; }
     public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
     public TaskListStatus SendIntroductoryEmailTaskListStatus { get; set; }
+    public TaskListStatus AssignAdviserTaskListStatus { get; set; }
 
     public void SetErrorPage(string errorPage)
     {
@@ -31,6 +32,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         ContactTheSchoolTaskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(SupportProject);
         RecordTheSchoolResponseTaskListStatus = TaskStatusViewModel.RecordTheSchoolResponseTaskStatus(SupportProject);
         CheckThePotentialAdviserConflictsOfInterestTaskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProject);
+        AssignAdviserTaskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(SupportProject);
         SendIntroductoryEmailTaskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(SupportProject);
 
         return Page();
