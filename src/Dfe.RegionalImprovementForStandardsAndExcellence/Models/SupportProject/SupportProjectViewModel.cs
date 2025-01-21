@@ -53,9 +53,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasAcceeptedTargetedSupport { get; set; }
 
         public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+
         public DateTime? DateAdviserAssigned { get; private set; }
         public string? AdviserEmailAddress { get; private set; }
 
+        public DateTime? IntroductoryEmailSentDate { get; set; }
         public bool? HasShareEmailTemplateWithAdvisor { get; set; }
 
         public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
