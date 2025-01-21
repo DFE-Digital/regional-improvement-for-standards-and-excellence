@@ -26,6 +26,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? IntroductoryEmailSentDate,
         bool? HasShareEmailTemplateWithAdvisor,
         bool? RemindAdvisorToCopyRiseTeamWhenSentEmail,
+        DateTime? AdviserVisitDate,
         IEnumerable<SupportProjectNote> notes
     );
 }
