@@ -1,11 +1,7 @@
-using System;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoFixture;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using Moq;
 using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetContactTheSchoolDetails;
 
@@ -24,7 +20,6 @@ public class SetContactTheSchoolDetailsTests
         _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
         var fixture = new Fixture();
         _mockSupportProject = fixture.Create<Domain.Entities.SupportProject.SupportProject>();
-        _cancellationToken = new CancellationToken();
         _cancellationToken = CancellationToken.None;
     }
 

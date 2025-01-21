@@ -1,17 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using MediatR;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.CreateSupportProject;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.AddSchool;
 
-public class SummaryModel(IGetEstablishment getEstablishment,
-                    ISupportProjectQueryService supportProjectQueryService,
-                    IMediator mediator
-        ) : PageModel
+public class SummaryModel(IGetEstablishment getEstablishment, IMediator mediator ) : PageModel
 {
     public DfE.CoreLibs.Contracts.Academies.V4.Establishments.EstablishmentDto Establishment { get; set; }
 

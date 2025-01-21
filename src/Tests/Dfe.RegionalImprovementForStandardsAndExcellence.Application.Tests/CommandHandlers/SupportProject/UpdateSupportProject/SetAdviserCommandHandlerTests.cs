@@ -19,7 +19,6 @@ public class SetAdviserCommandHandlerTests
         _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
         var fixture = new Fixture();
         _mockSupportProject = fixture.Create<Domain.Entities.SupportProject.SupportProject>();
-        _cancellationToken = new CancellationToken();
         _cancellationToken = CancellationToken.None;
     }
 
@@ -49,8 +48,8 @@ public class SetAdviserCommandHandlerTests
         // Arrange
         var command = new SetAdviserCommand(
             _mockSupportProject.Id,
-            null,
-            null
+            null!,
+            null!
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
         var setAdviserCommandHandler = new SetAdviser.SetAdviserCommandHandler(_mockSupportProjectRepository.Object);

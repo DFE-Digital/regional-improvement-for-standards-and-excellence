@@ -22,7 +22,6 @@ public class SetAdviserConflictOfInterestDetailsTests
         var fixture = new Fixture();
         _mockSupportProject = fixture.Create<Domain.Entities.SupportProject.SupportProject>();
         _mockDateTimeProvider = new Mock<IDateTimeProvider>();
-        _cancellationToken = new CancellationToken();
         _cancellationToken = CancellationToken.None;
     }
 

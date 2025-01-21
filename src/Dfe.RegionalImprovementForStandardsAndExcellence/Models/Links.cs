@@ -45,7 +45,7 @@ public static class Links
       public static readonly LinkItem ContactTheSchool = AddLinkItem(backText: "Back", page: "/TaskList/ContactTheSchool/ContactTheSchool");
       public static readonly LinkItem RecordTheSchoolResponse = AddLinkItem(backText: "Back", page: "/TaskList/RecordTheSchoolResponse/Index");
       public static readonly LinkItem CheckPotentialAdviserConflictsOfInterest = AddLinkItem(backText: "Back", page: "/TaskList/AdviserConflictOfIntereset/AdviserConflictOfIntereset");
-      public static readonly LinkItem SendIntroductoryEmailAndRequestImprovementPlan = AddLinkItem(backText: "Back", page: "/TaskList/SendIntroductoryEmailAndRequestImprovementPlan/Index");
+      public static readonly LinkItem SendIntroductoryEmail = AddLinkItem(backText: "Back", page: "/TaskList/SendIntroductoryEmail/Index");
     }
    
    public static class Notes

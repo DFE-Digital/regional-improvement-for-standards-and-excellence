@@ -1,4 +1,4 @@
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetSendIntroEmailAndRequestImprovementPlan;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetSendIntroductoryEmail;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
@@ -43,7 +43,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
                 return await base.GetSupportProject(id, cancellationToken);
             }
 
-            var request = new SetSendIntroEmailAndRequestImprovementPlanCommand(new SupportProjectId(id), IntroductoryEmailSentDate, HasShareEmailTemplateWithAdvisor, RemindAdvisorToCopyRiseTeamWhenSentEmail);
+            var request = new SetSendIntroductoryEmailCommand(new SupportProjectId(id), IntroductoryEmailSentDate, HasShareEmailTemplateWithAdvisor, RemindAdvisorToCopyRiseTeamWhenSentEmail);
 
             var result = await mediator.Send(request, cancellationToken);
 
