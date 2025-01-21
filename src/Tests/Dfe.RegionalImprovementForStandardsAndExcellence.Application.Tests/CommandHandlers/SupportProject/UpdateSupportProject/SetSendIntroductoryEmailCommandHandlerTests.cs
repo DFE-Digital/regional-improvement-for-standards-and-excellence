@@ -1,18 +1,18 @@
 ﻿using AutoFixture;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetSendIntroductoryEmail;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Moq;
 using System.Linq.Expressions;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetSchoolResponse;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
 {
-    public class SetSchoolResponseCommandHandlerTests
+    public class SetSendIntroductoryEmailCommandHandlerTests
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetSchoolResponseCommandHandlerTests()
+        public SetSendIntroductoryEmailCommandHandlerTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
@@ -25,18 +25,18 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidCommand_UpdatesSupportProject()
         {
             // Arrange
-            var schoolResponseDate = DateTime.UtcNow;
-            var hasAcceeptedTargetedSupport = true;
-            var hasSavedSchoolResponseinSharePoint = true;
+            var introductoryEmailSentDate = DateTime.UtcNow;
+            var hasShareEmailTemplateWithAdvisor = true;
+            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
 
-            var command = new SetSchoolResponseCommand(
+            var command = new SetSendIntroductoryEmailCommand(
                 _mockSupportProject.Id,
-                schoolResponseDate,
-                hasAcceeptedTargetedSupport,
-                hasSavedSchoolResponseinSharePoint
+                introductoryEmailSentDate,
+                hasShareEmailTemplateWithAdvisor,
+                remindAdvisorToCopyRiseTeamWhenSentEmail
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetSchoolResponseCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -50,14 +50,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
         {
             // Arrange
-            var command = new SetSchoolResponseCommand(
+            var command = new SetSendIntroductoryEmailCommand(
                 _mockSupportProject.Id,
                 null,
                 null,
                 null
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetSchoolResponseCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -71,19 +71,19 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ProjectNotFound_ReturnsFalse()
         {
             // Arrange
-            var schoolResponseDate = DateTime.UtcNow;
-            var hasAcceeptedTargetedSupport = true;
-            var hasSavedSchoolResponseinSharePoint = true;
+            var introductoryEmailSentDate = DateTime.UtcNow;
+            var hasShareEmailTemplateWithAdvisor = true;
+            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
 
-            var command = new SetSchoolResponseCommand(
+            var command = new SetSendIntroductoryEmailCommand(
                 _mockSupportProject.Id,
-                schoolResponseDate,
-                hasAcceeptedTargetedSupport,
-                hasSavedSchoolResponseinSharePoint
+                introductoryEmailSentDate,
+                hasShareEmailTemplateWithAdvisor,
+                remindAdvisorToCopyRiseTeamWhenSentEmail
             );
 
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-            var handler = new SetSchoolResponseCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);

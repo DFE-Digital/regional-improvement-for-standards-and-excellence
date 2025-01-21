@@ -63,11 +63,11 @@
             <ul class="app-task-list__items govuk-!-padding-left-0">
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.SendIntroductoryEmailAndRequestImprovementPlan.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="send-introductory-email-request-improvement-plan">
-                            Send Introductory email and request improvement plan
+                        <a class="govuk-link" asp-page="@Links.TaskList.SendIntroductoryEmail.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="send-introductory-email-request-improvement-plan">
+                            Send introductory email
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailAndRequstImpromventPlanTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailTaskListStatus" />
                 </li>
             </ul>
         </div>

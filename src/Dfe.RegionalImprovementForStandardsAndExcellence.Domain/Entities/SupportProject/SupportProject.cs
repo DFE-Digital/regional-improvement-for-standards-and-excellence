@@ -146,7 +146,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AdviserEmailAddress = adviserEmailAddress;
     }
 
-    public void SetSentroductEmailAndRequestImprovementPlan(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail)
+    public void SetSendIntroductoryEmail(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail)
     {
         IntroductoryEmailSentDate = introductoryEmailSentDate;
         HasShareEmailTemplateWithAdvisor = hasShareEmailTemplateWithAdvisor;

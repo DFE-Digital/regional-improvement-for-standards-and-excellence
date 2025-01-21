@@ -65,6 +65,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
         }
 
         [Fact]
+        public void SetSendIntroductoryEmail_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            var introductoryEmailSentDate = DateTime.UtcNow;
+            var hasShareEmailTemplateWithAdvisor = true;
+            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
+
+            // Act
+            supportProject.SetSendIntroductoryEmail(
+                introductoryEmailSentDate,
+                hasShareEmailTemplateWithAdvisor,
+                remindAdvisorToCopyRiseTeamWhenSentEmail);
+
+            // Assert
+            supportProject.IntroductoryEmailSentDate.Should().Be(introductoryEmailSentDate);
+            supportProject.HasShareEmailTemplateWithAdvisor.Should().Be(hasShareEmailTemplateWithAdvisor);
+            supportProject.RemindAdvisorToCopyRiseTeamWhenSentEmail.Should().Be(remindAdvisorToCopyRiseTeamWhenSentEmail);
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
         public void SetAdviserConflictOfInterestDetails_WithValidDetails_SetsTheCorrectProperties()
         {
             // Arrange

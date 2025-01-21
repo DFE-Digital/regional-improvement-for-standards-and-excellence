@@ -13,8 +13,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus ContactTheSchoolTaskListStatus { get; set; }
     public TaskListStatus RecordTheSchoolResponseTaskListStatus { get; set; }
     public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
+    public TaskListStatus SendIntroductoryEmailTaskListStatus { get; set; }
     public TaskListStatus AssignAdviserTaskListStatus { get; set; }
-    public TaskListStatus SendIntroductoryEmailAndRequstImpromventPlanTaskListStatus { get; set; }
 
     public void SetErrorPage(string errorPage)
     {
@@ -33,7 +33,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         RecordTheSchoolResponseTaskListStatus = TaskStatusViewModel.RecordTheSchoolResponseTaskStatus(SupportProject);
         CheckThePotentialAdviserConflictsOfInterestTaskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProject);
         AssignAdviserTaskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(SupportProject);
-        SendIntroductoryEmailAndRequstImpromventPlanTaskListStatus = TaskStatusViewModel.SendIntroductoryEmailAndRequstImpromventPlanTaskListStatus(SupportProject);
+        SendIntroductoryEmailTaskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(SupportProject);
 
         return Page();
     }

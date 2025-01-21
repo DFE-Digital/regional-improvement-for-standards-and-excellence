@@ -81,7 +81,7 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
-    public static TaskListStatus SendIntroductoryEmailAndRequstImpromventPlanTaskListStatus(SupportProjectViewModel supportProject)
+    public static TaskListStatus SendIntroductoryEmailTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.HasShareEmailTemplateWithAdvisor.HasValue
             && supportProject.RemindAdvisorToCopyRiseTeamWhenSentEmail.HasValue
