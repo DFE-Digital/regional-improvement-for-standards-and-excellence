@@ -40,7 +40,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; private set; }
 
-        public bool? RecieveCompletedConflictOfInteresetForm { get; private set; }
+        public bool? ReceiveCompletedConflictOfInterestForm { get; private set; }
 
         public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; private set; }
 
@@ -49,12 +49,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public IEnumerable<SupportProjectNote> Notes { get; set; }
 
         public DateTime? SchoolResponseDate { get; set; }
-         
-        public bool? HasAcceeptedTargetedSupport { get; set; }
-         
-        public bool? HasSavedSchoolResponseinSharePoint { get; set; }
-        public DateTime? IntroductoryEmailSentDate { get; set; }
 
+        public bool? HasAcceeptedTargetedSupport { get; set; }
+
+        public bool? HasSavedSchoolResponseinSharePoint { get; set; }
+
+        public DateTime? DateAdviserAssigned { get; private set; }
+        public string? AdviserEmailAddress { get; private set; }
+
+        public DateTime? IntroductoryEmailSentDate { get; set; }
         public bool? HasShareEmailTemplateWithAdvisor { get; set; }
 
         public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
@@ -65,8 +68,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
             {
                 Id = supportProjectDto.id,
                 CreatedOn = supportProjectDto.createdOn,
+                // ToDo: we will repurpose these fields as the assigned delivery officer
                 AssignedAdviserFullName = supportProjectDto.assignedAdviserFullName,
                 AssignedAdviserEmailAddress = supportProjectDto.assignedAdviserEmailAddress,
+                // ***
                 LocalAuthority = supportProjectDto.localAuthority,
                 Region = supportProjectDto.region,
                 SchoolName = supportProjectDto.schoolName,
@@ -77,7 +82,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 AttachRiseInfoToEmail = supportProjectDto.AttachRiseInfoToEmail,
                 ContactedTheSchoolDate = supportProjectDto.ContactedTheSchoolDate,
                 SendConflictOfInterestFormToProposedAdviserAndTheSchool = supportProjectDto.SendConflictOfInterestFormToProposedAdviserAndTheSchool,
-                RecieveCompletedConflictOfInteresetForm = supportProjectDto.RecieveCompletedConflictOfInteresetForm,
+                ReceiveCompletedConflictOfInterestForm = supportProjectDto.ReceiveCompletedConflictOfInterestForm,
                 SaveCompletedConflictOfinterestFormInSharePoint = supportProjectDto.SaveCompletedConflictOfinterestFormInSharePoint,
                 DateConflictsOfInterestWereChecked = supportProjectDto.DateConflictsOfInterestWereChecked,
                 SchoolResponseDate = supportProjectDto.SchoolResponseDate,
@@ -86,7 +91,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 HasShareEmailTemplateWithAdvisor = supportProjectDto.HasShareEmailTemplateWithAdvisor,
                 RemindAdvisorToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail,
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
-
+                AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
+                DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
             };
         }
     }

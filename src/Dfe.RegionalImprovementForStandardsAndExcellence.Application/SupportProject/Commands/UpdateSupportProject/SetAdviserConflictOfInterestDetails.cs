@@ -10,7 +10,7 @@ public class SetAdviserConflictOfInterestDetails
     public record SetAdviserConflictOfInterestDetailsCommand(
         SupportProjectId SupportProjectId,
         bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool,
-        bool? RecieveCompletedConflictOfInteresetForm,
+        bool? ReceiveCompletedConflictOfInterestForm,
         bool? SaveCompletedConflictOfinterestFormInSharePoint,
         DateTime? DateConflictsOfInterestWereChecked
     ) : IRequest<bool>;
@@ -29,7 +29,7 @@ public class SetAdviserConflictOfInterestDetails
             }
 
             supportProject.SetAdviserConflictOfInterestDetails(request.SendConflictOfInterestFormToProposedAdviserAndTheSchool,
-                                                               request.RecieveCompletedConflictOfInteresetForm,
+                                                               request.ReceiveCompletedConflictOfInterestForm,
                                                                request.SaveCompletedConflictOfinterestFormInSharePoint,
                                                                request.DateConflictsOfInterestWereChecked);
 

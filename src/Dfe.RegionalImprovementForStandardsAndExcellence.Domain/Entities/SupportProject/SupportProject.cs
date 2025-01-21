@@ -60,7 +60,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public bool? SendConflictOfInterestFormToProposedAdviserAndTheSchool { get; private set; }
 
-    public bool? RecieveCompletedConflictOfInteresetForm { get; private set; }
+    public bool? ReceiveCompletedConflictOfInterestForm { get; private set; }
 
     public bool? SaveCompletedConflictOfinterestFormInSharePoint { get; private set; }
 
@@ -71,6 +71,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasAcceeptedTargetedSupport { get; private set; }
 
     public bool? HasSavedSchoolResponseinSharePoint { get; private set; }
+
+    public DateTime? DateAdviserAssigned { get; private set; }
+    public string? AdviserEmailAddress { get; private set; }
 
     public DateTime? IntroductoryEmailSentDate { get; private set; }
 
@@ -123,18 +126,24 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         ContactedTheSchoolDate = schoolContactedDate;
     }
 
-    public void SetAdviserConflictOfInterestDetails(bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool, bool? recieveCompletedConflictOfInteresetForm, bool? saveCompletedConflictOfinterestFormInSharePoint, DateTime? dateConflictsOfInterestWereChecked)
+    public void SetAdviserConflictOfInterestDetails(bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool, bool? receiveCompletedConflictOfInterestForm, bool? saveCompletedConflictOfinterestFormInSharePoint, DateTime? dateConflictsOfInterestWereChecked)
     {
         SendConflictOfInterestFormToProposedAdviserAndTheSchool = sendConflictOfInterestFormToProposedAdviserAndTheSchool;
-        RecieveCompletedConflictOfInteresetForm = recieveCompletedConflictOfInteresetForm;
+        ReceiveCompletedConflictOfInterestForm = receiveCompletedConflictOfInterestForm;
         SaveCompletedConflictOfinterestFormInSharePoint = saveCompletedConflictOfinterestFormInSharePoint;
         DateConflictsOfInterestWereChecked = dateConflictsOfInterestWereChecked;
     }
-    public void SetSchoolResponse(DateTime? schoolResponseDate,bool? hasAcceeptedTargetedSupport, bool? hasSavedSchoolResponseinSharePoint)
+    public void SetSchoolResponse(DateTime? schoolResponseDate, bool? hasAcceeptedTargetedSupport, bool? hasSavedSchoolResponseinSharePoint)
     {
         SchoolResponseDate = schoolResponseDate;
         HasAcceeptedTargetedSupport = hasAcceeptedTargetedSupport;
         HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
+    }
+
+    public void SetAdviserDetails(string? adviserEmailAddress, DateTime? dateAdviserAssigned)
+    {
+        DateAdviserAssigned = dateAdviserAssigned;
+        AdviserEmailAddress = adviserEmailAddress;
     }
 
     public void SetSentroductEmailAndRequestImprovementPlan(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail)
