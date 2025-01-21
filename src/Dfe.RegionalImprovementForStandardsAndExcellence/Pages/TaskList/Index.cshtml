@@ -34,7 +34,7 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.RecordTheSchoolResponse.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="confirm_project_dates">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordTheSchoolResponse.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="record-school-response">
                             Record the School's Response
                         </a>
                     </span>
@@ -55,6 +55,19 @@
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.AssignAdviserTaskListStatus" />
+                </li>
+            </ul>
+        </div>
+        <h3 class="app-task-list__section govuk-!-margin-top-8">Establish support needs</h3>
+        <div class="app-task-list">
+            <ul class="app-task-list__items govuk-!-padding-left-0">
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.SendIntroductoryEmailAndRequestImprovementPlan.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="send-introductory-email-request-improvement-plan">
+                            Send Introductory email and request improvement plan
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailAndRequstImpromventPlanTaskListStatus" />
                 </li>
             </ul>
         </div>

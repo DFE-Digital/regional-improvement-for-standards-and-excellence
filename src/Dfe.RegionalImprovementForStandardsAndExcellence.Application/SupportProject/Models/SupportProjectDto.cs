@@ -23,7 +23,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? HasSavedSchoolResponseinSharePoint,
         DateTime? DateAdviserAssigned,
         string? AdviserEmailAddress,
+        DateTime? IntroductoryEmailSentDate,
+        bool? HasShareEmailTemplateWithAdvisor,
+        bool? RemindAdvisorToCopyRiseTeamWhenSentEmail,
         IEnumerable<SupportProjectNote> notes
-        );
-
+    );
 }

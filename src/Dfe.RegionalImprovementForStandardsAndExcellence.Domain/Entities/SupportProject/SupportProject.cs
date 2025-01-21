@@ -74,6 +74,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? DateAdviserAssigned { get; private set; }
     public string? AdviserEmailAddress { get; private set; }
+
+    public DateTime? IntroductoryEmailSentDate { get; private set; }
+
+    public bool? HasShareEmailTemplateWithAdvisor { get; private set; }
+
+    public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; private set; } 
     #endregion
 
     public static SupportProject Create(
@@ -138,6 +144,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         DateAdviserAssigned = dateAdviserAssigned;
         AdviserEmailAddress = adviserEmailAddress;
+    }
+
+    public void SetSentroductEmailAndRequestImprovementPlan(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail)
+    {
+        IntroductoryEmailSentDate = introductoryEmailSentDate;
+        HasShareEmailTemplateWithAdvisor = hasShareEmailTemplateWithAdvisor;
+        RemindAdvisorToCopyRiseTeamWhenSentEmail = remindAdvisorToCopyRiseTeamWhenSentEmail;
     }
     #endregion
 }

@@ -56,6 +56,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? DateAdviserAssigned { get; private set; }
         public string? AdviserEmailAddress { get; private set; }
 
+        public bool? HasShareEmailTemplateWithAdvisor { get; set; }
+
+        public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -83,6 +86,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 SchoolResponseDate = supportProjectDto.SchoolResponseDate,
                 HasAcceeptedTargetedSupport = supportProjectDto.HasAcceeptedTargetedSupport,
                 HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint,
+                HasShareEmailTemplateWithAdvisor = supportProjectDto.HasShareEmailTemplateWithAdvisor,
+                RemindAdvisorToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail,
+                IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
                 DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
             };
