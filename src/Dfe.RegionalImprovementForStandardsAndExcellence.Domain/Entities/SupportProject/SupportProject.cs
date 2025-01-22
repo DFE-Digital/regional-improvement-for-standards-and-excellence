@@ -80,9 +80,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasShareEmailTemplateWithAdvisor { get; private set; }
 
     public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; private set; }
-    
+
     public DateTime? AdviserVisitDate { get; private set; }
-    
+
+    public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
+    public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
+    public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
+
     #endregion
 
     public static SupportProject Create(
@@ -159,6 +163,15 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public void SetAdviserVisitDate(DateTime? adviserVisitDate)
     {
         AdviserVisitDate = adviserVisitDate;
+    }
+
+    public void SetNoteOfVisitDetails(bool? giveTheAdviserTheNoteOfVisitTemplate,
+                                      bool? askTheAdviserToSendYouTheirNotes,
+                                      DateTime? dateNoteOfVisitSavedInSharePoint)
+    {
+        GiveTheAdviserTheNoteOfVisitTemplate = giveTheAdviserTheNoteOfVisitTemplate;
+        AskTheAdviserToSendYouTheirNotes = askTheAdviserToSendYouTheirNotes;
+        DateNoteOfVisitSavedInSharePoint = dateNoteOfVisitSavedInSharePoint;
     }
 
     #endregion

@@ -61,8 +61,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasShareEmailTemplateWithAdvisor { get; set; }
 
         public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
-        
+
         public DateTime? AdviserVisitDate { get; set; }
+        public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
+        public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
+        public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -95,7 +98,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
                 DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
-                AdviserVisitDate = supportProjectDto.AdviserVisitDate
+                AdviserVisitDate = supportProjectDto.AdviserVisitDate,
+                GiveTheAdviserTheNoteOfVisitTemplate = supportProjectDto.GiveTheAdviserTheNoteOfVisitTemplate,
+                AskTheAdviserToSendYouTheirNotes = supportProjectDto.AskTheAdviserToSendYouTheirNotes,
+                DateNoteOfVisitSavedInSharePoint = supportProjectDto.DateNoteOfVisitSavedInSharePoint
             };
         }
     }
