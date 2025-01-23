@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetCompleteAndSaveAssessmentTemplate;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Moq;
 using System.Linq.Expressions;
