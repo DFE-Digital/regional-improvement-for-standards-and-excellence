@@ -5,30 +5,24 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserDetails;
+using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetNoteOfVisitDetails;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.AssignAdviser;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.NoteOfVisit;
 
-public class AssignAdviser(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
+public class NoteOfVisit(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
-    [BindProperty(Name = "adviser-email-address")]
-    [RiseAdviserEmail]
-    public string? AdviserEmailAddress { get; set; }
+    [BindProperty(Name = "give-the-adviser-the-note-of-visit-template")]
+    public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; set; }
 
-    [BindProperty(Name = "date-adviser-assigned", BinderType = typeof(DateInputModelBinder))]
+    [BindProperty(Name = "ask-the-adviser-to-send-you-their-notes")]
+    public bool? AskTheAdviserToSendYouTheirNotes { get; set; }
+
+    [BindProperty(Name = "enter-date-note-of-visit-saved-in-sharepoint", BinderType = typeof(DateInputModelBinder))]
     [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-    [Display(Name = "date adviser was assigned")]
-    public DateTime? DateAdviserAssigned { get; set; }
+    [Display(Name = "date Note of Visit was saved in SharePoint")]
+    public DateTime? DateNoteOfVisitSavedInSharePoint { get; set; }
 
     public bool ShowError { get; set; }
-
-    public bool AdviserEmailAddressError
-    {
-        get
-        {
-            return ModelState.Any(x => x.Key == "adviser-email-address");
-        }
-    }
 
     string IDateValidationMessageProvider.SomeMissing(string displayName, IEnumerable<string> missingParts)
     {
@@ -37,16 +31,16 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
 
     string IDateValidationMessageProvider.AllMissing(string displayName)
     {
-        return $"Enter the school contacted date";
+        return $"Enter the date Note of Visit was saved in SharePoint";
     }
 
     public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
     {
         await base.GetSupportProject(id, cancellationToken);
 
-        AdviserEmailAddress = SupportProject.AdviserEmailAddress;
-
-        DateAdviserAssigned = SupportProject.DateAdviserAssigned;
+        GiveTheAdviserTheNoteOfVisitTemplate = SupportProject.GiveTheAdviserTheNoteOfVisitTemplate;
+        AskTheAdviserToSendYouTheirNotes = SupportProject.AskTheAdviserToSendYouTheirNotes;
+        DateNoteOfVisitSavedInSharePoint = SupportProject.DateNoteOfVisitSavedInSharePoint;
 
         return Page();
     }
@@ -60,7 +54,7 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
             return await base.GetSupportProject(id, cancellationToken);
         }
 
-        var request = new SetAdviserDetailsCommand(new SupportProjectId(id), DateAdviserAssigned, AdviserEmailAddress);
+        var request = new SetNoteOfVisitDetailsCommand(new SupportProjectId(id), GiveTheAdviserTheNoteOfVisitTemplate, AskTheAdviserToSendYouTheirNotes, DateNoteOfVisitSavedInSharePoint);
 
         var result = await mediator.Send(request, cancellationToken);
 

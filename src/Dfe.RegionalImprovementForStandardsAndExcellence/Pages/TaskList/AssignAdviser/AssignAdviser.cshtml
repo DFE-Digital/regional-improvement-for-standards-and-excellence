@@ -21,11 +21,26 @@
                 <h1 class="govuk-heading-l">
                     Assign an adviser
                 </h1>
-                <div class="govuk-hint">
-                    Enter the email address of the adviser who will work with the school.<br />
-                    It will be formatted like rise.firstname.lastname@education.gov.uk.
+                <p class="govuk-body">
+                    Enter the email address of the adviser and the date they were assigned to this school.
+                </p>
+                <div class="govuk-form-group @(Model.AdviserEmailAddressError ? "govuk-form-group--error" : "")">
+                    <h2 class="govuk-label-wrapper">
+                        <label class="govuk-label govuk-label--m" for="event-name">
+                            Email Address
+                        </label>
+                    </h2>
+                    <div id="email-hint" class="govuk-hint">
+                        It will be formatted like rise.firstname.lastname@education.gov.uk.
+                    </div>
+                    @if (Model.AdviserEmailAddressError)
+                    {
+                        <p id="event-name-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span> Email must be in the format: rise.firstname.lastname@education.gov.uk
+                        </p>
+                    }
+                    <input class="govuk-input govuk-!-width-two-thirds @(Model.AdviserEmailAddressError ? "govuk-input--error" : "")" id="adviser-email-address" name="adviser-email-address" type="text" value="@Model.AdviserEmailAddress">
                 </div>
-                <input class="govuk-input govuk-!-width-two-thirds" id="adviser-email-address" name="adviser-email-address" type="text" value="@Model.AdviserEmailAddress">
             </div>
             <govuk-date-input heading-label="false" label="Enter date the adviser was assigned" id="date-adviser-assigned" name="date-adviser-assigned" asp-for="@Model.DateAdviserAssigned" hint="For example, 1 7 2024." />
             <button class="govuk-button" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">

@@ -30,6 +30,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? SavedAssessmentTemplateInSharePointDate,
         bool? HasTalkToAdviserAboutFindings,
         bool? HasCompleteAssessmentTemplate,
+        bool? GiveTheAdviserTheNoteOfVisitTemplate,
+        bool? AskTheAdviserToSendYouTheirNotes,
+        DateTime? DateNoteOfVisitSavedInSharePoint,
         IEnumerable<SupportProjectNote> notes
     );
 }

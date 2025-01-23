@@ -132,4 +132,22 @@ public static class TaskStatusViewModel
         return TaskListStatus.InProgress;
     }
 
+    public static TaskListStatus NoteOfVsistTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.AskTheAdviserToSendYouTheirNotes.HasValue
+            && supportProject.GiveTheAdviserTheNoteOfVisitTemplate.HasValue
+            && supportProject.DateNoteOfVisitSavedInSharePoint.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.AskTheAdviserToSendYouTheirNotes.HasValue
+            && !supportProject.GiveTheAdviserTheNoteOfVisitTemplate.HasValue
+            && !supportProject.DateNoteOfVisitSavedInSharePoint.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }
