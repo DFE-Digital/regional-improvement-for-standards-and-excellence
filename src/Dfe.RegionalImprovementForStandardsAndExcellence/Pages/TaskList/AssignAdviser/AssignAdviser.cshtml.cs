@@ -12,6 +12,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 public class AssignAdviser(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
     [BindProperty(Name = "adviser-email-address")]
+    [RiseAdviserEmail]
     public string? AdviserEmailAddress { get; set; }
 
     [BindProperty(Name = "date-adviser-assigned", BinderType = typeof(DateInputModelBinder))]
@@ -20,6 +21,14 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
     public DateTime? DateAdviserAssigned { get; set; }
 
     public bool ShowError { get; set; }
+
+    public bool AdviserEmailAddressError
+    {
+        get
+        {
+            return ModelState.Any(x => x.Key == "adviser-email-address");
+        }
+    }
 
     string IDateValidationMessageProvider.SomeMissing(string displayName, IEnumerable<string> missingParts)
     {
