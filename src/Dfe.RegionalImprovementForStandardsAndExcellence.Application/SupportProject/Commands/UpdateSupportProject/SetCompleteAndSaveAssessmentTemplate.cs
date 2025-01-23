@@ -7,7 +7,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
     public record SetCompleteAndSaveAssessmentTemplateCommand(
         SupportProjectId id,
         DateTime? SavedAssessmentTemplateInSharePointDate,
-        bool? HasTalkToAdvisor,
+        bool? HasTalkToAdviserAboutFindings,
         bool? HasCompleteAssessmentTemplate
     ) : IRequest<bool>;
 
@@ -24,7 +24,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
                 return false;
             }
 
-            supportProject.SetCompleteAndSaveAssessmentTemplate(request.SavedAssessmentTemplateInSharePointDate, request.HasTalkToAdvisor, request.HasCompleteAssessmentTemplate);
+            supportProject.SetCompleteAndSaveAssessmentTemplate(request.SavedAssessmentTemplateInSharePointDate, request.HasTalkToAdviserAboutFindings, request.HasCompleteAssessmentTemplate);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 

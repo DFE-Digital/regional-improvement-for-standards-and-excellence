@@ -26,13 +26,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         {
             // Arrange
             var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
-            var hasTalkToAdvisor = true;
+            var hasTalkToAdviserAboutFindings = true;
             var hasCompleteAssessmentTemplate = true;
 
             var command = new SetCompleteAndSaveAssessmentTemplateCommand(
                 _mockSupportProject.Id,
                 savedAssessmentTemplateInSharePointDate,
-                hasTalkToAdvisor,
+                hasTalkToAdviserAboutFindings,
                 hasCompleteAssessmentTemplate
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
@@ -72,13 +72,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         {
             // Arrange
             var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
-            var hasTalkToAdvisor = true;
+            var hasTalkToAdviserAboutFindings = true;
             var hasCompleteAssessmentTemplate = true;
 
             var command = new SetCompleteAndSaveAssessmentTemplateCommand(
                 _mockSupportProject.Id,
                 savedAssessmentTemplateInSharePointDate,
-                hasTalkToAdvisor,
+                hasTalkToAdviserAboutFindings,
                 hasCompleteAssessmentTemplate
             );
 

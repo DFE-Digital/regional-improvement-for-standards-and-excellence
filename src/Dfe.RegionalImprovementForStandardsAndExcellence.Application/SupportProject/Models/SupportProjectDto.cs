@@ -28,7 +28,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? RemindAdvisorToCopyRiseTeamWhenSentEmail,
         DateTime? AdviserVisitDate,
         DateTime? SavedAssessmentTemplateInSharePointDate,
-        bool? HasTalkToAdvisor,
+        bool? HasTalkToAdviserAboutFindings,
         bool? HasCompleteAssessmentTemplate,
         bool? GiveTheAdviserTheNoteOfVisitTemplate,
         bool? AskTheAdviserToSendYouTheirNotes,

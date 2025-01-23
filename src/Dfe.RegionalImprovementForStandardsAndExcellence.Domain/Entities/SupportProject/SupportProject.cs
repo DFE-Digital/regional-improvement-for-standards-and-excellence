@@ -85,7 +85,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? SavedAssessmentTemplateInSharePointDate { get; private set; }
 
-    public bool? HasTalkToAdvisor { get; private set; }
+    public bool? HasTalkToAdviserAboutFindings { get; private set; }
 
     public bool? HasCompleteAssessmentTemplate { get; private set; }
 
@@ -172,10 +172,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AdviserVisitDate = adviserVisitDate;
     }
 
-    public void SetCompleteAndSaveAssessmentTemplate(DateTime? savedAssessmentTemplateInSharePointDate, bool? hasTalkToAdvisor, bool? hasCompleteAssessmentTemplate)
+    public void SetCompleteAndSaveAssessmentTemplate(DateTime? savedAssessmentTemplateInSharePointDate, bool? hasTalkToAdviserAboutFindings, bool? hasCompleteAssessmentTemplate)
     {
         SavedAssessmentTemplateInSharePointDate = savedAssessmentTemplateInSharePointDate;
-        HasTalkToAdvisor = hasTalkToAdvisor;
+        HasTalkToAdviserAboutFindings = hasTalkToAdviserAboutFindings;
         HasCompleteAssessmentTemplate = hasCompleteAssessmentTemplate;
     }
 

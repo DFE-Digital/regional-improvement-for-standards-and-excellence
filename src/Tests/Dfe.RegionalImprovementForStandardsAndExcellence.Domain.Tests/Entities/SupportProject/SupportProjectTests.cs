@@ -103,7 +103,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
 
             // Assert
             supportProject.SavedAssessmentTemplateInSharePointDate.Should().Be(savedAssessmentTemplateInSharePointDate);
-            supportProject.HasTalkToAdvisor.Should().Be(hasTalkToAdvisor);
+            supportProject.HasTalkToAdviserAboutFindings.Should().Be(hasTalkToAdvisor);
             supportProject.HasCompleteAssessmentTemplate.Should().Be(hasCompleteAssessmentTemplate);
             mockRepository.VerifyAll();
         }
