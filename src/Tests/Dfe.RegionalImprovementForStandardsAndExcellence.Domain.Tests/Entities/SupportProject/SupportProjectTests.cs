@@ -192,5 +192,23 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.ContactedTheSchoolDate.Should().Be(schoolContactedDate);
             this.mockRepository.VerifyAll();
         }
+        
+        [Fact]
+        
+        public void SetAdviserVisitDate_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            
+            DateTime? adviserVisitDate = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetAdviserVisitDate(
+                adviserVisitDate);
+
+            // Assert
+            supportProject.AdviserVisitDate.Should().Be(adviserVisitDate);
+            this.mockRepository.VerifyAll();
+        }
     }
 }
