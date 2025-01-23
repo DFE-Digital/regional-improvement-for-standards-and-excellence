@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250122121436_AddedCompleteAndSaveAssessmentTemplateFields")]
+    partial class AddedCompleteAndSaveAssessmentTemplateFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,9 +38,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
 
                     b.Property<DateTime?>("AdviserVisitDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool?>("AskTheAdviserToSendYouTheirNotes")
-                        .HasColumnType("bit");
 
                     b.Property<string>("AssignedAdviserEmailAddress")
                         .HasColumnType("nvarchar(max)");
@@ -64,13 +64,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<DateTime?>("DateConflictsOfInterestWereChecked")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateNoteOfVisitSavedInSharePoint")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool?>("FindSchoolEmailAddress")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("GiveTheAdviserTheNoteOfVisitTemplate")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("HasAcceeptedTargetedSupport")

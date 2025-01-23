@@ -4,23 +4,23 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc; 
 using System.ComponentModel.DataAnnotations;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.SendIntroductoryEmail
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.CompleteAndSaveAssessmentTemplate
 {
     public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
     {
-        [BindProperty(Name = "introductory-email-sent-date", BinderType = typeof(DateInputModelBinder))]
+        [BindProperty(Name = "saved-assessemnt-template-in-sharepoint-date", BinderType = typeof(DateInputModelBinder))]
         [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-        [Display(Name = "introductory email sent")]
-        public DateTime? IntroductoryEmailSentDate { get; set; }
+        [Display(Name = "Saved assessement template")]
+        public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
-        [BindProperty(Name = "share-email-template-with-advisor")]
-        public bool? HasShareEmailTemplateWithAdvisor { get; set; }
+        [BindProperty(Name = "has-talk-to-advisor")]
+        public bool? HasTalkToAdvisor { get; set; }
 
-        [BindProperty(Name = "remind-advisor-to-copy-in-rise-team-on-email-sent")]
-        public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
+        [BindProperty(Name = "has-complete-assessment-template")]
+        public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public bool ShowError { get; set; }
 
@@ -43,7 +43,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
                 return await base.GetSupportProject(id, cancellationToken);
             }
 
-            var request = new SetSendIntroductoryEmailCommand(new SupportProjectId(id), IntroductoryEmailSentDate, HasShareEmailTemplateWithAdvisor, RemindAdvisorToCopyRiseTeamWhenSentEmail);
+            var request = new SetCompleteAndSaveAssessmentTemplateCommand(new SupportProjectId(id), SavedAssessmentTemplateInSharePointDate, HasTalkToAdvisor, HasCompleteAssessmentTemplate);
 
             var result = await mediator.Send(request, cancellationToken);
 
@@ -59,9 +59,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
         {
             await base.GetSupportProject(id, cancellationToken);
-            HasShareEmailTemplateWithAdvisor = SupportProject.HasShareEmailTemplateWithAdvisor;
-            RemindAdvisorToCopyRiseTeamWhenSentEmail = SupportProject.RemindAdvisorToCopyRiseTeamWhenSentEmail;
-            IntroductoryEmailSentDate = SupportProject.IntroductoryEmailSentDate;
+            SavedAssessmentTemplateInSharePointDate = SupportProject.SavedAssessmentTemplateInSharePointDate;
+            HasTalkToAdvisor = SupportProject.HasTalkToAdvisor;
+            HasCompleteAssessmentTemplate = SupportProject.HasCompleteAssessmentTemplate;
             return Page();
         }
     }

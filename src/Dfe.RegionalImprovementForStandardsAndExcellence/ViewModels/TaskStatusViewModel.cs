@@ -83,7 +83,7 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
-
+    
     public static TaskListStatus SendIntroductoryEmailTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.HasShareEmailTemplateWithAdvisor.HasValue
@@ -111,6 +111,25 @@ public static class TaskStatusViewModel
         }
 
         return TaskListStatus.NotStarted;
+    }
+
+    public static TaskListStatus CompleteAndSaveAssessmentTemplateTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.SavedAssessmentTemplateInSharePointDate.HasValue
+            && supportProject.HasTalkToAdvisor.HasValue
+            && supportProject.HasCompleteAssessmentTemplate.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.SavedAssessmentTemplateInSharePointDate.HasValue
+            && !supportProject.HasTalkToAdvisor.HasValue
+            && !supportProject.HasCompleteAssessmentTemplate.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
     }
 
     public static TaskListStatus NoteOfVsistTaskListStatus(SupportProjectViewModel supportProject)

@@ -18,6 +18,9 @@ public abstract class InputTagHelperBase(IHtmlHelper htmlHelper) : TagHelper
     [HtmlAttributeName("label")]
     public string Label { get; set; }
 
+    [HtmlAttributeName("label-hint")]
+    public string LabelHint { get; set; }
+
     [HtmlAttributeName("sub-label")]
     public string SubLabel { get; set; }
 

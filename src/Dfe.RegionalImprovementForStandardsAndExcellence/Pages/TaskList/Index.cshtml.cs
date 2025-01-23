@@ -17,6 +17,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus AssignAdviserTaskListStatus { get; set; }
 
     public TaskListStatus AdviserVisitToSchoolTaskListStatus { get; set; }
+    public TaskListStatus CompleteAndSaveAssessmentTemplateTaskListStatus { get; set; }
     public TaskListStatus NoteOfVisitTaskListStatus { get; set; }
 
     public void SetErrorPage(string errorPage)
@@ -38,6 +39,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         AssignAdviserTaskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(SupportProject);
         SendIntroductoryEmailTaskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(SupportProject);
         AdviserVisitToSchoolTaskListStatus = TaskStatusViewModel.AdviserVisitToSchoolTaskListStatus(SupportProject);
+        CompleteAndSaveAssessmentTemplateTaskListStatus = TaskStatusViewModel.CompleteAndSaveAssessmentTemplateTaskListStatus(SupportProject);
         NoteOfVisitTaskListStatus = TaskStatusViewModel.NoteOfVsistTaskListStatus(SupportProject);
 
         return Page();

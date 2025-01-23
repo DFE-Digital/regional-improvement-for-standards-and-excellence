@@ -83,6 +83,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? AdviserVisitDate { get; private set; }
 
+    public DateTime? SavedAssessmentTemplateInSharePointDate { get; private set; }
+
+    public bool? HasTalkToAdvisor { get; private set; }
+
+    public bool? HasCompleteAssessmentTemplate { get; private set; }
+
+
     public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
     public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
     public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
@@ -163,6 +170,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public void SetAdviserVisitDate(DateTime? adviserVisitDate)
     {
         AdviserVisitDate = adviserVisitDate;
+    }
+
+    public void SetCompleteAndSaveAssessmentTemplate(DateTime? savedAssessmentTemplateInSharePointDate, bool? hasTalkToAdvisor, bool? hasCompleteAssessmentTemplate)
+    {
+        SavedAssessmentTemplateInSharePointDate = savedAssessmentTemplateInSharePointDate;
+        HasTalkToAdvisor = hasTalkToAdvisor;
+        HasCompleteAssessmentTemplate = hasCompleteAssessmentTemplate;
     }
 
     public void SetNoteOfVisitDetails(bool? giveTheAdviserTheNoteOfVisitTemplate,

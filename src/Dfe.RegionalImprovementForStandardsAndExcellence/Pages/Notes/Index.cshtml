@@ -59,7 +59,9 @@
                     <span class="govuk-caption-m" id="@("project-note-date-" + index)">@DisplayDate(note.CreatedOn)</span>
                     <h3 class="govuk-heading-m" id="@("project-note-date-" + index)">@note.CreatedBy.FullNameFromEmail()</h3>
                     <p class="govuk-body-m">@note.Note</p>
-                    <p class="govuk-body govuk-!-font-size-16"><a asp-page="@Links.Notes.EditNote.Page" asp-route-id="@note.SupportProjectId.Value" asp-route-noteid="@note.Id.Value">Edit note</a></p>
+                    @if(User.Identity != null && note.CreatedBy == User.Identity.Name){
+                        <p class="govuk-body govuk-!-font-size-16"><a asp-page="@Links.Notes.EditNote.Page" asp-route-id="@note.SupportProjectId.Value" asp-route-noteid="@note.Id.Value">Edit note</a></p>
+                     }
                 </div>
                 index++;
             }

@@ -87,6 +87,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
         }
 
         [Fact]
+        public void SetCompleteAndSaveAssessmentTemplate_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
+            var hasTalkToAdvisor = true;
+            var hasCompleteAssessmentTemplate = true;
+
+            // Act
+            supportProject.SetCompleteAndSaveAssessmentTemplate(
+                savedAssessmentTemplateInSharePointDate,
+                hasTalkToAdvisor,
+                hasCompleteAssessmentTemplate);
+
+            // Assert
+            supportProject.SavedAssessmentTemplateInSharePointDate.Should().Be(savedAssessmentTemplateInSharePointDate);
+            supportProject.HasTalkToAdvisor.Should().Be(hasTalkToAdvisor);
+            supportProject.HasCompleteAssessmentTemplate.Should().Be(hasCompleteAssessmentTemplate);
+            mockRepository.VerifyAll();
+        }
+        
+        [Fact]
         public void SetAdviserConflictOfInterestDetails_WithValidDetails_SetsTheCorrectProperties()
         {
             // Arrange
@@ -168,6 +190,24 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.UseTheNotificationLetterToCreateEmail.Should().Be(useTheNotificationLetterToCreateEmail);
             supportProject.AttachRiseInfoToEmail.Should().Be(attachRiseInfoToEmail);
             supportProject.ContactedTheSchoolDate.Should().Be(schoolContactedDate);
+            this.mockRepository.VerifyAll();
+        }
+        
+        [Fact]
+        
+        public void SetAdviserVisitDate_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            
+            DateTime? adviserVisitDate = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetAdviserVisitDate(
+                adviserVisitDate);
+
+            // Assert
+            supportProject.AdviserVisitDate.Should().Be(adviserVisitDate);
             this.mockRepository.VerifyAll();
         }
 

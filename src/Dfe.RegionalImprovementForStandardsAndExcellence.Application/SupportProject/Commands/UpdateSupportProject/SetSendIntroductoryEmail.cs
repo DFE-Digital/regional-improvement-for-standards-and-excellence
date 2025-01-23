@@ -2,7 +2,7 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using MediatR;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetSendIntroductoryEmail
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject
 {
     public record SetSendIntroductoryEmailCommand(
         SupportProjectId id,
