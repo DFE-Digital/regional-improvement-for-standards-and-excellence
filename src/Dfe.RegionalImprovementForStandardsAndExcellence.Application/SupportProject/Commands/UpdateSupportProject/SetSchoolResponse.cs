@@ -2,7 +2,7 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using MediatR;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.SetSchoolResponse
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject
 {
     public record SetSchoolResponseCommand(
         SupportProjectId id,

@@ -64,6 +64,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         
         public DateTime? AdviserVisitDate { get; set; }
 
+        public DateTime? SavedAssessmentTemplateInSharePointDate { get;set; }
+
+        public bool? HasTalkToAdvisor { get; set; }
+        
+        public bool? HasCompleteAssessmentTemplate { get; set; }
+
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -95,7 +101,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
                 DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
-                AdviserVisitDate = supportProjectDto.AdviserVisitDate
+                AdviserVisitDate = supportProjectDto.AdviserVisitDate,
+                SavedAssessmentTemplateInSharePointDate = supportProjectDto.SavedAssessmentTemplateInSharePointDate,
+                HasTalkToAdvisor = supportProjectDto.HasTalkToAdvisor,
+                HasCompleteAssessmentTemplate = supportProjectDto.HasCompleteAssessmentTemplate
             };
         }
     }
