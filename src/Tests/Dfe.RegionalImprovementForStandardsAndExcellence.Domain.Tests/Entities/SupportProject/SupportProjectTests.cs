@@ -170,5 +170,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.ContactedTheSchoolDate.Should().Be(schoolContactedDate);
             this.mockRepository.VerifyAll();
         }
+
+        [Fact]
+        public void SetNoteOfVisit_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? giveTheAdviserTheNoteOfVisitTemplate = false;
+            bool? askTheAdviserToSendYouTheirNotes = false;
+            DateTime? dateNoteOfVisitSavedInSharePoint = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetNoteOfVisitDetails(
+                giveTheAdviserTheNoteOfVisitTemplate,
+                askTheAdviserToSendYouTheirNotes,
+                dateNoteOfVisitSavedInSharePoint);
+
+            // Assert
+            supportProject.GiveTheAdviserTheNoteOfVisitTemplate.Should().Be(giveTheAdviserTheNoteOfVisitTemplate);
+            supportProject.AskTheAdviserToSendYouTheirNotes.Should().Be(askTheAdviserToSendYouTheirNotes);
+            supportProject.DateNoteOfVisitSavedInSharePoint.Should().Be(dateNoteOfVisitSavedInSharePoint);
+            this.mockRepository.VerifyAll();
+        }
     }
 }
