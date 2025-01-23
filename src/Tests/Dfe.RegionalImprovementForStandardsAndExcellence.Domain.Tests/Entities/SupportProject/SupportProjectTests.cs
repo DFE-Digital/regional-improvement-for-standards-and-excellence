@@ -87,6 +87,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
         }
 
         [Fact]
+        public void SetCompleteAndSaveAssessmentTemplate_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
+            var hasTalkToAdvisor = true;
+            var hasCompleteAssessmentTemplate = true;
+
+            // Act
+            supportProject.SetCompleteAndSaveAssessmentTemplate(
+                savedAssessmentTemplateInSharePointDate,
+                hasTalkToAdvisor,
+                hasCompleteAssessmentTemplate);
+
+            // Assert
+            supportProject.SavedAssessmentTemplateInSharePointDate.Should().Be(savedAssessmentTemplateInSharePointDate);
+            supportProject.HasTalkToAdvisor.Should().Be(hasTalkToAdvisor);
+            supportProject.HasCompleteAssessmentTemplate.Should().Be(hasCompleteAssessmentTemplate);
+            mockRepository.VerifyAll();
+        }
+        
+        [Fact]
         public void SetAdviserConflictOfInterestDetails_WithValidDetails_SetsTheCorrectProperties()
         {
             // Arrange

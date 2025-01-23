@@ -49,6 +49,8 @@ public static class Links
         public static readonly LinkItem AssignAnAdviser = AddLinkItem(backText: "Back", page: "/TaskList/AssignAdviser/AssignAdviser");
         public static readonly LinkItem SendIntroductoryEmail = AddLinkItem(backText: "Back", page: "/TaskList/SendIntroductoryEmail/Index");
         public static readonly LinkItem ArrangeAdviserVisitToSchool = AddLinkItem(backText: "Back", page: "/TaskList/ArrangeAdviserVisitToSchool/ArrangeAdviserVisitToSchool");
+        public static readonly LinkItem CompleteAndSaveAssessmentTemplate = AddLinkItem(backText: "Back", page: "/TaskList/CompleteAndSaveAssessmentTemplate/Index");
+        
     }
 
     public static class Notes
