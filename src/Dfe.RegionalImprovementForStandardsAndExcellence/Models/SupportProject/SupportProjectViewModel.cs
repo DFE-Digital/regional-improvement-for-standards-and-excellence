@@ -61,13 +61,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasShareEmailTemplateWithAdvisor { get; set; }
 
         public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
-        
-        public DateTime? AdviserVisitDate { get; set; }
 
-        public DateTime? SavedAssessmentTemplateInSharePointDate { get;set; }
+        public DateTime? AdviserVisitDate { get; set; }
+        public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
+        public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
+        public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
+
+        public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
         public bool? HasTalkToAdvisor { get; set; }
-        
+
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
@@ -101,10 +104,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
                 DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
-                AdviserVisitDate = supportProjectDto.AdviserVisitDate,
                 SavedAssessmentTemplateInSharePointDate = supportProjectDto.SavedAssessmentTemplateInSharePointDate,
                 HasTalkToAdvisor = supportProjectDto.HasTalkToAdvisor,
-                HasCompleteAssessmentTemplate = supportProjectDto.HasCompleteAssessmentTemplate
+                HasCompleteAssessmentTemplate = supportProjectDto.HasCompleteAssessmentTemplate,
+                AdviserVisitDate = supportProjectDto.AdviserVisitDate,
+                GiveTheAdviserTheNoteOfVisitTemplate = supportProjectDto.GiveTheAdviserTheNoteOfVisitTemplate,
+                AskTheAdviserToSendYouTheirNotes = supportProjectDto.AskTheAdviserToSendYouTheirNotes,
+                DateNoteOfVisitSavedInSharePoint = supportProjectDto.DateNoteOfVisitSavedInSharePoint
             };
         }
     }

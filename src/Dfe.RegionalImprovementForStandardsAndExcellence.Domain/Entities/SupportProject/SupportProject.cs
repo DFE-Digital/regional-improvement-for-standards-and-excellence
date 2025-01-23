@@ -80,7 +80,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasShareEmailTemplateWithAdvisor { get; private set; }
 
     public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; private set; }
-    
+
     public DateTime? AdviserVisitDate { get; private set; }
 
     public DateTime? SavedAssessmentTemplateInSharePointDate { get; private set; }
@@ -89,7 +89,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public bool? HasCompleteAssessmentTemplate { get; private set; }
 
-    public bool ShowError { get; set; }
+
+    public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
+    public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
+    public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
 
     #endregion
 
@@ -174,6 +177,15 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         SavedAssessmentTemplateInSharePointDate = savedAssessmentTemplateInSharePointDate;
         HasTalkToAdvisor = hasTalkToAdvisor;
         HasCompleteAssessmentTemplate = hasCompleteAssessmentTemplate;
+    }
+
+    public void SetNoteOfVisitDetails(bool? giveTheAdviserTheNoteOfVisitTemplate,
+                                      bool? askTheAdviserToSendYouTheirNotes,
+                                      DateTime? dateNoteOfVisitSavedInSharePoint)
+    {
+        GiveTheAdviserTheNoteOfVisitTemplate = giveTheAdviserTheNoteOfVisitTemplate;
+        AskTheAdviserToSendYouTheirNotes = askTheAdviserToSendYouTheirNotes;
+        DateNoteOfVisitSavedInSharePoint = dateNoteOfVisitSavedInSharePoint;
     }
 
     #endregion
