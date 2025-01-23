@@ -66,7 +66,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public DateTime? SavedAssessmentTemplateInSharePointDate { get;set; }
 
-        public bool? HasTalkToAdvisor { get; set; }
+        public bool? HasTalkToAdviserAboutFindings { get; set; }
         
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
@@ -103,7 +103,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
                 AdviserVisitDate = supportProjectDto.AdviserVisitDate,
                 SavedAssessmentTemplateInSharePointDate = supportProjectDto.SavedAssessmentTemplateInSharePointDate,
-                HasTalkToAdvisor = supportProjectDto.HasTalkToAdvisor,
+                HasTalkToAdviserAboutFindings = supportProjectDto.HasTalkToAdviserAboutFindings,
                 HasCompleteAssessmentTemplate = supportProjectDto.HasCompleteAssessmentTemplate
             };
         }

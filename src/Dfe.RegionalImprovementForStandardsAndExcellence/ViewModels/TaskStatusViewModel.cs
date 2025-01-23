@@ -116,14 +116,14 @@ public static class TaskStatusViewModel
     public static TaskListStatus CompleteAndSaveAssessmentTemplateTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.SavedAssessmentTemplateInSharePointDate.HasValue
-            && supportProject.HasTalkToAdvisor.HasValue
+            && supportProject.HasTalkToAdviserAboutFindings.HasValue
             && supportProject.HasCompleteAssessmentTemplate.HasValue)
         {
             return TaskListStatus.Complete;
         }
 
         if (!supportProject.SavedAssessmentTemplateInSharePointDate.HasValue
-            && !supportProject.HasTalkToAdvisor.HasValue
+            && !supportProject.HasTalkToAdviserAboutFindings.HasValue
             && !supportProject.HasCompleteAssessmentTemplate.HasValue)
         {
             return TaskListStatus.NotStarted;
