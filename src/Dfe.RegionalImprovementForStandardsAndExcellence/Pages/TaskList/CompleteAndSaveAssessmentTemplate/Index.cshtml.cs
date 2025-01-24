@@ -16,8 +16,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
         [Display(Name = "Saved assessement template")]
         public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
-        [BindProperty(Name = "has-talk-to-advisor")]
-        public bool? HasTalkToAdvisor { get; set; }
+        [BindProperty(Name = "has-talk-to-adviser")]
+        public bool? HasTalkToAdviserAboutFindings { get; set; }
 
         [BindProperty(Name = "has-complete-assessment-template")]
         public bool? HasCompleteAssessmentTemplate { get; set; }
@@ -43,7 +43,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
                 return await base.GetSupportProject(id, cancellationToken);
             }
 
-            var request = new SetCompleteAndSaveAssessmentTemplateCommand(new SupportProjectId(id), SavedAssessmentTemplateInSharePointDate, HasTalkToAdvisor, HasCompleteAssessmentTemplate);
+            var request = new SetCompleteAndSaveAssessmentTemplateCommand(new SupportProjectId(id), SavedAssessmentTemplateInSharePointDate, HasTalkToAdviserAboutFindings, HasCompleteAssessmentTemplate);
 
             var result = await mediator.Send(request, cancellationToken);
 
@@ -60,7 +60,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
         {
             await base.GetSupportProject(id, cancellationToken);
             SavedAssessmentTemplateInSharePointDate = SupportProject.SavedAssessmentTemplateInSharePointDate;
-            HasTalkToAdvisor = SupportProject.HasTalkToAdvisor;
+            HasTalkToAdviserAboutFindings = SupportProject.HasTalkToAdviserAboutFindings;
             HasCompleteAssessmentTemplate = SupportProject.HasCompleteAssessmentTemplate;
             return Page();
         }
