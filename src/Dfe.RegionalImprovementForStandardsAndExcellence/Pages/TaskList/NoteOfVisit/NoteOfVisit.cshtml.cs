@@ -19,7 +19,7 @@ public class NoteOfVisit(ISupportProjectQueryService supportProjectQueryService,
 
     [BindProperty(Name = "enter-date-note-of-visit-saved-in-sharepoint", BinderType = typeof(DateInputModelBinder))]
     [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-    [Display(Name = "date Note of Visit was saved in SharePoint")]
+    [Display(Name = "Note of Visit saved in SharePoint")]
     public DateTime? DateNoteOfVisitSavedInSharePoint { get; set; }
 
     public bool ShowError { get; set; }
