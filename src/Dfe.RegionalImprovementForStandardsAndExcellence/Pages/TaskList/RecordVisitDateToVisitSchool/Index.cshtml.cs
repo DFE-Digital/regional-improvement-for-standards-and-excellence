@@ -7,20 +7,14 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.SendIntroductoryEmail
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.RecordVisitDateToVisitSchool
 {
     public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
     {
-        [BindProperty(Name = "introductory-email-sent-date", BinderType = typeof(DateInputModelBinder))]
+        [BindProperty(Name = "school-visit-date", BinderType = typeof(DateInputModelBinder))]
         [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-        [Display(Name = "introductory email sent")]
-        public DateTime? IntroductoryEmailSentDate { get; set; }
-
-        [BindProperty(Name = "share-email-template-with-advisor")]
-        public bool? HasShareEmailTemplateWithAdvisor { get; set; }
-
-        [BindProperty(Name = "remind-advisor-to-copy-in-rise-team-on-email-sent")]
-        public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
+        [Display(Name = "School visit")]
+        public DateTime? SchoolVisitDate { get; set; }
 
         public bool ShowError { get; set; }
 
@@ -31,7 +25,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 
         string IDateValidationMessageProvider.AllMissing(string displayName)
         {
-            return $"Enter the introductory email's sent date.";
+            return $"Enter the school visit date.";
         }
 
         public async Task<IActionResult> OnPost(int id, CancellationToken cancellationToken)
@@ -43,7 +37,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
                 return await base.GetSupportProject(id, cancellationToken);
             }
 
-            var request = new SetSendIntroductoryEmailCommand(new SupportProjectId(id), IntroductoryEmailSentDate, HasShareEmailTemplateWithAdvisor, RemindAdvisorToCopyRiseTeamWhenSentEmail);
+            var request = new SetRecordVisitDateToVisitSchoolCommand(new SupportProjectId(id), SchoolVisitDate);
 
             var result = await mediator.Send(request, cancellationToken);
 
@@ -59,9 +53,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
         {
             await base.GetSupportProject(id, cancellationToken);
-            HasShareEmailTemplateWithAdvisor = SupportProject.HasShareEmailTemplateWithAdvisor;
-            RemindAdvisorToCopyRiseTeamWhenSentEmail = SupportProject.RemindAdvisorToCopyRiseTeamWhenSentEmail;
-            IntroductoryEmailSentDate = SupportProject.IntroductoryEmailSentDate;
+            SchoolVisitDate = SupportProject.SchoolVisitDate;
             return Page();
         }
     }
