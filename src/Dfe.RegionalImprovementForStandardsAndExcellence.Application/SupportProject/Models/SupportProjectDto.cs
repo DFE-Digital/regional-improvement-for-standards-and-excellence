@@ -33,6 +33,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? GiveTheAdviserTheNoteOfVisitTemplate,
         bool? AskTheAdviserToSendYouTheirNotes,
         DateTime? DateNoteOfVisitSavedInSharePoint,
+        DateTime? SchoolVisitDate,
         IEnumerable<SupportProjectNote> notes
     );
 }

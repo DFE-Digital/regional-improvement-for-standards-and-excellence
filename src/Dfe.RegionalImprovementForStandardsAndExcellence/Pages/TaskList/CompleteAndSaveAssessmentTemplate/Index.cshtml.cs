@@ -31,7 +31,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 
         string IDateValidationMessageProvider.AllMissing(string displayName)
         {
-            return $"Enter the saved school's resonpse date in SharePoint";
+            return $"Enter the saved assessment template date in SharePoint";
         }
 
         public async Task<IActionResult> OnPost(int id, CancellationToken cancellationToken)

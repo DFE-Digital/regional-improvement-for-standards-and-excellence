@@ -107,7 +107,22 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.HasCompleteAssessmentTemplate.Should().Be(hasCompleteAssessmentTemplate);
             mockRepository.VerifyAll();
         }
-        
+
+        [Fact]
+        public void SetSchoolVisitDate_StateUnderTest_ExpectedBehavior()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            var schoolVisitDate = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetSchoolVisitDate(schoolVisitDate);
+
+            // Assert
+            supportProject.SchoolVisitDate.Should().Be(schoolVisitDate);
+            mockRepository.VerifyAll();
+        }
+
         [Fact]
         public void SetAdviserConflictOfInterestDetails_WithValidDetails_SetsTheCorrectProperties()
         {
