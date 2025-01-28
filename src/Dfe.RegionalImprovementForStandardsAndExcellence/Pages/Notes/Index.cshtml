@@ -1,13 +1,14 @@
 @page "/notes/{id:int}"
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject
-@using Dfe.Academisation.ExtensionMethods
 @using Dfe.RegionalImprovementForStandardsAndExcellence.Utils
+@using System.Globalization
 
 
 @model Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Notes.IndexModel
 @{
     string DisplayDate(DateTime date) =>
-        $"{date:dd MMMM yyyy} at {date:hh:mm tt}".ToLower();
+        $"{date:dd} {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(date.ToString("MMMM"))} {date:yyyy} at {date:hh:mm tt}".ToLower();
+
 }
 
 @section BeforeMain

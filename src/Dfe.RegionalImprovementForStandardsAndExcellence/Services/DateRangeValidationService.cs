@@ -18,7 +18,7 @@ public class DateRangeValidationService
             case DateRange.Past:
                 if (date >= DateTime.Today)
                 {
-                    return (false, $"{displayName} date must be in the past");
+                    return (false, $"You must enter a date in the past");
                 }
 
                 break;
@@ -26,7 +26,7 @@ public class DateRangeValidationService
             case DateRange.PastOrToday:
                 if (date > DateTime.Today)
                 {
-                    return (false, $"{displayName} date must be today or in the past");
+                    return (false, "You must enter today's date or a date in the past");
                 }
 
                 break;
@@ -34,7 +34,7 @@ public class DateRangeValidationService
             case DateRange.Future:
                 if (date <= DateTime.Today)
                 {
-                    return (false, $"{displayName} date must be in the future");
+                    return (false, "You must enter a date in the future");
                 }
 
                 break;
@@ -42,7 +42,7 @@ public class DateRangeValidationService
             case DateRange.FutureOrToday:
                 if (date < DateTime.Today)
                 {
-                    return (false, $"{displayName} date must be today or in the future");
+                    return (false, "You must enter today's date or a date in the future");
                 }
 
                 break;

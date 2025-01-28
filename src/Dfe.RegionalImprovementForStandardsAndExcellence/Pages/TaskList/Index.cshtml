@@ -78,6 +78,14 @@
                     <partial name="Shared/_TaskListStatus" model="@Model.AdviserVisitToSchoolTaskListStatus" />
                 </li>
                 <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordVisitDateToVisitSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="record-school-visit-date">
+                            Record date of visit to school
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordVisitDateToVisitSchoolTaskListStatus" />
+                </li>
+                <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-note-of-visit">
                         <a class="govuk-link" asp-page="@Links.TaskList.NoteOfVisit.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-note-of-visit" data-cy="note-of-visit">
                             Write and save the Note of Visit

@@ -150,4 +150,13 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+    public static TaskListStatus RecordVisitDateToVisitSchoolTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.SchoolVisitDate.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+         
+        return TaskListStatus.NotStarted;
+    }
 }

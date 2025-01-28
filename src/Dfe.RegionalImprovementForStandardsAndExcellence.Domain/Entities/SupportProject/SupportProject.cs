@@ -93,6 +93,8 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
     public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
     public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
+    public DateTime? SchoolVisitDate { get; private set; }
+    
 
     #endregion
 
@@ -177,6 +179,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         SavedAssessmentTemplateInSharePointDate = savedAssessmentTemplateInSharePointDate;
         HasTalkToAdviserAboutFindings = hasTalkToAdviserAboutFindings;
         HasCompleteAssessmentTemplate = hasCompleteAssessmentTemplate;
+    }
+
+    public void SetSchoolVisitDate(DateTime? schoolVisitDate)
+    {
+        SchoolVisitDate = schoolVisitDate;
     }
 
     public void SetNoteOfVisitDetails(bool? giveTheAdviserTheNoteOfVisitTemplate,
