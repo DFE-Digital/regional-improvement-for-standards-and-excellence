@@ -40,11 +40,13 @@
                      class="govuk-radios__conditional @(radioButton.Value == Model.Value ? "" : "govuk-radios__conditional--hidden")">
 
                     <div class="govuk-form-group @(!radioButton.Input.IsValid ? "govuk-form-group--error" : "")">
-                        <p id="@radioButton.Input.Id-msg"
-                           class="@(radioButton.Input.IsValid ? "govuk-visually-hidden" : "govuk-error-message")">
-                            @radioButton.Input.ValidationMessage
-                        </p>
-
+                        @if (string.IsNullOrWhiteSpace(radioButton.Input.ValidationMessage))
+                        {
+                            <p id="@radioButton.Input.Id-msg"
+                               class="@(radioButton.Input.IsValid ? "govuk-visually-hidden" : "govuk-error-message")">
+                                @radioButton.Input.ValidationMessage
+                            </p>
+                        } 
                         <label class="govuk-label" for="@radioButton.Input.Id">
                             @radioButton.Input.Paragraph
                         </label>
