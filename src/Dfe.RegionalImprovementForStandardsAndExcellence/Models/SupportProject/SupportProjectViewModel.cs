@@ -74,6 +74,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
+        
+        public DateTime? DateSupportOrganisationChosen  { get;  set; }
+    
+        public string? SupportOrganisationName { get;  set; }
+    
+        public string? SupportOrganisationIdNumber { get;  set; }
+
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -113,7 +120,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 GiveTheAdviserTheNoteOfVisitTemplate = supportProjectDto.GiveTheAdviserTheNoteOfVisitTemplate,
                 AskTheAdviserToSendYouTheirNotes = supportProjectDto.AskTheAdviserToSendYouTheirNotes,
                 DateNoteOfVisitSavedInSharePoint = supportProjectDto.DateNoteOfVisitSavedInSharePoint,
-                SchoolVisitDate = supportProjectDto.SchoolVisitDate
+                SchoolVisitDate = supportProjectDto.SchoolVisitDate,
+                DateSupportOrganisationChosen = supportProjectDto.DateSupportOrganisationChosen,
+                SupportOrganisationName = supportProjectDto.SupportOrganisationName,
+                SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber
             };
         }
     }

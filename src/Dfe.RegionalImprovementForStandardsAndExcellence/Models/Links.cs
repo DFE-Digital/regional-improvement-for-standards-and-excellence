@@ -52,6 +52,7 @@ public static class Links
         public static readonly LinkItem CompleteAndSaveAssessmentTemplate = AddLinkItem(backText: "Back", page: "/TaskList/CompleteAndSaveAssessmentTemplate/Index");   
         public static readonly LinkItem NoteOfVisit = AddLinkItem(backText: "Back", page: "/TaskList/NoteOfVisit/NoteOfVisit");
         public static readonly LinkItem RecordVisitDateToVisitSchool = AddLinkItem(backText: "Back", page: "/TaskList/RecordVisitDateToVisitSchool/Index");
+        public static readonly LinkItem ChoosePreferredSupportingOrganisation = AddLinkItem(backText: "Back", page: "/TaskList/ChoosePreferredSupportingOrganisation/Index");
     }
 
     public static class Notes

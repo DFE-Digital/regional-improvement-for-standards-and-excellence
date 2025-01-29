@@ -20,7 +20,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, findSchoolEmailAddress, useTheNotificationLetterToCreateEmail,
-                attachRiseInfoToEmail!, contactedTheSchoolDate, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null!));
+                attachRiseInfoToEmail!, contactedTheSchoolDate, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(supportProjectModel);
@@ -42,7 +42,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, schoolResponseDate, hasAcceeptedTargetedSupport, hasSavedSchoolResponseinSharePoint, null, null, null, null, null, null, null, null, null, null, null, null, null, null!));
+                false, null, null, null, null, null, schoolResponseDate, hasAcceeptedTargetedSupport, hasSavedSchoolResponseinSharePoint, null, null, null, null, null, null, null, null, null, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.RecordTheSchoolResponseTaskStatus(supportProjectModel);
@@ -64,7 +64,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, null, null, null, null, null, introductoryEmailSentDate, hasShareEmailTemplateWithAdvisor, remindAdvisorToCopyRiseTeamWhenSentEmail, null, null, null, null, null, null, null, null, null!));
+                false, null, null, null, null, null, null, null, null, null, null, introductoryEmailSentDate, hasShareEmailTemplateWithAdvisor, remindAdvisorToCopyRiseTeamWhenSentEmail, null, null, null, null, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(supportProjectModel);
@@ -86,7 +86,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, savedAssessmentTemplateInSharePointDate, hasTalkToAdviserAboutFindings, hasCompleteAssessmentTemplate, null, null, null, null, null!));
+                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, savedAssessmentTemplateInSharePointDate, hasTalkToAdviserAboutFindings, hasCompleteAssessmentTemplate, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.CompleteAndSaveAssessmentTemplateTaskListStatus(supportProjectModel);
@@ -108,7 +108,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, giveTheAdviserTheNoteOfVisitTemplate, askTheAdviserToSendYouTheirNotes, dateNoteOfVisitSavedInSharePoint, null, null!));
+                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, giveTheAdviserTheNoteOfVisitTemplate, askTheAdviserToSendYouTheirNotes, dateNoteOfVisitSavedInSharePoint, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.NoteOfVsistTaskListStatus(supportProjectModel);
@@ -130,7 +130,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, sendConflictOfInterestFormToProposedAdviserAndTheSchool, receiveCompletedConflictOfInterestForm, saveCompletedConflictOfinterestFormInSharePoint, dateConflictsOfInterestWereChecked, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null!));
+                false, null, sendConflictOfInterestFormToProposedAdviserAndTheSchool, receiveCompletedConflictOfInterestForm, saveCompletedConflictOfinterestFormInSharePoint, dateConflictsOfInterestWereChecked, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(supportProjectModel);
@@ -151,7 +151,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, null, null, null, dateAdviserAssigned, adviserEmailAddress, null, null, null, null, null, null, null, null, null, null, null, null!));
+                false, null, null, null, null, null, null, null, null, dateAdviserAssigned, adviserEmailAddress, null, null, null, null, null, null, null, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(supportProjectModel);
@@ -171,7 +171,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, null, null, null, null, null, null, null, null, adviserVisitDate, null, null, null, null, null, null, null, null!));
+                false, null, null, null, null, null, null, null, null, null, null, null, null, null, adviserVisitDate, null, null, null, null, null, null, null, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.AdviserVisitToSchoolTaskListStatus(supportProjectModel);
@@ -191,10 +191,31 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             // Arrange
             var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
-                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, schoolVisitDate, null!));
+                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, schoolVisitDate, null!,null,null,null));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.RecordVisitDateToVisitSchoolTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+        
+        public static readonly TheoryData<DateTime?,string?,string?, TaskListStatus> ChoosePreferredSupportOrganisationTaskListStatusCases = new()
+        {
+            {null,null,null,TaskListStatus.NotStarted},
+            {DateTime.Now,"name","Id",TaskListStatus.Complete },
+            {DateTime.Now,"name",null,TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(ChoosePreferredSupportOrganisationTaskListStatusCases))]
+        public void ChoosePreferredSupportOrganisationShouldReturnCorrectStatus(DateTime? dateSupportOrganisationChosen,string? organisationName,string? organisationId, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", null!, null!, false, false,
+                false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, dateSupportOrganisationChosen,organisationName,organisationId,null));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ChoosePreferredSupportingOrganisationTaskListStatus(supportProjectModel);
 
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);

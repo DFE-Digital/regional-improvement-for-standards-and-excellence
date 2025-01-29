@@ -95,6 +95,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
     public DateTime? SchoolVisitDate { get; private set; }
     
+    public DateTime? DateSupportOrganisationChosen  { get; private set; }
+    
+    public string? SupportOrganisationName { get; private set; }
+    
+    public string? SupportOrganisationIdNumber { get; private set; }
 
     #endregion
 
@@ -193,6 +198,15 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         GiveTheAdviserTheNoteOfVisitTemplate = giveTheAdviserTheNoteOfVisitTemplate;
         AskTheAdviserToSendYouTheirNotes = askTheAdviserToSendYouTheirNotes;
         DateNoteOfVisitSavedInSharePoint = dateNoteOfVisitSavedInSharePoint;
+    }
+    
+    public void SetChoosePreferredSupportOrganisation(DateTime? dateSupportOrganisationChosen,
+        string? supportOrganisationName,
+        string? supportOrganisationIdNumber)
+    {
+        DateSupportOrganisationChosen = dateSupportOrganisationChosen;
+        SupportOrganisationName = supportOrganisationName;
+        SupportOrganisationIdNumber =  supportOrganisationIdNumber;
     }
 
     #endregion
