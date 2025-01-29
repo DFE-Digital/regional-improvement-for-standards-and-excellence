@@ -60,7 +60,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService,E
             return await base.GetSupportProject(id, cancellationToken);
         }
         
-        var request = new SetChosePreferredSupportingOrganisationCommand(new SupportProjectId(id),  OrganisationName ,IdNumber,DateSupportOrganisationChosen );
+        var request = new SetChoosePreferredSupportingOrganisationCommand(new SupportProjectId(id),  OrganisationName ,IdNumber,DateSupportOrganisationChosen );
 
         var result = await mediator.Send(request, cancellationToken);
        

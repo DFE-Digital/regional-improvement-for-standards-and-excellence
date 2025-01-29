@@ -25,14 +25,14 @@ public class SetChoosePreferredSupportingOrganisationTests
     public async Task Handle_ValidCommand_UpdatesSupportProject()
     {
         // Arrange
-        var command = new SetChosePreferredSupportingOrganisationCommand(
+        var command = new SetChoosePreferredSupportingOrganisationCommand(
             _mockSupportProject.Id,
             "Org",
             "1223a",
             DateTime.Now
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-        var setChosePreferredSupportingOrganisationHandler = new SetChosePreferredSupportingOrganisation.SetChosePreferredSupportingOrganisationHandler(_mockSupportProjectRepository.Object);
+        var setChosePreferredSupportingOrganisationHandler = new SetChoosePreferredSupportingOrganisation.SetChoosePreferredSupportingOrganisationHandler(_mockSupportProjectRepository.Object);
 
         // Act
         var result = await setChosePreferredSupportingOrganisationHandler.Handle(command, _cancellationToken);
@@ -46,14 +46,14 @@ public class SetChoosePreferredSupportingOrganisationTests
     public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
     {
         // Arrange
-        var command = new SetChosePreferredSupportingOrganisationCommand(
+        var command = new SetChoosePreferredSupportingOrganisationCommand(
             _mockSupportProject.Id,
             null,
            null,
            null
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-        var setChosePreferredSupportingOrganisationHandler = new SetChosePreferredSupportingOrganisation.SetChosePreferredSupportingOrganisationHandler(_mockSupportProjectRepository.Object);
+        var setChosePreferredSupportingOrganisationHandler = new SetChoosePreferredSupportingOrganisation.SetChoosePreferredSupportingOrganisationHandler(_mockSupportProjectRepository.Object);
 
         // Act
         var result = await setChosePreferredSupportingOrganisationHandler.Handle(command, _cancellationToken);
@@ -67,14 +67,14 @@ public class SetChoosePreferredSupportingOrganisationTests
     public async Task Handle_ProjectNotFound_ReturnsFalse()
     {
         // Arrange
-        var command = new SetChosePreferredSupportingOrganisationCommand(
+        var command = new SetChoosePreferredSupportingOrganisationCommand(
             _mockSupportProject.Id,
             "Org",
             "1223a",
             DateTime.Now
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-        var setChosePreferredSupportingOrganisationHandler = new SetChosePreferredSupportingOrganisation.SetChosePreferredSupportingOrganisationHandler(_mockSupportProjectRepository.Object);
+        var setChosePreferredSupportingOrganisationHandler = new SetChoosePreferredSupportingOrganisation.SetChoosePreferredSupportingOrganisationHandler(_mockSupportProjectRepository.Object);
 
         // Act
         var result = await setChosePreferredSupportingOrganisationHandler.Handle(command, _cancellationToken);

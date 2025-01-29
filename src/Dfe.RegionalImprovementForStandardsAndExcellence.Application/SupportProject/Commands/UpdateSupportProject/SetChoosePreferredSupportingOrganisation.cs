@@ -6,20 +6,20 @@ using MediatR;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 
 
-public record SetChosePreferredSupportingOrganisationCommand(
+public record SetChoosePreferredSupportingOrganisationCommand(
     SupportProjectId SupportProjectId,
     string? organisationName ,
     string? iDNumber,
     DateTime? dateSupportOrganisationChosen
 ) : IRequest<bool>;
-public class SetChosePreferredSupportingOrganisation
+public class SetChoosePreferredSupportingOrganisation
 {
 
 
-    public class SetChosePreferredSupportingOrganisationHandler(ISupportProjectRepository supportProjectRepository)
-        : IRequestHandler<SetChosePreferredSupportingOrganisationCommand, bool>
+    public class SetChoosePreferredSupportingOrganisationHandler(ISupportProjectRepository supportProjectRepository)
+        : IRequestHandler<SetChoosePreferredSupportingOrganisationCommand, bool>
     {
-        public async Task<bool> Handle(SetChosePreferredSupportingOrganisationCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(SetChoosePreferredSupportingOrganisationCommand request, CancellationToken cancellationToken)
         {
             var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
 
