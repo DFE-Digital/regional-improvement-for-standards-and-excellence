@@ -8,7 +8,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.Public
 [AllowAnonymous]
 public class CookiePreferences(ILogger<CookiePreferences> logger) : PageModel
 {
-    private readonly string[] CONSENT_COOKIE_NAMES = [".ManageAnAcademyConversion.Consent", ".ManageAnAcademyTransfer.Consent"];
+    private readonly string[] CONSENT_COOKIE_NAMES = [".ManageSchoolImprovement.Consent", ".ManageSchoolImprovement.Consent"];
     public bool? Consent { get; set; }
     public bool PreferencesSet { get; set; }
     public string ReturnPath { get; set; }
