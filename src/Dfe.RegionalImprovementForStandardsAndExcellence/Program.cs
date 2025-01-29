@@ -1,16 +1,16 @@
-using Microsoft.AspNetCore.CookiePolicy;
 using Dfe.Academisation.CorrelationIdMiddleware;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Authorization;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Security;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.AzureAd;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.Http;
-using Microsoft.Identity.Web;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.HttpOverrides;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Authorization;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Security;
+using Microsoft.Identity.Web;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,14 +31,14 @@ builder.Services.AddHttpClient(DfeHttpClientFactory.AcademiesClientName, (sp, cl
     var academiesApiSection = config.GetSection("AcademiesApi");
     client.BaseAddress = new Uri(academiesApiSection["Url"]);
     client.DefaultRequestHeaders.Add("ApiKey", academiesApiSection["ApiKey"]);
-    client.DefaultRequestHeaders.Add("User-Agent", "RISE/1.0");
+    client.DefaultRequestHeaders.Add("User-Agent", "ManageSchoolImprovement/1.0");
 
 });
 
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = new TimeSpan(10000);
-    options.Cookie.Name = ".RISE.Session";
+    options.Cookie.Name = ".ManageSchoolImprovement.Session";
     options.Cookie.IsEssential = true;
     options.Cookie.HttpOnly = true;
 
@@ -95,7 +95,7 @@ builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefa
    options =>
    {
        options.AccessDeniedPath = "/access-denied";
-       options.Cookie.Name = ".RISE.Login";
+       options.Cookie.Name = ".ManageSchoolImprovement.Login";
        options.Cookie.HttpOnly = true;
        options.Cookie.IsEssential = true;
        options.ExpireTimeSpan = _authenticationExpiration;
