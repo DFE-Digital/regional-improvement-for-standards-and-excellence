@@ -34,6 +34,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? AskTheAdviserToSendYouTheirNotes,
         DateTime? DateNoteOfVisitSavedInSharePoint,
         DateTime? SchoolVisitDate,
+        DateTime? RegionalDirectorDecisionDate,
+        bool? HasConfirmedSchoolGetTargetSupport,
+        string? DisapprovingTargetedSupportNotes,
         IEnumerable<SupportProjectNote> notes
     );
 }
