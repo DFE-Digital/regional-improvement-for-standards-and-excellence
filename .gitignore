@@ -21,6 +21,10 @@ BuildOutput/
 *.iws
 .idea/
 
+# Environment variables
+.env
+.env.*
+
 # Visual Studio-specific
 .vs/
 
