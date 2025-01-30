@@ -89,12 +89,25 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public bool? HasCompleteAssessmentTemplate { get; private set; }
 
-
     public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
+
     public bool? AskTheAdviserToSendYouTheirNotes { get; private set; }
+
     public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
+
     public DateTime? SchoolVisitDate { get; private set; }
     
+    public DateTime? DateSupportOrganisationChosen  { get; private set; }
+    
+    public string? SupportOrganisationName { get; private set; }
+    
+    public string? SupportOrganisationIdNumber { get; private set; }
+
+    public DateTime? RegionalDirectorDecisionDate { get; private set; }
+
+    public bool? HasConfirmedSchoolGetTargetSupport { get; private set; }
+
+    public string? DisapprovingTargetedSupportNotes { get; private set; }
 
     #endregion
 
@@ -193,6 +206,22 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         GiveTheAdviserTheNoteOfVisitTemplate = giveTheAdviserTheNoteOfVisitTemplate;
         AskTheAdviserToSendYouTheirNotes = askTheAdviserToSendYouTheirNotes;
         DateNoteOfVisitSavedInSharePoint = dateNoteOfVisitSavedInSharePoint;
+    }
+    
+    public void SetChoosePreferredSupportOrganisation(DateTime? dateSupportOrganisationChosen,
+        string? supportOrganisationName,
+        string? supportOrganisationIdNumber)
+    {
+        DateSupportOrganisationChosen = dateSupportOrganisationChosen;
+        SupportOrganisationName = supportOrganisationName;
+        SupportOrganisationIdNumber =  supportOrganisationIdNumber;
+    }
+
+    public void SetRecordSupportDecision(DateTime? regionalDirectorDecisionDate, bool? hasConfirmedSchoolGetTargetSupport, string? disapprovingTargetedSupportNotes)
+    {
+        RegionalDirectorDecisionDate = regionalDirectorDecisionDate;
+        HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
+        DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
     }
 
     #endregion

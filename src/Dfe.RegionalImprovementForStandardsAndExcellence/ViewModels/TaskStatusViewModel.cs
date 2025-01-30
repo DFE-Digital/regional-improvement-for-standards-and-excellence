@@ -159,4 +159,41 @@ public static class TaskStatusViewModel
          
         return TaskListStatus.NotStarted;
     }
+
+    public static TaskListStatus ChoosePreferredSupportingOrganisationTaskListStatus(
+        SupportProjectViewModel supportProject)
+    {
+        if (supportProject.DateSupportOrganisationChosen.HasValue
+            && supportProject.SupportOrganisationName != null
+            && supportProject.SupportOrganisationIdNumber != null)
+        {
+            return TaskListStatus.Complete;
+        }
+        
+        if (!supportProject.DateSupportOrganisationChosen.HasValue
+            && supportProject.SupportOrganisationName == null
+            && supportProject.SupportOrganisationIdNumber == null)
+        {
+            return TaskListStatus.NotStarted;
+        }
+        
+        return TaskListStatus.InProgress;
+    }
+    public static TaskListStatus RecordSupportDecisionTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.RegionalDirectorDecisionDate.HasValue
+            && supportProject.HasConfirmedSchoolGetTargetSupport.HasValue
+            && supportProject.HasConfirmedSchoolGetTargetSupport.Equals(true))
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.RegionalDirectorDecisionDate.HasValue
+            && !supportProject.HasConfirmedSchoolGetTargetSupport.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }

@@ -1,0 +1,54 @@
+{
+  "name": "regionalimprovementforstandardsandexcellence.cypresstests",
+  "version": "1.0.0",
+  "description": "The Cypress tests are designed to run against the front-end of the application. To set up the tests, you need to provide a configuration file named `cypress.env.json` with the following information:",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open --browser edge",
+    "cy:run": "npm run clean:reports && cypress run --browser edge",
+    "cy:smoke": "npm run clean:reports && cypress run --browser edge --spec cypress/e2e/smoke/*",
+    "cy:zap": "npm run clean:reports && cypress run --browser electron",
+    "cy:notify": "cypress-slack-reporter",
+    "clean:reports": "rm -rf cypress/reports/mocha/*.json",
+    "combine:reports": "mochawesome-merge  cypress/reports/mocha/*.json> mochareports/report.json",
+    "create:html:report": "marge  mochareports/report.json -f report -o mochareports",
+    "generate:html:report": "npm run combine:reports && npm run create:html:report",
+    "lint": "eslint .",
+    "prettier:check": "prettier . --check",
+    "prettier:write": "prettier . --write",
+    "format": "npm run prettier:write && npm run lint",
+    "format:check": "npm run prettier:check && npm run lint",
+    "cy:cache": "cypress cache clear"
+  },
+  "keywords": [
+    "e2e",
+    "regression",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/grep": "^4.0.1",
+    "@types/node": "^20.4.7",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0-alpha.10",
+    "axe-core": "^4.6.3",
+    "csv-stringify": "^6.4.0",
+    "cypress": "^13.6.6",
+    "cypress-axe": "^1.4.0",
+    "cypress-localstorage-commands": "^2.0.0",
+    "cypress-multi-reporters": "^1.5.0",
+    "cypress-slack-reporter": "^1.5.3",
+    "eslint": "^9.6.0",
+    "eslint-plugin-cypress": "^3.0.0",
+    "mocha": "^10.0.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.0.1",
+    "prettier": "^3.0.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "luxon": "^3.5.0"
+  }
+}

@@ -10,7 +10,7 @@
       if (Model.HeadingLabel)
       {
          <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="@Model.Id">
+            <label class="govuk-label govuk-label--m" for="@Model.Id">
                @Model.Label
             </label>
          </h1>
@@ -24,7 +24,7 @@
    }
    @if (showHint)
    {
-      <div id="@Model.Id-hint" class="govuk-hint">
+      <div id="@Model.Id-hint" class="govuk-hint @width">
          @Model.Hint
       </div>
    }

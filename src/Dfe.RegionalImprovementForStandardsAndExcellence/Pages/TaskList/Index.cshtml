@@ -26,7 +26,7 @@
             <ul class="app-task-list__items govuk-!-padding-left-0">
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.ContactTheSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="confirm_project_dates">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ContactTheSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="confirm_project_dates-status" data-cy="confirm_project_dates">
                             Contact the school
                         </a>
                     </span>
@@ -34,7 +34,7 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.RecordTheSchoolResponse.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="record-school-response">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordTheSchoolResponse.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-school-response-status" data-cy="record-school-response">
                             Record the School's Response
                         </a>
                     </span>
@@ -42,7 +42,7 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.CheckPotentialAdviserConflictsOfInterest.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="CheckPotentialAdviserConflictsOfInterest">
+                        <a class="govuk-link" asp-page="@Links.TaskList.CheckPotentialAdviserConflictsOfInterest.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="chck-potential-adviser-coi-status" data-cy="CheckPotentialAdviserConflictsOfInterest">
                             Check potential adviser conflicts of interest
                         </a>
                     </span>
@@ -50,7 +50,7 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="AssignAdviser">
+                        <a class="govuk-link" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="assign-adviser-status" data-cy="AssignAdviser">
                             Assign an adviser
                         </a>
                     </span>
@@ -63,7 +63,7 @@
             <ul class="app-task-list__items govuk-!-padding-left-0">
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.SendIntroductoryEmail.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="send-introductory-email-request-improvement-plan">
+                        <a class="govuk-link" asp-page="@Links.TaskList.SendIntroductoryEmail.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="send-introductory-email-request-improvement-plan-status" data-cy="send-introductory-email-request-improvement-plan">
                             Send introductory email
                         </a>
                     </span>
@@ -71,7 +71,7 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.ArrangeAdviserVisitToSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="adviser-school-visit">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ArrangeAdviserVisitToSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="adviser-school-visit-status" data-cy="adviser-school-visit">
                             Arrange adviser visit to school
                         </a>
                     </span>
@@ -79,7 +79,7 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.RecordVisitDateToVisitSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="record-school-visit-date">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordVisitDateToVisitSchool.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-school-visit-date" data-cy="record-school-visit-date">
                             Record date of visit to school
                         </a>
                     </span>
@@ -95,13 +95,34 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.CompleteAndSaveAssessmentTemplate.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="complate-save-assessment-template">
+                        <a class="govuk-link" asp-page="@Links.TaskList.CompleteAndSaveAssessmentTemplate.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="complate-save-assessment-template-status" data-cy="complate-save-assessment-template">
                             Complete and save the assessment template
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.CompleteAndSaveAssessmentTemplateTaskListStatus" />
                 </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordSupportDecision.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-support-decision-status" data-cy="record-support-decision">
+                            Record support decision
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordSupportDecisionTaskListStatus" />
+                </li>
             </ul>
         </div>
-    </div>
+        <h3 class="app-task-list__section govuk-!-margin-top-8">Find possible supporting organisation</h3>
+        <div class="app-task-list">
+            <ul class="app-task-list__items govuk-!-padding-left-0">
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ChoosePreferredSupportingOrganisation.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="choose-preferred-supporting-organisation">
+                            Choose preferred supporting organisation
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ChosePreferredSupportingOrganisationTaskListStatus"/>
+                </li>
+            </ul>
+            </div>
+        </div>
 </div>

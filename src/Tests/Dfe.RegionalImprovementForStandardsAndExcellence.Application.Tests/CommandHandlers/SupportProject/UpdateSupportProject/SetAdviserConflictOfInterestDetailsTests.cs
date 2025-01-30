@@ -58,13 +58,7 @@ public class SetAdviserConflictOfInterestDetailsTests
     [Fact]
     public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
     {
-        // Arrange
-        // Arrange
-        bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = true;
-        bool? receiveCompletedConflictOfInterestForm = true;
-        bool? saveCompletedConflictOfinterestFormInSharePoint = true;
-        DateTime? dateConflictsOfInterestWereChecked = DateTime.UtcNow;
-
+        // Arrange 
         var command = new SetAdviserConflictOfInterestDetailsCommand(
             _mockSupportProject.Id,
             null, null, null, null

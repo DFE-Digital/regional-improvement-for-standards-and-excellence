@@ -205,7 +205,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.UseTheNotificationLetterToCreateEmail.Should().Be(useTheNotificationLetterToCreateEmail);
             supportProject.AttachRiseInfoToEmail.Should().Be(attachRiseInfoToEmail);
             supportProject.ContactedTheSchoolDate.Should().Be(schoolContactedDate);
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
         }
         
         [Fact]
@@ -246,6 +246,74 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.GiveTheAdviserTheNoteOfVisitTemplate.Should().Be(giveTheAdviserTheNoteOfVisitTemplate);
             supportProject.AskTheAdviserToSendYouTheirNotes.Should().Be(askTheAdviserToSendYouTheirNotes);
             supportProject.DateNoteOfVisitSavedInSharePoint.Should().Be(dateNoteOfVisitSavedInSharePoint);
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetRecordSupportDecision_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasConfirmedSchoolGetTargetSupport = false;
+            DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
+            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordSupportDecision(
+                regionalDirectorDecisionDate,
+                hasConfirmedSchoolGetTargetSupport,
+                disapprovingTargetedSupportNotes);
+
+            // Assert
+            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
+            supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
+            mockRepository.VerifyAll();
+        }
+        [Fact]
+        public void SetRecordSupportDecision_RemovesNotes_OnConfirmingTargetSupport()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasConfirmedSchoolGetTargetSupport = true;
+            DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
+            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordSupportDecision(
+                regionalDirectorDecisionDate,
+                hasConfirmedSchoolGetTargetSupport,
+                disapprovingTargetedSupportNotes);
+
+            // Assert
+            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
+            supportProject.DisapprovingTargetedSupportNotes.Should().BeNull();
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetChoosePreferredSupportOrganisation_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateSupportOrganisationChosen = DateTime.UtcNow;
+            string? supportOrgansiationName = "name";
+            string? supportOrganisationId = "1234a";
+
+            // Act
+            supportProject.SetChoosePreferredSupportOrganisation(
+                dateSupportOrganisationChosen,
+                supportOrgansiationName,
+                supportOrganisationId);
+
+            // Assert
+            supportProject.DateSupportOrganisationChosen.Should().Be(dateSupportOrganisationChosen);
+            supportProject.SupportOrganisationName.Should().Be(supportOrgansiationName);
+            supportProject.SupportOrganisationIdNumber.Should().Be(supportOrganisationId);
             this.mockRepository.VerifyAll();
         }
     }
