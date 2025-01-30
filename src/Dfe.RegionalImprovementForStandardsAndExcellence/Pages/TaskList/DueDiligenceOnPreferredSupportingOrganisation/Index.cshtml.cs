@@ -5,7 +5,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserConflictOfInterestDetails;
+using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetDueDiligenceOnPreferredSupportingOrganisationDetails;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.DueDiligenceOnPreferredSupportingOrganisation;
 
@@ -47,13 +47,12 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     {
         await base.GetSupportProject(id, cancellationToken);
 
-        SendConflictOfInterestFormToProposedAdviserAndTheSchool = SupportProject.SendConflictOfInterestFormToProposedAdviserAndTheSchool;
-
-        ReceiveCompletedConflictOfInterestForm = SupportProject.ReceiveCompletedConflictOfInterestForm;
-
-        CheckTheOrganisationHasAVendorAccount = SupportProject.SaveCompletedConflictOfinterestFormInSharePoint;
-
-        DateDueDiligenceCompleted = SupportProject.DateConflictsOfInterestWereChecked;
+        CheckOrganisationHasCapacityAndWillingToProvideSupport = SupportProject.CheckOrganisationHasCapacityAndWillingToProvideSupport;
+        CheckChoiceWithTrustRelationshipManagerOrLaLead = SupportProject.CheckChoiceWithTrustRelationshipManagerOrLaLead;
+        DiscussChoiceWithSfso = SupportProject.DiscussChoiceWithSfso;
+        CheckFinancialConcernsAtSupportingOrganisation = SupportProject.CheckFinancialConcernsAtSupportingOrganisation;
+        CheckTheOrganisationHasAVendorAccount = SupportProject.CheckTheOrganisationHasAVendorAccount;
+        DateDueDiligenceCompleted = SupportProject.DateDueDiligenceCompleted;
 
         return Page();
     }
@@ -67,7 +66,14 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
             return await base.GetSupportProject(id, cancellationToken);
         }
 
-        var request = new SetAdviserConflictOfInterestDetailsCommand(new SupportProjectId(id), SendConflictOfInterestFormToProposedAdviserAndTheSchool, ReceiveCompletedConflictOfInterestForm, CheckTheOrganisationHasAVendorAccount, DateDueDiligenceCompleted);
+        var request = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommand(
+            new SupportProjectId(id),
+            CheckOrganisationHasCapacityAndWillingToProvideSupport,
+            CheckChoiceWithTrustRelationshipManagerOrLaLead,
+            DiscussChoiceWithSfso,
+            CheckFinancialConcernsAtSupportingOrganisation,
+            CheckTheOrganisationHasAVendorAccount,
+            DateDueDiligenceCompleted);
 
         var result = await mediator.Send(request, cancellationToken);
 

@@ -109,6 +109,16 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public string? DisapprovingTargetedSupportNotes { get; private set; }
 
+
+    public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
+
+    public bool? CheckChoiceWithTrustRelationshipManagerOrLaLead { get; set; }
+
+    public bool? DiscussChoiceWithSfso { get; set; }
+    public bool? CheckFinancialConcernsAtSupportingOrganisation { get; set; }
+    public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
+    public DateTime? DateDueDiligenceCompleted { get; set; }
+
     #endregion
 
     public static SupportProject Create(
