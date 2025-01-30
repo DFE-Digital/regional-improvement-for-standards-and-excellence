@@ -69,7 +69,7 @@ jobs:
         with:
           browser: ${{ matrix.browser }}
           working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
-          wait-on: ${{ secrets.AZURE_ENDPOINT }}
+          wait-on: ${{ secrets.AZURE_WEB_ENDPOINT }}
           install: false
 
       - name: Run (test)
@@ -84,7 +84,7 @@ jobs:
         with:
           browser: ${{ matrix.browser }}
           working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
-          wait-on: ${{ secrets.AZURE_ENDPOINT }}
+          wait-on: ${{ secrets.AZURE_WEB_ENDPOINT }}
           spec: cypress/e2e/smoke/*
           install: false
 

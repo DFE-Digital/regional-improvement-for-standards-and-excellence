@@ -7,6 +7,18 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: false,
   retries: 1,
+  userAgent: 'RegionalImprovementForStandardsAndExcellence/1.0 Cypress',
+  reporter: "cypress-multi-reporters",
+  reporterOptions: {
+      reporterEnabled: "mochawesome",
+      mochawesomeReporterOptions: {
+          reportDir: "cypress/reports/mocha",
+          quite: true,
+          overwrite: false,
+          html: false,
+          json: true,
+      },
+  },
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
