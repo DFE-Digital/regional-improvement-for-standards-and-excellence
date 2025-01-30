@@ -221,7 +221,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         RegionalDirectorDecisionDate = regionalDirectorDecisionDate;
         HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
-        DisapprovingTargetedSupportNotes = disapprovingTargetedSupportNotes;
+        DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
     }
 
     #endregion

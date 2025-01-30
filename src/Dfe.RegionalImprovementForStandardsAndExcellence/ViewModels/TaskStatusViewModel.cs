@@ -182,7 +182,8 @@ public static class TaskStatusViewModel
     public static TaskListStatus RecordSupportDecisionTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.RegionalDirectorDecisionDate.HasValue
-            && supportProject.HasConfirmedSchoolGetTargetSupport.HasValue)
+            && supportProject.HasConfirmedSchoolGetTargetSupport.HasValue
+            && supportProject.HasConfirmedSchoolGetTargetSupport.Equals(true))
         {
             return TaskListStatus.Complete;
         }

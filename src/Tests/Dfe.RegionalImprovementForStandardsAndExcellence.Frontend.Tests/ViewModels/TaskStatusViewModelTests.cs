@@ -203,7 +203,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         {
             { null, null, null, TaskListStatus.NotStarted },
             { DateTime.Now, true, null, TaskListStatus.Complete },
-            { DateTime.Now, false, "Notes", TaskListStatus.Complete }
+            { DateTime.Now, false, "Notes", TaskListStatus.InProgress }
         };
 
         [Theory, MemberData(nameof(RecordSupportDecisionTaskListStatusCases))]
