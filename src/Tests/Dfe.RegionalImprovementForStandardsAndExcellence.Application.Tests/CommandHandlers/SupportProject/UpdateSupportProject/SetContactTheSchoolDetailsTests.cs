@@ -54,11 +54,6 @@ public class SetContactTheSchoolDetailsTests
     public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
     {
         // Arrange
-        bool? schoolEmailAddressFound =  true;
-        bool? useTheNotificationLetterToCreateEmail = true; 
-        bool? attachRiseInfoToEmail = true;
-        DateTime? schoolContactedDate = DateTime.UtcNow;
-
         var command = new SetContactTheSchoolDetailsCommand(
             _mockSupportProject.Id,
             null,

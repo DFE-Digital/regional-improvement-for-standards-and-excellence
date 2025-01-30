@@ -271,7 +271,29 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
             mockRepository.VerifyAll();
         }
-        
+        [Fact]
+        public void SetRecordSupportDecision_RemovesNotes_OnConfirmingTargetSupport()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasConfirmedSchoolGetTargetSupport = true;
+            DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
+            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordSupportDecision(
+                regionalDirectorDecisionDate,
+                hasConfirmedSchoolGetTargetSupport,
+                disapprovingTargetedSupportNotes);
+
+            // Assert
+            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
+            supportProject.DisapprovingTargetedSupportNotes.Should().BeNull();
+            mockRepository.VerifyAll();
+        }
+
         [Fact]
         public void SetChoosePreferredSupportOrganisation_WithValidDetails_SetsTheCorrectProperties()
         {
