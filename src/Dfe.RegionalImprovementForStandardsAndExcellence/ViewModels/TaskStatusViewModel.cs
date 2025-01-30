@@ -179,4 +179,20 @@ public static class TaskStatusViewModel
         
         return TaskListStatus.InProgress;
     }
+    public static TaskListStatus RecordSupportDecisionTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.RegionalDirectorDecisionDate.HasValue
+            && supportProject.HasConfirmedSchoolGetTargetSupport.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.RegionalDirectorDecisionDate.HasValue
+            && !supportProject.HasConfirmedSchoolGetTargetSupport.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }

@@ -74,6 +74,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
+        public bool? HasConfirmedSchoolGetTargetSupport { get;set; }
+        public DateTime? RegionalDirectorDecisionDate { get; set; }
+        public string? DisapprovingTargetedSupportNotes { get; set; }
         
         public DateTime? DateSupportOrganisationChosen  { get;  set; }
     
@@ -123,7 +126,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 SchoolVisitDate = supportProjectDto.SchoolVisitDate,
                 DateSupportOrganisationChosen = supportProjectDto.DateSupportOrganisationChosen,
                 SupportOrganisationName = supportProjectDto.SupportOrganisationName,
-                SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber
+                SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber,
+                RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
+                HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
+                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes
             };
         }
     }
