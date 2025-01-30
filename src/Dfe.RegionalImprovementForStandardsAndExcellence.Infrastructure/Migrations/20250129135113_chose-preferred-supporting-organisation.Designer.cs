@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250129135113_chose-preferred-supporting-organisation")]
+    partial class chosepreferredsupportingorganisation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,9 +73,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<DateTime?>("DateSupportOrganisationChosen")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DisapprovingTargetedSupportNotes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool?>("FindSchoolEmailAddress")
                         .HasColumnType("bit");
 
@@ -83,9 +83,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("bit");
 
                     b.Property<bool?>("HasCompleteAssessmentTemplate")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("HasConfirmedSchoolGetTargetSupport")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("HasSavedSchoolResponseinSharePoint")
@@ -126,9 +123,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<string>("Region")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RegionalDirectorDecisionDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool?>("RemindAdvisorToCopyRiseTeamWhenSentEmail")
                         .HasColumnType("bit");

@@ -219,6 +219,27 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
+        
+        public static readonly TheoryData<DateTime?, string?, string?, TaskListStatus> ChoosePreferredSupportingOrganisationTaskListStatusCases = new()
+        {
+            { null, null, null, TaskListStatus.NotStarted },
+            { DateTime.Now, "name", "12344f", TaskListStatus.Complete },
+            { DateTime.Now, null, "12345f", TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(ChoosePreferredSupportingOrganisationTaskListStatusCases))]
+        public void ChoosePreferredSupportingOrganisationShouldReturnCorrectStatus(DateTime? datePreferredSupportOrganisationChosen, string? supportOrganisationName,string? supportOrganisationId, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = CreateSupportProjectViewModel(dateSupportOrganisationChosen: datePreferredSupportOrganisationChosen, supportOrganisationName: supportOrganisationName,
+                supportOrganisationId: supportOrganisationId);
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ChoosePreferredSupportingOrganisationTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
 
         private static SupportProjectViewModel CreateSupportProjectViewModel(string assignedAdviserFullName = "", string assignedAdviserEmailAddress = "", bool findSchoolEmailAddress = false, bool useTheNotificationLetterToCreateEmail = false, 
             bool attachRiseInfoToEmail = false, DateTime? contactedTheSchoolDate = null, bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = null, bool? receiveCompletedConflictOfInterestForm = null, 
@@ -226,13 +247,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             bool? hasSavedSchoolResponseinSharePoint = null, DateTime? dateAdviserAssigned = null, string? adviserEmailAddress = null, DateTime? introductoryEmailSentDate = null, bool? hasShareEmailTemplateWithAdvisor = null,
             bool? remindAdvisorToCopyRiseTeamWhenSentEmail = null, DateTime? adviserVisitDate = null, DateTime? savedAssessmentTemplateInSharePointDate = null, bool? hasTalkToAdviserAboutFindings = null,
             bool? hasCompleteAssessmentTemplate = null, bool? giveTheAdviserTheNoteOfVisitTemplate = null, bool? askTheAdviserToSendYouTheirNotes = null, DateTime? dateNoteOfVisitSavedInSharePoint = null, DateTime? schoolVisitDate = null, 
-            DateTime? regionalDirectorDecisionDate = null, bool? hasConfirmedSchoolGetTargetSupport = null, string? disapprovingTargetedSupportNotes = null, IEnumerable<SupportProjectNote> notes = null!)
+            DateTime? dateSupportOrganisationChosen = null,string? supportOrganisationName = null,string? supportOrganisationId = null,DateTime? regionalDirectorDecisionDate = null, bool? hasConfirmedSchoolGetTargetSupport = null, string? disapprovingTargetedSupportNotes = null, IEnumerable<SupportProjectNote> notes = null!)
         {
             return SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", assignedAdviserFullName, assignedAdviserEmailAddress, findSchoolEmailAddress,
                 useTheNotificationLetterToCreateEmail, attachRiseInfoToEmail, contactedTheSchoolDate, sendConflictOfInterestFormToProposedAdviserAndTheSchool, receiveCompletedConflictOfInterestForm,
                 saveCompletedConflictOfinterestFormInSharePoint, dateConflictsOfInterestWereChecked, schoolResponseDate, hasAcceeptedTargetedSupport, hasSavedSchoolResponseinSharePoint, dateAdviserAssigned, adviserEmailAddress,
                 introductoryEmailSentDate, hasShareEmailTemplateWithAdvisor, remindAdvisorToCopyRiseTeamWhenSentEmail, adviserVisitDate, savedAssessmentTemplateInSharePointDate, hasTalkToAdviserAboutFindings, hasCompleteAssessmentTemplate,
-                giveTheAdviserTheNoteOfVisitTemplate, askTheAdviserToSendYouTheirNotes, dateNoteOfVisitSavedInSharePoint, schoolVisitDate, regionalDirectorDecisionDate, hasConfirmedSchoolGetTargetSupport, disapprovingTargetedSupportNotes,
+                giveTheAdviserTheNoteOfVisitTemplate, askTheAdviserToSendYouTheirNotes, dateNoteOfVisitSavedInSharePoint, schoolVisitDate, dateSupportOrganisationChosen,supportOrganisationName,supportOrganisationId,regionalDirectorDecisionDate, hasConfirmedSchoolGetTargetSupport, disapprovingTargetedSupportNotes,
                 notes));
         }
     }

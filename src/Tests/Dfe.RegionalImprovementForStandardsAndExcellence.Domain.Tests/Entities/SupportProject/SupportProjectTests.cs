@@ -271,5 +271,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
             mockRepository.VerifyAll();
         }
+        
+        [Fact]
+        public void SetChoosePreferredSupportOrganisation_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateSupportOrganisationChosen = DateTime.UtcNow;
+            string? supportOrgansiationName = "name";
+            string? supportOrganisationId = "1234a";
+
+            // Act
+            supportProject.SetChoosePreferredSupportOrganisation(
+                dateSupportOrganisationChosen,
+                supportOrgansiationName,
+                supportOrganisationId);
+
+            // Assert
+            supportProject.DateSupportOrganisationChosen.Should().Be(dateSupportOrganisationChosen);
+            supportProject.SupportOrganisationName.Should().Be(supportOrgansiationName);
+            supportProject.SupportOrganisationIdNumber.Should().Be(supportOrganisationId);
+            this.mockRepository.VerifyAll();
+        }
     }
 }

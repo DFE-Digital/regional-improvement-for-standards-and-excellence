@@ -13,8 +13,7 @@ public record SetAdviserCommand(
 
 public class SetAdviser
 {
-  
-
+    
     public class SetAdviserCommandHandler(ISupportProjectRepository supportProjectRepository)
         : IRequestHandler<SetAdviserCommand,bool>    {
 

@@ -111,5 +111,18 @@
                 </li>
             </ul>
         </div>
-    </div>
+        <h3 class="app-task-list__section govuk-!-margin-top-8">Find possible supporting organisation</h3>
+        <div class="app-task-list">
+            <ul class="app-task-list__items govuk-!-padding-left-0">
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ChoosePreferredSupportingOrganisation.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="choose-preferred-supporting-organisation">
+                            Choose preferred supporting organisation
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ChosePreferredSupportingOrganisationTaskListStatus"/>
+                </li>
+            </ul>
+            </div>
+        </div>
 </div>

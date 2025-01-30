@@ -20,6 +20,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus CompleteAndSaveAssessmentTemplateTaskListStatus { get; set; }
     public TaskListStatus NoteOfVisitTaskListStatus { get; set; }
     public TaskListStatus RecordVisitDateToVisitSchoolTaskListStatus { get; set; }
+    
+    public TaskListStatus ChosePreferredSupportingOrganisationTaskListStatus { get; set; }
     public TaskListStatus RecordSupportDecisionTaskListStatus {  get; set; }
 
     public void SetErrorPage(string errorPage)
@@ -44,6 +46,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         CompleteAndSaveAssessmentTemplateTaskListStatus = TaskStatusViewModel.CompleteAndSaveAssessmentTemplateTaskListStatus(SupportProject);
         NoteOfVisitTaskListStatus = TaskStatusViewModel.NoteOfVsistTaskListStatus(SupportProject);
         RecordVisitDateToVisitSchoolTaskListStatus = TaskStatusViewModel.RecordVisitDateToVisitSchoolTaskListStatus(SupportProject);
+        ChosePreferredSupportingOrganisationTaskListStatus =
+            TaskStatusViewModel.ChoosePreferredSupportingOrganisationTaskListStatus(SupportProject);
         RecordSupportDecisionTaskListStatus = TaskStatusViewModel.RecordSupportDecisionTaskListStatus(SupportProject);
         return Page();
     }
