@@ -21,6 +21,10 @@ BuildOutput/
 *.iws
 .idea/
 
+# Environment variables
+.env
+.env.*
+
 # Visual Studio-specific
 .vs/
 
@@ -31,6 +35,9 @@ wwwroot/**/dist/
 # Node.js dependencies
 Node/node_modules/
 Node/dist/
+
+# Node.js Tools for Visual Studio
+node_modules/
 
 # Log files
 *.log
