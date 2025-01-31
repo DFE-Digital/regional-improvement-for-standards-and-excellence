@@ -96,11 +96,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public DateTime? DateNoteOfVisitSavedInSharePoint { get; private set; }
 
     public DateTime? SchoolVisitDate { get; private set; }
-    
-    public DateTime? DateSupportOrganisationChosen  { get; private set; }
-    
+
+    public DateTime? DateSupportOrganisationChosen { get; private set; }
+
     public string? SupportOrganisationName { get; private set; }
-    
+
     public string? SupportOrganisationIdNumber { get; private set; }
 
     public DateTime? RegionalDirectorDecisionDate { get; private set; }
@@ -108,6 +108,16 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasConfirmedSchoolGetTargetSupport { get; private set; }
 
     public string? DisapprovingTargetedSupportNotes { get; private set; }
+
+
+    public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
+
+    public bool? CheckChoiceWithTrustRelationshipManagerOrLaLead { get; set; }
+
+    public bool? DiscussChoiceWithSfso { get; set; }
+    public bool? CheckFinancialConcernsAtSupportingOrganisation { get; set; }
+    public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
+    public DateTime? DateDueDiligenceCompleted { get; set; }
 
     #endregion
 
@@ -207,14 +217,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AskTheAdviserToSendYouTheirNotes = askTheAdviserToSendYouTheirNotes;
         DateNoteOfVisitSavedInSharePoint = dateNoteOfVisitSavedInSharePoint;
     }
-    
+
     public void SetChoosePreferredSupportOrganisation(DateTime? dateSupportOrganisationChosen,
         string? supportOrganisationName,
         string? supportOrganisationIdNumber)
     {
         DateSupportOrganisationChosen = dateSupportOrganisationChosen;
         SupportOrganisationName = supportOrganisationName;
-        SupportOrganisationIdNumber =  supportOrganisationIdNumber;
+        SupportOrganisationIdNumber = supportOrganisationIdNumber;
     }
 
     public void SetRecordSupportDecision(DateTime? regionalDirectorDecisionDate, bool? hasConfirmedSchoolGetTargetSupport, string? disapprovingTargetedSupportNotes)
@@ -222,6 +232,16 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         RegionalDirectorDecisionDate = regionalDirectorDecisionDate;
         HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
         DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
+    }
+
+    public void SetDueDiligenceOnPreferredSupportingOrganisationDetails(bool? checkOrganisationHasCapacityAndWillingToProvideSupport, bool? checkChoiceWithTrustRelationshipManagerOrLaLead, bool? discussChoiceWithSfso, bool? checkFinancialConcernsAtSupportingOrganisation, bool? checkTheOrganisationHasAVendorAccount, DateTime? dateDueDiligenceCompleted)
+    {
+        CheckOrganisationHasCapacityAndWillingToProvideSupport = checkOrganisationHasCapacityAndWillingToProvideSupport;
+        CheckChoiceWithTrustRelationshipManagerOrLaLead = checkChoiceWithTrustRelationshipManagerOrLaLead;
+        DiscussChoiceWithSfso = discussChoiceWithSfso;
+        CheckFinancialConcernsAtSupportingOrganisation = checkFinancialConcernsAtSupportingOrganisation;
+        CheckTheOrganisationHasAVendorAccount = checkTheOrganisationHasAVendorAccount;
+        DateDueDiligenceCompleted = dateDueDiligenceCompleted;
     }
 
     #endregion
