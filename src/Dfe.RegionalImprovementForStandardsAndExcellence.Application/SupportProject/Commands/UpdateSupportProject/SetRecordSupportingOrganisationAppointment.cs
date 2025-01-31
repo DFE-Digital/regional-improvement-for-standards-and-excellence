@@ -4,17 +4,17 @@ using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject
 {
-    public record SetRecordSupportDecisionCommand(
+    public record SetRecordSupportingOrganisationAppointmentCommand(
         SupportProjectId SupportProjectId,
-        DateTime? RegionalDirectorDecisionDate,
-        bool? HasConfirmedSchoolGetTargetSupport,
-        string? DisapprovingTargetedSupportNotes
+        DateTime? RegionalDirectorAppointmentDate,
+        bool? HasConfirmedSupportingOrgnaisationAppointment,
+        string? DisapprovingSupportingOrgnaisationAppointmentNotes
     ) : IRequest<bool>;
 
-    public class SetRecordSupportDecisionCommandHandler(ISupportProjectRepository supportProjectRepository)
-        : IRequestHandler<SetRecordSupportDecisionCommand, bool>
+    public class SetRecordSupportingOrganisationAppointmentCommandHandler(ISupportProjectRepository supportProjectRepository)
+        : IRequestHandler<SetRecordSupportingOrganisationAppointmentCommand, bool>
     {
-        public async Task<bool> Handle(SetRecordSupportDecisionCommand request,
+        public async Task<bool> Handle(SetRecordSupportingOrganisationAppointmentCommand request,
             CancellationToken cancellationToken)
         {
             var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
@@ -24,7 +24,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
                 return false;
             }
 
-            supportProject.SetRecordSupportingOrganisationAppointment(request.RegionalDirectorDecisionDate, request.HasConfirmedSchoolGetTargetSupport, request.DisapprovingTargetedSupportNotes);
+            supportProject.SetRecordSupportingOrganisationAppointment(request.RegionalDirectorAppointmentDate, request.HasConfirmedSupportingOrgnaisationAppointment, request.DisapprovingSupportingOrgnaisationAppointmentNotes);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 

@@ -1,6 +1,5 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.CreateSupportProject
@@ -12,7 +11,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string region
     ) : IRequest<SupportProjectId>;
 
-    public class CreateSupportProjectCommandHandler(ISupportProjectRepository supportProjectRepository, IDateTimeProvider _dateTimeProvider)
+    public class CreateSupportProjectCommandHandler(ISupportProjectRepository supportProjectRepository)
         : IRequestHandler<CreateSupportProjectCommand, SupportProjectId>
     {
         public async Task<SupportProjectId> Handle(CreateSupportProjectCommand request, CancellationToken cancellationToken)

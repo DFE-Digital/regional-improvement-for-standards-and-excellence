@@ -84,6 +84,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
     
         public string? SupportOrganisationIdNumber { get;  set; }
 
+        public bool? HasConfirmedSupportingOrgnaisationAppointment { get; set; }
+        public DateTime? RegionalDirectorAppointmentDate { get; set; }
+        public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -129,7 +132,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber,
                 RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
                 HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
-                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes
+                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
+                RegionalDirectorAppointmentDate = supportProjectDto.RegionalDirectorAppointmentDate,
+                HasConfirmedSupportingOrgnaisationAppointment = supportProjectDto.HasConfirmedSupportingOrgnaisationAppointment,
+                DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes
             };
         }
     }

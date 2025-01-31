@@ -228,7 +228,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         };
 
         [Theory, MemberData(nameof(ChoosePreferredSupportingOrganisationTaskListStatusCases))]
-        public void ChoosePreferredSupportingOrganisationShouldReturnCorrectStatus(DateTime? datePreferredSupportOrganisationChosen, string? supportOrganisationName,string? supportOrganisationId, TaskListStatus expectedTaskListStatus)
+        public void ChoosePreferredSupportingOrganisationShouldReturnCorrectStatus(DateTime? datePreferredSupportOrganisationChosen, string? supportOrganisationName, string? supportOrganisationId, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
             var supportProjectModel = CreateSupportProjectViewModel(dateSupportOrganisationChosen: datePreferredSupportOrganisationChosen, supportOrganisationName: supportOrganisationName,
@@ -241,20 +241,44 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
 
+        public static readonly TheoryData<DateTime?, bool?, string?, TaskListStatus> RecordSupportingDecisionTaskListStatusCases = new()
+        {
+            { null, null, null, TaskListStatus.NotStarted },
+            { DateTime.Now, true, null, TaskListStatus.Complete },
+            { DateTime.Now, false, "Notes", TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(RecordSupportingDecisionTaskListStatusCases))]
+        public void RecordSupportingOrganisationAppointmentTaskListStatusShouldReturnCorrectStatus(DateTime? regionalDirectorAppointmentDate, bool? hasConfirmedSupportingOrgnaisationAppointment, string? disapprovingSupportingOrgnaisationAppointmentNotes, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = CreateSupportProjectViewModel(regionalDirectorAppointmentDate: regionalDirectorAppointmentDate, hasConfirmedSupportingOrgnaisationAppointment: hasConfirmedSupportingOrgnaisationAppointment,
+                disapprovingSupportingOrgnaisationAppointmentNotes: disapprovingSupportingOrgnaisationAppointmentNotes);
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.SetRecordSupportingOrganisationAppointment(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+
         private static SupportProjectViewModel CreateSupportProjectViewModel(string assignedAdviserFullName = "", string assignedAdviserEmailAddress = "", bool findSchoolEmailAddress = false, bool useTheNotificationLetterToCreateEmail = false, 
             bool attachRiseInfoToEmail = false, DateTime? contactedTheSchoolDate = null, bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = null, bool? receiveCompletedConflictOfInterestForm = null, 
             bool? saveCompletedConflictOfinterestFormInSharePoint = null, DateTime? dateConflictsOfInterestWereChecked = null, DateTime? schoolResponseDate = null, bool? hasAcceeptedTargetedSupport = null,
             bool? hasSavedSchoolResponseinSharePoint = null, DateTime? dateAdviserAssigned = null, string? adviserEmailAddress = null, DateTime? introductoryEmailSentDate = null, bool? hasShareEmailTemplateWithAdvisor = null,
             bool? remindAdvisorToCopyRiseTeamWhenSentEmail = null, DateTime? adviserVisitDate = null, DateTime? savedAssessmentTemplateInSharePointDate = null, bool? hasTalkToAdviserAboutFindings = null,
             bool? hasCompleteAssessmentTemplate = null, bool? giveTheAdviserTheNoteOfVisitTemplate = null, bool? askTheAdviserToSendYouTheirNotes = null, DateTime? dateNoteOfVisitSavedInSharePoint = null, DateTime? schoolVisitDate = null, 
-            DateTime? dateSupportOrganisationChosen = null,string? supportOrganisationName = null,string? supportOrganisationId = null,DateTime? regionalDirectorDecisionDate = null, bool? hasConfirmedSchoolGetTargetSupport = null, string? disapprovingTargetedSupportNotes = null, IEnumerable<SupportProjectNote> notes = null!)
+            DateTime? dateSupportOrganisationChosen = null,string? supportOrganisationName = null, string? supportOrganisationId = null, DateTime? regionalDirectorDecisionDate = null, bool? hasConfirmedSchoolGetTargetSupport = null, 
+            string? disapprovingTargetedSupportNotes = null, DateTime? regionalDirectorAppointmentDate = null, bool? hasConfirmedSupportingOrgnaisationAppointment = null, string? disapprovingSupportingOrgnaisationAppointmentNotes = null,
+            IEnumerable<SupportProjectNote> notes = null!)
         {
             return SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", assignedAdviserFullName, assignedAdviserEmailAddress, findSchoolEmailAddress,
                 useTheNotificationLetterToCreateEmail, attachRiseInfoToEmail, contactedTheSchoolDate, sendConflictOfInterestFormToProposedAdviserAndTheSchool, receiveCompletedConflictOfInterestForm,
                 saveCompletedConflictOfinterestFormInSharePoint, dateConflictsOfInterestWereChecked, schoolResponseDate, hasAcceeptedTargetedSupport, hasSavedSchoolResponseinSharePoint, dateAdviserAssigned, adviserEmailAddress,
                 introductoryEmailSentDate, hasShareEmailTemplateWithAdvisor, remindAdvisorToCopyRiseTeamWhenSentEmail, adviserVisitDate, savedAssessmentTemplateInSharePointDate, hasTalkToAdviserAboutFindings, hasCompleteAssessmentTemplate,
-                giveTheAdviserTheNoteOfVisitTemplate, askTheAdviserToSendYouTheirNotes, dateNoteOfVisitSavedInSharePoint, schoolVisitDate, dateSupportOrganisationChosen,supportOrganisationName,supportOrganisationId,regionalDirectorDecisionDate, hasConfirmedSchoolGetTargetSupport, disapprovingTargetedSupportNotes,
-                notes));
+                giveTheAdviserTheNoteOfVisitTemplate, askTheAdviserToSendYouTheirNotes, dateNoteOfVisitSavedInSharePoint, schoolVisitDate, dateSupportOrganisationChosen, supportOrganisationName, supportOrganisationId,
+                regionalDirectorDecisionDate, hasConfirmedSchoolGetTargetSupport, disapprovingTargetedSupportNotes, regionalDirectorAppointmentDate, hasConfirmedSupportingOrgnaisationAppointment,
+                disapprovingSupportingOrgnaisationAppointmentNotes, notes));
         }
     }
 }

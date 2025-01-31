@@ -8,9 +8,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
 
 public record SetChoosePreferredSupportingOrganisationCommand(
     SupportProjectId SupportProjectId,
-    string? organisationName ,
-    string? iDNumber,
-    DateTime? dateSupportOrganisationChosen
+    string? OrganisationName ,
+    string? IDNumber,
+    DateTime? DateSupportOrganisationChosen
 ) : IRequest<bool>;
 public class SetChoosePreferredSupportingOrganisation
 {
@@ -28,9 +28,9 @@ public class SetChoosePreferredSupportingOrganisation
                 return false;
             }
 
-            supportProject.SetChoosePreferredSupportOrganisation(request.dateSupportOrganisationChosen,
-                request.organisationName,
-                request.iDNumber);
+            supportProject.SetChoosePreferredSupportOrganisation(request.DateSupportOrganisationChosen,
+                request.OrganisationName,
+                request.IDNumber);
 
             await supportProjectRepository.UpdateAsync(supportProject);
 

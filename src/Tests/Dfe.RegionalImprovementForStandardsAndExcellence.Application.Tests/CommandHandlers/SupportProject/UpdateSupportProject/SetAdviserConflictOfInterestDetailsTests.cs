@@ -1,11 +1,7 @@
 using AutoFixture;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using Moq;
-using System;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserConflictOfInterestDetails;
 
 
@@ -14,8 +10,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
 public class SetAdviserConflictOfInterestDetailsTests
 {
     private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
-    private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
-    private readonly Mock<IDateTimeProvider> _mockDateTimeProvider;
+    private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject; 
     private readonly CancellationToken _cancellationToken;
 
     public SetAdviserConflictOfInterestDetailsTests()
@@ -23,8 +18,7 @@ public class SetAdviserConflictOfInterestDetailsTests
 
         _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
         var fixture = new Fixture();
-        _mockSupportProject = fixture.Create<Domain.Entities.SupportProject.SupportProject>();
-        _mockDateTimeProvider = new Mock<IDateTimeProvider>();
+        _mockSupportProject = fixture.Create<Domain.Entities.SupportProject.SupportProject>(); 
         _cancellationToken = CancellationToken.None;
     }
 
@@ -45,7 +39,7 @@ public class SetAdviserConflictOfInterestDetailsTests
             dateConflictsOfInterestWereChecked
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-        var SetAdviserConflictOfInterestDetailsCommandHandler = new SetAdviserConflictOfInterestDetailsHandler(_mockSupportProjectRepository.Object, _mockDateTimeProvider.Object);
+        var SetAdviserConflictOfInterestDetailsCommandHandler = new SetAdviserConflictOfInterestDetailsHandler(_mockSupportProjectRepository.Object);
 
         // Act
         var result = await SetAdviserConflictOfInterestDetailsCommandHandler.Handle(command, _cancellationToken);
@@ -64,7 +58,7 @@ public class SetAdviserConflictOfInterestDetailsTests
             null, null, null, null
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-        var SetAdviserConflictOfInterestDetailsCommandHandler = new SetAdviserConflictOfInterestDetailsHandler(_mockSupportProjectRepository.Object, _mockDateTimeProvider.Object);
+        var SetAdviserConflictOfInterestDetailsCommandHandler = new SetAdviserConflictOfInterestDetailsHandler(_mockSupportProjectRepository.Object);
 
         // Act
         var result = await SetAdviserConflictOfInterestDetailsCommandHandler.Handle(command, _cancellationToken);
@@ -93,7 +87,7 @@ public class SetAdviserConflictOfInterestDetailsTests
         );
 
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-        var SetAdviserConflictOfInterestDetailsCommandHandler = new SetAdviserConflictOfInterestDetailsHandler(_mockSupportProjectRepository.Object, _mockDateTimeProvider.Object);
+        var SetAdviserConflictOfInterestDetailsCommandHandler = new SetAdviserConflictOfInterestDetailsHandler(_mockSupportProjectRepository.Object);
 
         // Act
         var result = await SetAdviserConflictOfInterestDetailsCommandHandler.Handle(command, _cancellationToken);
