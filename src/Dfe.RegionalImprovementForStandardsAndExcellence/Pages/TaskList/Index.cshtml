@@ -120,7 +120,15 @@
                             Choose preferred supporting organisation
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.ChosePreferredSupportingOrganisationTaskListStatus"/>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ChosePreferredSupportingOrganisationTaskListStatus" />
+                </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.DueDiligenceOnPreferredSupportingOrganisation.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="due-diligence-status" data-cy="due-diligence-on-preferred-supporting-organisation">
+                            Carry out due diligence on preferred supporting organisation
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.DueDiligenceOnPreferredSupportingOrganisationTaskListStatus" />
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">

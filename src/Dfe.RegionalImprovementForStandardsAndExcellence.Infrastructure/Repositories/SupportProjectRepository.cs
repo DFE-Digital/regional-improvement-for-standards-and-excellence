@@ -1,9 +1,9 @@
 ﻿using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Entities.SupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Repositories
 {
@@ -67,7 +67,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
             {
 
                 queryable = queryable.Where(p => p.SchoolName!.ToLower().Contains(title!.ToLower()) ||
-                p.SchoolUrn.ToString().Contains(title!, StringComparison.CurrentCultureIgnoreCase)
+                p.SchoolUrn.ToLower().Contains(title!.ToLower())
                 );
             }
 
@@ -106,13 +106,13 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Reposi
                     .ToListAsync(cancellationToken);
 
         }
-        
+
         public async Task<SupportProject> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken)
         {
             return await DefaultIncludes().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
-        
-        private IQueryable<SupportProject> DefaultIncludes() 
+
+        private IQueryable<SupportProject> DefaultIncludes()
         {
             return DbSet().Include(x => x.Notes).AsQueryable();
         }

@@ -83,7 +83,7 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
-    
+
     public static TaskListStatus SendIntroductoryEmailTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.HasShareEmailTemplateWithAdvisor.HasValue
@@ -156,7 +156,7 @@ public static class TaskStatusViewModel
         {
             return TaskListStatus.Complete;
         }
-         
+
         return TaskListStatus.NotStarted;
     }
 
@@ -169,14 +169,14 @@ public static class TaskStatusViewModel
         {
             return TaskListStatus.Complete;
         }
-        
+
         if (!supportProject.DateSupportOrganisationChosen.HasValue
             && supportProject.SupportOrganisationName == null
             && supportProject.SupportOrganisationIdNumber == null)
         {
             return TaskListStatus.NotStarted;
         }
-        
+
         return TaskListStatus.InProgress;
     }
     public static TaskListStatus RecordSupportDecisionTaskListStatus(SupportProjectViewModel supportProject)
@@ -190,6 +190,31 @@ public static class TaskStatusViewModel
 
         if (!supportProject.RegionalDirectorDecisionDate.HasValue
             && !supportProject.HasConfirmedSchoolGetTargetSupport.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
+
+    public static TaskListStatus DueDiligenceOnPreferredSupportingOrganisationTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.CheckOrganisationHasCapacityAndWillingToProvideSupport.HasValue &&
+           supportProject.CheckChoiceWithTrustRelationshipManagerOrLaLead.HasValue &&
+           supportProject.DiscussChoiceWithSfso.HasValue &&
+           supportProject.CheckFinancialConcernsAtSupportingOrganisation.HasValue &&
+           supportProject.CheckTheOrganisationHasAVendorAccount.HasValue &&
+           supportProject.DateDueDiligenceCompleted.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.CheckOrganisationHasCapacityAndWillingToProvideSupport.HasValue &&
+           !supportProject.CheckChoiceWithTrustRelationshipManagerOrLaLead.HasValue &&
+           !supportProject.DiscussChoiceWithSfso.HasValue &&
+           !supportProject.CheckFinancialConcernsAtSupportingOrganisation.HasValue &&
+           !supportProject.CheckTheOrganisationHasAVendorAccount.HasValue &&
+           !supportProject.DateDueDiligenceCompleted.HasValue)
         {
             return TaskListStatus.NotStarted;
         }

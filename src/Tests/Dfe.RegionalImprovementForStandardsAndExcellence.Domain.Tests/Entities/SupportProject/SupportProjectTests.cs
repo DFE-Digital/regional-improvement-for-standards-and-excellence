@@ -207,14 +207,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.ContactedTheSchoolDate.Should().Be(schoolContactedDate);
             mockRepository.VerifyAll();
         }
-        
+
         [Fact]
-        
+
         public void SetAdviserVisitDate_WithValidDetails_SetsTheCorrectProperties()
         {
             // Arrange
             var supportProject = CreateSupportProject();
-            
+
             DateTime? adviserVisitDate = DateTime.UtcNow;
 
             // Act
@@ -314,6 +314,36 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DateSupportOrganisationChosen.Should().Be(dateSupportOrganisationChosen);
             supportProject.SupportOrganisationName.Should().Be(supportOrgansiationName);
             supportProject.SupportOrganisationIdNumber.Should().Be(supportOrganisationId);
+            this.mockRepository.VerifyAll();
+        }
+        [Fact]
+        public void SetDueDiligenceOnPreferredSupportingOrganisationDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? checkOrganisationHasCapacityAndWillingToProvideSupport = true;
+            bool? checkChoiceWithTrustRelationshipManagerOrLaLead = false;
+            bool? discussChoiceWithSfso = true;
+            bool? checkFinancialConcernsAtSupportingOrganisation = null;
+            bool? checkTheOrganisationHasAVendorAccount = true;
+            DateTime? dateDueDiligenceCompleted = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetDueDiligenceOnPreferredSupportingOrganisationDetails(
+                checkOrganisationHasCapacityAndWillingToProvideSupport,
+                checkChoiceWithTrustRelationshipManagerOrLaLead,
+                discussChoiceWithSfso,
+                checkFinancialConcernsAtSupportingOrganisation,
+                checkTheOrganisationHasAVendorAccount, dateDueDiligenceCompleted);
+
+            // Assert
+            supportProject.CheckOrganisationHasCapacityAndWillingToProvideSupport.Should().Be(checkOrganisationHasCapacityAndWillingToProvideSupport);
+            supportProject.CheckChoiceWithTrustRelationshipManagerOrLaLead.Should().Be(checkChoiceWithTrustRelationshipManagerOrLaLead);
+            supportProject.DiscussChoiceWithSfso.Should().Be(discussChoiceWithSfso);
+            supportProject.CheckFinancialConcernsAtSupportingOrganisation.Should().Be(checkFinancialConcernsAtSupportingOrganisation);
+            supportProject.CheckTheOrganisationHasAVendorAccount.Should().Be(checkTheOrganisationHasAVendorAccount);
+            supportProject.DateDueDiligenceCompleted.Should().Be(dateDueDiligenceCompleted);
             this.mockRepository.VerifyAll();
         }
     }

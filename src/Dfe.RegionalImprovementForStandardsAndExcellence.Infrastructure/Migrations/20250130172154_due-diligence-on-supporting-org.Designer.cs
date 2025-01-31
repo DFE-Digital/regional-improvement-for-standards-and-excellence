@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250130172154_due-diligence-on-supporting-org")]
+    partial class duediligenceonsupportingorg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,9 +86,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateSupportOrganisationChosen")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateSupportingOrganisationContactDetailsAdded")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DisapprovingTargetedSupportNotes")
@@ -181,12 +181,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SupportOrganisationName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SupportingOrganisationContactEmailAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SupportingOrganisationContactName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("UseTheNotificationLetterToCreateEmail")
