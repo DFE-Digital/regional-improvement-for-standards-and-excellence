@@ -13,10 +13,10 @@
 }
 
 
-<partial name="_ErrorSummary" />
+<partial name="_ErrorSummary"/>
 
 
-<partial name="_ProjectHeader" model="Model.SupportProject" />
+<partial name="_ProjectHeader" model="Model.SupportProject"/>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -30,7 +30,7 @@
                             Contact the school
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.ContactTheSchoolTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.ContactTheSchoolTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -38,7 +38,7 @@
                             Record the School's Response
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.RecordTheSchoolResponseTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordTheSchoolResponseTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -46,7 +46,7 @@
                             Check potential adviser conflicts of interest
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.CheckThePotentialAdviserConflictsOfInterestTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.CheckThePotentialAdviserConflictsOfInterestTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -54,7 +54,7 @@
                             Assign an adviser
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.AssignAdviserTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.AssignAdviserTaskListStatus"/>
                 </li>
             </ul>
         </div>
@@ -67,7 +67,7 @@
                             Send introductory email
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.SendIntroductoryEmailTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -75,7 +75,7 @@
                             Arrange adviser visit to school
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.AdviserVisitToSchoolTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.AdviserVisitToSchoolTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -83,7 +83,7 @@
                             Record date of visit to school
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.RecordVisitDateToVisitSchoolTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordVisitDateToVisitSchoolTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-note-of-visit">
@@ -91,7 +91,7 @@
                             Write and save the Note of Visit
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.NoteOfVisitTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.NoteOfVisitTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -99,7 +99,7 @@
                             Complete and save the assessment template
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.CompleteAndSaveAssessmentTemplateTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.CompleteAndSaveAssessmentTemplateTaskListStatus"/>
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
@@ -107,7 +107,7 @@
                             Record support decision
                         </a>
                     </span>
-                    <partial name="Shared/_TaskListStatus" model="@Model.RecordSupportDecisionTaskListStatus" />
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordSupportDecisionTaskListStatus"/>
                 </li>
             </ul>
         </div>
@@ -122,7 +122,15 @@
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.ChosePreferredSupportingOrganisationTaskListStatus"/>
                 </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.AddSupportingOrganisationContactDetails.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="add-supporting-organisation-contact-details">
+                            Add supporting organisation contact details
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ChosePreferredSupportingOrganisationTaskListStatus"/>
+                </li>
             </ul>
-            </div>
         </div>
+    </div>
 </div>

@@ -108,6 +108,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasConfirmedSchoolGetTargetSupport { get; private set; }
 
     public string? DisapprovingTargetedSupportNotes { get; private set; }
+    
+    public DateTime? DateSupportingOrganisationContactDetailsAdded { get; private set; }
+    
+    public string? SupportingOrganisationContactName { get; private set; }
+    
+    public string? SupportingOrganisationContactEmailAddress { get; private set; }
 
     #endregion
 
@@ -222,6 +228,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         RegionalDirectorDecisionDate = regionalDirectorDecisionDate;
         HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
         DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
+    }
+    
+    public void SetSupportingOrganisationContactDetails(DateTime? dateSupportingOrganisationContactDetailsAdded, string? supportingOrganisationContactName, string? supportingOrganisationContactEmailAddress)
+    {
+        DateSupportingOrganisationContactDetailsAdded = dateSupportingOrganisationContactDetailsAdded;
+        SupportingOrganisationContactName = supportingOrganisationContactName;
+        SupportingOrganisationContactEmailAddress = supportingOrganisationContactEmailAddress;
     }
 
     #endregion

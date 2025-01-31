@@ -40,6 +40,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? RegionalDirectorDecisionDate,
         bool? HasConfirmedSchoolGetTargetSupport,
         string? DisapprovingTargetedSupportNotes,
+        DateTime? dateSupportingOrganisationContactDetailsAdded,
+        string? supportingOrganisationContactName,
+        string supportingOrganisationContactEmailAddress,
         IEnumerable<SupportProjectNote> notes
     );
 }
