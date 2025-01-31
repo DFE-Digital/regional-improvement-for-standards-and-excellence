@@ -70,19 +70,31 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
         public bool? HasTalkToAdviserAboutFindings { get; set; }
-        
+
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
-        public bool? HasConfirmedSchoolGetTargetSupport { get;set; }
+        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
         public string? DisapprovingTargetedSupportNotes { get; set; }
-        
-        public DateTime? DateSupportOrganisationChosen  { get;  set; }
-    
-        public string? SupportOrganisationName { get;  set; }
-    
-        public string? SupportOrganisationIdNumber { get;  set; }
+
+        public DateTime? DateSupportOrganisationChosen { get; set; }
+
+        public string? SupportOrganisationName { get; set; }
+
+        public string? SupportOrganisationIdNumber { get; set; }
+
+        public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
+
+        public bool? CheckChoiceWithTrustRelationshipManagerOrLaLead { get; set; }
+
+        public bool? DiscussChoiceWithSfso { get; set; }
+
+        public bool? CheckFinancialConcernsAtSupportingOrganisation { get; set; }
+
+        public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
+
+        public DateTime? DateDueDiligenceCompleted { get; set; }
 
         public bool? HasConfirmedSupportingOrgnaisationAppointment { get; set; }
         public DateTime? RegionalDirectorAppointmentDate { get; set; }
@@ -133,6 +145,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
                 HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
                 DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
+                CheckOrganisationHasCapacityAndWillingToProvideSupport = supportProjectDto.CheckOrganisationHasCapacityAndWillingToProvideSupport,
+                CheckChoiceWithTrustRelationshipManagerOrLaLead = supportProjectDto.CheckChoiceWithTrustRelationshipManagerOrLaLead,
+                DiscussChoiceWithSfso = supportProjectDto.DiscussChoiceWithSfso,
+                CheckFinancialConcernsAtSupportingOrganisation = supportProjectDto.CheckFinancialConcernsAtSupportingOrganisation,
+                CheckTheOrganisationHasAVendorAccount = supportProjectDto.CheckTheOrganisationHasAVendorAccount,
+                DateDueDiligenceCompleted = supportProjectDto.DateDueDiligenceCompleted,
                 RegionalDirectorAppointmentDate = supportProjectDto.RegionalDirectorAppointmentDate,
                 HasConfirmedSupportingOrgnaisationAppointment = supportProjectDto.HasConfirmedSupportingOrgnaisationAppointment,
                 DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes
