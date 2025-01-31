@@ -241,6 +241,39 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
 
+        public static readonly TheoryData<DateTime?, bool?, bool?, bool?, bool?, bool?, TaskListStatus> DueDiligenceOnPreferredSupportingOrganisationTaskListStatusCases = new()
+        {
+            { null, null, null, null, null, null, TaskListStatus.NotStarted },
+            { DateTime.Now, true, true, true, true, true, TaskListStatus.Complete },
+            { DateTime.Now, null, true, true, true, true,  TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(DueDiligenceOnPreferredSupportingOrganisationTaskListStatusCases))]
+        public void DueDiligenceOnPreferredSupportingOrganisationShouldReturnCorrectStatus(
+         DateTime? dateDueDiligenceCompleted,
+         bool? checkOrganisationHasCapacityAndWillingToProvideSupport,
+         bool? checkChoiceWithTrustRelationshipManagerOrLaLead,
+         bool? discussChoiceWithSfso,
+         bool? checkFinancialConcernsAtSupportingOrganisation,
+         bool? checkTheOrganisationHasAVendorAccount,
+         TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = CreateSupportProjectViewModel(
+                CheckOrganisationHasCapacityAndWillingToProvideSupport: checkOrganisationHasCapacityAndWillingToProvideSupport,
+                CheckChoiceWithTrustRelationshipManagerOrLaLead: checkChoiceWithTrustRelationshipManagerOrLaLead,
+                DiscussChoiceWithSfso: discussChoiceWithSfso,
+                CheckFinancialConcernsAtSupportingOrganisation: checkFinancialConcernsAtSupportingOrganisation,
+                CheckTheOrganisationHasAVendorAccount: checkTheOrganisationHasAVendorAccount,
+                DateDueDiligenceCompleted: dateDueDiligenceCompleted);
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.DueDiligenceOnPreferredSupportingOrganisationTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+
         private static SupportProjectViewModel CreateSupportProjectViewModel(string assignedAdviserFullName = "", string assignedAdviserEmailAddress = "", bool findSchoolEmailAddress = false, bool useTheNotificationLetterToCreateEmail = false,
             bool attachRiseInfoToEmail = false, DateTime? contactedTheSchoolDate = null, bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = null, bool? receiveCompletedConflictOfInterestForm = null,
             bool? saveCompletedConflictOfinterestFormInSharePoint = null, DateTime? dateConflictsOfInterestWereChecked = null, DateTime? schoolResponseDate = null, bool? hasAcceeptedTargetedSupport = null,
