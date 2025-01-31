@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250131103349_AddedSupportOrgAppointmentFields")]
+    partial class AddedSupportOrgAppointmentFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,18 +51,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<bool?>("AttachRiseInfoToEmail")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("CheckChoiceWithTrustRelationshipManagerOrLaLead")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("CheckFinancialConcernsAtSupportingOrganisation")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("CheckOrganisationHasCapacityAndWillingToProvideSupport")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("CheckTheOrganisationHasAVendorAccount")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("ContactedTheSchoolDate")
                         .HasColumnType("datetime2");
 
@@ -76,9 +67,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<DateTime?>("DateConflictsOfInterestWereChecked")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateDueDiligenceCompleted")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime?>("DateNoteOfVisitSavedInSharePoint")
                         .HasColumnType("datetime2");
 
@@ -90,9 +78,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
 
                     b.Property<string>("DisapprovingTargetedSupportNotes")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("DiscussChoiceWithSfso")
-                        .HasColumnType("bit");
 
                     b.Property<bool?>("FindSchoolEmailAddress")
                         .HasColumnType("bit");

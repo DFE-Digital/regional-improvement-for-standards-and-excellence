@@ -46,6 +46,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? CheckFinancialConcernsAtSupportingOrganisation,
         bool? CheckTheOrganisationHasAVendorAccount,
         DateTime? DateDueDiligenceCompleted,
+        DateTime? RegionalDirectorAppointmentDate,
+        bool? HasConfirmedSupportingOrgnaisationAppointment,
+        string? DisapprovingSupportingOrgnaisationAppointmentNotes,
         IEnumerable<SupportProjectNote> notes
     );
 }

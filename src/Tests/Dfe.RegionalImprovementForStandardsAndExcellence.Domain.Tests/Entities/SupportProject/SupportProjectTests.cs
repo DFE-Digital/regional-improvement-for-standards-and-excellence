@@ -271,6 +271,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
             mockRepository.VerifyAll();
         }
+
         [Fact]
         public void SetRecordSupportDecision_RemovesNotes_OnConfirmingTargetSupport()
         {
@@ -345,6 +346,53 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.CheckTheOrganisationHasAVendorAccount.Should().Be(checkTheOrganisationHasAVendorAccount);
             supportProject.DateDueDiligenceCompleted.Should().Be(dateDueDiligenceCompleted);
             this.mockRepository.VerifyAll();
+        }
+
+
+        [Fact]
+        public void SetRecordSupportOrganisationAppointment_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasConfirmedSupportingOrgnaisationAppointment = false;
+            DateTime? regionalDirectorAppointmentDate = DateTime.UtcNow;
+            string? disapprovingSupportingOrgnaisationAppointmentNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordSupportingOrganisationAppointment(
+                regionalDirectorAppointmentDate,
+                hasConfirmedSupportingOrgnaisationAppointment,
+                disapprovingSupportingOrgnaisationAppointmentNotes);
+
+            // Assert
+            supportProject.HasConfirmedSupportingOrgnaisationAppointment.Should().Be(hasConfirmedSupportingOrgnaisationAppointment);
+            supportProject.RegionalDirectorAppointmentDate.Should().Be(regionalDirectorAppointmentDate);
+            supportProject.DisapprovingSupportingOrgnaisationAppointmentNotes.Should().Be(disapprovingSupportingOrgnaisationAppointmentNotes);
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetRecordSupportOrganisationAppointment_RemovesNotes_OnConfirmingTargetSupport()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasConfirmedSupportingOrgnaisationAppointment = true;
+            DateTime? regionalDirectorAppointmentDate = DateTime.UtcNow;
+            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordSupportingOrganisationAppointment(
+                regionalDirectorAppointmentDate,
+                hasConfirmedSupportingOrgnaisationAppointment,
+                disapprovingTargetedSupportNotes);
+
+            // Assert
+            supportProject.HasConfirmedSupportingOrgnaisationAppointment.Should().Be(hasConfirmedSupportingOrgnaisationAppointment);
+            supportProject.RegionalDirectorAppointmentDate.Should().Be(regionalDirectorAppointmentDate);
+            supportProject.DisapprovingSupportingOrgnaisationAppointmentNotes.Should().BeNull();
+            mockRepository.VerifyAll();
         }
     }
 }

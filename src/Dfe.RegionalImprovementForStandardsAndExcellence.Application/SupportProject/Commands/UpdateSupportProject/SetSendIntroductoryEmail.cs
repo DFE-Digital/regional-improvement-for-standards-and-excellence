@@ -5,7 +5,7 @@ using MediatR;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject
 {
     public record SetSendIntroductoryEmailCommand(
-        SupportProjectId id,
+        SupportProjectId SupportProjectId,
         DateTime? IntroductoryEmailSentDate,
         bool? HasShareEmailTemplateWithAdvisor,
         bool? RemindAdvisorToCopyRiseTeamWhenSentEmail
@@ -17,7 +17,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         public async Task<bool> Handle(SetSendIntroductoryEmailCommand request,
             CancellationToken cancellationToken)
         {
-            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.id, cancellationToken);
+            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
 
             if (supportProject is null)
             {

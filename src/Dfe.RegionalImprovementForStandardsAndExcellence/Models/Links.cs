@@ -55,6 +55,7 @@ public static class Links
         public static readonly LinkItem ChoosePreferredSupportingOrganisation = AddLinkItem(backText: "Back", page: "/TaskList/ChoosePreferredSupportingOrganisation/Index");
         public static readonly LinkItem RecordSupportDecision = AddLinkItem(backText: "Back", page: "/TaskList/RecordSupportDecision/Index");
         public static readonly LinkItem DueDiligenceOnPreferredSupportingOrganisation = AddLinkItem(backText: "Back", page: "/TaskList/DueDiligenceOnPreferredSupportingOrganisation/Index");
+        public static readonly LinkItem RecordSupportingOrganisationAppointment = AddLinkItem(backText: "Back", page: "/TaskList/RecordSupportingOrganisationAppointment/Index");
     }
 
     public static class Notes

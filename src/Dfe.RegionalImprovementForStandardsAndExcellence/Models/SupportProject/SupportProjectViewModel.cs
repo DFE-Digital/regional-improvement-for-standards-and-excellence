@@ -96,6 +96,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public DateTime? DateDueDiligenceCompleted { get; set; }
 
+        public bool? HasConfirmedSupportingOrgnaisationAppointment { get; set; }
+        public DateTime? RegionalDirectorAppointmentDate { get; set; }
+        public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -148,6 +151,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 CheckFinancialConcernsAtSupportingOrganisation = supportProjectDto.CheckFinancialConcernsAtSupportingOrganisation,
                 CheckTheOrganisationHasAVendorAccount = supportProjectDto.CheckTheOrganisationHasAVendorAccount,
                 DateDueDiligenceCompleted = supportProjectDto.DateDueDiligenceCompleted,
+                RegionalDirectorAppointmentDate = supportProjectDto.RegionalDirectorAppointmentDate,
+                HasConfirmedSupportingOrgnaisationAppointment = supportProjectDto.HasConfirmedSupportingOrgnaisationAppointment,
+                DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes
             };
         }
     }

@@ -1,6 +1,5 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
@@ -8,11 +7,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
 public class SetNoteOfVisitDetails
 {
     public record SetNoteOfVisitDetailsCommand(SupportProjectId SupportProjectId,
-                                               bool? giveTheAdviserTheNoteOfVisitTemplate,
-                                               bool? askTheAdviserToSendYouTheirNotes,
-                                               DateTime? dateNoteOfVisitSavedInSharePoint) : IRequest<bool>;
+                                               bool? GiveTheAdviserTheNoteOfVisitTemplate,
+                                               bool? AskTheAdviserToSendYouTheirNotes,
+                                               DateTime? DateNoteOfVisitSavedInSharePoint) : IRequest<bool>;
 
-    public class SetNoteOfVisitDetailsCommandHandler(ISupportProjectRepository supportProjectRepository, IDateTimeProvider _dateTimeProvider)
+    public class SetNoteOfVisitDetailsCommandHandler(ISupportProjectRepository supportProjectRepository)
         : IRequestHandler<SetNoteOfVisitDetailsCommand, bool>
     {
         public async Task<bool> Handle(SetNoteOfVisitDetailsCommand request, CancellationToken cancellationToken)
@@ -25,11 +24,11 @@ public class SetNoteOfVisitDetails
                 return false;
             }
 
-            supportProject.SetNoteOfVisitDetails(request.giveTheAdviserTheNoteOfVisitTemplate,
-                                                               request.askTheAdviserToSendYouTheirNotes,
-                                                               request.dateNoteOfVisitSavedInSharePoint);
+            supportProject.SetNoteOfVisitDetails(request.GiveTheAdviserTheNoteOfVisitTemplate,
+                                                               request.AskTheAdviserToSendYouTheirNotes,
+                                                               request.DateNoteOfVisitSavedInSharePoint);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return true;
         }
