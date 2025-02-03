@@ -147,7 +147,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
                 DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
                 DateSupportingOrganisationContactDetailsAdded = supportProjectDto.dateSupportingOrganisationContactDetailsAdded,
-                SupportingOrganisationContactName = supportProjectDto.SupportOrganisationName,
+                SupportingOrganisationContactName = supportProjectDto.supportingOrganisationContactName,
                 SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress
             };
         }

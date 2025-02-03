@@ -316,6 +316,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.SupportOrganisationIdNumber.Should().Be(supportOrganisationId);
             this.mockRepository.VerifyAll();
         }
+        
         [Fact]
         public void SetDueDiligenceOnPreferredSupportingOrganisationDetails_WithValidDetails_SetsTheCorrectProperties()
         {
@@ -344,6 +345,29 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.CheckFinancialConcernsAtSupportingOrganisation.Should().Be(checkFinancialConcernsAtSupportingOrganisation);
             supportProject.CheckTheOrganisationHasAVendorAccount.Should().Be(checkTheOrganisationHasAVendorAccount);
             supportProject.DateDueDiligenceCompleted.Should().Be(dateDueDiligenceCompleted);
+            this.mockRepository.VerifyAll();
+        }
+        
+        [Fact]
+        public void SetSupportingOrganisationContactDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateSupportingOrganisationContactDetailAdded = DateTime.UtcNow;
+            string? supportOrgansiationContactName = "name";
+            string? supportOrganisationContactEmailAddress = "1234a";
+
+            // Act
+            supportProject.SetSupportingOrganisationContactDetails(
+                dateSupportingOrganisationContactDetailAdded,
+                supportOrgansiationContactName,
+                supportOrganisationContactEmailAddress);
+
+            // Assert
+            supportProject.DateSupportingOrganisationContactDetailsAdded.Should().Be(dateSupportingOrganisationContactDetailAdded);
+            supportProject.SupportingOrganisationContactName.Should().Be(supportOrgansiationContactName);
+            supportProject.SupportingOrganisationContactEmailAddress.Should().Be(supportOrganisationContactEmailAddress);
             this.mockRepository.VerifyAll();
         }
     }

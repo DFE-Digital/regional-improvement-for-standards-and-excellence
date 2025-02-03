@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Queries;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Validation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,15 +15,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
 public class IndexModel(ISupportProjectQueryService supportProjectQueryService,ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService,errorService),IDateValidationMessageProvider
 {
     [BindProperty(Name = "name")]
+    [NameValidation]
     public string? Name  { get; set; }
     
+    [EmailAddress(ErrorMessage = "Email address must be in correct format")]
     [BindProperty(Name = "email-address")]
     
     public string? EmailAddress  { get; set; }
     
     public bool ShowError { get; set; }
-    
-
     
     [BindProperty(Name = "date-supporting-organisation-details-added", BinderType = typeof(DateInputModelBinder))]
     [DateValidation(Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services.DateRangeValidationService.DateRange.PastOrToday)]
@@ -42,17 +44,16 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService,E
     {
         await base.GetSupportProject(id, cancellationToken);
         
-        Name = SupportProject.SupportOrganisationName;
-        EmailAddress = SupportProject.SupportOrganisationIdNumber;
-        DateSupportingOrganisationDetailsAdded = SupportProject.DateSupportOrganisationChosen;
+        Name = SupportProject.SupportingOrganisationContactName;
+        EmailAddress = SupportProject.SupportingOrganisationContactEmailAddress;
+        DateSupportingOrganisationDetailsAdded = SupportProject.DateSupportingOrganisationContactDetailsAdded;
 
         return Page();
     }
     
     public async Task<IActionResult> OnPost(int id,CancellationToken cancellationToken)
     {
-      
-        
+
         if (!ModelState.IsValid)
         {
             _errorService.AddErrors(Request.Form.Keys, ModelState);
@@ -60,11 +61,11 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService,E
             return await base.GetSupportProject(id, cancellationToken);
         }
         
-        //var request = new SetChoosePreferredSupportingOrganisationCommand(new SupportProjectId(id),  OrganisationName ,IdNumber,DateSupportOrganisationChosen );
+        var request = new SetSupportingOrganisationContactDetailsCommand(new SupportProjectId(id),Name,EmailAddress,DateSupportingOrganisationDetailsAdded );
 
-        //var result = await mediator.Send(request, cancellationToken);
+        var result = await mediator.Send(request, cancellationToken);
        
-        if (true)
+        if (result != true)
         {
             _errorService.AddApiError();
             return await base.GetSupportProject(id, cancellationToken);

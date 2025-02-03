@@ -1,3 +1,4 @@
+using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
 using MediatR;
 
@@ -14,5 +15,25 @@ public record SetSupportingOrganisationContactDetailsCommand(
 
 public class SetSupportingOrganisationContactDetails
 {
-    
+    public class SetSupportingOrganisationContactDetailsHandler(ISupportProjectRepository supportProjectRepository)
+        : IRequestHandler<SetSupportingOrganisationContactDetailsCommand, bool>
+    {
+        public async Task<bool> Handle(SetSupportingOrganisationContactDetailsCommand request, CancellationToken cancellationToken)
+        {
+            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
+
+            if (supportProject is null)
+            {
+                return false;
+            }
+
+            supportProject.SetSupportingOrganisationContactDetails(request.dateSupportOrganisationContactDetailsAdded,
+                request.supportingOrganisationContactName,
+                request.supportingOrganisationContactEmail);
+
+            await supportProjectRepository.UpdateAsync(supportProject);
+
+            return true;
+        }
+    }
 }

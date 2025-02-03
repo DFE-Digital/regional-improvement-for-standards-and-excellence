@@ -25,6 +25,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus RecordSupportDecisionTaskListStatus { get; set; }
     public TaskListStatus DueDiligenceOnPreferredSupportingOrganisationTaskListStatus { get; set; }
 
+    public TaskListStatus SupportingOrganisationContactDetailsTaskListStatus { get; set; }
+    
     public void SetErrorPage(string errorPage)
     {
         TempData["ErrorPage"] = errorPage;
@@ -51,6 +53,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
             TaskStatusViewModel.ChoosePreferredSupportingOrganisationTaskListStatus(SupportProject);
         RecordSupportDecisionTaskListStatus = TaskStatusViewModel.RecordSupportDecisionTaskListStatus(SupportProject);
         DueDiligenceOnPreferredSupportingOrganisationTaskListStatus = TaskStatusViewModel.DueDiligenceOnPreferredSupportingOrganisationTaskListStatus(SupportProject);
+        SupportingOrganisationContactDetailsTaskListStatus =
+            TaskStatusViewModel.SupportingOrganisationContactDetailsTaskListStatus(SupportProject);
         return Page();
     }
 }
