@@ -49,6 +49,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? RegionalDirectorAppointmentDate,
         bool? HasConfirmedSupportingOrgnaisationAppointment,
         string? DisapprovingSupportingOrgnaisationAppointmentNotes,
+        DateTime? dateSupportingOrganisationContactDetailsAdded,
+        string? supportingOrganisationContactName,
+        string supportingOrganisationContactEmailAddress,
         IEnumerable<SupportProjectNote> notes
     );
 }

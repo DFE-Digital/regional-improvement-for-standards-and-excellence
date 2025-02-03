@@ -108,6 +108,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasConfirmedSchoolGetTargetSupport { get; private set; }
 
     public string? DisapprovingTargetedSupportNotes { get; private set; }
+    
+    public DateTime? DateSupportingOrganisationContactDetailsAdded { get; private set; }
+    
+    public string? SupportingOrganisationContactName { get; private set; }
+    
+    public string? SupportingOrganisationContactEmailAddress { get; private set; }
 
 
     public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
@@ -235,6 +241,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         RegionalDirectorDecisionDate = regionalDirectorDecisionDate;
         HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
         DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
+    }
+    
+    public void SetSupportingOrganisationContactDetails(DateTime? dateSupportingOrganisationContactDetailsAdded, string? supportingOrganisationContactName, string? supportingOrganisationContactEmailAddress)
+    {
+        DateSupportingOrganisationContactDetailsAdded = dateSupportingOrganisationContactDetailsAdded;
+        SupportingOrganisationContactName = supportingOrganisationContactName;
+        SupportingOrganisationContactEmailAddress = supportingOrganisationContactEmailAddress;
     }
 
     public void SetDueDiligenceOnPreferredSupportingOrganisationDetails(bool? checkOrganisationHasCapacityAndWillingToProvideSupport, bool? checkChoiceWithTrustRelationshipManagerOrLaLead, bool? discussChoiceWithSfso, bool? checkFinancialConcernsAtSupportingOrganisation, bool? checkTheOrganisationHasAVendorAccount, DateTime? dateDueDiligenceCompleted)

@@ -295,6 +295,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
         
+        
+        public static readonly TheoryData<DateTime?, string?, string?, TaskListStatus> SupportingOrganisationContactDetailsTaskListStatusCases = new()
+        {
+            { null, null, null, TaskListStatus.NotStarted },
+            { DateTime.Now, "name", "email@email.com", TaskListStatus.Complete },
+            { DateTime.Now, null, null, TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(SupportingOrganisationContactDetailsTaskListStatusCases))]
+        public void SupportingOrganisationContactDetailsTaskListStatusShouldReturnCorrectStatus(DateTime? dateSupportingOrganisationDetailsAdded, string? supportingOrganisationContactName, string? supportingOrganisationContactEmail, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = CreateSupportProjectViewModel(dateSupportingOrganisationDetailsAdded: dateSupportingOrganisationDetailsAdded, supportingOrganisationContactName: supportingOrganisationContactName,
+                supportingOrganisationContactEmail: supportingOrganisationContactEmail);
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.SupportingOrganisationContactDetailsTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+        
         private static SupportProjectViewModel CreateSupportProjectViewModel(string assignedAdviserFullName = "", string assignedAdviserEmailAddress = "", bool findSchoolEmailAddress = false, bool useTheNotificationLetterToCreateEmail = false,
             bool attachRiseInfoToEmail = false, DateTime? contactedTheSchoolDate = null, bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = null, bool? receiveCompletedConflictOfInterestForm = null,
             bool? saveCompletedConflictOfinterestFormInSharePoint = null, DateTime? dateConflictsOfInterestWereChecked = null, DateTime? schoolResponseDate = null, bool? hasAcceeptedTargetedSupport = null,
@@ -309,6 +331,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             bool? CheckTheOrganisationHasAVendorAccount = null,
             DateTime? DateDueDiligenceCompleted = null,
             DateTime? regionalDirectorAppointmentDate = null, bool? hasConfirmedSupportingOrgnaisationAppointment = null, string? disapprovingSupportingOrgnaisationAppointmentNotes = null,
+            DateTime? dateSupportingOrganisationDetailsAdded = null,
+            string? supportingOrganisationContactName = null,
+            string? supportingOrganisationContactEmail = null,
             IEnumerable<SupportProjectNote> notes = null!)
         {
             return SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", assignedAdviserFullName, assignedAdviserEmailAddress, findSchoolEmailAddress,
@@ -322,7 +347,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
                 CheckFinancialConcernsAtSupportingOrganisation,
                 CheckTheOrganisationHasAVendorAccount,
                 DateDueDiligenceCompleted,
-                regionalDirectorAppointmentDate, hasConfirmedSupportingOrgnaisationAppointment, disapprovingSupportingOrgnaisationAppointmentNotes,
+                regionalDirectorAppointmentDate, hasConfirmedSupportingOrgnaisationAppointment, disapprovingSupportingOrgnaisationAppointmentNotes,dateSupportingOrganisationDetailsAdded,supportingOrganisationContactName,supportingOrganisationContactEmail,
                 notes));
         }
     }

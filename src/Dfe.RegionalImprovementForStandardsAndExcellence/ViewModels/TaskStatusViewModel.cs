@@ -221,6 +221,26 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+    
+    public static TaskListStatus SupportingOrganisationContactDetailsTaskListStatus(
+        SupportProjectViewModel supportProject)
+    {
+        if (supportProject.DateSupportingOrganisationContactDetailsAdded.HasValue
+            && supportProject.SupportingOrganisationContactName != null
+            && supportProject.SupportingOrganisationContactEmailAddress != null)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.DateSupportingOrganisationContactDetailsAdded.HasValue
+            && supportProject.SupportingOrganisationContactName == null
+            && supportProject.SupportingOrganisationContactEmailAddress == null)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 
     public static TaskListStatus SetRecordSupportingOrganisationAppointment(SupportProjectViewModel supportProject)
     {
