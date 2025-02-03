@@ -95,6 +95,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
 
         public DateTime? DateDueDiligenceCompleted { get; set; }
+
+        public bool? HasConfirmedSupportingOrgnaisationAppointment { get; set; }
+        public DateTime? RegionalDirectorAppointmentDate { get; set; }
+        public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; set; }
+
         
         public DateTime? DateSupportingOrganisationContactDetailsAdded { get; set; }
     
@@ -146,6 +151,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
                 HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
                 DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
+                CheckOrganisationHasCapacityAndWillingToProvideSupport = supportProjectDto.CheckOrganisationHasCapacityAndWillingToProvideSupport,
+                CheckChoiceWithTrustRelationshipManagerOrLaLead = supportProjectDto.CheckChoiceWithTrustRelationshipManagerOrLaLead,
+                DiscussChoiceWithSfso = supportProjectDto.DiscussChoiceWithSfso,
+                CheckFinancialConcernsAtSupportingOrganisation = supportProjectDto.CheckFinancialConcernsAtSupportingOrganisation,
+                CheckTheOrganisationHasAVendorAccount = supportProjectDto.CheckTheOrganisationHasAVendorAccount,
+                DateDueDiligenceCompleted = supportProjectDto.DateDueDiligenceCompleted,
+                RegionalDirectorAppointmentDate = supportProjectDto.RegionalDirectorAppointmentDate,
+                HasConfirmedSupportingOrgnaisationAppointment = supportProjectDto.HasConfirmedSupportingOrgnaisationAppointment,
+                DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes,
                 DateSupportingOrganisationContactDetailsAdded = supportProjectDto.dateSupportingOrganisationContactDetailsAdded,
                 SupportingOrganisationContactName = supportProjectDto.supportingOrganisationContactName,
                 SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress

@@ -241,4 +241,23 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+
+    public static TaskListStatus SetRecordSupportingOrganisationAppointment(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.RegionalDirectorAppointmentDate.HasValue
+            && supportProject.HasConfirmedSupportingOrgnaisationAppointment.HasValue
+            && supportProject.HasConfirmedSupportingOrgnaisationAppointment.Equals(true))
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.RegionalDirectorAppointmentDate.HasValue
+            && !supportProject.HasConfirmedSupportingOrgnaisationAppointment.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
+    
 }

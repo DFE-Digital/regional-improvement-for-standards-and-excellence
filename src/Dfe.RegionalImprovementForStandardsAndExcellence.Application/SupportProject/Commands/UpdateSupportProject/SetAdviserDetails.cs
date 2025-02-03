@@ -13,7 +13,7 @@ public class SetAdviserDetails
         string? AdviserEmailAddress
     ) : IRequest<bool>;
 
-    public class SetAdviserDetailsCommandHandler(ISupportProjectRepository supportProjectRepository, IDateTimeProvider _dateTimeProvider)
+    public class SetAdviserDetailsCommandHandler(ISupportProjectRepository supportProjectRepository)
         : IRequestHandler<SetAdviserDetailsCommand, bool>
     {
         public async Task<bool> Handle(SetAdviserDetailsCommand request, CancellationToken cancellationToken)

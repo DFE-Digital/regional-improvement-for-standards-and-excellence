@@ -35,7 +35,7 @@
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
                         <a class="govuk-link" asp-page="@Links.TaskList.RecordTheSchoolResponse.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-school-response-status" data-cy="record-school-response">
-                            Record the School's Response
+                            Record the school's response
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.RecordTheSchoolResponseTaskListStatus"/>
@@ -116,7 +116,7 @@
             <ul class="app-task-list__items govuk-!-padding-left-0">
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.ChoosePreferredSupportingOrganisation.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="la-info-template-status" data-cy="choose-preferred-supporting-organisation">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ChoosePreferredSupportingOrganisation.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="choose-preferred-supporting-organisation-status" data-cy="choose-preferred-supporting-organisation">
                             Choose preferred supporting organisation
                         </a>
                     </span>
@@ -129,6 +129,14 @@
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.DueDiligenceOnPreferredSupportingOrganisationTaskListStatus" />
+                </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordSupportingOrganisationAppointment.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-supporting-organisation-appointment-status" data-cy="record-supporting-organisation-appointment">
+                           Record supporting organsiation appointment
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.SetRecordSupportingOrganisationAppointment" />
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">

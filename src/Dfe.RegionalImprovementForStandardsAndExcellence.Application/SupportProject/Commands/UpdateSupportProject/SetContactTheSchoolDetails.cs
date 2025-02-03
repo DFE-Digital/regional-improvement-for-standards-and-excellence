@@ -5,11 +5,11 @@ using MediatR;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 
 public record SetContactTheSchoolDetailsCommand(
-    SupportProjectId id,
-    bool? findSchoolEmailAddress,
-    bool? useTheNotificationLetterToCreateEmail,
-    bool? attachRiseInfoToEmail,
-    DateTime? schoolContactedDate
+    SupportProjectId SupportProjectId,
+    bool? FindSchoolEmailAddress,
+    bool? UseTheNotificationLetterToCreateEmail,
+    bool? AttachRiseInfoToEmail,
+    DateTime? SchoolContactedDate
 ) : IRequest<bool>;
 
 public class SetContactTheSchoolDetails
@@ -20,14 +20,14 @@ public class SetContactTheSchoolDetails
         public async Task<bool> Handle(SetContactTheSchoolDetailsCommand request,
             CancellationToken cancellationToken)
         {
-            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.id, cancellationToken);
+            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
 
             if (supportProject is null)
             {
                 return false;
             }
             
-            supportProject.SetContactTheSchoolDetails(request.findSchoolEmailAddress, request.useTheNotificationLetterToCreateEmail,request.attachRiseInfoToEmail,request.schoolContactedDate);
+            supportProject.SetContactTheSchoolDetails(request.FindSchoolEmailAddress, request.UseTheNotificationLetterToCreateEmail,request.AttachRiseInfoToEmail, request.SchoolContactedDate);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 

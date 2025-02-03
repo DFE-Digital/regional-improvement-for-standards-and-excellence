@@ -1,6 +1,5 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
@@ -15,7 +14,7 @@ public class SetAdviserConflictOfInterestDetails
         DateTime? DateConflictsOfInterestWereChecked
     ) : IRequest<bool>;
 
-    public class SetAdviserConflictOfInterestDetailsHandler(ISupportProjectRepository supportProjectRepository, IDateTimeProvider _dateTimeProvider)
+    public class SetAdviserConflictOfInterestDetailsHandler(ISupportProjectRepository supportProjectRepository)
         : IRequestHandler<SetAdviserConflictOfInterestDetailsCommand, bool>
     {
         public async Task<bool> Handle(SetAdviserConflictOfInterestDetailsCommand request, CancellationToken cancellationToken)

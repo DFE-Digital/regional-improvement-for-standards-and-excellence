@@ -5,9 +5,9 @@ using MediatR;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 
 public record SetAdviserCommand(
-    SupportProjectId id,
-    string assignedAdviserFullName,
-    string assignedAdviserEmail
+    SupportProjectId SupportProjectId,
+    string AssignedAdviserFullName,
+    string AssignedAdviserEmail
 ) : IRequest<bool>;
 
 
@@ -21,14 +21,14 @@ public class SetAdviser
             CancellationToken cancellationToken)
         {
 
-            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.id, cancellationToken);
+            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
 
             if (supportProject is null)
             {
                 return false;
             }
 
-            supportProject.SetAdviser(request.assignedAdviserFullName, request.assignedAdviserEmail);
+            supportProject.SetAdviser(request.AssignedAdviserFullName, request.AssignedAdviserEmail);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
             

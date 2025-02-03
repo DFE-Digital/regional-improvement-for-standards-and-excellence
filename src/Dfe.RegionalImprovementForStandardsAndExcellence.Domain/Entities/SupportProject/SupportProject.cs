@@ -125,6 +125,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
     public DateTime? DateDueDiligenceCompleted { get; set; }
 
+    public DateTime? RegionalDirectorAppointmentDate { get; private set; } 
+    public bool? HasConfirmedSupportingOrgnaisationAppointment { get; private set; }
+    public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -255,6 +258,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         CheckFinancialConcernsAtSupportingOrganisation = checkFinancialConcernsAtSupportingOrganisation;
         CheckTheOrganisationHasAVendorAccount = checkTheOrganisationHasAVendorAccount;
         DateDueDiligenceCompleted = dateDueDiligenceCompleted;
+    }
+
+    public void SetRecordSupportingOrganisationAppointment(DateTime? regionalDirectorAppointmentDate, bool? hasConfirmedSupportingOrgnaisationAppointment, string? disapprovingSupportingOrgnaisationAppointmentNotes)
+    {
+        RegionalDirectorAppointmentDate = regionalDirectorAppointmentDate;
+        HasConfirmedSupportingOrgnaisationAppointment = hasConfirmedSupportingOrgnaisationAppointment;
+        DisapprovingSupportingOrgnaisationAppointmentNotes = (hasConfirmedSupportingOrgnaisationAppointment.HasValue && hasConfirmedSupportingOrgnaisationAppointment == true) ? null : disapprovingSupportingOrgnaisationAppointmentNotes;
     }
 
     #endregion

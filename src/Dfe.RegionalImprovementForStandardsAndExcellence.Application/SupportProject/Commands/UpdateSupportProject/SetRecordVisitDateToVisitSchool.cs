@@ -5,7 +5,7 @@ using MediatR;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject
 {
     public record SetRecordVisitDateToVisitSchoolCommand(
-        SupportProjectId Id,
+        SupportProjectId SupportProjectId,
         DateTime? SchoolVisitDate
     ) : IRequest<bool>;
 
@@ -15,7 +15,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         public async Task<bool> Handle(SetRecordVisitDateToVisitSchoolCommand request,
             CancellationToken cancellationToken)
         {
-            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.Id, cancellationToken);
+            var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
 
             if (supportProject is null)
             {
