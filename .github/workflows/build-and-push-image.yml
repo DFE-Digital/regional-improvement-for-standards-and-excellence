@@ -25,9 +25,6 @@ jobs:
       environment: ${{ steps.var.outputs.environment }}
       release: ${{ steps.var.outputs.release }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - id: var
         run: |
           INPUT=${{ github.event.inputs.environment }}
@@ -36,13 +33,12 @@ jobs:
           echo "environment=${ENVIRONMENT,,}" >> $GITHUB_OUTPUT
           echo "release=${RELEASE}" >> $GITHUB_OUTPUT
 
-  deploy-image:
-    permissions:
-      id-token: write
-      contents: read
-      packages: write
-    name: Deploy Container
+  build:
+    name: Build
     needs: [ set-env ]
+    permissions:
+      packages: write
+    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/build.yml@v4.1.0
     strategy:
       matrix:
         stage: [
@@ -54,27 +50,64 @@ jobs:
             tag-prefix: ""
           - stage: "initcontainer"
             tag-prefix: "init-"
-    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/build-push-deploy.yml@v4.0.0
     with:
+      environment: ${{ needs.set-env.outputs.environment }}
       docker-image-name: 'rise-app'
-      docker-build-file-name: './Dockerfile'
+      docker-build-file-name: ${{ inputs.docker-build-file-name }}
+      docker-build-context: ${{ inputs.docker-build-context }}
+      docker-build-args: ${{ inputs.docker-build-args }}
       docker-build-target: ${{ matrix.stage }}
       docker-tag-prefix: ${{ matrix.tag-prefix }}
-      import-without-deploy: ${{ matrix.stage == 'initcontainer' }}
+
+  import:
+    name: Import
+    needs: [ set-env, build ]
+    permissions:
+      id-token: write
+    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/import.yml@v4.1.0
+    strategy:
+      matrix:
+        stage: [
+          "final",
+          "initcontainer"
+        ]
+        include:
+          - stage: "final"
+            tag-prefix: ""
+          - stage: "initcontainer"
+            tag-prefix: "init-"
+    with:
       environment: ${{ needs.set-env.outputs.environment }}
-      annotate-release: false
+      docker-image-name: 'rise-app'
+      docker-tag-prefix: ${{ matrix.tag-prefix }}
     secrets:
       azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
       azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       azure-acr-client-id: ${{ secrets.ACR_CLIENT_ID }}
       azure-acr-name: ${{ secrets.ACR_NAME }}
+
+  deploy:
+    name: Deploy
+    needs: [ set-env, import ]
+    permissions:
+      id-token: write
+    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/deploy.yml@v4.1.0
+    with:
+      environment: ${{ needs.set-env.outputs.environment }}
+      docker-image-name: 'rise-app'
+      # annotate-release: true
+      # app-insights-name: ${{ inputs.app-insights-name}}
+    secrets:
+      azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       azure-aca-client-id: ${{ secrets.ACA_CLIENT_ID }}
       azure-aca-name: ${{ secrets.ACA_CONTAINERAPP_NAME }}
       azure-aca-resource-group: ${{ secrets.ACA_RESOURCE_GROUP }}
+      azure-acr-name: ${{ secrets.ACR_NAME }}
 
   create-tag:
     name: Tag and release
-    needs: [ set-env, deploy-image ]
+    needs: [ set-env, deploy ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -104,3 +137,12 @@ jobs:
             } catch (error) {
               core.setFailed(error.message);
             }
+
+  cypress-tests:
+    name: Run Cypress tests
+    needs: [ deploy, set-env ]
+    if: needs.set-env.outputs.environment == 'test' || needs.set-env.outputs.environment == 'development'
+    uses: ./.github/workflows/cypress-tests.yml
+    with:
+      environment: ${{ needs.set-env.outputs.environment }}
+    secrets: inherit
