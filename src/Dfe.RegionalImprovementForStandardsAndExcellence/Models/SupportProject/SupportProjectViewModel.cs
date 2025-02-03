@@ -70,11 +70,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
         public bool? HasTalkToAdviserAboutFindings { get; set; }
-
+        
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
-        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
+        public bool? HasConfirmedSchoolGetTargetSupport { get;set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
         public string? DisapprovingTargetedSupportNotes { get; set; }
         
@@ -83,29 +83,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string? SupportOrganisationName { get;  set; }
     
         public string? SupportOrganisationIdNumber { get;  set; }
+        public bool? SendTheTemplateToTheSupportingOrganisation { get; internal set; }
+        public bool? SendTheTemplateToTheSchoolsResponsibleBody { get; internal set; }
+        public DateTime? DateTemplatesSent { get; internal set; }
 
-        public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
-
-        public bool? CheckChoiceWithTrustRelationshipManagerOrLaLead { get; set; }
-
-        public bool? DiscussChoiceWithSfso { get; set; }
-
-        public bool? CheckFinancialConcernsAtSupportingOrganisation { get; set; }
-
-        public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
-
-        public DateTime? DateDueDiligenceCompleted { get; set; }
-
-        public bool? HasConfirmedSupportingOrgnaisationAppointment { get; set; }
-        public DateTime? RegionalDirectorAppointmentDate { get; set; }
-        public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; set; }
-
-        
-        public DateTime? DateSupportingOrganisationContactDetailsAdded { get; set; }
-    
-        public string? SupportingOrganisationContactName { get; set; }
-    
-        public string? SupportingOrganisationContactEmailAddress { get;  set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -150,19 +131,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber,
                 RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
                 HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
-                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
-                CheckOrganisationHasCapacityAndWillingToProvideSupport = supportProjectDto.CheckOrganisationHasCapacityAndWillingToProvideSupport,
-                CheckChoiceWithTrustRelationshipManagerOrLaLead = supportProjectDto.CheckChoiceWithTrustRelationshipManagerOrLaLead,
-                DiscussChoiceWithSfso = supportProjectDto.DiscussChoiceWithSfso,
-                CheckFinancialConcernsAtSupportingOrganisation = supportProjectDto.CheckFinancialConcernsAtSupportingOrganisation,
-                CheckTheOrganisationHasAVendorAccount = supportProjectDto.CheckTheOrganisationHasAVendorAccount,
-                DateDueDiligenceCompleted = supportProjectDto.DateDueDiligenceCompleted,
-                RegionalDirectorAppointmentDate = supportProjectDto.RegionalDirectorAppointmentDate,
-                HasConfirmedSupportingOrgnaisationAppointment = supportProjectDto.HasConfirmedSupportingOrgnaisationAppointment,
-                DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes,
-                DateSupportingOrganisationContactDetailsAdded = supportProjectDto.dateSupportingOrganisationContactDetailsAdded,
-                SupportingOrganisationContactName = supportProjectDto.supportingOrganisationContactName,
-                SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress
+                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes
             };
         }
     }
