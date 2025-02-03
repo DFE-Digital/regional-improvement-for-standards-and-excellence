@@ -242,7 +242,7 @@ public static class TaskStatusViewModel
         return TaskListStatus.InProgress;
     }
 
-    public static TaskListStatus SetRecordSupportingOrganisationAppointment(SupportProjectViewModel supportProject)
+    public static TaskListStatus SetRecordSupportingOrganisationAppointmentTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.RegionalDirectorAppointmentDate.HasValue
             && supportProject.HasConfirmedSupportingOrgnaisationAppointment.HasValue
@@ -253,6 +253,24 @@ public static class TaskStatusViewModel
 
         if (!supportProject.RegionalDirectorAppointmentDate.HasValue
             && !supportProject.HasConfirmedSupportingOrgnaisationAppointment.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
+
+    public static TaskListStatus SetRecordImprovementPlanDecisionTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.RegionalDirectorImprovementPlanDecisionDate.HasValue
+            && supportProject.HasApprovedImprovementPlanDecision.HasValue
+            && supportProject.HasApprovedImprovementPlanDecision.Equals(true))
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.RegionalDirectorImprovementPlanDecisionDate.HasValue
+            && !supportProject.HasApprovedImprovementPlanDecision.HasValue)
         {
             return TaskListStatus.NotStarted;
         }

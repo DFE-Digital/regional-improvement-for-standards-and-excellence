@@ -38,7 +38,7 @@ public class SetDueDiligenceOnPreferredSupportingOrganisationDetails
                 request.CheckTheOrganisationHasAVendorAccount,
                 request.DateDueDiligenceCompleted);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return true;
         }

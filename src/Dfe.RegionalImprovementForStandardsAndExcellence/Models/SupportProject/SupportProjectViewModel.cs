@@ -106,6 +106,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string? SupportingOrganisationContactName { get; set; }
     
         public string? SupportingOrganisationContactEmailAddress { get;  set; }
+
+        public DateTime? RegionalDirectorImprovementPlanDecisionDate { get; set; }
+        public bool? HasApprovedImprovementPlanDecision { get; set; }
+        public string? DisapprovingImprovementPlanDecisionNotes { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -162,7 +166,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes,
                 DateSupportingOrganisationContactDetailsAdded = supportProjectDto.dateSupportingOrganisationContactDetailsAdded,
                 SupportingOrganisationContactName = supportProjectDto.supportingOrganisationContactName,
-                SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress
+                SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress,
+                RegionalDirectorImprovementPlanDecisionDate = supportProjectDto.RegionalDirectorImprovementPlanDecisionDate,
+                HasApprovedImprovementPlanDecision = supportProjectDto.HasApprovedImprovementPlanDecision,
+                DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes
             };
         }
     }

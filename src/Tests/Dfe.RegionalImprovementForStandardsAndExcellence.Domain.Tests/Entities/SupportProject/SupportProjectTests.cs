@@ -273,7 +273,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetRecordSupportDecision_RemovesNotes_OnConfirmingTargetSupport()
+        public void SetRecordSupportDecision_KeepsNotes_OnConfirmingTargetSupport()
         {
             // Arrange
             var supportProject = CreateSupportProject();
@@ -291,7 +291,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Assert
             supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
             supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
-            supportProject.DisapprovingTargetedSupportNotes.Should().BeNull();
+            supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
             mockRepository.VerifyAll();
         }
 
@@ -349,7 +349,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             this.mockRepository.VerifyAll();
         }
 
-
         [Fact]
         public void SetRecordSupportOrganisationAppointment_SetsTheCorrectProperties()
         {
@@ -374,25 +373,25 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetRecordSupportOrganisationAppointment_RemovesNotes_OnConfirmingTargetSupport()
+        public void SetRecordSupportOrganisationAppointment_KeepsNotes_OnConfirmingTargetSupport()
         {
             // Arrange
             var supportProject = CreateSupportProject();
 
             bool? hasConfirmedSupportingOrgnaisationAppointment = true;
             DateTime? regionalDirectorAppointmentDate = DateTime.UtcNow;
-            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+            string? disapprovingSupportingOrgnaisationAppointmentNotes = "Notes only if choose no";
 
             // Act
             supportProject.SetRecordSupportingOrganisationAppointment(
                 regionalDirectorAppointmentDate,
                 hasConfirmedSupportingOrgnaisationAppointment,
-                disapprovingTargetedSupportNotes);
+                disapprovingSupportingOrgnaisationAppointmentNotes);
 
             // Assert
             supportProject.HasConfirmedSupportingOrgnaisationAppointment.Should().Be(hasConfirmedSupportingOrgnaisationAppointment);
             supportProject.RegionalDirectorAppointmentDate.Should().Be(regionalDirectorAppointmentDate);
-            supportProject.DisapprovingSupportingOrgnaisationAppointmentNotes.Should().BeNull();
+            supportProject.DisapprovingSupportingOrgnaisationAppointmentNotes.Should().Be(disapprovingSupportingOrgnaisationAppointmentNotes);
             mockRepository.VerifyAll();
         }
         
@@ -416,7 +415,54 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DateSupportingOrganisationContactDetailsAdded.Should().Be(dateSupportingOrganisationContactDetailAdded);
             supportProject.SupportingOrganisationContactName.Should().Be(supportOrgansiationContactName);
             supportProject.SupportingOrganisationContactEmailAddress.Should().Be(supportOrganisationContactEmailAddress);
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
+        }
+
+
+        [Fact]
+        public void SetRecordImprovementPlanDecision_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasApprovedImprovementPlanDecision = true;
+            DateTime? regionalDirectorImprovementPlanDecisionDate = DateTime.UtcNow;
+            string? disapprovingImprovementPlanDecisionNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordImprovementPlanDecision(
+                regionalDirectorImprovementPlanDecisionDate,
+                hasApprovedImprovementPlanDecision,
+                disapprovingImprovementPlanDecisionNotes);
+
+            // Assert
+            supportProject.HasApprovedImprovementPlanDecision.Should().Be(hasApprovedImprovementPlanDecision);
+            supportProject.RegionalDirectorImprovementPlanDecisionDate.Should().Be(regionalDirectorImprovementPlanDecisionDate);
+            supportProject.DisapprovingImprovementPlanDecisionNotes.Should().Be(disapprovingImprovementPlanDecisionNotes);
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetRecordImprovementPlanDecision_KeepsNotes_OnConfirmingTargetSupport()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasApprovedImprovementPlanDecision = true;
+            DateTime? regionalDirectorImprovementPlanDecisionDate = DateTime.UtcNow;
+            string? disapprovingImprovementPlanDecisionNotes = "Notes only if choose no";
+
+            // Act
+            supportProject.SetRecordImprovementPlanDecision(
+                regionalDirectorImprovementPlanDecisionDate,
+                hasApprovedImprovementPlanDecision,
+                disapprovingImprovementPlanDecisionNotes);
+
+            // Assert
+            supportProject.HasApprovedImprovementPlanDecision.Should().Be(hasApprovedImprovementPlanDecision);
+            supportProject.RegionalDirectorImprovementPlanDecisionDate.Should().Be(regionalDirectorImprovementPlanDecisionDate);
+            supportProject.DisapprovingImprovementPlanDecisionNotes.Should().Be(disapprovingImprovementPlanDecisionNotes);
+            mockRepository.VerifyAll();
         }
     }
 }

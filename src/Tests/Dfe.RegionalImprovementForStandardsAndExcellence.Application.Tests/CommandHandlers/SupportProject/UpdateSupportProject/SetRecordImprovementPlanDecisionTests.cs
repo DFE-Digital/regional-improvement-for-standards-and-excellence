@@ -6,13 +6,13 @@ using System.Linq.Expressions;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
 {
-    public class SetRecordImprovementPlanDecisionTests
+    public class SetRecordSupportDecisionTests
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetRecordImprovementPlanDecisionTests()
+        public SetRecordSupportDecisionTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
@@ -26,17 +26,17 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         {
             // Arrange
             var regionalDirectorDecisionDate = DateTime.UtcNow;
-            var hasApprovedImprovementPlan = true;
-            var disapprovingImprovementPlanNotes = "Random Notes";
+            var hasConfirmedSchoolGetTargetSupport = true;
+            var disapprovingTargetedSupportNotes = "Random Notes";
 
-            var command = new SetRecordImprovementPlanDecisionCommand(
+            var command = new SetRecordSupportDecisionCommand(
                 _mockSupportProject.Id,
                 regionalDirectorDecisionDate,
-                hasApprovedImprovementPlan,
-                disapprovingImprovementPlanNotes
+                hasConfirmedSchoolGetTargetSupport,
+                disapprovingTargetedSupportNotes
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetRecordImprovementPlanDecisionCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetRecordSupportDecisionCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -50,14 +50,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
         {
             // Arrange
-            var command = new SetRecordImprovementPlanDecisionCommand(
+            var command = new SetRecordSupportDecisionCommand(
                 _mockSupportProject.Id,
                 null,
                 null,
                 null
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetRecordImprovementPlanDecisionCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetRecordSupportDecisionCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -72,18 +72,18 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         {
             // Arrange
             var regionalDirectorDecisionDate = DateTime.UtcNow;
-            var hasApprovedImprovementPlan = true;
-            var disapprovingImprovementPlanNotes = "Random Notes";
+            var hasConfirmedSchoolGetTargetSupport = true;
+            var disapprovingTargetedSupportNotes = "Random Notes";
 
-            var command = new SetRecordImprovementPlanDecisionCommand(
+            var command = new SetRecordSupportDecisionCommand(
                 _mockSupportProject.Id,
                 regionalDirectorDecisionDate,
-                hasApprovedImprovementPlan,
-                disapprovingImprovementPlanNotes
+                hasConfirmedSchoolGetTargetSupport,
+                disapprovingTargetedSupportNotes
             );
 
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-            var handler = new SetRecordImprovementPlanDecisionCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetRecordSupportDecisionCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);

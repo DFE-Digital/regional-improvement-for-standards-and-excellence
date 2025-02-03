@@ -52,6 +52,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? dateSupportingOrganisationContactDetailsAdded,
         string? supportingOrganisationContactName,
         string supportingOrganisationContactEmailAddress,
+        DateTime? RegionalDirectorImprovementPlanDecisionDate,
+        bool? HasApprovedImprovementPlanDecision,
+        string? DisapprovingImprovementPlanDecisionNotes,
         IEnumerable<SupportProjectNote> notes
     );
 }
