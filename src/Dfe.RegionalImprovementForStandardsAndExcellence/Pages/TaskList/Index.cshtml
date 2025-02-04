@@ -5,6 +5,7 @@
 @{
     Model.SetErrorPage(Links.SchoolList.Index.Page);
     ViewData["Title"] = "Task List";
+    TempData["AssignmentReferrer"] = @Links.TaskList.Index.Page;
 }
 
 @section BeforeMain

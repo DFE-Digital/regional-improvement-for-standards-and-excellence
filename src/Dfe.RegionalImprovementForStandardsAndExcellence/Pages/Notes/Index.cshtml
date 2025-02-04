@@ -8,7 +8,7 @@
 @{
     string DisplayDate(DateTime date) =>
         $"{date:dd} {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(date.ToString("MMMM"))} {date:yyyy} at {date:hh:mm tt}".ToLower();
-
+    TempData["AssignmentReferrer"] = @Links.Notes.Index.Page;
 }
 
 @section BeforeMain
