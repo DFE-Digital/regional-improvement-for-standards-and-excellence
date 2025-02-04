@@ -1,11 +1,7 @@
 ﻿using AutoFixture;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using Moq;
-using System;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetDueDiligenceOnPreferredSupportingOrganisationDetails;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
@@ -14,7 +10,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
-        private readonly Mock<IDateTimeProvider> _mockDateTimeProvider;
         private readonly CancellationToken _cancellationToken;
 
         public SetDueDiligenceOnPreferredSupportingOrganisationDetailsHandlerTests()
@@ -23,7 +18,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
             var fixture = new Fixture();
             _mockSupportProject = fixture.Create<Domain.Entities.SupportProject.SupportProject>();
-            _mockDateTimeProvider = new Mock<IDateTimeProvider>();
             _cancellationToken = CancellationToken.None;
         }
 
@@ -47,7 +41,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
                 checkTheOrganisationHasAVendorAccount, dateDueDiligenceCompleted
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(_mockSupportProjectRepository.Object, _mockDateTimeProvider.Object);
+            var setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler.Handle(command, _cancellationToken);
@@ -64,7 +58,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
             var command = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommand(_mockSupportProject.Id, null, null, null, null, null, null);
 
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(_mockSupportProjectRepository.Object, _mockDateTimeProvider.Object);
+            var setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler.Handle(command, _cancellationToken);
@@ -94,7 +88,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
                 checkTheOrganisationHasAVendorAccount, dateDueDiligenceCompleted
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-            var setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(_mockSupportProjectRepository.Object, _mockDateTimeProvider.Object);
+            var setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler = new SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await setDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler.Handle(command, _cancellationToken);

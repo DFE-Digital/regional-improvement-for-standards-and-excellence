@@ -1,6 +1,5 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
@@ -17,7 +16,7 @@ public class SetDueDiligenceOnPreferredSupportingOrganisationDetails
          DateTime? DateDueDiligenceCompleted
     ) : IRequest<bool>;
 
-    public class SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(ISupportProjectRepository supportProjectRepository, IDateTimeProvider _dateTimeProvider)
+    public class SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommandHandler(ISupportProjectRepository supportProjectRepository)
         : IRequestHandler<SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommand, bool>
     {
         public async Task<bool> Handle(SetDueDiligenceOnPreferredSupportingOrganisationDetailsCommand request, CancellationToken cancellationToken)
