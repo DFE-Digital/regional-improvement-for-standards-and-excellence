@@ -59,6 +59,7 @@ public static class Links
         public static readonly LinkItem RecordSupportingOrganisationAppointment = AddLinkItem(backText: "Back", page: "/TaskList/RecordSupportingOrganisationAppointment/Index");
         public static readonly LinkItem ShareTheImprovementPlanTemplate = AddLinkItem(backText: "Back", page: "/TaskList/ShareTheImprovementPlanTemplate/Index");
         public static readonly LinkItem RecordImprovementPlanDecision = AddLinkItem(backText: "Back", page: "/TaskList/RecordImprovementPlanDecision/Index");
+        public static readonly LinkItem SendAgreedImprovementPlanForApproval = AddLinkItem(backText: "Back", page: "/TaskList/SendAgreedImprovementPlanForApproval/Index");
     }
 
     public static class Notes

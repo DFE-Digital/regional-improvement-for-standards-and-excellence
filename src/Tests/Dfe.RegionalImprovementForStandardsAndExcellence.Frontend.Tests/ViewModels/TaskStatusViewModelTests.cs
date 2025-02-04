@@ -359,7 +359,31 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
                 HasApprovedImprovementPlanDecision: hasApprovedImprovementPlanDecision, DisapprovingImprovementPlanDecisionNotes: disapprovingImprovementPlanDecisionNotes));
 
             //Action 
-            var taskListStatus = TaskStatusViewModel.SetRecordImprovementPlanDecisionTaskListStatus(supportProjectModel);
+            var taskListStatus = TaskStatusViewModel.RecordImprovementPlanDecisionTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+
+        public static readonly TheoryData<bool?, bool?, TaskListStatus> SendAgreedImprovementPlanForApprovalTaskListStatusCases = new()
+        {
+            { null, null, TaskListStatus.NotStarted },
+            { true, true, TaskListStatus.Complete },
+            { true, false, TaskListStatus.InProgress },
+            { true, null, TaskListStatus.InProgress },
+            { null, true, TaskListStatus.InProgress },
+            { false, true, TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(SendAgreedImprovementPlanForApprovalTaskListStatusCases))]
+        public void SendAgreedImprovementPlanForApprovalTaskListStatusShouldReturnCorrectStatus(bool? hasSavedImprovementPlanInSharePoint, bool? hasEmailedAgreedPlanToRegionalDirectorForApproval, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, HasSavedImprovementPlanInSharePoint: hasSavedImprovementPlanInSharePoint,
+                HasEmailedAgreedPlanToRegionalDirectorForApproval: hasEmailedAgreedPlanToRegionalDirectorForApproval));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.SendAgreedImprovementPlanForApprovalTaskListStatus(supportProjectModel);
 
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);

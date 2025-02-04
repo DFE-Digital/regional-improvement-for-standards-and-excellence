@@ -281,7 +281,7 @@ public static class TaskStatusViewModel
         }
     }
 
-    public static TaskListStatus SetRecordImprovementPlanDecisionTaskListStatus(SupportProjectViewModel supportProject)
+    public static TaskListStatus RecordImprovementPlanDecisionTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.RegionalDirectorImprovementPlanDecisionDate.HasValue
             && supportProject.HasApprovedImprovementPlanDecision.HasValue
@@ -298,5 +298,23 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
-    
+
+    public static TaskListStatus SendAgreedImprovementPlanForApprovalTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.HasSavedImprovementPlanInSharePoint.HasValue
+            && supportProject.HasSavedImprovementPlanInSharePoint.Equals(true)
+            && supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.HasValue
+            && supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.Equals(true))
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.HasValue
+            && !supportProject.HasSavedImprovementPlanInSharePoint.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }

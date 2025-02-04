@@ -114,6 +114,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? RegionalDirectorImprovementPlanDecisionDate { get; set; }
         public bool? HasApprovedImprovementPlanDecision { get; set; }
         public string? DisapprovingImprovementPlanDecisionNotes { get; set; }
+        public bool? HasSavedImprovementPlanInSharePoint { get; set; }
+        public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; set; }
+
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -176,6 +179,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DateTemplatesSent = supportProjectDto.DateTemplatesSent,
                 RegionalDirectorImprovementPlanDecisionDate = supportProjectDto.RegionalDirectorImprovementPlanDecisionDate,
                 HasApprovedImprovementPlanDecision = supportProjectDto.HasApprovedImprovementPlanDecision,
+                HasSavedImprovementPlanInSharePoint = supportProjectDto.HasSavedImprovementPlanInSharePoint,
+                HasEmailedAgreedPlanToRegionalDirectorForApproval = supportProjectDto.HasEmailedAgreedPlanToRegionalDirectorForApproval,
                 DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes
             };
         }
