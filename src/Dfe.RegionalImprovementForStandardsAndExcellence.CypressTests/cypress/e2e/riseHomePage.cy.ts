@@ -1,5 +1,5 @@
 import { Logger } from "cypress/common/logger";
-import riseHomePage from "cypress/pages/riseHomepage";
+import riseHomePage from "cypress/pages/riseHomePage";
 import path from "path";
 
 
