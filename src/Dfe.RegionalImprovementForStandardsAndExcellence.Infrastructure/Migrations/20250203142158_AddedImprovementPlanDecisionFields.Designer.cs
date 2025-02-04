@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250203142158_AddedImprovementPlanDecisionFields")]
+    partial class AddedImprovementPlanDecisionFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,9 +89,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateSupportingOrganisationContactDetailsAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTemplatesSent")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DisapprovingImprovementPlanDecisionNotes")
@@ -196,12 +196,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("SendConflictOfInterestFormToProposedAdviserAndTheSchool")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("SendTheTemplateToTheSchoolsResponsibleBody")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("SendTheTemplateToTheSupportingOrganisation")
                         .HasColumnType("bit");
 
                     b.Property<string>("SupportOrganisationIdNumber")

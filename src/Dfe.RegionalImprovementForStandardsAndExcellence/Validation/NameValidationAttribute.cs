@@ -22,6 +22,6 @@ public class NameValidationAttribute : ValidationAttribute
 
     public override string FormatErrorMessage(string name)
     {
-        return "First and last name must start with capital letters and be followed by lowercase letters (e.g., John Smith).";
+        return "First and last name must start with capital letters and be followed by lowercase letters (e.g., John Smith)";
     }
 }

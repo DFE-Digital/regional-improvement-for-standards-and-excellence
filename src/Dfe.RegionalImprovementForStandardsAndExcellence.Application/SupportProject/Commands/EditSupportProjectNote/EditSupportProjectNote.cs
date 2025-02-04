@@ -23,7 +23,7 @@ public class EditSupportProjectNote
 
             supportProject.EditSupportProjectNote(request.Id,request.Note,request.Author,_dateTimeProvider.Now);
             
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
             
             return request.Id;
         }

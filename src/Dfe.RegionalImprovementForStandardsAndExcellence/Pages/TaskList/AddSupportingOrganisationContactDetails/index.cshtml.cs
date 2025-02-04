@@ -54,6 +54,11 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService,E
     public async Task<IActionResult> OnPost(int id,CancellationToken cancellationToken)
     {
 
+        if (EmailAddress != null && EmailAddress.Any(char.IsWhiteSpace))
+        {
+            ModelState.AddModelError("email-address", "Email address must not contain spaces");
+        }
+
         if (!ModelState.IsValid)
         {
             _errorService.AddErrors(Request.Form.Keys, ModelState);

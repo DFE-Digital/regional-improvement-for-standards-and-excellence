@@ -32,7 +32,7 @@ public class SetAdviserConflictOfInterestDetails
                                                                request.SaveCompletedConflictOfinterestFormInSharePoint,
                                                                request.DateConflictsOfInterestWereChecked);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return true;
         }

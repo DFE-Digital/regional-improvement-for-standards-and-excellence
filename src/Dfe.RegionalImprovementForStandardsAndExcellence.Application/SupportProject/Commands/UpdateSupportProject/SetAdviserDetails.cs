@@ -1,6 +1,5 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.ValueObjects;
-using Dfe.RegionalImprovementForStandardsAndExcellence.Utils;
 using MediatR;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
@@ -28,7 +27,7 @@ public class SetAdviserDetails
 
             supportProject.SetAdviserDetails(request.AdviserEmailAddress, request.DateAdviserAssigned);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return true;
         }

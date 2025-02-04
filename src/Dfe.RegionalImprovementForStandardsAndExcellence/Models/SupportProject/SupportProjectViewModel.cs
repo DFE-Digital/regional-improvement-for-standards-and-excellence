@@ -70,11 +70,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
         public bool? HasTalkToAdviserAboutFindings { get; set; }
-        
+
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
-        public bool? HasConfirmedSchoolGetTargetSupport { get;set; }
+        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
         public string? DisapprovingTargetedSupportNotes { get; set; }
 
@@ -109,21 +109,26 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? SendTheTemplateToTheSupportingOrganisation { get; set; }
         public bool? SendTheTemplateToTheSchoolsResponsibleBody { get; set; }
         public DateTime? DateTemplatesSent { get; set; }
+
+
+        public DateTime? RegionalDirectorImprovementPlanDecisionDate { get; set; }
+        public bool? HasApprovedImprovementPlanDecision { get; set; }
+        public string? DisapprovingImprovementPlanDecisionNotes { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
             {
-                Id = supportProjectDto.id,
-                CreatedOn = supportProjectDto.createdOn,
+                Id = supportProjectDto.Id,
+                CreatedOn = supportProjectDto.CreatedOn,
                 // ToDo: we will repurpose these fields as the assigned delivery officer
-                AssignedAdviserFullName = supportProjectDto.assignedAdviserFullName,
-                AssignedAdviserEmailAddress = supportProjectDto.assignedAdviserEmailAddress,
+                AssignedAdviserFullName = supportProjectDto.AssignedAdviserFullName,
+                AssignedAdviserEmailAddress = supportProjectDto.AssignedAdviserEmailAddress,
                 // ***
-                LocalAuthority = supportProjectDto.localAuthority,
-                Region = supportProjectDto.region,
-                SchoolName = supportProjectDto.schoolName,
-                SchoolUrn = supportProjectDto.schoolUrn,
-                Notes = supportProjectDto.notes,
+                LocalAuthority = supportProjectDto.LocalAuthority,
+                Region = supportProjectDto.Region,
+                SchoolName = supportProjectDto.SchoolName,
+                SchoolUrn = supportProjectDto.SchoolUrn,
+                Notes = supportProjectDto.Notes,
                 FindSchoolEmailAddress = supportProjectDto.FindSchoolEmailAddress,
                 UseTheNotificationLetterToCreateEmail = supportProjectDto.UseTheNotificationLetterToCreateEmail,
                 AttachRiseInfoToEmail = supportProjectDto.AttachRiseInfoToEmail,
@@ -163,12 +168,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 RegionalDirectorAppointmentDate = supportProjectDto.RegionalDirectorAppointmentDate,
                 HasConfirmedSupportingOrgnaisationAppointment = supportProjectDto.HasConfirmedSupportingOrgnaisationAppointment,
                 DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes,
-                DateSupportingOrganisationContactDetailsAdded = supportProjectDto.dateSupportingOrganisationContactDetailsAdded,
-                SupportingOrganisationContactName = supportProjectDto.supportingOrganisationContactName,
-                SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress,
-                SendTheTemplateToTheSupportingOrganisation = supportProjectDto.sendTheTemplateToTheSupportingOrganisation,
-                SendTheTemplateToTheSchoolsResponsibleBody = supportProjectDto.sendTheTemplateToTheSchoolsResponsibleBody,
-                DateTemplatesSent = supportProjectDto.dateTemplatesSent
+                DateSupportingOrganisationContactDetailsAdded = supportProjectDto.DateSupportingOrganisationContactDetailsAdded,
+                SupportingOrganisationContactName = supportProjectDto.SupportingOrganisationContactName,
+                SupportingOrganisationContactEmailAddress = supportProjectDto.SupportingOrganisationContactEmailAddress,
+                SendTheTemplateToTheSupportingOrganisation = supportProjectDto.SendTheTemplateToTheSupportingOrganisation,
+                SendTheTemplateToTheSchoolsResponsibleBody = supportProjectDto.SendTheTemplateToTheSchoolsResponsibleBody,
+                DateTemplatesSent = supportProjectDto.DateTemplatesSent,
+                RegionalDirectorImprovementPlanDecisionDate = supportProjectDto.RegionalDirectorImprovementPlanDecisionDate,
+                HasApprovedImprovementPlanDecision = supportProjectDto.HasApprovedImprovementPlanDecision,
+                DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes
             };
         }
     }

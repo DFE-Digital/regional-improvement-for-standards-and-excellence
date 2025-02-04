@@ -32,7 +32,7 @@ public class SetChoosePreferredSupportingOrganisation
                 request.OrganisationName,
                 request.IDNumber);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return true;
         }
