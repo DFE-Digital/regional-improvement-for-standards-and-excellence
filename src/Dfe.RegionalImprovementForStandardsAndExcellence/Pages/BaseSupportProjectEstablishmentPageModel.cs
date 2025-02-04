@@ -26,7 +26,7 @@ public class BaseSupportProjectEstablishmentPageModel(ISupportProjectQueryServic
         {
             SupportProject = SupportProjectViewModel.Create(result.Value);
             
-            DfE.CoreLibs.Contracts.Academies.V4.Establishments.EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(result.Value.schoolUrn);
+            DfE.CoreLibs.Contracts.Academies.V4.Establishments.EstablishmentDto establishment = await _getEstablishment.GetEstablishmentByUrn(result.Value.SchoolUrn);
             
             SupportProject.QualityOfEducation = establishment.MISEstablishment.QualityOfEducation;
             SupportProject.LastInspectionDate = establishment.OfstedLastInspection;

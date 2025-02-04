@@ -21,8 +21,8 @@ public class IndexModel(IUserRepository userRepository, ISupportProjectQueryServ
    {
       var projectResponse = await supportProjectQueryService.GetSupportProject(id,cancellationToken);
       Id = id;
-      SchoolName = projectResponse.Value?.schoolName!;
-      SelectedAdviser = projectResponse.Value?.assignedAdviserFullName!;
+      SchoolName = projectResponse.Value?.SchoolName!;
+      SelectedAdviser = projectResponse.Value?.AssignedAdviserFullName!;
 
       Advisers = await userRepository.GetAllUsers();
 
@@ -33,7 +33,7 @@ public class IndexModel(IUserRepository userRepository, ISupportProjectQueryServ
    {
       var projectResponse = await supportProjectQueryService.GetSupportProject(id, cancellationToken);
       
-      SupportProjectId supportProjectId = new(projectResponse.Value!.id);
+      SupportProjectId supportProjectId = new(projectResponse.Value!.Id);
       
       if (string.IsNullOrWhiteSpace(adviserInput))
       {

@@ -114,16 +114,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         {
             return new SupportProjectViewModel()
             {
-                Id = supportProjectDto.id,
-                CreatedOn = supportProjectDto.createdOn,
+                Id = supportProjectDto.Id,
+                CreatedOn = supportProjectDto.CreatedOn,
                 // ToDo: we will repurpose these fields as the assigned delivery officer
-                AssignedAdviserFullName = supportProjectDto.assignedAdviserFullName,
-                AssignedAdviserEmailAddress = supportProjectDto.assignedAdviserEmailAddress,
+                AssignedAdviserFullName = supportProjectDto.AssignedAdviserFullName,
+                AssignedAdviserEmailAddress = supportProjectDto.AssignedAdviserEmailAddress,
                 // ***
-                LocalAuthority = supportProjectDto.localAuthority,
-                Region = supportProjectDto.region,
-                SchoolName = supportProjectDto.schoolName,
-                SchoolUrn = supportProjectDto.schoolUrn,
+                LocalAuthority = supportProjectDto.LocalAuthority,
+                Region = supportProjectDto.Region,
+                SchoolName = supportProjectDto.SchoolName,
+                SchoolUrn = supportProjectDto.SchoolUrn,
                 Notes = supportProjectDto.notes,
                 FindSchoolEmailAddress = supportProjectDto.FindSchoolEmailAddress,
                 UseTheNotificationLetterToCreateEmail = supportProjectDto.UseTheNotificationLetterToCreateEmail,

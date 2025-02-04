@@ -2,14 +2,14 @@
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Models
 {
-    public record SupportProjectDto(int id,
-        DateTime createdOn,
-        string schoolName,
-        string schoolUrn,
-        string localAuthority,
-        string region,
-        string assignedAdviserFullName,
-        string assignedAdviserEmailAddress,
+    public record SupportProjectDto(int Id,
+        DateTime CreatedOn,
+        string SchoolName,
+        string SchoolUrn,
+        string LocalAuthority,
+        string Region,
+        string AssignedAdviserFullName,
+        string AssignedAdviserEmailAddress,
         bool FindSchoolEmailAddress,
         bool UseTheNotificationLetterToCreateEmail,
         bool AttachRiseInfoToEmail,
