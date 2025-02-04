@@ -317,6 +317,32 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
 
+        public static readonly TheoryData<bool?, bool?, DateTime?, TaskListStatus> ShareImprovementPlanTaskListStatusCases = new()
+        {
+            {null, null, null, TaskListStatus.NotStarted },
+            {false, false, null, TaskListStatus.InProgress },
+            {false, true, null, TaskListStatus.InProgress},
+            {true, true, DateTime.Now, TaskListStatus.Complete }
+        };
+
+        [Theory, MemberData(nameof(ShareImprovementPlanTaskListStatusCases))]
+        public void ShareImprovementPlanTaskListStatusCasesShouldReturnCorrectStatus(bool? sendTheTemplateToTheSupportingOrganisation,
+            bool? sendTheTemplateToTheSchoolsResponsibleBody,
+            DateTime? dateTemplatesSent, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = CreateSupportProjectViewModel(
+                sendTheTemplateToTheSupportingOrganisation: sendTheTemplateToTheSupportingOrganisation,
+                sendTheTemplateToTheSchoolsResponsibleBody: sendTheTemplateToTheSchoolsResponsibleBody,
+                dateTemplatesSent: dateTemplatesSent);
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ShareTheImprovementPlanTemplateTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+
         private static SupportProjectViewModel CreateSupportProjectViewModel(string assignedAdviserFullName = "", string assignedAdviserEmailAddress = "", bool findSchoolEmailAddress = false, bool useTheNotificationLetterToCreateEmail = false,
             bool attachRiseInfoToEmail = false, DateTime? contactedTheSchoolDate = null, bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = null, bool? receiveCompletedConflictOfInterestForm = null,
             bool? saveCompletedConflictOfinterestFormInSharePoint = null, DateTime? dateConflictsOfInterestWereChecked = null, DateTime? schoolResponseDate = null, bool? hasAcceeptedTargetedSupport = null,
