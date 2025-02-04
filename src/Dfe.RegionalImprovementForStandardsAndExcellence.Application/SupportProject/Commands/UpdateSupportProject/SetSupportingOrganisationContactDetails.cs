@@ -31,7 +31,7 @@ public class SetSupportingOrganisationContactDetails
                 request.supportingOrganisationContactName,
                 request.supportingOrganisationContactEmail);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return true;
         }

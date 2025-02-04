@@ -26,7 +26,7 @@ public class CreateSupportProjectNote
             
             supportProject.AddNote(supportProjectNoteId,request.Note,request.Author,_dateTimeProvider.Now,request.SupportProjectId);
 
-            await supportProjectRepository.UpdateAsync(supportProject);
+            await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
             return supportProjectNoteId;
         }

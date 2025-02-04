@@ -128,6 +128,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public DateTime? RegionalDirectorAppointmentDate { get; private set; } 
     public bool? HasConfirmedSupportingOrgnaisationAppointment { get; private set; }
     public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; private set; }
+
+    public DateTime? RegionalDirectorImprovementPlanDecisionDate { get; private set; }
+    public bool? HasApprovedImprovementPlanDecision { get; private set; }
+    public string? DisapprovingImprovementPlanDecisionNotes { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -240,7 +244,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         RegionalDirectorDecisionDate = regionalDirectorDecisionDate;
         HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
-        DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
+        DisapprovingTargetedSupportNotes = disapprovingTargetedSupportNotes;
     }
     
     public void SetSupportingOrganisationContactDetails(DateTime? dateSupportingOrganisationContactDetailsAdded, string? supportingOrganisationContactName, string? supportingOrganisationContactEmailAddress)
@@ -264,7 +268,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         RegionalDirectorAppointmentDate = regionalDirectorAppointmentDate;
         HasConfirmedSupportingOrgnaisationAppointment = hasConfirmedSupportingOrgnaisationAppointment;
-        DisapprovingSupportingOrgnaisationAppointmentNotes = (hasConfirmedSupportingOrgnaisationAppointment.HasValue && hasConfirmedSupportingOrgnaisationAppointment == true) ? null : disapprovingSupportingOrgnaisationAppointmentNotes;
+        DisapprovingSupportingOrgnaisationAppointmentNotes = disapprovingSupportingOrgnaisationAppointmentNotes;
+    }
+
+    public void SetRecordImprovementPlanDecision(DateTime? regionalDirectorImprovementPlanDecisionDate, bool? hasApprovedImprovementPlanDecision, string? disapprovingImprovementPlanDecisionNotes)
+    {
+        RegionalDirectorImprovementPlanDecisionDate = regionalDirectorImprovementPlanDecisionDate;
+        HasApprovedImprovementPlanDecision = hasApprovedImprovementPlanDecision;
+        DisapprovingImprovementPlanDecisionNotes = disapprovingImprovementPlanDecisionNotes;
     }
 
     #endregion

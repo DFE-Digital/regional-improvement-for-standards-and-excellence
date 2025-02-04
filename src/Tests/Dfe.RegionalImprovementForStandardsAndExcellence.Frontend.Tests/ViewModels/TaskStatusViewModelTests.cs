@@ -289,7 +289,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
                 disapprovingSupportingOrgnaisationAppointmentNotes: disapprovingSupportingOrgnaisationAppointmentNotes);
 
             //Action 
-            var taskListStatus = TaskStatusViewModel.SetRecordSupportingOrganisationAppointment(supportProjectModel);
+            var taskListStatus = TaskStatusViewModel.SetRecordSupportingOrganisationAppointmentTaskListStatus(supportProjectModel);
 
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
@@ -316,7 +316,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
-        
+
+        public static readonly TheoryData<DateTime?, bool?, string?, TaskListStatus> RecordImprovementPlanDecisionTaskListStatusCases = new()
+        {
+            { null, null, null, TaskListStatus.NotStarted },
+            { DateTime.Now, true, null, TaskListStatus.Complete },
+            { DateTime.Now, false, "Notes", TaskListStatus.InProgress }
+        };
+
+        [Theory, MemberData(nameof(RecordImprovementPlanDecisionTaskListStatusCases))]
+        public void RecordImprovementPlanDecisionTaskListStatusShouldReturnCorrectStatus(DateTime? regionalDirectorImprovementPlanDecisionDate, bool? hasApprovedImprovementPlanDecision, string? disapprovingImprovementPlanDecisionNotes, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = CreateSupportProjectViewModel(regionalDirectorImprovementPlanDecisionDate: regionalDirectorImprovementPlanDecisionDate, hasApprovedImprovementPlanDecision: hasApprovedImprovementPlanDecision,
+                disapprovingImprovementPlanDecisionNotes: disapprovingImprovementPlanDecisionNotes);
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.SetRecordImprovementPlanDecisionTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+
         private static SupportProjectViewModel CreateSupportProjectViewModel(string assignedAdviserFullName = "", string assignedAdviserEmailAddress = "", bool findSchoolEmailAddress = false, bool useTheNotificationLetterToCreateEmail = false,
             bool attachRiseInfoToEmail = false, DateTime? contactedTheSchoolDate = null, bool? sendConflictOfInterestFormToProposedAdviserAndTheSchool = null, bool? receiveCompletedConflictOfInterestForm = null,
             bool? saveCompletedConflictOfinterestFormInSharePoint = null, DateTime? dateConflictsOfInterestWereChecked = null, DateTime? schoolResponseDate = null, bool? hasAcceeptedTargetedSupport = null,
@@ -334,6 +355,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             DateTime? dateSupportingOrganisationDetailsAdded = null,
             string? supportingOrganisationContactName = null,
             string? supportingOrganisationContactEmail = null,
+            DateTime? regionalDirectorImprovementPlanDecisionDate = null, bool? hasApprovedImprovementPlanDecision = null, string? disapprovingImprovementPlanDecisionNotes = null,
             IEnumerable<SupportProjectNote> notes = null!)
         {
             return SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, "SchoolName", "23434", "LocalAuthority", "Region", assignedAdviserFullName, assignedAdviserEmailAddress, findSchoolEmailAddress,
@@ -347,7 +369,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
                 CheckFinancialConcernsAtSupportingOrganisation,
                 CheckTheOrganisationHasAVendorAccount,
                 DateDueDiligenceCompleted,
-                regionalDirectorAppointmentDate, hasConfirmedSupportingOrgnaisationAppointment, disapprovingSupportingOrgnaisationAppointmentNotes,dateSupportingOrganisationDetailsAdded,supportingOrganisationContactName,supportingOrganisationContactEmail,
+                regionalDirectorAppointmentDate, hasConfirmedSupportingOrgnaisationAppointment, disapprovingSupportingOrgnaisationAppointmentNotes, dateSupportingOrganisationDetailsAdded, supportingOrganisationContactName, supportingOrganisationContactEmail,
+                regionalDirectorImprovementPlanDecisionDate, hasApprovedImprovementPlanDecision, disapprovingImprovementPlanDecisionNotes,
                 notes));
         }
     }

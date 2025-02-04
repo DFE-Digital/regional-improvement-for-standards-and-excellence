@@ -148,5 +148,18 @@
                 </li>
             </ul>
         </div>
+        <h3 class="app-task-list__section govuk-!-margin-top-8">Create the improvement plan</h3>
+        <div class="app-task-list">
+            <ul class="app-task-list__items govuk-!-padding-left-0">
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordImprovementPlanDecision.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-improvement-plan-decision-status" data-cy="record-improvement-plan-decision">
+                            Record improvement plan decision
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.RecordImprovementPlanDecisionTaskListStatus" />
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

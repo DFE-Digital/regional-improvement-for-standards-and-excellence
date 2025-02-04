@@ -65,10 +65,10 @@ public class WhichSchoolNeedsHelpModel(IGetEstablishment getEstablishment, Error
             return Page();
         }
 
-        CancellationToken cancellationToken = new CancellationToken();
+        CancellationToken cancellationToken = new();
         var existingSupportProjects = await supportProjectQueryService.GetAllSupportProjects(cancellationToken);
 
-        if (existingSupportProjects.Value != null && existingSupportProjects.Value.Any(a => a.schoolUrn == expectedEstablishment.Urn))
+        if (existingSupportProjects.Value != null && existingSupportProjects.Value.Any(a => a.SchoolUrn == expectedEstablishment.Urn))
         {
             ModelState.AddModelError(nameof(SearchQuery), "This school is already getting support, choose a different school");
             errorService.AddErrors(ModelState.Keys, ModelState);
