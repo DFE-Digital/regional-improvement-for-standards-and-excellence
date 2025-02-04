@@ -27,7 +27,8 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus SetRecordSupportingOrganisationAppointment { get; set; }
 
     public TaskListStatus SupportingOrganisationContactDetailsTaskListStatus { get; set; }
-    
+    public TaskListStatus ShareTheImprovementPlanTemplateTaskListStatus { get; set; }
+
     public void SetErrorPage(string errorPage)
     {
         TempData["ErrorPage"] = errorPage;
@@ -57,6 +58,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         SetRecordSupportingOrganisationAppointment = TaskStatusViewModel.SetRecordSupportingOrganisationAppointment(SupportProject);
         SupportingOrganisationContactDetailsTaskListStatus =
             TaskStatusViewModel.SupportingOrganisationContactDetailsTaskListStatus(SupportProject);
+        ShareTheImprovementPlanTemplateTaskListStatus = TaskStatusViewModel.ShareTheImprovementPlanTemplateTaskListStatus(SupportProject);
         return Page();
     }
 }

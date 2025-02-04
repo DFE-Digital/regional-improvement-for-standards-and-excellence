@@ -108,11 +108,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasConfirmedSchoolGetTargetSupport { get; private set; }
 
     public string? DisapprovingTargetedSupportNotes { get; private set; }
-    
+
     public DateTime? DateSupportingOrganisationContactDetailsAdded { get; private set; }
-    
+
     public string? SupportingOrganisationContactName { get; private set; }
-    
+
     public string? SupportingOrganisationContactEmailAddress { get; private set; }
 
 
@@ -125,9 +125,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? CheckTheOrganisationHasAVendorAccount { get; set; }
     public DateTime? DateDueDiligenceCompleted { get; set; }
 
-    public DateTime? RegionalDirectorAppointmentDate { get; private set; } 
+    public DateTime? RegionalDirectorAppointmentDate { get; private set; }
     public bool? HasConfirmedSupportingOrgnaisationAppointment { get; private set; }
     public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; private set; }
+
+    public bool? SendTheTemplateToTheSupportingOrganisation { get; private set; }
+    public bool? SendTheTemplateToTheSchoolsResponsibleBody { get; private set; }
+    public DateTime? DateTemplatesSent { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -242,7 +246,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         HasConfirmedSchoolGetTargetSupport = hasConfirmedSchoolGetTargetSupport;
         DisapprovingTargetedSupportNotes = (hasConfirmedSchoolGetTargetSupport.HasValue && hasConfirmedSchoolGetTargetSupport == true) ? null : disapprovingTargetedSupportNotes;
     }
-    
+
     public void SetSupportingOrganisationContactDetails(DateTime? dateSupportingOrganisationContactDetailsAdded, string? supportingOrganisationContactName, string? supportingOrganisationContactEmailAddress)
     {
         DateSupportingOrganisationContactDetailsAdded = dateSupportingOrganisationContactDetailsAdded;
@@ -265,6 +269,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         RegionalDirectorAppointmentDate = regionalDirectorAppointmentDate;
         HasConfirmedSupportingOrgnaisationAppointment = hasConfirmedSupportingOrgnaisationAppointment;
         DisapprovingSupportingOrgnaisationAppointmentNotes = (hasConfirmedSupportingOrgnaisationAppointment.HasValue && hasConfirmedSupportingOrgnaisationAppointment == true) ? null : disapprovingSupportingOrgnaisationAppointmentNotes;
+    }
+
+    public void SetImprovementPlanTemplateDetails(bool? sendTheTemplateToTheSupportingOrganisation, bool? sendTheTemplateToTheSchoolsResponsibleBody, DateTime? dateTemplatesSent)
+    {
+        SendTheTemplateToTheSupportingOrganisation = sendTheTemplateToTheSupportingOrganisation;
+        SendTheTemplateToTheSchoolsResponsibleBody = sendTheTemplateToTheSchoolsResponsibleBody;
+        DateTemplatesSent = dateTemplatesSent;
     }
 
     #endregion

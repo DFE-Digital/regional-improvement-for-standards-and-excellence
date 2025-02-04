@@ -77,12 +77,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
         public string? DisapprovingTargetedSupportNotes { get; set; }
-        
-        public DateTime? DateSupportOrganisationChosen  { get;  set; }
-    
-        public string? SupportOrganisationName { get;  set; }
-    
-        public string? SupportOrganisationIdNumber { get;  set; }
+
+        public DateTime? DateSupportOrganisationChosen { get; set; }
+
+        public string? SupportOrganisationName { get; set; }
+
+        public string? SupportOrganisationIdNumber { get; set; }
 
         public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
 
@@ -100,12 +100,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? RegionalDirectorAppointmentDate { get; set; }
         public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; set; }
 
-        
+
         public DateTime? DateSupportingOrganisationContactDetailsAdded { get; set; }
-    
+
         public string? SupportingOrganisationContactName { get; set; }
-    
-        public string? SupportingOrganisationContactEmailAddress { get;  set; }
+
+        public string? SupportingOrganisationContactEmailAddress { get; set; }
+        public bool? SendTheTemplateToTheSupportingOrganisation { get; set; }
+        public bool? SendTheTemplateToTheSchoolsResponsibleBody { get; set; }
+        public DateTime? DateTemplatesSent { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -162,7 +165,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DisapprovingSupportingOrgnaisationAppointmentNotes = supportProjectDto.DisapprovingSupportingOrgnaisationAppointmentNotes,
                 DateSupportingOrganisationContactDetailsAdded = supportProjectDto.dateSupportingOrganisationContactDetailsAdded,
                 SupportingOrganisationContactName = supportProjectDto.supportingOrganisationContactName,
-                SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress
+                SupportingOrganisationContactEmailAddress = supportProjectDto.supportingOrganisationContactEmailAddress,
+                SendTheTemplateToTheSupportingOrganisation = supportProjectDto.sendTheTemplateToTheSupportingOrganisation,
+                SendTheTemplateToTheSchoolsResponsibleBody = supportProjectDto.sendTheTemplateToTheSchoolsResponsibleBody,
+                DateTemplatesSent = supportProjectDto.dateTemplatesSent
             };
         }
     }

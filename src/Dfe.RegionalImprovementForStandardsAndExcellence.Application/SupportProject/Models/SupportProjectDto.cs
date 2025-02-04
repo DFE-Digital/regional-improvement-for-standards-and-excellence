@@ -52,6 +52,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         DateTime? dateSupportingOrganisationContactDetailsAdded,
         string? supportingOrganisationContactName,
         string supportingOrganisationContactEmailAddress,
+        bool? sendTheTemplateToTheSupportingOrganisation,
+        bool? sendTheTemplateToTheSchoolsResponsibleBody,
+        DateTime? dateTemplatesSent,
         IEnumerable<SupportProjectNote> notes
     );
 }
