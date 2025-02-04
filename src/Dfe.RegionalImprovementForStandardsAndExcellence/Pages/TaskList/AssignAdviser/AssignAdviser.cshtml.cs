@@ -19,6 +19,9 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
     [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
     [Display(Name = "date adviser was assigned")]
     public DateTime? DateAdviserAssigned { get; set; }
+    
+    public string Referrer { get; set; }
+
 
     public bool ShowError { get; set; }
 
@@ -48,10 +51,13 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
 
         DateAdviserAssigned = SupportProject.DateAdviserAssigned;
 
+        Referrer = TempData["AssignmentReferrer"].ToString() ?? @Links.TaskList.Index.Page;
+        
+
         return Page();
     }
 
-    public async Task<IActionResult> OnPost(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> OnPost(int id,string referrer, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid)
         {
@@ -67,10 +73,10 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
         if (result != true)
         {
             _errorService.AddApiError();
-            return await base.GetSupportProject(id, cancellationToken); ;
+            return await base.GetSupportProject(id, cancellationToken); 
         }
-
-        return RedirectToPage(@Links.TaskList.Index.Page, new { id });
+        
+        return RedirectToPage(referrer, new { id });
     }
 
 }

@@ -49,16 +49,16 @@
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
          <b>Advised by:</b>
-         @if (@Model.AssignedAdviserFullName == null || string.IsNullOrWhiteSpace(@Model.AssignedAdviserFullName))
+         @if (@Model.AdviserEmailAddress == null || string.IsNullOrWhiteSpace(@Model.AdviserEmailAddress))
          {
             <span data-id="assigned-user" class="empty">Empty</span>
          }
          else
          {
-            <strong data-id="assigned-user">@Model.AssignedAdviserFullName</strong>
+            <a data-id="assigned-user">@Model.AdviserEmailAddress</a>
          }
 
-         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.ProjectAssignment.Index.Page" asp-route-id="@Model.Id">Change</a>
+         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.Id">Change</a>
       </p>
    </div>
      <div class="govuk-grid-column-full">

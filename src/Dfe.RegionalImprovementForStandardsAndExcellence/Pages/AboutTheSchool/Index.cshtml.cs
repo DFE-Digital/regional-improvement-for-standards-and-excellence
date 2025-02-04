@@ -21,7 +21,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         ReturnPage = @Links.SchoolList.Index.Page;
         
         await base.GetSupportProject(id, cancellationToken);
-
+        
         return Page();
     }
 }
