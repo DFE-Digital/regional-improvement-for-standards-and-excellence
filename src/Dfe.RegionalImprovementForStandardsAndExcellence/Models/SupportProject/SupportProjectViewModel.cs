@@ -70,11 +70,11 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? SavedAssessmentTemplateInSharePointDate { get; set; }
 
         public bool? HasTalkToAdviserAboutFindings { get; set; }
-
+        
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
-        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
+        public bool? HasConfirmedSchoolGetTargetSupport { get;set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
         public string? DisapprovingTargetedSupportNotes { get; set; }
 
