@@ -165,14 +165,14 @@ public static class TaskStatusViewModel
     {
         if (supportProject.DateSupportOrganisationChosen.HasValue
             && supportProject.SupportOrganisationName != null
-            && supportProject.SupportOrganisationIdNumber != null)
+            && !string.IsNullOrWhiteSpace(supportProject.SupportOrganisationIdNumber))
         {
             return TaskListStatus.Complete;
         }
 
         if (!supportProject.DateSupportOrganisationChosen.HasValue
             && supportProject.SupportOrganisationName == null
-            && supportProject.SupportOrganisationIdNumber == null)
+            && string.IsNullOrWhiteSpace(supportProject.SupportOrganisationIdNumber))
         {
             return TaskListStatus.NotStarted;
         }
