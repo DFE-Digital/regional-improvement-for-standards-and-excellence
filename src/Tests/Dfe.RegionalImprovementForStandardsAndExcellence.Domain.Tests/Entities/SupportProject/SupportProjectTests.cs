@@ -317,7 +317,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.SupportOrganisationIdNumber.Should().Be(supportOrganisationId);
             this.mockRepository.VerifyAll();
         }
-        
+
         [Fact]
         public void SetDueDiligenceOnPreferredSupportingOrganisationDetails_WithValidDetails_SetsTheCorrectProperties()
         {
@@ -394,7 +394,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DisapprovingSupportingOrgnaisationAppointmentNotes.Should().Be(disapprovingSupportingOrgnaisationAppointmentNotes);
             mockRepository.VerifyAll();
         }
-        
+
         [Fact]
         public void SetSupportingOrganisationContactDetails_WithValidDetails_SetsTheCorrectProperties()
         {
@@ -463,6 +463,29 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.RegionalDirectorImprovementPlanDecisionDate.Should().Be(regionalDirectorImprovementPlanDecisionDate);
             supportProject.DisapprovingImprovementPlanDecisionNotes.Should().Be(disapprovingImprovementPlanDecisionNotes);
             mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetShareImproveMentPlanDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateTemplatesSent = DateTime.UtcNow;
+            bool? sendTheTemplateToTheSupportingOrganisation = true;
+            bool? sendTheTemplateToTheSchoolsResponsibleBody = true;
+
+            // Act
+            supportProject.SetImprovementPlanTemplateDetails(
+                sendTheTemplateToTheSupportingOrganisation,
+                sendTheTemplateToTheSchoolsResponsibleBody,
+                dateTemplatesSent);
+
+            // Assert
+            supportProject.DateTemplatesSent.Should().Be(dateTemplatesSent);
+            supportProject.SendTheTemplateToTheSupportingOrganisation.Should().Be(sendTheTemplateToTheSupportingOrganisation);
+            supportProject.SendTheTemplateToTheSchoolsResponsibleBody.Should().Be(sendTheTemplateToTheSchoolsResponsibleBody);
+            this.mockRepository.VerifyAll();
         }
     }
 }

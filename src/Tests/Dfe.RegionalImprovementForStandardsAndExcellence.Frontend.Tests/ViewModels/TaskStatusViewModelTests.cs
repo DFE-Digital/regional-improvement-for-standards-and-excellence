@@ -86,7 +86,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             DateTime? savedAssessmentTemplateInSharePointDate, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, SavedAssessmentTemplateInSharePointDate: savedAssessmentTemplateInSharePointDate, 
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, SavedAssessmentTemplateInSharePointDate: savedAssessmentTemplateInSharePointDate,
                 HasTalkToAdviserAboutFindings: hasTalkToAdviserAboutFindings, HasCompleteAssessmentTemplate: hasCompleteAssessmentTemplate));
 
             //Action 
@@ -259,7 +259,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
          TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, 
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now,
                 CheckOrganisationHasCapacityAndWillingToProvideSupport: checkOrganisationHasCapacityAndWillingToProvideSupport,
                 CheckChoiceWithTrustRelationshipManagerOrLaLead: checkChoiceWithTrustRelationshipManagerOrLaLead,
                 DiscussChoiceWithSfso: discussChoiceWithSfso,
@@ -285,7 +285,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         public void RecordSupportingOrganisationAppointmentTaskListStatusShouldReturnCorrectStatus(DateTime? regionalDirectorAppointmentDate, bool? hasConfirmedSupportingOrgnaisationAppointment, string? disapprovingSupportingOrgnaisationAppointmentNotes, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, RegionalDirectorAppointmentDate: regionalDirectorAppointmentDate, 
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, RegionalDirectorAppointmentDate: regionalDirectorAppointmentDate,
                 HasConfirmedSupportingOrgnaisationAppointment: hasConfirmedSupportingOrgnaisationAppointment, DisapprovingSupportingOrgnaisationAppointmentNotes: disapprovingSupportingOrgnaisationAppointmentNotes));
 
             //Action 
@@ -294,8 +294,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
-        
-        
+
+
         public static readonly TheoryData<DateTime?, string?, string?, TaskListStatus> SupportingOrganisationContactDetailsTaskListStatusCases = new()
         {
             { null, null, null, TaskListStatus.NotStarted },
@@ -323,6 +323,33 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             { DateTime.Now, true, null, TaskListStatus.Complete },
             { DateTime.Now, false, "Notes", TaskListStatus.InProgress }
         };
+
+
+        public static readonly TheoryData<bool?, bool?, DateTime?, TaskListStatus> ShareImprovementPlanTaskListStatusCases = new()
+   {
+       {null, null, null, TaskListStatus.NotStarted },
+       {false, false, null, TaskListStatus.InProgress },
+       {false, true, null, TaskListStatus.InProgress},
+       {true, true, DateTime.Now, TaskListStatus.Complete }
+   };
+
+        [Theory, MemberData(nameof(ShareImprovementPlanTaskListStatusCases))]
+        public void ShareImprovementPlanTaskListStatusCasesShouldReturnCorrectStatus(bool? sendTheTemplateToTheSupportingOrganisation,
+            bool? sendTheTemplateToTheSchoolsResponsibleBody,
+            DateTime? dateTemplatesSent, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now,
+                SendTheTemplateToTheSupportingOrganisation: sendTheTemplateToTheSupportingOrganisation,
+                SendTheTemplateToTheSchoolsResponsibleBody: sendTheTemplateToTheSchoolsResponsibleBody,
+                DateTemplatesSent: dateTemplatesSent));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ShareTheImprovementPlanTemplateTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
 
         [Theory, MemberData(nameof(RecordImprovementPlanDecisionTaskListStatusCases))]
         public void RecordImprovementPlanDecisionTaskListStatusShouldReturnCorrectStatus(DateTime? regionalDirectorImprovementPlanDecisionDate, bool? hasApprovedImprovementPlanDecision, string? disapprovingImprovementPlanDecisionNotes, TaskListStatus expectedTaskListStatus)

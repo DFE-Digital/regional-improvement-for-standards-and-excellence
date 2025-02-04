@@ -77,12 +77,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
         public string? DisapprovingTargetedSupportNotes { get; set; }
-        
-        public DateTime? DateSupportOrganisationChosen  { get;  set; }
-    
-        public string? SupportOrganisationName { get;  set; }
-    
-        public string? SupportOrganisationIdNumber { get;  set; }
+
+        public DateTime? DateSupportOrganisationChosen { get; set; }
+
+        public string? SupportOrganisationName { get; set; }
+
+        public string? SupportOrganisationIdNumber { get; set; }
 
         public bool? CheckOrganisationHasCapacityAndWillingToProvideSupport { get; set; }
 
@@ -100,12 +100,16 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? RegionalDirectorAppointmentDate { get; set; }
         public string? DisapprovingSupportingOrgnaisationAppointmentNotes { get; set; }
 
-        
+
         public DateTime? DateSupportingOrganisationContactDetailsAdded { get; set; }
-    
+
         public string? SupportingOrganisationContactName { get; set; }
-    
-        public string? SupportingOrganisationContactEmailAddress { get;  set; }
+
+        public string? SupportingOrganisationContactEmailAddress { get; set; }
+        public bool? SendTheTemplateToTheSupportingOrganisation { get; set; }
+        public bool? SendTheTemplateToTheSchoolsResponsibleBody { get; set; }
+        public DateTime? DateTemplatesSent { get; set; }
+
 
         public DateTime? RegionalDirectorImprovementPlanDecisionDate { get; set; }
         public bool? HasApprovedImprovementPlanDecision { get; set; }
@@ -167,6 +171,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DateSupportingOrganisationContactDetailsAdded = supportProjectDto.DateSupportingOrganisationContactDetailsAdded,
                 SupportingOrganisationContactName = supportProjectDto.SupportingOrganisationContactName,
                 SupportingOrganisationContactEmailAddress = supportProjectDto.SupportingOrganisationContactEmailAddress,
+                SendTheTemplateToTheSupportingOrganisation = supportProjectDto.SendTheTemplateToTheSupportingOrganisation,
+                SendTheTemplateToTheSchoolsResponsibleBody = supportProjectDto.SendTheTemplateToTheSchoolsResponsibleBody,
+                DateTemplatesSent = supportProjectDto.DateTemplatesSent,
                 RegionalDirectorImprovementPlanDecisionDate = supportProjectDto.RegionalDirectorImprovementPlanDecisionDate,
                 HasApprovedImprovementPlanDecision = supportProjectDto.HasApprovedImprovementPlanDecision,
                 DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes

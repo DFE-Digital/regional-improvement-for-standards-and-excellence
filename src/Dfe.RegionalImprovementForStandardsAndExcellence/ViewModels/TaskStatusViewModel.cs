@@ -221,7 +221,7 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
-    
+
     public static TaskListStatus SupportingOrganisationContactDetailsTaskListStatus(
         SupportProjectViewModel supportProject)
     {
@@ -258,6 +258,27 @@ public static class TaskStatusViewModel
         }
 
         return TaskListStatus.InProgress;
+    }
+
+    public static TaskListStatus ShareTheImprovementPlanTemplateTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        {
+            if (supportProject.SendTheTemplateToTheSupportingOrganisation.HasValue
+                && supportProject.SendTheTemplateToTheSchoolsResponsibleBody.HasValue
+                && supportProject.DateTemplatesSent.HasValue)
+            {
+                return TaskListStatus.Complete;
+            }
+
+            if (!supportProject.SendTheTemplateToTheSupportingOrganisation.HasValue
+                && !supportProject.SendTheTemplateToTheSchoolsResponsibleBody.HasValue
+                && !supportProject.DateTemplatesSent.HasValue)
+            {
+                return TaskListStatus.NotStarted;
+            }
+
+            return TaskListStatus.InProgress;
+        }
     }
 
     public static TaskListStatus SetRecordImprovementPlanDecisionTaskListStatus(SupportProjectViewModel supportProject)
