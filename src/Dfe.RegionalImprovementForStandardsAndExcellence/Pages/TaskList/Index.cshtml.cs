@@ -32,6 +32,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus RecordImprovementPlanDecisionTaskListStatus { get; set; }
 
     public TaskListStatus SendAgreedImprovementPlanForApprovalTaskListStatus { get; set; }
+    public TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus { get; set; }
     public void SetErrorPage(string errorPage)
     {
         TempData["ErrorPage"] = errorPage;

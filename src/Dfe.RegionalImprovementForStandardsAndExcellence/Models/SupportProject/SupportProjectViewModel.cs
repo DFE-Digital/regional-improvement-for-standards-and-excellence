@@ -116,6 +116,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string? DisapprovingImprovementPlanDecisionNotes { get; set; }
         public bool? HasSavedImprovementPlanInSharePoint { get; set; }
         public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; set; }
+        public DateTime? DateGrantTeamContacted { get; set; }
 
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
@@ -181,7 +182,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 HasApprovedImprovementPlanDecision = supportProjectDto.HasApprovedImprovementPlanDecision,
                 HasSavedImprovementPlanInSharePoint = supportProjectDto.HasSavedImprovementPlanInSharePoint,
                 HasEmailedAgreedPlanToRegionalDirectorForApproval = supportProjectDto.HasEmailedAgreedPlanToRegionalDirectorForApproval,
-                DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes
+                DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes,
+                DateGrantTeamContacted = supportProjectDto.DateGrantTeamContacted
             };
         }
     }

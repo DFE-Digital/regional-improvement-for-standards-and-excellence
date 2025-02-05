@@ -60,6 +60,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         string? DisapprovingImprovementPlanDecisionNotes = null,
         bool? HasSavedImprovementPlanInSharePoint = null,
         bool? HasEmailedAgreedPlanToRegionalDirectorForApproval = null,
+        DateTime? DateGrantTeamContacted = null,
         IEnumerable<SupportProjectNote> Notes = null!
     );
 }
