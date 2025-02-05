@@ -20,7 +20,7 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
     [Display(Name = "date adviser was assigned")]
     public DateTime? DateAdviserAssigned { get; set; }
     
-    public string Referrer { get; set; }
+    public string? Referrer { get; set; }
 
 
     public bool ShowError { get; set; }
@@ -51,9 +51,8 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
 
         DateAdviserAssigned = SupportProject.DateAdviserAssigned;
 
-        Referrer = TempData["AssignmentReferrer"].ToString() ?? @Links.TaskList.Index.Page;
+        Referrer = TempData["AssignmentReferrer"] == null ? @Links.TaskList.Index.Page : TempData["AssignmentReferrer"].ToString();
         
-
         return Page();
     }
 
@@ -63,6 +62,7 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
         {
             _errorService.AddErrors(Request.Form.Keys, ModelState);
             ShowError = true;
+            Referrer = referrer;
             return await base.GetSupportProject(id, cancellationToken);
         }
 
