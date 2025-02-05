@@ -9,7 +9,8 @@
 
 @section BeforeMain
 {
-    <a asp-page="@TempData["AssignmentReferrer"]" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
+    
+    <a asp-page="@Model.Referrer" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
 }
 
 <div class="govuk-grid-row">
