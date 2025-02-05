@@ -485,6 +485,26 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DateTemplatesSent.Should().Be(dateTemplatesSent);
             supportProject.SendTheTemplateToTheSupportingOrganisation.Should().Be(sendTheTemplateToTheSupportingOrganisation);
             supportProject.SendTheTemplateToTheSchoolsResponsibleBody.Should().Be(sendTheTemplateToTheSchoolsResponsibleBody);
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetSendAgreedImprovementPlanForApproval_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            bool? hasSavedImprovementPlanInSharePoint = true;
+            bool? hasEmailedAgreedPlanToRegionalDirectorForApproval = true;
+
+            // Act
+            supportProject.SetSendAgreedImprovementPlanForApproval(
+                hasSavedImprovementPlanInSharePoint,
+                hasEmailedAgreedPlanToRegionalDirectorForApproval);
+
+            // Assert
+            supportProject.HasSavedImprovementPlanInSharePoint.Should().Be(hasSavedImprovementPlanInSharePoint);
+            supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.Should().Be(hasEmailedAgreedPlanToRegionalDirectorForApproval);
             this.mockRepository.VerifyAll();
         }
     }

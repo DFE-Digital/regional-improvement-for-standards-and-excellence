@@ -17,7 +17,7 @@
         </h1>
         <form method="post" novalidate>
             <p class="govuk-body" data-cy="school-confirmtion-target-support">Confirm if a regional director has approved this improvement plan.</p>
-            <govuk-radiobuttons-input heading="Has a regional director approved this improvement plan?" heading-style="govuk-fieldset__legend--m" hint="If approval has not been given, add a note to give details."
+            <govuk-radiobuttons-input heading="Has a regional director approved this improvement plan?" heading-style="govuk-fieldset__legend--m" hint="If approval has not been given, add a note to explain why."
                  name="@nameof(Model.HasApprovedImprovementPlanDecision)" radio-buttons="@Model.RadioButtoons" asp-for="@Model.HasApprovedImprovementPlanDecision" />
             <govuk-date-input heading-label="false" label="Enter date the regional director approved this plan" id="improvement-plan-decision-date" name="improvement-plan-decision-date" 
                 asp-for="@Model.RegionalDirectorDecisionDate" hint="For example, 1 7 2024." />
