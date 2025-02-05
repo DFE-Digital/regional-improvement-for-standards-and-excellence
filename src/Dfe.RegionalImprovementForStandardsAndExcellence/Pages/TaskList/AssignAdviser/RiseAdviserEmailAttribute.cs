@@ -5,7 +5,7 @@
 
     public class RiseAdviserEmailAttribute : ValidationAttribute
     {
-        private const string EmailPattern = @"^(?!.*\s)rise\.[a-zA-Z]+(?:-[a-zA-Z]+)?\.[a-zA-Z]+(?:-[a-zA-Z]+)?@education\.gov\.uk$";
+        private const string EmailPattern = @"^rise\.[a-zA-Z]+(?:-[a-zA-Z]+)?\.[a-zA-Z]+(?:-[a-zA-Z]+)?@education\.gov\.uk$";
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
