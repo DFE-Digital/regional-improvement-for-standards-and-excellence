@@ -388,5 +388,27 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
+        
+        public static readonly TheoryData<DateTime?, bool?, TaskListStatus> ReviewTheImprovementPlanTaskListStatusCases = new()
+        {
+            { null, null, TaskListStatus.NotStarted },
+            { DateTime.Now, true, TaskListStatus.Complete },
+            { null, true, TaskListStatus.InProgress },
+            { DateTime.Now, null, TaskListStatus.InProgress },
+        };
+
+        [Theory, MemberData(nameof(ReviewTheImprovementPlanTaskListStatusCases))]
+        public void ReviewTheImprovementPlanTaskListStatusShouldReturnCorrectStatus(DateTime? improvementPlanReceivedDate, bool? reviewImprovementPlanWithTeam, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, ImprovementPlanReceivedDate: improvementPlanReceivedDate,
+                ReviewImprovementPlanWithTeam: reviewImprovementPlanWithTeam));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ReviewTheImprovementPlanTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
     }
 }

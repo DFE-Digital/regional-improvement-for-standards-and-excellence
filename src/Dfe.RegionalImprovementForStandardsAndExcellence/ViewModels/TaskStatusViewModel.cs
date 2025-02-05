@@ -317,4 +317,22 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+    
+    public static TaskListStatus ReviewTheImprovementPlanTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.ImprovementPlanReceivedDate.HasValue
+            && supportProject.ReviewImprovementPlanWithTeam.Equals(true))
+           
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.ImprovementPlanReceivedDate.HasValue
+            && !supportProject.ReviewImprovementPlanWithTeam.Equals(true))
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }
