@@ -407,7 +407,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
-        
+
         public static readonly TheoryData<DateTime?, bool?, TaskListStatus> ReviewTheImprovementPlanTaskListStatusCases = new()
         {
             { null, null, TaskListStatus.NotStarted },
@@ -447,7 +447,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
-        
+
         public static readonly TheoryData<DateTime?, TaskListStatus> ConfirmPlanningGrantOfferLetterTaskListStatusCases = new()
         {
             { null, TaskListStatus.NotStarted },
@@ -462,6 +462,25 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
 
             //Action 
             var taskListStatus = TaskStatusViewModel.ConfirmPlanningGrantOfferLetterTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+
+        public static readonly TheoryData<DateTime?, TaskListStatus> ConfirmImprovementGrantOfferLetterTaskListStatusCases = new()
+        {
+            { null, TaskListStatus.NotStarted },
+            { DateTime.UtcNow, TaskListStatus.Complete }
+        };
+
+        [Theory, MemberData(nameof(ConfirmImprovementGrantOfferLetterTaskListStatusCases))]
+        public void ConfirmImprovementGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? dateGrantsLetterConfirmed, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateImprovementGrantOfferLetterSent: dateGrantsLetterConfirmed));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ConfirmImprovementGrantOfferLetterTaskListStatus(supportProjectModel);
 
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
