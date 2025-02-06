@@ -1,6 +1,5 @@
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.SupportProject;
-using Microsoft.Graph.SecurityNamespace;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.ViewModels;
 
@@ -318,6 +317,20 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+    public static TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
     
     public static TaskListStatus ReviewTheImprovementPlanTaskListStatus(SupportProjectViewModel supportProject)
     {
@@ -339,12 +352,12 @@ public static class TaskStatusViewModel
 
     public static TaskListStatus RequestImprovementGrantOfferLetterTaskListStatus(SupportProjectViewModel supportProject)
     {
-        if (supportProject.GrantTeamContactedDate.HasValue)
+        if (supportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter.HasValue)
         {
             return TaskListStatus.Complete;
         }
 
-        if (!supportProject.GrantTeamContactedDate.HasValue)
+        if (!supportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter.HasValue)
         {
             return TaskListStatus.NotStarted;
         }

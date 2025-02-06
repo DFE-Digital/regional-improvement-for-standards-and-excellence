@@ -116,12 +116,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public string? DisapprovingImprovementPlanDecisionNotes { get; set; }
         public bool? HasSavedImprovementPlanInSharePoint { get; set; }
         public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; set; }
+        public DateTime? DateTeamContactedForRequestingPlanningGrantOfferLetter { get; set; }
 
         public DateTime? ImprovementPlanReceivedDate { get; set; }
-        
-        public bool? ReviewImprovementPlanWithTeam { get; set; } 
-        public DateTime? GrantTeamContactedDate { get; set; }
 
+        public bool? ReviewImprovementPlanWithTeam { get; set; }
+        public DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter { get; set; }
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -189,7 +189,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes,
                 ImprovementPlanReceivedDate = supportProjectDto.ImprovementPlanReceivedDate,
                 ReviewImprovementPlanWithTeam = supportProjectDto.ReviewImprovementPlanWithTeam,
-                GrantTeamContactedDate = supportProjectDto.GrantTeamContactedDate
+                DateTeamContactedForRequestingPlanningGrantOfferLetter = supportProjectDto.DateTeamContactedForRequestingPlanningGrantOfferLetter,
+                DateTeamContactedForRequestingImprovementGrantOfferLetter = supportProjectDto.DateTeamContactedForRequestingImprovementGrantOfferLetter
             };
         }
     }

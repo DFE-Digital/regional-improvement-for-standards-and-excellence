@@ -13,7 +13,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
     {
         [BindProperty(Name = "grant-team-contacted-date", BinderType = typeof(DateInputModelBinder))]
         [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-        [Display(Name = "grant-team-contacted-date")]
+        [Display(Name = "grant team contacted date")]
         public DateTime? GrantTeamContactedDate { get; set; }
 
         public string? EmailAddress { get; set; }
@@ -55,7 +55,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
         {
             await base.GetSupportProject(id, cancellationToken);
-            GrantTeamContactedDate = SupportProject.GrantTeamContactedDate;
+            GrantTeamContactedDate = SupportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter;
             EmailAddress = configuration.GetValue<string>("EmailForSendImprovementGrantOfferLetter") ?? string.Empty;
             return Page();
         }

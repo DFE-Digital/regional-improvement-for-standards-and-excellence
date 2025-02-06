@@ -514,13 +514,28 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Arrange
             var supportProject = CreateSupportProject();
 
-            DateTime? grantTeamContactedDate = DateTime.Now; 
+            DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter = DateTime.Now; 
 
             // Act
-            supportProject.SetRequestImprovementGrantOfferLetter(grantTeamContactedDate);
+            supportProject.SetRequestImprovementGrantOfferLetter(dateTeamContactedForRequestingImprovementGrantOfferLetter);
 
             // Assert
-            supportProject.GrantTeamContactedDate.Should().Be(grantTeamContactedDate);
+            supportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter.Should().Be(dateTeamContactedForRequestingImprovementGrantOfferLetter);
+            mockRepository.VerifyAll();
+        }
+        [Fact]
+        public void SetRequestPlanningGrantOfferLetterDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateGrantTeamContacted = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetRequestPlanningGrantOfferLetterDetails(dateGrantTeamContacted);
+
+            // Assert
+            supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.Should().Be(dateGrantTeamContacted);
             mockRepository.VerifyAll();
         }
     }

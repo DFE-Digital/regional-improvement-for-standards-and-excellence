@@ -149,6 +149,19 @@
                 </li>
             </ul>
         </div>
+        <h3 class="app-task-list__section govuk-!-margin-top-8">Send planning grant offer letter</h3>
+        <div class="app-task-list">
+            <ul class="app-task-list__items govuk-!-padding-left-0">
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.RequestPlanningGrantOfferLetter.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="request-planning-grant-offer-letter" data-cy="request-planning-grant-offer-letter">
+                            Request planning grant offer letter
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.RequestPlanningGrantOfferLetterTaskListStatus" />
+                </li>
+            </ul>
+        </div>
         <h3 class="app-task-list__section govuk-!-margin-top-8">Create the improvement plan</h3>
         <div class="app-task-list">
             <ul class="app-task-list__items govuk-!-padding-left-0">

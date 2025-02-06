@@ -5,22 +5,16 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetImprovementPlanTemplateDetails;
+using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetRequestPlanningGrantOfferLetterDetails;
 
-namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.ShareTheImprovementPlanTemplate;
+namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.RequestPlanningGrantOfferLetter;
 
 public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
-    [BindProperty(Name = "send-the-template-to-the-supporting-organisation")]
-    public bool? SendTheTemplateToTheSupportingOrganisation { get; set; }
-
-    [BindProperty(Name = "send-the-template-to-the-schools-responsible-body")]
-    public bool? SendTheTemplateToTheSchoolsResponsibleBody { get; set; }
-
-    [BindProperty(Name = "date-templates-sent", BinderType = typeof(DateInputModelBinder))]
+    [BindProperty(Name = "date-grant-team-contacted", BinderType = typeof(DateInputModelBinder))]
     [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-    [Display(Name = "date templates sent")]
-    public DateTime? DateTemplatesSent { get; set; }
+    [Display(Name = "date grant team contacted")]
+    public DateTime? DateGrantTeamContacted { get; set; }
 
     public bool ShowError { get; set; }
 
@@ -31,18 +25,14 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
 
     string IDateValidationMessageProvider.AllMissing(string displayName)
     {
-        return $"Enter the date templates sent";
+        return $"Enter the date grant team contacted";
     }
 
     public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
     {
         await base.GetSupportProject(id, cancellationToken);
 
-        SendTheTemplateToTheSupportingOrganisation = SupportProject.SendTheTemplateToTheSupportingOrganisation;
-
-        SendTheTemplateToTheSchoolsResponsibleBody = SupportProject.SendTheTemplateToTheSchoolsResponsibleBody;
-
-        DateTemplatesSent = SupportProject.DateTemplatesSent;
+        DateGrantTeamContacted = SupportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter;
 
         return Page();
     }
@@ -56,7 +46,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
             return await base.GetSupportProject(id, cancellationToken);
         }
 
-        var request = new SetImprovementPlanTemplateDetailsCommand(new SupportProjectId(id), SendTheTemplateToTheSupportingOrganisation, SendTheTemplateToTheSchoolsResponsibleBody, DateTemplatesSent);
+        var request = new SetRequestPlanningGrantOfferLetterDetailsCommand(new SupportProjectId(id), DateGrantTeamContacted);
 
         var result = await mediator.Send(request, cancellationToken);
 

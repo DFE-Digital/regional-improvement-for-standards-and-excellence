@@ -388,6 +388,25 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
+
+        public static readonly TheoryData<DateTime?, TaskListStatus> RequestPlanningGrantOfferLetterTaskListStatusCases = new()
+        {
+            { null, TaskListStatus.NotStarted },
+            { DateTime.UtcNow, TaskListStatus.Complete }
+        };
+
+        [Theory, MemberData(nameof(RequestPlanningGrantOfferLetterTaskListStatusCases))]
+        public void RequestPlanningGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? dateGrantsTeamContacted, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateTeamContactedForRequestingPlanningGrantOfferLetter: dateGrantsTeamContacted));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.RequestPlanningGrantOfferLetterTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
         
         public static readonly TheoryData<DateTime?, bool?, TaskListStatus> ReviewTheImprovementPlanTaskListStatusCases = new()
         {
@@ -417,10 +436,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         };
 
         [Theory, MemberData(nameof(RequestImprovementGrantOfferLetterTaskListStatusCases))]
-        public void RequestImprovementGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? grantTeamContactedDate, TaskListStatus expectedTaskListStatus)
+        public void RequestImprovementGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? dateGrantsTeamContacted, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, GrantTeamContactedDate: grantTeamContactedDate));
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateTeamContactedForRequestingImprovementGrantOfferLetter: dateGrantsTeamContacted));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.RequestImprovementGrantOfferLetterTaskListStatus(supportProjectModel);

@@ -138,12 +138,14 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public string? DisapprovingImprovementPlanDecisionNotes { get; private set; }
     public bool? HasSavedImprovementPlanInSharePoint { get; private set; }
     public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; private set; }
+
+    public DateTime? DateTeamContactedForRequestingPlanningGrantOfferLetter { get; private set; }
     
     public DateTime? ImprovementPlanReceivedDate { get; private set; }
     
     public bool? ReviewImprovementPlanWithTeam { get; private set; }
 
-    public DateTime? GrantTeamContactedDate { get; private set; }
+    public DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -302,6 +304,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         HasSavedImprovementPlanInSharePoint = hasSavedImprovementPlanInSharePoint;
         HasEmailedAgreedPlanToRegionalDirectorForApproval = hasEmailedAgreedPlanToRegionalDirectorForApproval;
     }
+
+    public void SetRequestPlanningGrantOfferLetterDetails(DateTime? dateTeamContactedForRequestingPlanningGrantOfferLetter)
+    {
+        DateTeamContactedForRequestingPlanningGrantOfferLetter = dateTeamContactedForRequestingPlanningGrantOfferLetter;
+    }
     
     public void SetReviewTheImprovementPlan(DateTime? improvementPlanReceivedDate , bool? reviewImprovementPlanWithTeam)
     {
@@ -309,9 +316,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         ReviewImprovementPlanWithTeam = reviewImprovementPlanWithTeam;
     }
 
-    public void SetRequestImprovementGrantOfferLetter(DateTime? grantTeamContactedDate)
+    public void SetRequestImprovementGrantOfferLetter(DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter)
     {
-        GrantTeamContactedDate = grantTeamContactedDate;
+        DateTeamContactedForRequestingImprovementGrantOfferLetter = dateTeamContactedForRequestingImprovementGrantOfferLetter;
     }
     #endregion
 }
