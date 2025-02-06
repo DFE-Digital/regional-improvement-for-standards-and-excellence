@@ -6,14 +6,14 @@ using Moq;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject;
 
-public class SetReviewTheImprovementPlanCommandHandlerTests
+public class SetReviewTheImprovementPlanTests
 {
    
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetReviewTheImprovementPlanCommandHandlerTests()
+        public SetReviewTheImprovementPlanTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();

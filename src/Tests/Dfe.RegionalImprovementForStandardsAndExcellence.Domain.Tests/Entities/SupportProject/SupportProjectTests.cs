@@ -505,7 +505,23 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Assert
             supportProject.HasSavedImprovementPlanInSharePoint.Should().Be(hasSavedImprovementPlanInSharePoint);
             supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.Should().Be(hasEmailedAgreedPlanToRegionalDirectorForApproval);
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetRequestImprovementGrantOfferLetter_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? grantTeamContactedDate = DateTime.Now; 
+
+            // Act
+            supportProject.SetRequestImprovementGrantOfferLetter(grantTeamContactedDate);
+
+            // Assert
+            supportProject.GrantTeamContactedDate.Should().Be(grantTeamContactedDate);
+            mockRepository.VerifyAll();
         }
     }
 }

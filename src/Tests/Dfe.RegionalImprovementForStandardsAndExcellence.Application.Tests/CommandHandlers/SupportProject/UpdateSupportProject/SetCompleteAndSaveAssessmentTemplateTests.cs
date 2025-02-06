@@ -1,18 +1,18 @@
 ﻿using AutoFixture;
+using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Moq;
 using System.Linq.Expressions;
-using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject.SetImprovementPlanTemplateDetails;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
 {
-    public class SetShareImprovementPlanDetailsTests
+    public class SetCompleteAndSaveAssessmentTemplateTests
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetShareImprovementPlanDetailsTests()
+        public SetCompleteAndSaveAssessmentTemplateTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
@@ -25,21 +25,21 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidCommand_UpdatesSupportProject()
         {
             // Arrange
-            DateTime? dateTemplatesSent = DateTime.UtcNow;
-            bool? sendTheTemplateToTheSupportingOrganisation = true;
-            bool? sendTheTemplateToTheSchoolsResponsibleBody = true;
+            var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
+            var hasTalkToAdviserAboutFindings = true;
+            var hasCompleteAssessmentTemplate = true;
 
-            var command = new SetImprovementPlanTemplateDetailsCommand(
+            var command = new SetCompleteAndSaveAssessmentTemplateCommand(
                 _mockSupportProject.Id,
-                sendTheTemplateToTheSupportingOrganisation,
-                sendTheTemplateToTheSchoolsResponsibleBody,
-                dateTemplatesSent
+                savedAssessmentTemplateInSharePointDate,
+                hasTalkToAdviserAboutFindings,
+                hasCompleteAssessmentTemplate
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var SetImprovementPlanTemplateDetailsCommandHandler = new SetImprovementPlanTemplateDetailsHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetCompleteAndSaveAssessmentTemplateCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
-            var result = await SetImprovementPlanTemplateDetailsCommandHandler.Handle(command, _cancellationToken);
+            var result = await handler.Handle(command, _cancellationToken);
 
             // Verify
             Assert.True(result);
@@ -50,17 +50,17 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
         {
             // Arrange
-            var command = new SetImprovementPlanTemplateDetailsCommand(
-               _mockSupportProject.Id,
-               null,
-               null,
-               null
-           );
+            var command = new SetCompleteAndSaveAssessmentTemplateCommand(
+                _mockSupportProject.Id,
+                null,
+                null,
+                null
+            );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var SetImprovementPlanTemplateDetailsCommandHandler = new SetImprovementPlanTemplateDetailsHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetCompleteAndSaveAssessmentTemplateCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
-            var result = await SetImprovementPlanTemplateDetailsCommandHandler.Handle(command, _cancellationToken);
+            var result = await handler.Handle(command, _cancellationToken);
 
             // Verify
             Assert.True(result);
@@ -71,21 +71,23 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ProjectNotFound_ReturnsFalse()
         {
             // Arrange
-            DateTime? dateTemplatesSent = DateTime.UtcNow;
-            bool? sendTheTemplateToTheSupportingOrganisation = true;
-            bool? sendTheTemplateToTheSchoolsResponsibleBody = true;
+            var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
+            var hasTalkToAdviserAboutFindings = true;
+            var hasCompleteAssessmentTemplate = true;
 
-            var command = new SetImprovementPlanTemplateDetailsCommand(
+            var command = new SetCompleteAndSaveAssessmentTemplateCommand(
                 _mockSupportProject.Id,
-                sendTheTemplateToTheSupportingOrganisation,
-                sendTheTemplateToTheSchoolsResponsibleBody,
-                dateTemplatesSent
+                savedAssessmentTemplateInSharePointDate,
+                hasTalkToAdviserAboutFindings,
+                hasCompleteAssessmentTemplate
             );
+
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-            var SetImprovementPlanTemplateDetailsCommandHandler = new SetImprovementPlanTemplateDetailsHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetCompleteAndSaveAssessmentTemplateCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
-            var result = await SetImprovementPlanTemplateDetailsCommandHandler.Handle(command, _cancellationToken);
+            var result = await handler.Handle(command, _cancellationToken);
+
             // Verify
             Assert.False(result);
         }

@@ -6,13 +6,13 @@ using System.Linq.Expressions;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
 {
-    public class SetSchoolResponseCommandHandlerTests
+    public class SetSchoolResponseTests
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetSchoolResponseCommandHandlerTests()
+        public SetSchoolResponseTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();

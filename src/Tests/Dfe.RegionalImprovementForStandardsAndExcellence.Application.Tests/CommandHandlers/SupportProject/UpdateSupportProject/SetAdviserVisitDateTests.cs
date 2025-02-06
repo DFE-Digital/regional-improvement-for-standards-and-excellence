@@ -7,13 +7,13 @@ using Moq;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject;
 
 
-public class SetAdviserVisitDateCommandHandlerTests
+public class SetAdviserVisitDateTests
 {
     private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
     private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
     private readonly CancellationToken _cancellationToken;
 
-    public SetAdviserVisitDateCommandHandlerTests()
+    public SetAdviserVisitDateTests()
     {
 
         _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();

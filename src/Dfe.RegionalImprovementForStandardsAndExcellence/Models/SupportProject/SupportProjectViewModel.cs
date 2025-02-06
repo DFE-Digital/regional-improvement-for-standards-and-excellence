@@ -120,6 +120,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
         public DateTime? ImprovementPlanReceivedDate { get; set; }
         
         public bool? ReviewImprovementPlanWithTeam { get; set; } 
+        public DateTime? GrantTeamContactedDate { get; set; }
+
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -186,7 +188,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 HasEmailedAgreedPlanToRegionalDirectorForApproval = supportProjectDto.HasEmailedAgreedPlanToRegionalDirectorForApproval,
                 DisapprovingImprovementPlanDecisionNotes = supportProjectDto.DisapprovingImprovementPlanDecisionNotes,
                 ImprovementPlanReceivedDate = supportProjectDto.ImprovementPlanReceivedDate,
-                ReviewImprovementPlanWithTeam = supportProjectDto.ReviewImprovementPlanWithTeam
+                ReviewImprovementPlanWithTeam = supportProjectDto.ReviewImprovementPlanWithTeam,
+                GrantTeamContactedDate = supportProjectDto.GrantTeamContactedDate
             };
         }
     }

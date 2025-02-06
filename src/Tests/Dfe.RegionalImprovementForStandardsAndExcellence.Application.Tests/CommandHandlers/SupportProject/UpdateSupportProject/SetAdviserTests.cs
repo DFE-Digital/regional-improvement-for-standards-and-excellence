@@ -7,13 +7,13 @@ using System.Linq.Expressions;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject;
 
-public class SetAdviserCommandHandlerTests
+public class SetAdviserTests
 {
     private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
     private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
     private readonly CancellationToken _cancellationToken;
 
-    public SetAdviserCommandHandlerTests()
+    public SetAdviserTests()
     {
 
         _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();

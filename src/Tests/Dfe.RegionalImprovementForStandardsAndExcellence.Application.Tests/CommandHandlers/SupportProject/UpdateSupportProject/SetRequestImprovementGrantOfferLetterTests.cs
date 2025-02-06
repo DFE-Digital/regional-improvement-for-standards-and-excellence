@@ -6,13 +6,13 @@ using System.Linq.Expressions;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
 {
-    public class SetSendIntroductoryEmailCommandHandlerTests
+    public class SetRequestImprovementGrantOfferLetterTests
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetSendIntroductoryEmailCommandHandlerTests()
+        public SetRequestImprovementGrantOfferLetterTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
@@ -25,18 +25,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidCommand_UpdatesSupportProject()
         {
             // Arrange
-            var introductoryEmailSentDate = DateTime.UtcNow;
-            var hasShareEmailTemplateWithAdvisor = true;
-            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
+            var grantTeamContactedDate = DateTime.Now;
 
-            var command = new SetSendIntroductoryEmailCommand(
+            var command = new SetRequestImprovementGrantOfferLetterCommand(
                 _mockSupportProject.Id,
-                introductoryEmailSentDate,
-                hasShareEmailTemplateWithAdvisor,
-                remindAdvisorToCopyRiseTeamWhenSentEmail
+                grantTeamContactedDate
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetRequestImprovementGrantOfferLetterCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -50,14 +46,12 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
         {
             // Arrange
-            var command = new SetSendIntroductoryEmailCommand(
+            var command = new SetRequestImprovementGrantOfferLetterCommand(
                 _mockSupportProject.Id,
-                null,
-                null,
                 null
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetRequestImprovementGrantOfferLetterCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -71,19 +65,15 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ProjectNotFound_ReturnsFalse()
         {
             // Arrange
-            var introductoryEmailSentDate = DateTime.UtcNow;
-            var hasShareEmailTemplateWithAdvisor = true;
-            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
+            var grantTeamContactedDate = DateTime.Now;
 
-            var command = new SetSendIntroductoryEmailCommand(
+            var command = new SetRequestImprovementGrantOfferLetterCommand(
                 _mockSupportProject.Id,
-                introductoryEmailSentDate,
-                hasShareEmailTemplateWithAdvisor,
-                remindAdvisorToCopyRiseTeamWhenSentEmail
+                grantTeamContactedDate
             );
 
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetRequestImprovementGrantOfferLetterCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);

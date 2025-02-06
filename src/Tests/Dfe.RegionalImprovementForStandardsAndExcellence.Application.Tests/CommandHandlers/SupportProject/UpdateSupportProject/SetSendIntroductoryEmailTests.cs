@@ -6,13 +6,13 @@ using System.Linq.Expressions;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject
 {
-    public class SetCompleteAndSaveAssessmentTemplateHandlerTests
+    public class SetSendIntroductoryEmailTests
     {
         private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
         private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
         private readonly CancellationToken _cancellationToken;
 
-        public SetCompleteAndSaveAssessmentTemplateHandlerTests()
+        public SetSendIntroductoryEmailTests()
         {
 
             _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
@@ -25,18 +25,18 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidCommand_UpdatesSupportProject()
         {
             // Arrange
-            var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
-            var hasTalkToAdviserAboutFindings = true;
-            var hasCompleteAssessmentTemplate = true;
+            var introductoryEmailSentDate = DateTime.UtcNow;
+            var hasShareEmailTemplateWithAdvisor = true;
+            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
 
-            var command = new SetCompleteAndSaveAssessmentTemplateCommand(
+            var command = new SetSendIntroductoryEmailCommand(
                 _mockSupportProject.Id,
-                savedAssessmentTemplateInSharePointDate,
-                hasTalkToAdviserAboutFindings,
-                hasCompleteAssessmentTemplate
+                introductoryEmailSentDate,
+                hasShareEmailTemplateWithAdvisor,
+                remindAdvisorToCopyRiseTeamWhenSentEmail
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetCompleteAndSaveAssessmentTemplateCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -50,14 +50,14 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
         {
             // Arrange
-            var command = new SetCompleteAndSaveAssessmentTemplateCommand(
+            var command = new SetSendIntroductoryEmailCommand(
                 _mockSupportProject.Id,
                 null,
                 null,
                 null
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-            var handler = new SetCompleteAndSaveAssessmentTemplateCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
@@ -71,19 +71,19 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.Com
         public async Task Handle_ProjectNotFound_ReturnsFalse()
         {
             // Arrange
-            var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
-            var hasTalkToAdviserAboutFindings = true;
-            var hasCompleteAssessmentTemplate = true;
+            var introductoryEmailSentDate = DateTime.UtcNow;
+            var hasShareEmailTemplateWithAdvisor = true;
+            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
 
-            var command = new SetCompleteAndSaveAssessmentTemplateCommand(
+            var command = new SetSendIntroductoryEmailCommand(
                 _mockSupportProject.Id,
-                savedAssessmentTemplateInSharePointDate,
-                hasTalkToAdviserAboutFindings,
-                hasCompleteAssessmentTemplate
+                introductoryEmailSentDate,
+                hasShareEmailTemplateWithAdvisor,
+                remindAdvisorToCopyRiseTeamWhenSentEmail
             );
 
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-            var handler = new SetCompleteAndSaveAssessmentTemplateCommandHandler(_mockSupportProjectRepository.Object);
+            var handler = new SetSendIntroductoryEmailCommandHandler(_mockSupportProjectRepository.Object);
 
             // Act
             var result = await handler.Handle(command, _cancellationToken);
