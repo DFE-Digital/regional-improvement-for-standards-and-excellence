@@ -140,14 +140,16 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; private set; }
 
     public DateTime? DateTeamContactedForRequestingPlanningGrantOfferLetter { get; private set; }
-    
+
     public DateTime? ImprovementPlanReceivedDate { get; private set; }
-    
+
     public bool? ReviewImprovementPlanWithTeam { get; private set; }
 
     public DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter { get; private set; }
-    
+
     public DateTime? DateTeamContactedForConfirmingPlanningGrantOfferLetter { get; private set; }
+
+    public DateTime? DateImprovementGrantOfferLetterSent { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -311,10 +313,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         DateTeamContactedForRequestingPlanningGrantOfferLetter = dateTeamContactedForRequestingPlanningGrantOfferLetter;
     }
-    
-    public void SetReviewTheImprovementPlan(DateTime? improvementPlanReceivedDate , bool? reviewImprovementPlanWithTeam)
+
+    public void SetReviewTheImprovementPlan(DateTime? improvementPlanReceivedDate, bool? reviewImprovementPlanWithTeam)
     {
-        ImprovementPlanReceivedDate = improvementPlanReceivedDate ;
+        ImprovementPlanReceivedDate = improvementPlanReceivedDate;
         ReviewImprovementPlanWithTeam = reviewImprovementPlanWithTeam;
     }
 
@@ -322,10 +324,15 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         DateTeamContactedForRequestingImprovementGrantOfferLetter = dateTeamContactedForRequestingImprovementGrantOfferLetter;
     }
-    
-    public void SetConfirmPlanningGrantOfferLetterDate(DateTime?  dateTeamContactedForConfirmingPlanningGrantOfferLetter)
+
+    public void SetConfirmPlanningGrantOfferLetterDate(DateTime? dateTeamContactedForConfirmingPlanningGrantOfferLetter)
     {
         DateTeamContactedForConfirmingPlanningGrantOfferLetter = dateTeamContactedForConfirmingPlanningGrantOfferLetter;
+    }
+
+    public void SetConfirmImprovementGrantOfferLetterDetails(DateTime? dateImprovementGrantOfferLetterSent)
+    {
+        DateImprovementGrantOfferLetterSent = dateImprovementGrantOfferLetterSent;
     }
     #endregion
 }

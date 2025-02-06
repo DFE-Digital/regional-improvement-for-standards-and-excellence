@@ -65,6 +65,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportPr
         bool? ReviewImprovementPlanWithTeam = null,
         DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter = null,
         DateTime? DateTeamContactedForConfirmingPlanningGrantOfferLetter = null,
+        DateTime? DateImprovementGrantOfferLetterSent = null,
         IEnumerable<SupportProjectNote> Notes = null!
-    );
+    )
+    { }
 }
