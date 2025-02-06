@@ -317,4 +317,18 @@ public static class TaskStatusViewModel
 
         return TaskListStatus.InProgress;
     }
+    public static TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.DateGrantTeamContacted.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.DateGrantTeamContacted.HasValue)
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
 }

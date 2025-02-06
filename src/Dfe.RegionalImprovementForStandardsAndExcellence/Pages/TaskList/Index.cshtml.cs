@@ -65,6 +65,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         ShareTheImprovementPlanTemplateTaskListStatus = TaskStatusViewModel.ShareTheImprovementPlanTemplateTaskListStatus(SupportProject);
         RecordImprovementPlanDecisionTaskListStatus = TaskStatusViewModel.RecordImprovementPlanDecisionTaskListStatus(SupportProject);
         SendAgreedImprovementPlanForApprovalTaskListStatus = TaskStatusViewModel.SendAgreedImprovementPlanForApprovalTaskListStatus(SupportProject);
+        RequestPlanningGrantOfferLetterTaskListStatus = TaskStatusViewModel.RequestPlanningGrantOfferLetterTaskListStatus(SupportProject);
         return Page();
     }
 }

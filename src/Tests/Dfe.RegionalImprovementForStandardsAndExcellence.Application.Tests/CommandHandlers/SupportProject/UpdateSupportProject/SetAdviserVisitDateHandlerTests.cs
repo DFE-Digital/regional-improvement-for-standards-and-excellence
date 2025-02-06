@@ -1,8 +1,11 @@
-using System.Linq.Expressions;
 using AutoFixture;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Moq;
+using System;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject;
 
@@ -34,7 +37,7 @@ public class SetAdviserVisitDateCommandHandlerTests
         var setAdviserVisitDateCommandHandler = new SetAdviserVisitDate.SetAdviserVisitDateCommandHandler(_mockSupportProjectRepository.Object);
 
         // Act
-        var result = await  setAdviserVisitDateCommandHandler.Handle(command, _cancellationToken);
+        var result = await setAdviserVisitDateCommandHandler.Handle(command, _cancellationToken);
 
         // Verify
         Assert.True(result);
@@ -68,7 +71,7 @@ public class SetAdviserVisitDateCommandHandlerTests
             _mockSupportProject.Id,
             DateTime.UtcNow
         );
-        
+
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
         var setAdviserVisitDateCommandHandler = new SetAdviserVisitDate.SetAdviserVisitDateCommandHandler(_mockSupportProjectRepository.Object);
 
