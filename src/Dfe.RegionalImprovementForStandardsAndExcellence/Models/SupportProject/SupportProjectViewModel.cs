@@ -122,8 +122,10 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
 
         public bool? ReviewImprovementPlanWithTeam { get; set; }
         public DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter { get; set; }
-        
+
         public DateTime? DateTeamContactedForConfirmingPlanningGrantOfferLetter { get; set; }
+        public DateTime? DateImprovementGrantOfferLetterSent { get; set; }
+
         public static SupportProjectViewModel Create(SupportProjectDto supportProjectDto)
         {
             return new SupportProjectViewModel()
@@ -193,7 +195,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Models.Suppo
                 ReviewImprovementPlanWithTeam = supportProjectDto.ReviewImprovementPlanWithTeam,
                 DateTeamContactedForRequestingPlanningGrantOfferLetter = supportProjectDto.DateTeamContactedForRequestingPlanningGrantOfferLetter,
                 DateTeamContactedForRequestingImprovementGrantOfferLetter = supportProjectDto.DateTeamContactedForRequestingImprovementGrantOfferLetter,
-                DateTeamContactedForConfirmingPlanningGrantOfferLetter = supportProjectDto.DateTeamContactedForConfirmingPlanningGrantOfferLetter
+                DateTeamContactedForConfirmingPlanningGrantOfferLetter = supportProjectDto.DateTeamContactedForConfirmingPlanningGrantOfferLetter,
+                DateImprovementGrantOfferLetterSent = supportProjectDto.DateImprovementGrantOfferLetterSent
             };
         }
     }

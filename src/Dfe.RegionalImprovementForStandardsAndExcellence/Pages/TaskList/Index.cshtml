@@ -218,6 +218,14 @@
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.RequestImprovementGrantOfferLetterTaskListStatus" />
                 </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ConfirmImprovementGrantOfferLetterSent.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="confirm-improvement-grant-offer-letter-status" data-cy="confirm-improvement-grant-offer-letter">
+                            Confirm improvement grant offer letter
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ConfirmImprovementGrantOfferLetterTaskListStatus" />
+                </li>
             </ul>
         </div>
     </div>
