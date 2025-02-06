@@ -35,6 +35,9 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus { get; set; }
     
     public TaskListStatus ReviewTheImprovementPlanTaskListStatus { get; set; }
+
+    public TaskListStatus RequestImprovementGrantOfferLetterTaskListStatus { get; set; }
+
     public void SetErrorPage(string errorPage)
     {
         TempData["ErrorPage"] = errorPage;
@@ -70,6 +73,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         RequestPlanningGrantOfferLetterTaskListStatus = TaskStatusViewModel.RequestPlanningGrantOfferLetterTaskListStatus(SupportProject);
         ReviewTheImprovementPlanTaskListStatus =
             TaskStatusViewModel.ReviewTheImprovementPlanTaskListStatus(SupportProject);
+        RequestImprovementGrantOfferLetterTaskListStatus = TaskStatusViewModel.RequestImprovementGrantOfferLetterTaskListStatus(SupportProject);
         return Page();
     }
 }

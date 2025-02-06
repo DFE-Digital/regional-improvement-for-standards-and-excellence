@@ -2,18 +2,21 @@ using AutoFixture;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Application.SupportProject.Commands.UpdateSupportProject;
 using Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Interfaces.Repositories;
 using Moq;
+using System;
 using System.Linq.Expressions;
-
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Application.Tests.CommandHandlers.SupportProject.UpdateSupportProject;
 
-public class SetAdviserCommandHandlerTests
+
+public class SetAdviserVisitDateTests
 {
     private readonly Mock<ISupportProjectRepository> _mockSupportProjectRepository;
     private readonly Domain.Entities.SupportProject.SupportProject _mockSupportProject;
     private readonly CancellationToken _cancellationToken;
 
-    public SetAdviserCommandHandlerTests()
+    public SetAdviserVisitDateTests()
     {
 
         _mockSupportProjectRepository = new Mock<ISupportProjectRepository>();
@@ -26,16 +29,15 @@ public class SetAdviserCommandHandlerTests
     public async Task Handle_ValidCommand_UpdatesSupportProject()
     {
         // Arrange
-        var command = new SetAdviserCommand(
+        var command = new SetAdviserVisitDateCommand(
             _mockSupportProject.Id,
-            "Dave Dave",
-            "dave.dave@example.com"
+            DateTime.UtcNow
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-        var setAdviserCommandHandler = new SetAdviser.SetAdviserCommandHandler(_mockSupportProjectRepository.Object);
+        var setAdviserVisitDateCommandHandler = new SetAdviserVisitDate.SetAdviserVisitDateCommandHandler(_mockSupportProjectRepository.Object);
 
         // Act
-        var result = await setAdviserCommandHandler.Handle(command, _cancellationToken);
+        var result = await setAdviserVisitDateCommandHandler.Handle(command, _cancellationToken);
 
         // Verify
         Assert.True(result);
@@ -43,19 +45,18 @@ public class SetAdviserCommandHandlerTests
     }
 
     [Fact]
-    public async Task Handle_ValidEmptyCommand_UpdatesSupportProject()
+    public async Task Handle_ValidCommandWithNoDate_UpdatesSupportProject()
     {
-        // Arrange
-        var command = new SetAdviserCommand(
+        //Arrange
+        var command = new SetAdviserVisitDateCommand(
             _mockSupportProject.Id,
-            null!,
-            null!
+            null
         );
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
-        var setAdviserCommandHandler = new SetAdviser.SetAdviserCommandHandler(_mockSupportProjectRepository.Object);
+        var setAdviserVisitDateCommandHandler = new SetAdviserVisitDate.SetAdviserVisitDateCommandHandler(_mockSupportProjectRepository.Object);
 
         // Act
-        var result = await setAdviserCommandHandler.Handle(command, _cancellationToken);
+        var result = await setAdviserVisitDateCommandHandler.Handle(command, _cancellationToken);
 
         // Verify
         Assert.True(result);
@@ -66,16 +67,16 @@ public class SetAdviserCommandHandlerTests
     public async Task Handle_ProjectNotFound_ReturnsFalse()
     {
         // Arrange
-        var command = new SetAdviserCommand(
+        var command = new SetAdviserVisitDateCommand(
             _mockSupportProject.Id,
-            "Dave Dave",
-            "dave.dave@example.com"
+            DateTime.UtcNow
         );
+
         _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
-        var setAdviserCommandHandler = new SetAdviser.SetAdviserCommandHandler(_mockSupportProjectRepository.Object);
+        var setAdviserVisitDateCommandHandler = new SetAdviserVisitDate.SetAdviserVisitDateCommandHandler(_mockSupportProjectRepository.Object);
 
         // Act
-        var result = await setAdviserCommandHandler.Handle(command, _cancellationToken);
+        var result = await setAdviserVisitDateCommandHandler.Handle(command, _cancellationToken);
 
         // Verify
         Assert.False(result);

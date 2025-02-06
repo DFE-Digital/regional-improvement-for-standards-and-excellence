@@ -505,7 +505,23 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Assert
             supportProject.HasSavedImprovementPlanInSharePoint.Should().Be(hasSavedImprovementPlanInSharePoint);
             supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.Should().Be(hasEmailedAgreedPlanToRegionalDirectorForApproval);
-            this.mockRepository.VerifyAll();
+            mockRepository.VerifyAll();
+        }
+
+        [Fact]
+        public void SetRequestImprovementGrantOfferLetter_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter = DateTime.Now; 
+
+            // Act
+            supportProject.SetRequestImprovementGrantOfferLetter(dateTeamContactedForRequestingImprovementGrantOfferLetter);
+
+            // Assert
+            supportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter.Should().Be(dateTeamContactedForRequestingImprovementGrantOfferLetter);
+            mockRepository.VerifyAll();
         }
         [Fact]
         public void SetRequestPlanningGrantOfferLetterDetails_WithValidDetails_SetsTheCorrectProperties()
@@ -519,8 +535,8 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.SetRequestPlanningGrantOfferLetterDetails(dateGrantTeamContacted);
 
             // Assert
-            supportProject.DateGrantTeamContacted.Should().Be(dateGrantTeamContacted);
-            this.mockRepository.VerifyAll();
+            supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.Should().Be(dateGrantTeamContacted);
+            mockRepository.VerifyAll();
         }
     }
 }

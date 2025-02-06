@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class requestgrantofferletter : Migration
+    public partial class AddedGrantTeamContactedDateFields : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "DateGrantTeamContacted",
+                name: "GrantTeamContactedDate",
                 schema: "RISE",
                 table: "SupportProject",
                 type: "datetime2",
@@ -28,7 +28,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "DateGrantTeamContacted",
+                name: "GrantTeamContactedDate",
                 schema: "RISE",
                 table: "SupportProject")
                 .Annotation("SqlServer:IsTemporal", true)

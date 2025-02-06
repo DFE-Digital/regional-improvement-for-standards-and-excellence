@@ -319,12 +319,12 @@ public static class TaskStatusViewModel
     }
     public static TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus(SupportProjectViewModel supportProject)
     {
-        if (supportProject.DateGrantTeamContacted.HasValue)
+        if (supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.HasValue)
         {
             return TaskListStatus.Complete;
         }
 
-        if (!supportProject.DateGrantTeamContacted.HasValue)
+        if (!supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.HasValue)
         {
             return TaskListStatus.NotStarted;
         }
@@ -343,6 +343,21 @@ public static class TaskStatusViewModel
 
         if (!supportProject.ImprovementPlanReceivedDate.HasValue
             && !supportProject.ReviewImprovementPlanWithTeam.Equals(true))
+        {
+            return TaskListStatus.NotStarted;
+        }
+
+        return TaskListStatus.InProgress;
+    }
+
+    public static TaskListStatus RequestImprovementGrantOfferLetterTaskListStatus(SupportProjectViewModel supportProject)
+    {
+        if (supportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter.HasValue)
+        {
+            return TaskListStatus.Complete;
+        }
+
+        if (!supportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter.HasValue)
         {
             return TaskListStatus.NotStarted;
         }

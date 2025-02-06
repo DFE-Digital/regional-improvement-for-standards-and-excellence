@@ -32,7 +32,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     {
         await base.GetSupportProject(id, cancellationToken);
 
-        DateGrantTeamContacted = SupportProject.DateGrantTeamContacted;
+        DateGrantTeamContacted = SupportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter;
 
         return Page();
     }

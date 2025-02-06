@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    [Migration("20250205164928_request-grant-offer-letter")]
-    partial class requestgrantofferletter
+    [Migration("20250206124756_AddedGrantTeamContactedDateFields")]
+    partial class AddedGrantTeamContactedDateFields
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,9 +82,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<DateTime?>("DateDueDiligenceCompleted")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateGrantTeamContacted")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime?>("DateNoteOfVisitSavedInSharePoint")
                         .HasColumnType("datetime2");
 
@@ -115,6 +112,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<bool?>("GiveTheAdviserTheNoteOfVisitTemplate")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("GrantTeamContactedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool?>("HasAcceeptedTargetedSupport")
                         .HasColumnType("bit");
 
@@ -144,6 +144,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
 
                     b.Property<bool?>("HasTalkToAdviserAboutFindings")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ImprovementPlanReceivedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("IntroductoryEmailSentDate")
                         .HasColumnType("datetime2");
@@ -185,6 +188,9 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("RemindAdvisorToCopyRiseTeamWhenSentEmail")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ReviewImprovementPlanWithTeam")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("SaveCompletedConflictOfinterestFormInSharePoint")

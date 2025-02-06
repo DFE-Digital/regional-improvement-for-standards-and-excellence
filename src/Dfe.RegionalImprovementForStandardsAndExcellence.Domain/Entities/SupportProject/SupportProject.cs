@@ -139,11 +139,13 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasSavedImprovementPlanInSharePoint { get; private set; }
     public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; private set; }
 
-    public DateTime? DateGrantTeamContacted { get; private set; }
+    public DateTime? DateTeamContactedForRequestingPlanningGrantOfferLetter { get; private set; }
     
     public DateTime? ImprovementPlanReceivedDate { get; private set; }
     
     public bool? ReviewImprovementPlanWithTeam { get; private set; }
+
+    public DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -303,15 +305,20 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         HasEmailedAgreedPlanToRegionalDirectorForApproval = hasEmailedAgreedPlanToRegionalDirectorForApproval;
     }
 
-    public void SetRequestPlanningGrantOfferLetterDetails(DateTime? dateGrantTeamContacted)
+    public void SetRequestPlanningGrantOfferLetterDetails(DateTime? dateTeamContactedForRequestingPlanningGrantOfferLetter)
     {
-        DateGrantTeamContacted = dateGrantTeamContacted;
+        DateTeamContactedForRequestingPlanningGrantOfferLetter = dateTeamContactedForRequestingPlanningGrantOfferLetter;
     }
     
     public void SetReviewTheImprovementPlan(DateTime? improvementPlanReceivedDate , bool? reviewImprovementPlanWithTeam)
     {
         ImprovementPlanReceivedDate = improvementPlanReceivedDate ;
         ReviewImprovementPlanWithTeam = reviewImprovementPlanWithTeam;
+    }
+
+    public void SetRequestImprovementGrantOfferLetter(DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter)
+    {
+        DateTeamContactedForRequestingImprovementGrantOfferLetter = dateTeamContactedForRequestingImprovementGrantOfferLetter;
     }
     #endregion
 }

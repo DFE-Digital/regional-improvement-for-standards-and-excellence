@@ -399,7 +399,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
         public void RequestPlanningGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? dateGrantsTeamContacted, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateGrantTeamContacted: dateGrantsTeamContacted));
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateTeamContactedForRequestingPlanningGrantOfferLetter: dateGrantsTeamContacted));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.RequestPlanningGrantOfferLetterTaskListStatus(supportProjectModel);
@@ -429,5 +429,24 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
+        public static readonly TheoryData<DateTime?, TaskListStatus> RequestImprovementGrantOfferLetterTaskListStatusCases = new()
+        {
+            { null, TaskListStatus.NotStarted },
+            { DateTime.Now, TaskListStatus.Complete }
+        };
+
+        [Theory, MemberData(nameof(RequestImprovementGrantOfferLetterTaskListStatusCases))]
+        public void RequestImprovementGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? dateGrantsTeamContacted, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateTeamContactedForRequestingImprovementGrantOfferLetter: dateGrantsTeamContacted));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.RequestImprovementGrantOfferLetterTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
+        
     }
 }

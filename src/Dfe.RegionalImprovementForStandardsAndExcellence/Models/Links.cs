@@ -62,6 +62,7 @@ public static class Links
         public static readonly LinkItem SendAgreedImprovementPlanForApproval = AddLinkItem(backText: "Back", page: "/TaskList/SendAgreedImprovementPlanForApproval/Index");
         public static readonly LinkItem RequestPlanningGrantOfferLetter = AddLinkItem(backText: "Back", page: "/TaskList/RequestPlanningGrantOfferLetter/Index");
         public static readonly LinkItem ReviewTheImprovementPlan = AddLinkItem(backText: "Back", page: "/TaskList/ReviewTheImprovementPlan/Index");
+        public static readonly LinkItem RequestImprovementGrantOfferLetter = AddLinkItem(backText: "Back", page: "/TaskList/RequestImprovementGrantOfferLetter/Index");
     }
 
     public static class Notes
