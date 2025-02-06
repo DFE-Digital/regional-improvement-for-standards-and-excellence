@@ -13,7 +13,7 @@
             {
                 return ValidationResult.Success!;
             }
-
+            
             return new ValidationResult("Email must be in the format: rise.firstname.lastname@education.gov.uk");
         }
     }

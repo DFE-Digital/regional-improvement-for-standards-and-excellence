@@ -140,6 +140,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; private set; }
 
     public DateTime? DateGrantTeamContacted { get; private set; }
+    
+    public DateTime? ImprovementPlanReceivedDate { get; private set; }
+    
+    public bool? ReviewImprovementPlanWithTeam { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -302,6 +306,12 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public void SetRequestPlanningGrantOfferLetterDetails(DateTime? dateGrantTeamContacted)
     {
         DateGrantTeamContacted = dateGrantTeamContacted;
+    }
+    
+    public void SetReviewTheImprovementPlan(DateTime? improvementPlanReceivedDate , bool? reviewImprovementPlanWithTeam)
+    {
+        ImprovementPlanReceivedDate = improvementPlanReceivedDate ;
+        ReviewImprovementPlanWithTeam = reviewImprovementPlanWithTeam;
     }
     #endregion
 }
