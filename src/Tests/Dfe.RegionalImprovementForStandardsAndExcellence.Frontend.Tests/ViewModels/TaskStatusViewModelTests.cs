@@ -448,5 +448,23 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.ViewMo
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
         
+        public static readonly TheoryData<DateTime?, TaskListStatus> ConfirmPlanningGrantOfferLetterTaskListStatusCases = new()
+        {
+            { null, TaskListStatus.NotStarted },
+            { DateTime.UtcNow, TaskListStatus.Complete }
+        };
+
+        [Theory, MemberData(nameof(ConfirmPlanningGrantOfferLetterTaskListStatusCases))]
+        public void ConfirmPlanningGrantOfferLetterTaskListStatusShouldReturnCorrectStatus(DateTime? dateGrantsLetterConfirmed, TaskListStatus expectedTaskListStatus)
+        {
+            // Arrange
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateTeamContactedForConfirmingPlanningGrantOfferLetter: dateGrantsLetterConfirmed));
+
+            //Action 
+            var taskListStatus = TaskStatusViewModel.ConfirmPlanningGrantOfferLetterTaskListStatus(supportProjectModel);
+
+            //Assert
+            Assert.Equal(expectedTaskListStatus, taskListStatus);
+        }
     }
 }

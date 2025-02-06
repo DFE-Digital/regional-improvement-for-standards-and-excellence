@@ -146,6 +146,8 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public bool? ReviewImprovementPlanWithTeam { get; private set; }
 
     public DateTime? DateTeamContactedForRequestingImprovementGrantOfferLetter { get; private set; }
+    
+    public DateTime? DateTeamContactedForConfirmingPlanningGrantOfferLetter { get; private set; }
     #endregion
 
     public static SupportProject Create(
@@ -319,6 +321,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public void SetRequestImprovementGrantOfferLetter(DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter)
     {
         DateTeamContactedForRequestingImprovementGrantOfferLetter = dateTeamContactedForRequestingImprovementGrantOfferLetter;
+    }
+    
+    public void SetConfirmPlanningGrantOfferLetterDate(DateTime?  dateTeamContactedForConfirmingPlanningGrantOfferLetter)
+    {
+        DateTeamContactedForConfirmingPlanningGrantOfferLetter = dateTeamContactedForConfirmingPlanningGrantOfferLetter;
     }
     #endregion
 }
