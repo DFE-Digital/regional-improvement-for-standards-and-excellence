@@ -4,6 +4,7 @@ using Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrations
 {
     [DbContext(typeof(RegionalImprovementForStandardsAndExcellenceContext))]
-    partial class RegionalImprovementForStandardsAndExcellenceContextModelSnapshot : ModelSnapshot
+    [Migration("20250205164928_request-grant-offer-letter")]
+    partial class requestgrantofferletter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,9 +145,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                     b.Property<bool?>("HasTalkToAdviserAboutFindings")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ImprovementPlanReceivedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime?>("IntroductoryEmailSentDate")
                         .HasColumnType("datetime2");
 
@@ -185,9 +185,6 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Infrastructure.Migrat
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("RemindAdvisorToCopyRiseTeamWhenSentEmail")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ReviewImprovementPlanWithTeam")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("SaveCompletedConflictOfinterestFormInSharePoint")

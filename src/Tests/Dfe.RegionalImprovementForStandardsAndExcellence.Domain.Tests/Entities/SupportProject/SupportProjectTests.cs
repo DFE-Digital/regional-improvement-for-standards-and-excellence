@@ -507,5 +507,20 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.HasEmailedAgreedPlanToRegionalDirectorForApproval.Should().Be(hasEmailedAgreedPlanToRegionalDirectorForApproval);
             this.mockRepository.VerifyAll();
         }
+        [Fact]
+        public void SetRequestPlanningGrantOfferLetterDetails_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateGrantTeamContacted = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetRequestPlanningGrantOfferLetterDetails(dateGrantTeamContacted);
+
+            // Assert
+            supportProject.DateGrantTeamContacted.Should().Be(dateGrantTeamContacted);
+            this.mockRepository.VerifyAll();
+        }
     }
 }

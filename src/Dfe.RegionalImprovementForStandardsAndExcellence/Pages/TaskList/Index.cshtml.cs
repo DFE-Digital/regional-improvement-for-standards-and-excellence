@@ -32,6 +32,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus RecordImprovementPlanDecisionTaskListStatus { get; set; }
 
     public TaskListStatus SendAgreedImprovementPlanForApprovalTaskListStatus { get; set; }
+    public TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus { get; set; }
     
     public TaskListStatus ReviewTheImprovementPlanTaskListStatus { get; set; }
     public void SetErrorPage(string errorPage)
@@ -66,6 +67,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         ShareTheImprovementPlanTemplateTaskListStatus = TaskStatusViewModel.ShareTheImprovementPlanTemplateTaskListStatus(SupportProject);
         RecordImprovementPlanDecisionTaskListStatus = TaskStatusViewModel.RecordImprovementPlanDecisionTaskListStatus(SupportProject);
         SendAgreedImprovementPlanForApprovalTaskListStatus = TaskStatusViewModel.SendAgreedImprovementPlanForApprovalTaskListStatus(SupportProject);
+        RequestPlanningGrantOfferLetterTaskListStatus = TaskStatusViewModel.RequestPlanningGrantOfferLetterTaskListStatus(SupportProject);
         ReviewTheImprovementPlanTaskListStatus =
             TaskStatusViewModel.ReviewTheImprovementPlanTaskListStatus(SupportProject);
         return Page();

@@ -138,6 +138,8 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public string? DisapprovingImprovementPlanDecisionNotes { get; private set; }
     public bool? HasSavedImprovementPlanInSharePoint { get; private set; }
     public bool? HasEmailedAgreedPlanToRegionalDirectorForApproval { get; private set; }
+
+    public DateTime? DateGrantTeamContacted { get; private set; }
     
     public DateTime? ImprovementPlanReceivedDate { get; private set; }
     
@@ -299,6 +301,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     {
         HasSavedImprovementPlanInSharePoint = hasSavedImprovementPlanInSharePoint;
         HasEmailedAgreedPlanToRegionalDirectorForApproval = hasEmailedAgreedPlanToRegionalDirectorForApproval;
+    }
+
+    public void SetRequestPlanningGrantOfferLetterDetails(DateTime? dateGrantTeamContacted)
+    {
+        DateGrantTeamContacted = dateGrantTeamContacted;
     }
     
     public void SetReviewTheImprovementPlan(DateTime? improvementPlanReceivedDate , bool? reviewImprovementPlanWithTeam)
