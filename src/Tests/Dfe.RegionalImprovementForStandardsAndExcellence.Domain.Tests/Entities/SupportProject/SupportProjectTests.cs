@@ -538,5 +538,23 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.Should().Be(dateGrantTeamContacted);
             mockRepository.VerifyAll();
         }
+        
+        [Fact]
+        public void SetConfirmPlanningGrantOfferLetterDate_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateLetterConfirmed = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetConfirmPlanningGrantOfferLetterDate(dateLetterConfirmed);
+
+            // Assert
+            supportProject.DateTeamContactedForConfirmingPlanningGrantOfferLetter.Should().Be(dateLetterConfirmed);
+            mockRepository.VerifyAll();
+        }
+        
+        
     }
 }
