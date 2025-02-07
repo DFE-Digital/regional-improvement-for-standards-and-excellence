@@ -111,30 +111,32 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Tests.Models
         }
 
         [Theory]
-        [InlineData("/TaskList/Index", "Back")]
-        [InlineData("/TaskList/ContactTheSchool/ContactTheSchool", "Back")]
-        [InlineData("/TaskList/RecordTheSchoolResponse/Index", "Back")]
-        [InlineData("/TaskList/AdviserConflictOfInterest/AdviserConflictOfInterest", "Back")]
-        [InlineData("/TaskList/AssignAdviser/AssignAdviser", "Back")]
-        [InlineData("/TaskList/SendIntroductoryEmail/Index", "Back")]
-        [InlineData("/TaskList/ArrangeAdviserVisitToSchool/ArrangeAdviserVisitToSchool", "Back")]
-        [InlineData("/TaskList/CompleteAndSaveAssessmentTemplate/Index", "Back")]
-        [InlineData("/TaskList/NoteOfVisit/NoteOfVisit", "Back")]
-        [InlineData("/TaskList/RecordVisitDateToVisitSchool/Index", "Back")]
-        [InlineData("/TaskList/ChoosePreferredSupportingOrganisation/Index", "Back")]
-        [InlineData("/TaskList/RecordSupportDecision/Index", "Back")]
-        [InlineData("/TaskList/AddSupportingOrganisationContactDetails/Index", "Back")]
-        [InlineData("/TaskList/DueDiligenceOnPreferredSupportingOrganisation/Index", "Back")]
-        [InlineData("/TaskList/RecordSupportingOrganisationAppointment/Index", "Back")]
-        [InlineData("/TaskList/ShareTheImprovementPlanTemplate/Index", "Back")]
-        [InlineData("/TaskList/RecordImprovementPlanDecision/Index", "Back")]
-        [InlineData("/TaskList/SendAgreedImprovementPlanForApproval/Index", "Back")]
-        [InlineData("/TaskList/RequestPlanningGrantOfferLetter/Index", "Back")]
-        [InlineData("/TaskList/ReviewTheImprovementPlan/Index", "Back")]
-        [InlineData("/TaskList/RequestImprovementGrantOfferLetter/Index", "Back")]
-        public void TaskList_Items_ShouldHaveCorrectValues(string expectedPage, string expectedBackText)
+        [InlineData("/TaskList/Index")]
+        [InlineData("/TaskList/ContactTheSchool/ContactTheSchool")]
+        [InlineData("/TaskList/RecordTheSchoolResponse/Index")]
+        [InlineData("/TaskList/AdviserConflictOfInterest/AdviserConflictOfInterest")]
+        [InlineData("/TaskList/AssignAdviser/AssignAdviser")]
+        [InlineData("/TaskList/SendIntroductoryEmail/Index")]
+        [InlineData("/TaskList/ArrangeAdviserVisitToSchool/ArrangeAdviserVisitToSchool")]
+        [InlineData("/TaskList/CompleteAndSaveAssessmentTemplate/Index")]
+        [InlineData("/TaskList/NoteOfVisit/NoteOfVisit")]
+        [InlineData("/TaskList/RecordVisitDateToVisitSchool/Index")]
+        [InlineData("/TaskList/ChoosePreferredSupportingOrganisation/Index")]
+        [InlineData("/TaskList/RecordSupportDecision/Index")]
+        [InlineData("/TaskList/AddSupportingOrganisationContactDetails/Index")]
+        [InlineData("/TaskList/DueDiligenceOnPreferredSupportingOrganisation/Index")]
+        [InlineData("/TaskList/RecordSupportingOrganisationAppointment/Index")]
+        [InlineData("/TaskList/ShareTheImprovementPlanTemplate/Index")]
+        [InlineData("/TaskList/RecordImprovementPlanDecision/Index")]
+        [InlineData("/TaskList/SendAgreedImprovementPlanForApproval/Index")]
+        [InlineData("/TaskList/RequestPlanningGrantOfferLetter/Index")]
+        [InlineData("/TaskList/ReviewTheImprovementPlan/Index")]
+        [InlineData("/TaskList/RequestImprovementGrantOfferLetter/Index")]
+        [InlineData("/TaskList/ConfirmImprovementGrantOfferLetterSent/Index")]
+        public void TaskList_Items_ShouldHaveCorrectValues(string expectedPage)
         {
             // Arrange & Act
+            var expectedBackText = "Back";
             var taskListType = typeof(TaskList);
             var properties = taskListType.GetFields();
 
