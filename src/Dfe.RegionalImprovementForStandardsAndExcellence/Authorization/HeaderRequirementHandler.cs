@@ -1,31 +1,16 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Authorization;
 
 //Handler is registered from the method RequireAuthenticatedUser()
-public class HeaderRequirementHandler : AuthorizationHandler<DenyAnonymousAuthorizationRequirement>,
+public class HeaderRequirementHandler(IHostEnvironment environment,
+                                IHttpContextAccessor httpContextAccessor,
+                                IConfiguration configuration) : AuthorizationHandler<DenyAnonymousAuthorizationRequirement>,
    IAuthorizationRequirement
 {
-    private readonly IConfiguration _configuration;
-    private readonly IHostEnvironment _environment;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public HeaderRequirementHandler(IHostEnvironment environment,
-                                    IHttpContextAccessor httpContextAccessor,
-                                    IConfiguration configuration)
-    {
-        _environment = environment;
-        _httpContextAccessor = httpContextAccessor;
-        _configuration = configuration;
-    }
 
     /// <summary>
     ///    Checks for a value in Authorization header of the request
@@ -62,10 +47,10 @@ public class HeaderRequirementHandler : AuthorizationHandler<DenyAnonymousAuthor
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
                                                    DenyAnonymousAuthorizationRequirement requirement)
     {
-        if (ClientSecretHeaderValid(_environment, _httpContextAccessor, _configuration))
+        if (ClientSecretHeaderValid(environment, httpContextAccessor, configuration))
         {
             context.Succeed(requirement);
-            string headerRole = _httpContextAccessor.HttpContext?.Request.Headers["AuthorizationRole"].ToString();
+            string headerRole = httpContextAccessor.HttpContext?.Request.Headers["AuthorizationRole"].ToString();
             if (!string.IsNullOrWhiteSpace(headerRole))
             {
                 string[] claims = headerRole.Split(',');
