@@ -9,12 +9,13 @@ using static Dfe.RegionalImprovementForStandardsAndExcellence.Application.Suppor
 
 namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskList.RequestPlanningGrantOfferLetter;
 
-public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
+public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator, IConfiguration configuration) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
     [BindProperty(Name = "date-grant-team-contacted", BinderType = typeof(DateInputModelBinder))]
     [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
     [Display(Name = "date grant team contacted")]
     public DateTime? DateGrantTeamContacted { get; set; }
+    public string EmailAddress { get; set; }
 
     public bool ShowError { get; set; }
 
@@ -33,7 +34,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         await base.GetSupportProject(id, cancellationToken);
 
         DateGrantTeamContacted = SupportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter;
-
+        EmailAddress = configuration.GetValue<string>("EmailForGrantOfferLetter") ?? string.Empty;
         return Page();
     }
 
