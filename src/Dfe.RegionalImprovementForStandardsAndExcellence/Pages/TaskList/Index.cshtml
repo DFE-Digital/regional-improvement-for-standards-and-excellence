@@ -134,7 +134,7 @@
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
                         <a class="govuk-link" asp-page="@Links.TaskList.RecordSupportingOrganisationAppointment.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-supporting-organisation-appointment-status" data-cy="record-supporting-organisation-appointment">
-                            Record supporting organsiation appointment
+                            Record supporting organisation appointment
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.SetRecordSupportingOrganisationAppointment" />
@@ -159,6 +159,14 @@
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.RequestPlanningGrantOfferLetterTaskListStatus" />
+                </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ConfirmPlanningGrantOfferLetter.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="request-planning-grant-offer-letter" data-cy="request-planning-grant-offer-letter">
+                            Confirm planning grant offer letter sent
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ConfirmPlanningGrantOfferLetterTaskListStatus"/>
                 </li>
             </ul>
         </div>
@@ -209,6 +217,14 @@
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.RequestImprovementGrantOfferLetterTaskListStatus" />
+                </li>
+                <li class="app-task-list__item">
+                    <span class="app-task-list__task-name" data-cy="task-name">
+                        <a class="govuk-link" asp-page="@Links.TaskList.ConfirmImprovementGrantOfferLetterSent.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="confirm-improvement-grant-offer-letter-status" data-cy="confirm-improvement-grant-offer-letter">
+                            Confirm improvement grant offer letter
+                        </a>
+                    </span>
+                    <partial name="Shared/_TaskListStatus" model="@Model.ConfirmImprovementGrantOfferLetterTaskListStatus" />
                 </li>
             </ul>
         </div>

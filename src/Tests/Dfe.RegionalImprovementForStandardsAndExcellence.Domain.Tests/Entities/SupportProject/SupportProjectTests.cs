@@ -514,7 +514,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             // Arrange
             var supportProject = CreateSupportProject();
 
-            DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter = DateTime.Now; 
+            DateTime? dateTeamContactedForRequestingImprovementGrantOfferLetter = DateTime.Now;
 
             // Act
             supportProject.SetRequestImprovementGrantOfferLetter(dateTeamContactedForRequestingImprovementGrantOfferLetter);
@@ -538,5 +538,40 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Domain.Tests.Entities
             supportProject.DateTeamContactedForRequestingPlanningGrantOfferLetter.Should().Be(dateGrantTeamContacted);
             mockRepository.VerifyAll();
         }
+
+        [Fact]
+        public void SetConfirmPlanningGrantOfferLetterDate_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateLetterConfirmed = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetConfirmPlanningGrantOfferLetterDate(dateLetterConfirmed);
+
+            // Assert
+            supportProject.DateTeamContactedForConfirmingPlanningGrantOfferLetter.Should().Be(dateLetterConfirmed);
+            mockRepository.VerifyAll();
+        }
+
+
+        [Fact]
+        public void SetConfirmImprovementGrantOfferLetterDate_WithValidDetails_SetsTheCorrectProperties()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+
+            DateTime? dateLetterConfirmed = DateTime.UtcNow;
+
+            // Act
+            supportProject.SetConfirmImprovementGrantOfferLetterDetails(dateLetterConfirmed);
+
+            // Assert
+            supportProject.DateImprovementGrantOfferLetterSent.Should().Be(dateLetterConfirmed);
+            mockRepository.VerifyAll();
+        }
+
+
     }
 }

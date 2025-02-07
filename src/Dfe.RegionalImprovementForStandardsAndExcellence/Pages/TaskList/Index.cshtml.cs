@@ -33,10 +33,13 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
 
     public TaskListStatus SendAgreedImprovementPlanForApprovalTaskListStatus { get; set; }
     public TaskListStatus RequestPlanningGrantOfferLetterTaskListStatus { get; set; }
-    
+
+    public TaskListStatus ConfirmPlanningGrantOfferLetterTaskListStatus { get; set; }
+
     public TaskListStatus ReviewTheImprovementPlanTaskListStatus { get; set; }
 
     public TaskListStatus RequestImprovementGrantOfferLetterTaskListStatus { get; set; }
+    public TaskListStatus ConfirmImprovementGrantOfferLetterTaskListStatus { get; set; }
 
     public void SetErrorPage(string errorPage)
     {
@@ -71,9 +74,12 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         RecordImprovementPlanDecisionTaskListStatus = TaskStatusViewModel.RecordImprovementPlanDecisionTaskListStatus(SupportProject);
         SendAgreedImprovementPlanForApprovalTaskListStatus = TaskStatusViewModel.SendAgreedImprovementPlanForApprovalTaskListStatus(SupportProject);
         RequestPlanningGrantOfferLetterTaskListStatus = TaskStatusViewModel.RequestPlanningGrantOfferLetterTaskListStatus(SupportProject);
+        ConfirmPlanningGrantOfferLetterTaskListStatus =
+            TaskStatusViewModel.ConfirmPlanningGrantOfferLetterTaskListStatus(SupportProject);
         ReviewTheImprovementPlanTaskListStatus =
             TaskStatusViewModel.ReviewTheImprovementPlanTaskListStatus(SupportProject);
         RequestImprovementGrantOfferLetterTaskListStatus = TaskStatusViewModel.RequestImprovementGrantOfferLetterTaskListStatus(SupportProject);
+        ConfirmImprovementGrantOfferLetterTaskListStatus = TaskStatusViewModel.ConfirmImprovementGrantOfferLetterTaskListStatus(SupportProject);
         return Page();
     }
 }
