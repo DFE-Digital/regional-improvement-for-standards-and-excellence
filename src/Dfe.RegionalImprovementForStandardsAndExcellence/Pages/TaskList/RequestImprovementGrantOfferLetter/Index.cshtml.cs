@@ -56,7 +56,7 @@ namespace Dfe.RegionalImprovementForStandardsAndExcellence.Frontend.Pages.TaskLi
         {
             await base.GetSupportProject(id, cancellationToken);
             GrantTeamContactedDate = SupportProject.DateTeamContactedForRequestingImprovementGrantOfferLetter;
-            EmailAddress = configuration.GetValue<string>("EmailForSendImprovementGrantOfferLetter") ?? string.Empty;
+            EmailAddress = configuration.GetValue<string>("EmailForGrantOfferLetter") ?? string.Empty;
             return Page();
         }
     }
