@@ -10,5 +10,5 @@ public class AzureAdOptions
     public Guid GroupId { get; set; }
     public string ApiUrl { get; set; } = "https://graph.microsoft.com/";
     public string Authority => string.Format(CultureInfo.InvariantCulture, "https://login.microsoftonline.com/{0}", TenantId);
-    public IEnumerable<string> Scopes => new[] { $"{ApiUrl}.default" };
+    public IEnumerable<string> Scopes => [$"{ApiUrl}.default"];
 }
