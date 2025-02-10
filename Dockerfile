@@ -47,12 +47,12 @@ FROM build AS efbuilder
 ENV PATH=$PATH:/root/.dotnet/tools
 RUN ["mkdir", "/sql"]
 RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
-RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "-p", "DfE.ManageSchoolImprovement", "--configuration", "Release", "--no-build", "-o", "/sql/migratedb"]
+RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "-p", "DfE.ManageSchoolImprovement.Fronend", "--configuration", "Release", "--no-build", "-o", "/sql/migratedb"]
 
 # Create a runtime environment for Entity Framework
 FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS initcontainer
 WORKDIR /sql
-COPY --from=efbuilder /app/appsettings.json /DfE.ManageSchoolImprovement/
+COPY --from=efbuilder /app/appsettings.json /DfE.ManageSchoolImprovement.Frontend/
 COPY --from=efbuilder /sql /sql
 RUN chown "$APP_UID" "/sql" -R
 USER $APP_UID
