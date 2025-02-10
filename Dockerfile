@@ -40,7 +40,7 @@ RUN ["dotnet", "restore", "DfE.ManageSchoolImprovement.sln"]
 
 WORKDIR /build/src
 COPY ./src/ .
-RUN ["dotnet", "publish", "DfE.ManageSchoolImprovement", "-c", "Release", "--no-restore", "-o", "/app"]
+RUN ["dotnet", "publish", "DfE.ManageSchoolImprovement.Frontend", "-c", "Release", "--no-restore", "-o", "/app"]
 
 # Generate an Entity Framework bundle
 FROM build AS efbuilder
