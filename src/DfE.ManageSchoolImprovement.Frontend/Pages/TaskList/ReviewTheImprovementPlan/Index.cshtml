@@ -1,0 +1,28 @@
+@page "/task-list/review-the-improvement-plan/{id:int}"
+@model DfE.ManageSchoolImprovement.Frontend.Pages.TaskList.ReviewTheImprovementPlan.IndexModel
+@{
+    ViewData["Title"] = "Review improvement plan";
+}
+
+@section BeforeMain
+{
+    <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l" data-cy="school-name">@Model.SupportProject.SchoolName</span>
+        <h1 class="govuk-heading-l" data-cy="page-heading">
+            Review the improvement plan
+        </h1>
+        <p class="govuk-body" data-cy="instruction-to-advisor">Check the improvement plan that the supporting organisation and responsible body have completed. If needed, give feedback and suggest changes.</p>
+        <form method="post" novalidate>
+            <govuk-date-input label="Enter date improvement plan received" id="date-improvement-plan-received" name="date-improvement-plan-received" asp-for="@Model.DateImprovementPlanReceived"  hint="For example, 1 7 2024."/>
+            <br>
+            <govuk-checkbox-input label="Review improvement plan with rest of the team" id="review-improvement-plan-with-team" name="review-improvement-plan-with-team" asp-for="@Model.ReviewImprovementPlanWithTeam" /> 
+            <button class="govuk-button" type="submit" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
+                Save and return
+            </button>
+        </form>
+    </div>
+</div>

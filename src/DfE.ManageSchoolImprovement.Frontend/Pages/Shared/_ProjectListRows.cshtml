@@ -1,0 +1,51 @@
+@using DfE.ManageSchoolImprovement.Frontend.Models
+@using DfE.ManageSchoolImprovement.Utils
+@model IEnumerable<DfE.ManageSchoolImprovement.Frontend.Models.SupportProject.SupportProjectViewModel>
+
+@{
+    var index = 0;
+
+    foreach (var project in Model)
+    {
+        var link = @Links.AboutTheSchool.Index.Page;
+
+        
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+            <td class="govuk-table__cell">
+               <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+                  <strong>
+						<a id="@("school-name-" + index)" class="govuk-link" asp-page="@link" data-cy="trust-name-@index" asp-route-id="@project.Id">@project.SchoolName</a>
+                  </strong>
+               </div>
+                <div class="govuk-!-margin-top-1">
+                    <span id="@("urn-" + index)"><strong>URN:</strong> @project.SchoolUrn</span>
+                </div>
+                <div id="@("localauthority-" + project.Id)" class="govuk-!-margin-top-1">
+                    <strong>Local authority:</strong>
+                    @if (@project.LocalAuthority.IsEmpty())
+                    {
+                        <span class="empty">Empty</span>
+                    }
+                    else
+                    {
+                        <span >@project.LocalAuthority</span>
+                    }
+                </div>
+               <div id="@("region-" + project.Id)" class="govuk-!-margin-top-1">
+                   <strong>Region:</strong>
+                   @if (@project.Region.IsEmpty())
+                   {
+                       <span class="empty">Empty</span>
+                   }
+                   else
+                   {
+                       <span >@project.Region</span>
+                   }
+               </div>
+            </td>
+        </tr>
+
+        index++;
+    }
+}
+

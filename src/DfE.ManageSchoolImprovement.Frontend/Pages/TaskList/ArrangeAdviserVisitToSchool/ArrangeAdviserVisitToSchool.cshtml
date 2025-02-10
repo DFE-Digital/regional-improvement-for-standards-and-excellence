@@ -1,0 +1,28 @@
+@page "/task-list/arrange-adviser-visit-to-school/{id:int}"
+@model DfE.ManageSchoolImprovement.Frontend.Pages.TaskList.ArrangeAdviserVisitToSchool.ArrangeAdviserVisitToSchoolModel
+
+@{
+    ViewData["Title"] = "Contact the school";
+}
+
+@section BeforeMain
+{
+    <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">@Model.SupportProject.SchoolName</span>
+    <h1 class="govuk-heading-l">
+        Arrange adviser visit to school
+    </h1>
+    <p class="govuk-body">Work with the adviser and school to find a date and time for the adviser to visit the school. The length of the visit may change depending on the needs of the school.</p>
+        
+    <form method="post" novalidate>
+            <govuk-date-input heading-label="false" label="Enter planned date of visit" id="adviser-visit-date" name="adviser-visit-date" asp-for="@Model.AdviserVisitDate" hint="For example, 1 7 2024." />
+        <button class="govuk-button" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
+            Save and return
+        </button>
+    </form>
+</div>
+</div>

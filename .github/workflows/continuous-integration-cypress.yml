@@ -3,14 +3,14 @@ name: Cypress test linting
 on:
   pull_request:
     paths:
-      - src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
+      - src/DfE.ManageSchoolImprovement.CypressTests
     types: [opened, synchronize]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     defaults:
-      working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
+      working-directory: src/DfE.ManageSchoolImprovement.CypressTests
     steps:
       - name: checkout code
         uses: actions/checkout@v4

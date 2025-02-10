@@ -1,0 +1,29 @@
+@page "/notes/edit-note/{id:int}"
+@model DfE.ManageSchoolImprovement.Frontend.Pages.Notes.EditNoteModel
+
+
+@if (Model.ShowError)
+{
+    <partial name="_ErrorSummary"/>
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">@Model.SupportProject.SchoolName</span>
+        <h1 class="govuk-heading-l">
+            Edit note
+        </h1>
+        <form method="post">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--m" for="project-note-body">
+                    Note
+                </label>
+                <textarea class="govuk-textarea" id="project-note-body" name="project-note-body" rows="5">@Model.ProjectNoteBody</textarea>
+            </div>
+            <input type="hidden" asp-for="ProjectNoteId" />
+            <button type="submit" role="button" draggable="false" class="govuk-button govuk-button" data-module="govuk-button">
+                Save note
+            </button>
+        </form>
+    </div>
+</div>
+    
