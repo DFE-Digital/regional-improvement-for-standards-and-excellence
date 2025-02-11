@@ -70,7 +70,6 @@ jobs:
           working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
           wait-on: ${{ secrets.AZURE_WEB_ENDPOINT }}
           spec: cypress/e2e/*
-          install: false
 
       - name: Upload screenshots
         if: ${{ failure() }}
