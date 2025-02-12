@@ -1,0 +1,25 @@
+@model TaskListStatus
+
+@{
+    string output;
+    string colour;
+
+    switch (Model)
+    {
+        case TaskListStatus.Complete:
+            output = "Completed";
+            colour = "green";
+            break;
+        case TaskListStatus.InProgress:
+            output = "In Progress";
+            colour = "orange";
+            break;
+        case TaskListStatus.NotStarted:
+        default:
+            output = "Not Started";
+            colour = "blue";
+            break;
+    }
+}
+
+<strong class="govuk-tag govuk-tag--@colour app-task-list__tag" id="">@output</strong>
