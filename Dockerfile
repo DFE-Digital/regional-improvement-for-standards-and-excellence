@@ -19,7 +19,7 @@ COPY ./scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
 ## START: Restore Packages
 ARG PROJECT_NAME="Dfe.ManageSchoolImprovement"
 COPY ./${PROJECT_NAME}.sln ./Directory.Build.props ./
-COPY ./src/${PROJECT_NAME}/${PROJECT_NAME}.Frontend.csproj                      ./src/${PROJECT_NAME}/
+COPY ./src/${PROJECT_NAME}.Frontend/${PROJECT_NAME}.Frontend.csproj             ./src/${PROJECT_NAME}.Frontend/
 COPY ./src/${PROJECT_NAME}.Api/${PROJECT_NAME}.Api.csproj                       ./src/${PROJECT_NAME}.Api/
 COPY ./src/${PROJECT_NAME}.Api.Client/${PROJECT_NAME}.Api.Client.csproj         ./src/${PROJECT_NAME}.Api.Client/
 COPY ./src/${PROJECT_NAME}.Application/${PROJECT_NAME}.Application.csproj       ./src/${PROJECT_NAME}.Application/
@@ -40,7 +40,7 @@ RUN ["dotnet", "restore", "Dfe.ManageSchoolImprovement.sln"]
 
 WORKDIR /build/src
 COPY ./src/ .
-RUN ["dotnet", "publish", "Dfe.ManageSchoolImprovement", "-c", "Release", "--no-restore", "-o", "/app"]
+RUN ["dotnet", "publish", "Dfe.ManageSchoolImprovement.Frontend", "-c", "Release", "--no-restore", "-o", "/app"]
 
 # Generate an Entity Framework bundle
 FROM build AS efbuilder
