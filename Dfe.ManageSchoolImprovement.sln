@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement.Tests.Common", "src\Tests\Dfe.ManageSchoolImprovement.Tests.Common\Dfe.ManageSchoolImprovement.Tests.Common.csproj", "{8380EFBB-A438-4044-B610-3B786E4BE6E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement.Frontend", "src\Dfe.ManageSchoolImprovement\Dfe.ManageSchoolImprovement.Frontend.csproj", "{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement.Frontend", "src\Dfe.ManageSchoolImprovement.Frontend\Dfe.ManageSchoolImprovement.Frontend.csproj", "{DA2A7875-D2DD-45C6-BB62-0CE8EE36775E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement.Frontend.Tests", "src\Tests\Dfe.ManageSchoolImprovement.Frontend.Tests\Dfe.ManageSchoolImprovement.Frontend.Tests.csproj", "{0C57CBCC-0C59-48E9-942B-5E0695AD2231}"
 EndProject

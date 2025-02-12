@@ -19,7 +19,7 @@ COPY ./scripts/docker-entrypoint.sh /app/docker-entrypoint.sh
 ## START: Restore Packages
 ARG PROJECT_NAME="Dfe.ManageSchoolImprovement"
 COPY ./${PROJECT_NAME}.sln ./Directory.Build.props ./
-COPY ./src/${PROJECT_NAME}/${PROJECT_NAME}.Frontend.csproj                      ./src/${PROJECT_NAME}/
+COPY ./src/${PROJECT_NAME}.Frontend/${PROJECT_NAME}.Frontend.csproj             ./src/${PROJECT_NAME}.Frontend/
 COPY ./src/${PROJECT_NAME}.Api/${PROJECT_NAME}.Api.csproj                       ./src/${PROJECT_NAME}.Api/
 COPY ./src/${PROJECT_NAME}.Api.Client/${PROJECT_NAME}.Api.Client.csproj         ./src/${PROJECT_NAME}.Api.Client/
 COPY ./src/${PROJECT_NAME}.Application/${PROJECT_NAME}.Application.csproj       ./src/${PROJECT_NAME}.Application/
@@ -40,14 +40,14 @@ RUN ["dotnet", "restore", "Dfe.ManageSchoolImprovement.sln"]
 
 WORKDIR /build/src
 COPY ./src/ .
-RUN ["dotnet", "publish", "Dfe.ManageSchoolImprovement", "-c", "Release", "--no-restore", "-o", "/app"]
+RUN ["dotnet", "publish", "Dfe.ManageSchoolImprovement.Frontend", "-c", "Release", "--no-restore", "-o", "/app"]
 
 # Generate an Entity Framework bundle
 FROM build AS efbuilder
 ENV PATH=$PATH:/root/.dotnet/tools
 RUN ["mkdir", "/sql"]
 RUN ["dotnet", "tool", "install", "--global", "dotnet-ef"]
-RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "-p", "Dfe.ManageSchoolImprovement", "--configuration", "Release", "--no-build", "-o", "/sql/migratedb"]
+RUN ["dotnet", "ef", "migrations", "bundle", "-r", "linux-x64", "-p", "Dfe.ManageSchoolImprovement.Frontend", "--configuration", "Release", "--no-build", "-o", "/sql/migratedb"]
 
 # Create a runtime environment for Entity Framework
 FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS initcontainer
