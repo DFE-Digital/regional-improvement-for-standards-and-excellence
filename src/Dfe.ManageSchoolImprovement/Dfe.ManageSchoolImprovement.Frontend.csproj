@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <UserSecretsId>ea461263-770c-473f-847b-f322a130c92f</UserSecretsId>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Validators\**" />
+        <Content Remove="Validators\**" />
+        <EmbeddedResource Remove="Validators\**" />
+        <None Remove="Validators\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dfe.ManageSchoolImprovement.Application\Dfe.ManageSchoolImprovement.Application.csproj" />
+      <ProjectReference Include="..\Dfe.ManageSchoolImprovement.Infrastructure\Dfe.ManageSchoolImprovement.Infrastructure.csproj" />
+      <ProjectReference Include="..\Dfe.ManageSchoolImprovement.Utils\Dfe.ManageSchoolImprovement.Utils.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Dfe.Academisation.CorrelationIdMiddleware" Version="2.0.3" />
+        <PackageReference Include="Dfe.Academisation.ExtensionMethods" Version="2.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.12">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.5.0" />
+        <PackageReference Include="Microsoft.Graph" Version="4.54.0" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="3.5.0" />
+        <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.20.0" />
+        <PackageReference Include="FluentValidation" Version="11.11.0" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Scrutor" Version="4.2.2" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.24.0" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="0.22.0" />
+        <PackageReference Include="Sentry.AspNetCore" Version="3.28.0" />
+        <PackageReference Include="Sentry.Serilog" Version="3.28.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+        <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+        <PackageReference Include="Azure.Identity" Version="1.13.2" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Shared\_AddtionalInformation.cshtml" />
+      <AdditionalFiles Include="Pages\Shared\_AutoComplete.cshtml" />
+      <AdditionalFiles Include="Pages\Shared\_ErrorSummary.cshtml" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <None Include="Areas\MicrosoftIdentity\Pages\Account\AccessDenied.cshtml" />
+      <None Include="Pages\Public\AccessibilityStatement.cshtml" />
+      <None Include="Pages\Public\CookiePreferences.cshtml" />
+      <None Include="Pages\Public\Maintenance.cshtml" />
+    </ItemGroup>
+
+
+
+</Project>

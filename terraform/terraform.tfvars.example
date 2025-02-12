@@ -10,7 +10,7 @@ enable_cdn_frontdoor      = true
 
 virtual_network_address_space = ""
 
-container_command = ["/bin/bash", "-c", "./docker-entrypoint.sh dotnet Dfe.RegionalImprovementForStandardsAndExcellence.dll"]
+container_command = ["/bin/bash", "-c", "./docker-entrypoint.sh dotnet Dfe.ManageSchoolImprovement.dll"]
 
 container_secret_environment_variables = {
 

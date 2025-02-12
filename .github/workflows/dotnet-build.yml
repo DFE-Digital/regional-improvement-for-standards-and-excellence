@@ -52,7 +52,7 @@ jobs:
       run: dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
 
     - name: Restore dependencies
-      run: dotnet restore Dfe.RegionalImprovementForStandardsAndExcellence.sln
+      run: dotnet restore Dfe.ManageSchoolImprovement.sln
 
     - name: Build, Test and Analyze
       env:
@@ -60,6 +60,6 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         dotnet-sonarscanner begin /d:sonar.scanner.skipJreProvisioning=true /k:"DFE-Digital_regional-improvement-for-standards-and-excellence" /o:"dfe-digital" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        dotnet build Dfe.RegionalImprovementForStandardsAndExcellence.sln --no-restore
-        dotnet test Dfe.RegionalImprovementForStandardsAndExcellence.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
+        dotnet build Dfe.ManageSchoolImprovement.sln --no-restore
+        dotnet test Dfe.ManageSchoolImprovement.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
         dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"

@@ -43,7 +43,7 @@ jobs:
       image: cypress/browsers:22.12.0
     defaults:
       run:
-        working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
+        working-directory: src/Dfe.ManageSchoolImprovement.CypressTests
     steps:
       - uses: actions/checkout@v4
         with:
@@ -54,7 +54,7 @@ jobs:
         with:
           runTests: false
           browser: ${{ matrix.browser }}
-          working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
+          working-directory: src/Dfe.ManageSchoolImprovement.CypressTests
 
       - name: Run (dev/test)
         uses: cypress-io/github-action@v6
@@ -66,7 +66,7 @@ jobs:
           CYPRESS_api: ${{ secrets.AZURE_API_ENDPOINT }}
         with:
           browser: ${{ matrix.browser }}
-          working-directory: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests
+          working-directory: src/Dfe.ManageSchoolImprovement.CypressTests
           wait-on: ${{ secrets.AZURE_WEB_ENDPOINT }}
           spec: cypress/e2e/*
 
@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: screenshots-${{ inputs.environment }}-${{ matrix.browser }}
-          path: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests/cypress/screenshots
+          path: src/Dfe.ManageSchoolImprovement.CypressTests/cypress/screenshots
 
       - name: Generate report
         if: always()
@@ -88,7 +88,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: reports-${{ inputs.environment }}-${{ matrix.browser }}
-          path: src/Dfe.RegionalImprovementForStandardsAndExcellence.CypressTests/mochareports
+          path: src/Dfe.ManageSchoolImprovement.CypressTests/mochareports
 
       - name: Report results
         if: always()
