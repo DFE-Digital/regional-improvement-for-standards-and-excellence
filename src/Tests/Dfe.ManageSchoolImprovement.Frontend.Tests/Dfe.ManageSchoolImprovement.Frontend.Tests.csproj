@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Dfe.ManageSchoolImprovement\Dfe.ManageSchoolImprovement.Frontend.csproj" />
+    <ProjectReference Include="..\..\Dfe.ManageSchoolImprovement.Frontend\Dfe.ManageSchoolImprovement.Frontend.csproj" />
     <ProjectReference Include="..\Dfe.ManageSchoolImprovement.Tests.Common\Dfe.ManageSchoolImprovement.Tests.Common.csproj" />
   </ItemGroup>
 
