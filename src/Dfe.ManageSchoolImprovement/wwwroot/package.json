@@ -1,25 +1,26 @@
 {
 	"scripts": {
 		"build": "webpack --config webpack.assets.config.js --mode=production & webpack --config webpack.config.js --mode=production & webpack --config webpack.appinsights.config.js --mode=production",
-		"build:watch": "webpack --config webpack.assets.config.js --mode=development --watch & webpack --config webpack.config.js --watch --mode=development & webpack --config webpack.appinsights.config.js --watch --mode=development"
+		"build:watch": "webpack --config webpack.assets.config.js --mode=development --watch & webpack --config webpack.config.js --watch --mode=development & webpack --config webpack.appinsights.config.js --watch --mode=development",
+		"postinstall": "node fix-import-path-moj-1.js && node fix-import-path-moj-2.js"
 	},
 	"devDependencies": {
-		"copy-webpack-plugin": "^7.0.0",
-		"css-loader": "^5.2.7",
+		"copy-webpack-plugin": "^12.0.2",
+		"css-loader": "^7.1.2",
 		"file-loader": "^6.2.0",
-		"mini-css-extract-plugin": "^1.6.2",
-		"sass": "^1.56.0",
-		"sass-loader": "^11.1.1",
-		"style-loader": "^2.0.0",
+		"mini-css-extract-plugin": "^2.9.2",
+		"sass": "^1.85.0",
+		"sass-loader": "^16.0.5",
+		"style-loader": "^4.0.0",
 		"webpack": "^5.74.0",
-		"webpack-cli": "^4.10.0"
+		"webpack-cli": "^6.0.1"
 	},
 	"dependencies": {
 		"@microsoft/applicationinsights-web": "^3.2.2",
-		"@ministryofjustice/frontend": "^1.8.1",
-		"accessible-autocomplete": "^2.0.4",
-		"dfe-frontend-alpha": "^1.0.1",
-		"govuk-frontend": "^4.7.0",
+		"@ministryofjustice/frontend": "^3.3.1",
+		"accessible-autocomplete": "^3.0.1",
+		"dfe-frontend": "^2.0.1",
+		"govuk-frontend": "^5.8.0",
 		"jquery": "^3.6.1"
 	}
 }

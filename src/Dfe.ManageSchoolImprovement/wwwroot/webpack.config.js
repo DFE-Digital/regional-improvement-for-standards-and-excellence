@@ -15,7 +15,22 @@ module.exports = {
 					// Translates CSS into CommonJS
 					"css-loader",
 					// Compiles Sass to CSS
-					"sass-loader",
+					{
+						loader: "sass-loader",
+						options: {
+							sourceMap: true,
+							additionalData: (content, loaderContext) => {
+								if (loaderContext.resourcePath.includes("node_modules/@ministryofjustice")) {
+									// Manually add node_modules prefix when importing third-party files
+									return content.replace(
+										'@import "node_modules/govuk-frontend/dist/govuk/base";',
+										'@import "govuk-frontend/dist/govuk/base";'
+									);
+								}
+								return content;
+							}
+						},
+					},
 				],
 			},
 			{ test: /\.css$/, use: ['style-loader', 'css-loader'] },
