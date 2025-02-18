@@ -26,8 +26,8 @@ public class EstablishmentService(IDfeHttpClientFactory httpClientFactory,
     public async Task<IEnumerable<EstablishmentSearchResponse>> SearchEstablishments(string searchQuery)
     {
         string path = int.TryParse(searchQuery, out int urn)
-           ? $"/v4/establishments?urn={urn}"
-           : $"/v4/establishments?name={searchQuery}";
+           ? $"/v4/establishments?urn={urn}&excludeClosed=true"
+           : $"/v4/establishments?name={searchQuery}&excludeClosed=true";
 
         ApiResponse<IEnumerable<EstablishmentSearchResponse>> result = await httpClientService.Get<IEnumerable<EstablishmentSearchResponse>>(_httpClient, path);
 
