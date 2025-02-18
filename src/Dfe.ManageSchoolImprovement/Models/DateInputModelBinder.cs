@@ -124,12 +124,7 @@ public class DateInputModelBinder : IModelBinder
 }
 
 [AttributeUsage(AttributeTargets.Property)]
-public class DateValidationAttribute : Attribute
+public class DateValidationAttribute(DateRangeValidationService.DateRange dateValidationEnum) : Attribute
 {
-   public DateValidationAttribute(DateRangeValidationService.DateRange dateValidationEnum)
-   {
-      DateValidationEnum = dateValidationEnum;
-   }
-
-   public DateRangeValidationService.DateRange DateValidationEnum { get; }
+    public DateRangeValidationService.DateRange DateValidationEnum { get; } = dateValidationEnum;
 }

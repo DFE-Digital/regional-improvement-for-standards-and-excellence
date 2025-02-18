@@ -572,6 +572,17 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             mockRepository.VerifyAll();
         }
 
+        [Fact]
+        public void SetSoftDeleted_SetsProjectSoftDeleted()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
 
+            // Act
+            supportProject.SetSoftDeleted();
+
+            // Assert
+            supportProject.DeletedAt.Should().NotBeNull();
+        }
     }
 }

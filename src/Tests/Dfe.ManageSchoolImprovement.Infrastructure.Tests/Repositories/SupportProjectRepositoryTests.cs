@@ -14,10 +14,10 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Tests.Repositories
             // Act 
             var (projects, totalCount) = await service.SearchForSupportProjects(
                 title: "School",
-                states: new List<string> { },
-                advisors: new List<string> { "User1" },
-                regions: new List<string> { "Region1" },
-                localAuthorities: new List<string> { "Authority1" },
+                states: [],
+                advisors: ["User1"],
+                regions: ["Region1"],
+                localAuthorities: ["Authority1"],
                 page: 1,
                 count: 2,
                 cancellationToken: CancellationToken.None
@@ -37,10 +37,10 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Tests.Repositories
 
             var (projects, totalCount) = await service.SearchForSupportProjects(
                 title: "School",
-                states: new List<string> { },
-                advisors: new List<string> {  },
-                regions: new List<string> { },
-                localAuthorities: new List<string> { },
+                states: [],
+                advisors: [],
+                regions: [],
+                localAuthorities: [],
                 page: 1,
                 count: 10,
                 cancellationToken: CancellationToken.None
@@ -60,10 +60,10 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Tests.Repositories
 
             var (projects, totalCount) = await service.SearchForSupportProjects(
                 title: "100001",
-                states: new List<string> { },
-                advisors: new List<string> { },
-                regions: new List<string> { },
-                localAuthorities: new List<string> { },
+                states: [],
+                advisors: [],
+                regions: [],
+                localAuthorities: [],
                 page: 1,
                 count: 10,
                 cancellationToken: CancellationToken.None
@@ -73,6 +73,37 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Tests.Repositories
             totalCount.Should().Be(1); // Assert total count
             projects.Should().HaveCount(1);              // Assert paged results
             projects.First().SchoolName.Should().Be("School A");
+        }
+
+        public static readonly TheoryData<string?, string[], string[]> DeleteProjectCases = new()
+        {
+            { "School D", [], []},
+            { "100004", [], []},
+            { null, ["Region3"], []},
+            { null, [], ["Authority5"]},
+        };
+
+        [Theory, MemberData(nameof(DeleteProjectCases))]
+        public async Task SearchForSupportProjects_ShouldReturnNoSoftDeletedProjects(string? title, string[] regions, string[] localAuthorities)
+        {
+            // Arrange
+            var service = new SupportProjectRepository(fixture.Context);
+
+            // Act 
+            var (projects, totalCount) = await service.SearchForSupportProjects(
+                title: title,
+                states: [],
+                advisors: [],
+                regions: regions,
+                localAuthorities: localAuthorities,
+                page: 1,
+                count: 2,
+                cancellationToken: CancellationToken.None
+            );
+
+            // Assert
+            totalCount.Should().Be(0);
+            projects.Should().HaveCount(0);
         }
     }
 }

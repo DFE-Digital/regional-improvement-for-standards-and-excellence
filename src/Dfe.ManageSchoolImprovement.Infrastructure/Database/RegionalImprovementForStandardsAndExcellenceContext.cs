@@ -7,25 +7,14 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Security.Principal;
 
 namespace Dfe.ManageSchoolImprovement.Infrastructure.Database;
 
-public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
+public class RegionalImprovementForStandardsAndExcellenceContext(DbContextOptions<RegionalImprovementForStandardsAndExcellenceContext> options, IConfiguration configuration, IMediator mediator, IUserContextService userContextService) : DbContext(options)
 {
-    private readonly IConfiguration? _configuration;
+    private readonly IConfiguration? _configuration = configuration;
     const string DefaultSchema = "RISE";
-    private readonly IMediator _mediator = null!;
-    private readonly IUserContextService _userContextService;
 
-    public RegionalImprovementForStandardsAndExcellenceContext(DbContextOptions<RegionalImprovementForStandardsAndExcellenceContext> options, IConfiguration configuration, IMediator mediator, IUserContextService userContextService)
-    : base(options)
-    {
-        _configuration = configuration;
-        _mediator = mediator;
-        _userContextService = userContextService;
-    }
     public DbSet<SupportProject> SupportProjects { get; set; } = null!;
     
     public DbSet<SupportProjectNote> ProjectNotes { get; set; } = null!;
@@ -38,7 +27,7 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        optionsBuilder.AddInterceptors(new DomainEventDispatcherInterceptor(_mediator));
+        optionsBuilder.AddInterceptors(new DomainEventDispatcherInterceptor(mediator));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -64,8 +53,10 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
             .WithOne()
             .HasForeignKey("SupportProjectId")
             .IsRequired();
+        supportProjectConfiguration
+            .HasQueryFilter(p => p.DeletedAt == null);
     }
-    
+
     private static void ConfigureSupportProjectNotes(EntityTypeBuilder<SupportProjectNote> supportProjectNoteConfiguration)
     {
         supportProjectNoteConfiguration.ToTable("SupportProjectNotes", DefaultSchema, b => b.IsTemporal());
@@ -90,7 +81,7 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
 
     private void SetAuditFields()
     {
-        var currentUsername = _userContextService.GetCurrentUsername();
+        var currentUsername = userContextService.GetCurrentUsername();
 
         // for new domain object mapped directly to the database
         var entries = ChangeTracker.Entries()
@@ -100,15 +91,15 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
         foreach (var entry in entries)
         {
             var entity = (IAuditableEntity)entry.Entity;
-            entity.LastModifiedOn = DateTime.UtcNow;
+            var utcNow = DateTime.UtcNow;
+            entity.LastModifiedOn = utcNow;
             entity.LastModifiedBy = currentUsername;
 
             if (entry.State == EntityState.Added)
             {
-                entity.CreatedOn = DateTime.UtcNow;
+                entity.CreatedOn = utcNow;
                 entity.CreatedBy = currentUsername;
             }
         }
-
     }
 }
