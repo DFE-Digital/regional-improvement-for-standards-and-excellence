@@ -67,6 +67,10 @@ public static class Links
         public static readonly LinkItem ConfirmImprovementGrantOfferLetterSent = AddLinkItem(backText: "Back", page: "/TaskList/ConfirmImprovementGrantOfferLetterSent/Index");
     }
 
+    public static class DeleteProject
+    {
+        public static readonly LinkItem ConfirmToDeleteProject = AddLinkItem(page: "/TaskList/DeleteSupportProject/Index");
+    }
     public static class Notes
     {
         public static readonly LinkItem Index = AddLinkItem(backText: "Back", page: "/Notes/Index");

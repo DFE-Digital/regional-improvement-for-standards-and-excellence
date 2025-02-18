@@ -326,12 +326,12 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.ViewModels
 
 
         public static readonly TheoryData<bool?, bool?, DateTime?, TaskListStatus> ShareImprovementPlanTaskListStatusCases = new()
-   {
-       {null, null, null, TaskListStatus.NotStarted },
-       {false, false, null, TaskListStatus.InProgress },
-       {false, true, null, TaskListStatus.InProgress},
-       {true, true, DateTime.Now, TaskListStatus.Complete }
-   };
+       {
+           {null, null, null, TaskListStatus.NotStarted },
+           {false, false, null, TaskListStatus.InProgress },
+           {false, true, null, TaskListStatus.InProgress},
+           {true, true, DateTime.Now, TaskListStatus.Complete }
+       };
 
         [Theory, MemberData(nameof(ShareImprovementPlanTaskListStatusCases))]
         public void ShareImprovementPlanTaskListStatusCasesShouldReturnCorrectStatus(bool? sendTheTemplateToTheSupportingOrganisation,

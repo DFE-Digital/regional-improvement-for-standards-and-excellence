@@ -7,8 +7,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Security.Principal;
 
 namespace Dfe.ManageSchoolImprovement.Infrastructure.Database;
 
@@ -64,8 +62,10 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
             .WithOne()
             .HasForeignKey("SupportProjectId")
             .IsRequired();
+        supportProjectConfiguration
+            .HasQueryFilter(p => p.DeletedAt == null);
     }
-    
+
     private static void ConfigureSupportProjectNotes(EntityTypeBuilder<SupportProjectNote> supportProjectNoteConfiguration)
     {
         supportProjectNoteConfiguration.ToTable("SupportProjectNotes", DefaultSchema, b => b.IsTemporal());
@@ -109,6 +109,5 @@ public class RegionalImprovementForStandardsAndExcellenceContext : DbContext
                 entity.CreatedBy = currentUsername;
             }
         }
-
     }
 }

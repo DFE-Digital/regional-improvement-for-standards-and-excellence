@@ -150,13 +150,16 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public DateTime? DateTeamContactedForConfirmingPlanningGrantOfferLetter { get; private set; }
 
     public DateTime? DateImprovementGrantOfferLetterSent { get; private set; }
+    public DateTime? DeletedAt { get; private set; }
+
     #endregion
 
     public static SupportProject Create(
         string schoolName,
         string schoolUrn,
         string localAuthority,
-        string region)
+        string region,
+        DateTime? deletedAt = null)
     {
 
         return new SupportProject()
@@ -164,7 +167,8 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
             SchoolName = schoolName,
             SchoolUrn = schoolUrn,
             LocalAuthority = localAuthority,
-            Region = region
+            Region = region,
+            DeletedAt = deletedAt
         };
     }
 
@@ -333,6 +337,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
     public void SetConfirmImprovementGrantOfferLetterDetails(DateTime? dateImprovementGrantOfferLetterSent)
     {
         DateImprovementGrantOfferLetterSent = dateImprovementGrantOfferLetterSent;
+    }
+
+    public void SetSoftDeleted()
+    {
+        DeletedAt = DateTime.UtcNow;
     }
     #endregion
 }

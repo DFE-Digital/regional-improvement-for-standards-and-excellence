@@ -1,9 +1,8 @@
 @using Dfe.Academisation.ExtensionMethods
+@using Dfe.ManageSchoolImprovement.Application.Common.Models
 
 @{
    DateTime createdDate = @Model.CreatedOn;
-   
-
 }
 
 <div class="govuk-grid-row">
@@ -58,8 +57,15 @@
             <a data-id="assigned-user">@Model.AdviserEmailAddress</a>
          }
 
-         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.Id">Change</a>
-      </p>
+         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.Id">Change</a>    
+        </p>
+
+        @if (!User.IsInRole(Roles.Support))
+        {
+            <p class="govuk-body govuk-!-margin-top-3">
+                <a class="govuk-button govuk-button--warning" asp-page="@Links.DeleteProject.ConfirmToDeleteProject.Page" asp-route-id="@Model.Id">Delete project</a>
+            </p>
+        } 
    </div>
      <div class="govuk-grid-column-full">
          <partial name="_SubMenu" model="@Model"/>

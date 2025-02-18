@@ -49,6 +49,13 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Tests.Repositories
                 "100003",
                 "Authority3",
                 "Region2"
+            ),
+            SupportProject.Create(
+                "School D",
+                "100004",
+                "Authority5",
+                "Region3",
+                DateTime.Now
             ));
             Context.SaveChanges();
         }
