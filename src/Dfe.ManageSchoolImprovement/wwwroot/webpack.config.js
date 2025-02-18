@@ -15,53 +15,31 @@ module.exports = {
 					// Translates CSS into CommonJS
 					"css-loader",
 					// Compiles Sass to CSS
-					{
-						loader: "sass-loader",
-						options: {
-							sourceMap: true,
-							additionalData: (content, loaderContext) => {
-								if (loaderContext.resourcePath.includes("node_modules/@ministryofjustice")) {
-									// Manually add node_modules prefix when importing third-party files
-									return content.replace(
-										'@import "node_modules/govuk-frontend/dist/govuk/base";',
-										'@import "govuk-frontend/dist/govuk/base";'
-									);
-								}
-								return content;
-							}
-						},
-					},
+					"sass-loader",
 				],
 			},
 			{ test: /\.css$/, use: ['style-loader', 'css-loader'] },
 			{
 				test: /\.(woff2?)$/i,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							emitFile: false,
-							name: '/assets/fonts/[name].[ext]'
-						}
-					}
-				]
+				type: 'asset/resource', // Replaces file-loader
+				generator: {
+					filename: '../assets/fonts/[name][ext]', // Matches your old file-loader name pattern
+					publicPath: '/assets/',
+				},
 			},
 			{
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							emitFile: false,
-							name: '/assets/images/[name].[ext]'
-						}
-					}
-				]
+				test: /\.(jpe?g|png|gif|svg)$/i, // Match image files
+				type: 'asset/resource', // Replaces file-loader
+				generator: {
+					filename: '../assets/images/[name][ext]', // Matches your old file-loader name pattern
+					publicPath: '/assets/',
+				},
 			},
 		]
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/', // Ensures correct URL references
 		filename: 'site.js',
 	}
 };
