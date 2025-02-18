@@ -26,6 +26,15 @@ export default defineConfig({
         // Map cypress env vars to process env vars for usage outside of Cypress run environment
         process.env = config.env;
     });
+
+    on("task", {
+      log(message) {
+          console.log(message);
+
+          return null;
+      },
+    });
+    
     config.baseUrl = config.env.url;
 
     return config;
