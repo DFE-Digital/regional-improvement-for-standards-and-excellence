@@ -4,11 +4,11 @@ ARG DOTNET_VERSION=8.0
 ARG NODEJS_VERSION_MAJOR=22
 
 # Build assets
-# FROM "node:${NODEJS_VERSION_MAJOR}-bullseye-slim" AS assets
-# WORKDIR /app
-# COPY ./src/Dfe.ManageSchoolImprovement/wwwroot /app
-# RUN npm install
-# RUN npm run build
+FROM "node:${NODEJS_VERSION_MAJOR}-bullseye-slim" AS assets
+WORKDIR /app
+COPY ./src/Dfe.ManageSchoolImprovement/wwwroot /app
+RUN npm install
+RUN npm run build
 
 # Build the app using the dotnet SDK
 FROM "mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0" AS build
@@ -63,7 +63,7 @@ WORKDIR /app
 LABEL org.opencontainers.image.source="https://github.com/DFE-Digital/regional-improvement-for-standards-and-excellence"
 
 COPY --from=build /app /app
-# COPY --from=assets /app /app/wwwroot
+COPY --from=assets /app /app/wwwroot
 RUN ["chmod", "+x", "./docker-entrypoint.sh"]
 
 USER $APP_UID
