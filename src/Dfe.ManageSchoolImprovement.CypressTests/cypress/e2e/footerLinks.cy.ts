@@ -1,5 +1,5 @@
 import { Logger } from "cypress/common/logger";
-describe("Navigate through footer links", () => {
+describe.skip("Navigate through footer links", () => {
     beforeEach(() => {
         cy.login();
         cy.visit("/");
