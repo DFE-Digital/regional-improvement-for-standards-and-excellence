@@ -63,7 +63,7 @@ WORKDIR /app
 LABEL org.opencontainers.image.source="https://github.com/DFE-Digital/regional-improvement-for-standards-and-excellence"
 
 COPY --from=build /app /app
-#COPY --from=assets /app /app/wwwroot
+COPY --from=assets /app /app/wwwroot
 RUN ["chmod", "+x", "./docker-entrypoint.sh"]
 
 USER $APP_UID
