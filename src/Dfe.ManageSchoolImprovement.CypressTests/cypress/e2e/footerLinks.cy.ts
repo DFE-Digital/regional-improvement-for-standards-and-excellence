@@ -20,15 +20,15 @@ describe("Navigate through footer links", () => {
         Logger.log("Get accessibility and cookies link");
         cy.contains('a', 'Accessibility statement').should('be.visible').click()
         cy.url().then(href => {
-            expect(href).includes('accessibility-statement')
+            expect(href).includes('accessibility')
         });
         cy.contains('a', 'Cookies').should('be.visible').click()
         cy.url().then(href => {
-            expect(href).includes('cookies')
+            expect(href).includes('cookie')
         });
 
-        Logger.log("Get licence and copyright link");
-        cy.contains('a', 'Open Government Licence v3.0').should('be.visible')
+        Logger.log("Get license and copyright link");
+        cy.contains('a', 'Open Government License v3.0').should('be.visible')
         cy.contains('a', '© Crown copyright').should('be.visible')
     });
 });
