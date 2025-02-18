@@ -28,7 +28,7 @@ describe("Navigate through footer links", () => {
         });
 
         Logger.log("Get license and copyright link");
-        cy.contains('a', 'Open Government License v3.0').should('be.visible')
+        cy.contains('a', 'Open Government Licence v3.0').should('be.visible')
         cy.contains('a', '© Crown copyright').should('be.visible')
     });
 });
