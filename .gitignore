@@ -75,3 +75,8 @@ backend.vars
 ## Dependencies
 /Brewfile.lock.json
 /terraform/Brewfile.lock.json
+
+# govuk frontend stuff
+src/Dfe.ManageSchoolImprovement/wwwroot/assets
+src/Dfe.ManageSchoolImprovement/wwwroot/dist
+
