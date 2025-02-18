@@ -79,3 +79,7 @@ Cypress.Commands.add("executeAccessibilityTests", (ruleOverride?: RuleObject) =>
         rules: ruleConfiguration,
     }, undefined, continueOnFail);
 });
+
+Cypress.Commands.add('typeFast', { prevSubject: 'element' }, (subject: JQuery<HTMLElement>, text: string) => {
+    cy.wrap(subject).invoke('val', text);
+  });
