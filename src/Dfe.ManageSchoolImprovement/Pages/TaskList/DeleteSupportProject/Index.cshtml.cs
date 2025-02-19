@@ -11,20 +11,20 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.DeleteSupportProje
     public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService)
     {
         [BindProperty]
-        public bool IsProjectDeleted { get; private set; }
+        public bool IsSchoolDeleted { get; private set; }
 
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
         {
             await base.GetSupportProject(id, cancellationToken);
-            IsProjectDeleted = false;
+            IsSchoolDeleted = false;
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int id, bool isProjectDeleted, CancellationToken cancellationToken)
+        public async Task<IActionResult> OnPost(int id, bool isSchoolDeleted, CancellationToken cancellationToken)
         {
-            if (isProjectDeleted)
+            if (isSchoolDeleted)
             {
-                var request = new SetSoftDeletedCommand(new SupportProjectId(id));
+                var request = new SetSoftDeletedCommand(new SupportProjectId(id), User?.Identity?.Name!);
 
                 var result = await mediator.Send(request, cancellationToken);
 

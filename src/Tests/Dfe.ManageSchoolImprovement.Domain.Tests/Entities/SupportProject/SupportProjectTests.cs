@@ -7,10 +7,7 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
     {
         private readonly MockRepository mockRepository;
 
-        public SupportProjectTests()
-        {
-            mockRepository = new MockRepository(MockBehavior.Strict);
-        }
+        public SupportProjectTests() => mockRepository = new MockRepository(MockBehavior.Strict);
 
         [Fact]
         public void Create_StateUnderTest_ExpectedBehavior()
@@ -577,12 +574,14 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
         {
             // Arrange
             var supportProject = CreateSupportProject();
+            var deletedBy = "first.last@education.gov.uk";
 
             // Act
-            supportProject.SetSoftDeleted();
+            supportProject.SetSoftDeleted(deletedBy);
 
             // Assert
             supportProject.DeletedAt.Should().NotBeNull();
+            supportProject.DeletedBy.Should().Be(deletedBy);
         }
     }
 }

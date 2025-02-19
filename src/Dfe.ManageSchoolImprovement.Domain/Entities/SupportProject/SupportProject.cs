@@ -151,6 +151,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? DateImprovementGrantOfferLetterSent { get; private set; }
     public DateTime? DeletedAt { get; private set; }
+    public string? DeletedBy { get; private set; }
 
     #endregion
 
@@ -339,9 +340,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         DateImprovementGrantOfferLetterSent = dateImprovementGrantOfferLetterSent;
     }
 
-    public void SetSoftDeleted()
+    public void SetSoftDeleted(string deletedBy)
     {
         DeletedAt = DateTime.UtcNow;
+        DeletedBy = deletedBy;
     }
     #endregion
 }
