@@ -1,7 +1,7 @@
-﻿@page "/task-list/{id:int}/confirm-to-delete-project"
+﻿@page "/task-list/{id:int}/confirm-to-delete-school"
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.DeleteSupportProject.IndexModel
 @{
-    ViewData["Title"] = "Confirm you want to remove this project";
+    ViewData["Title"] = "Confirm you want to remove this school";
 }
 
 @section BeforeMain
@@ -13,20 +13,20 @@
     <div class="govuk-grid-column-two-thirds"> 
         <span class="govuk-caption-l" data-cy="school-name">@Model.SupportProject.SchoolName</span>
         <h1 class="govuk-heading-l" data-cy="page-heading">
-            Confirm you want to delete this project
+            Confirm you want to delete this school
         </h1>
        <p class="govuk-body" data-cy="instruction-to-advisor">
-           If you delete this project it will no longer appear in Manage School Improvement.
+           If you delete this school it will no longer appear in Manage school improvement.
        </p>
        <p class="govuk-body" data-cy="instruction-to-advisor-2">
            However it will remain in the database and can be recovered in the future if necessary.
        </p>
 
          <form method="post" novalidate>
-            <input type="hidden" asp-for="@Model.IsProjectDeleted" />
+            <input type="hidden" asp-for="@Model.IsSchoolDeleted" />
             <span class="govuk-!-margin-right-2">
-                <button class="govuk-button govuk-button--warning" data-module="govuk-button" id="delete-project-confirmation">
-                    Delete project
+                <button class="govuk-button govuk-button--warning" data-module="govuk-button" id="delete-school-confirmation">
+                    Delete school
                 </button>
             </span>
             <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
@@ -37,8 +37,8 @@
 </div>
 
 <script type="application/javascript" asp-add-nonce>
-    document.querySelector('#delete-project-confirmation').onclick = () =>{
-        document.querySelector('#IsProjectDeleted').value = true;
+    document.querySelector('#delete-school-confirmation').onclick = () =>{
+        document.querySelector('#IsSchoolDeleted').value = true;
         document.querySelector('form').submit();
     };
 </script>

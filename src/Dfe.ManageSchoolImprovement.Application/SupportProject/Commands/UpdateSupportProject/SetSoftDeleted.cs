@@ -5,7 +5,8 @@ using MediatR;
 namespace Dfe.ManageSchoolImprovement.Application.SupportProject.Commands.UpdateSupportProject;
 
 public record SetSoftDeletedCommand(
-    SupportProjectId SupportProjectId
+    SupportProjectId SupportProjectId,
+    string DeletedBy
 ) : IRequest<bool>;
 
 
@@ -25,7 +26,7 @@ public class SetSoftDeleted
                 return false;
             }
 
-            supportProject.SetSoftDeleted();
+            supportProject.SetSoftDeleted(request.DeletedBy);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
             

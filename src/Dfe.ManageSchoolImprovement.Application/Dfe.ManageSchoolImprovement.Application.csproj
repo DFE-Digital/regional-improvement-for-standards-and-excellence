@@ -15,7 +15,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Dfe.ManageSchoolImprovement.Domain\Dfe.ManageSchoolImprovement.Domain.csproj" />
     <ProjectReference Include="..\Dfe.ManageSchoolImprovement.Utils\Dfe.ManageSchoolImprovement.Utils.csproj" />
