@@ -71,4 +71,5 @@ locals {
   storage_account_public_access_enabled           = var.storage_account_public_access_enabled
   dns_alias_records                               = var.dns_alias_records
   monitor_http_availability_fqdn                  = var.monitor_http_availability_fqdn
+  enable_monitoring_traces                        = var.enable_monitoring_traces
 }
