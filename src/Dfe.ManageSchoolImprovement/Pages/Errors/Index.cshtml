@@ -1,0 +1,24 @@
+﻿@page
+@using System.Net
+@model Dfe.ManageSchoolImprovement.Frontend.Pages.Errors.IndexModel
+@{
+    ViewData["Title"] = @Model.ErrorMessage;
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l" id="error-heading">@Model.ErrorMessage</h1>
+        @if (Model.ErrorCode == StatusCodes.Status404NotFound)
+        {
+            <p class="govuk-body">
+                If you typed the web address, check it is correct.
+            </p>
+            <p class="govuk-body">
+                If you pasted the web address, check you copied the entire address.
+            </p>
+        }
+        else
+        {
+            <p class="govuk-body">Try again later.</p>
+        }
+    </div>
+</div>
