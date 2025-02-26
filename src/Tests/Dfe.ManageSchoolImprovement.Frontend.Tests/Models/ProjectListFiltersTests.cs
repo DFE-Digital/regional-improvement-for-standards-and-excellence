@@ -6,11 +6,15 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
 {
     public class ProjectListFiltersTests
     {
-        private IDictionary<string, object?> _store;
+        private readonly IDictionary<string, object?> _store;
+        private readonly string _title;
+        private readonly string[]? _statuses;
 
         public ProjectListFiltersTests()
         {
             _store = new Dictionary<string, object?>();
+            _title = "Test Title";
+            _statuses = ["Status1", "Status2"];
         }
 
         [Fact]
@@ -38,18 +42,19 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
         {
             // Arrange
             var projectListFilters = new ProjectListFilters();
+            string[] titles = [_title];
             var store = new Dictionary<string, object?>
             {
-                { ProjectListFilters.FilterTitle,  new string[]{"Test Title" } },
-                { ProjectListFilters.FilterStatuses, new string[] { "Status1", "Status2" } }
+                { ProjectListFilters.FilterTitle, titles },
+                { ProjectListFilters.FilterStatuses, _statuses }
             };
 
             // Act
             projectListFilters.PersistUsing(store);
 
             // Assert
-            Assert.Equal("Test Title", projectListFilters.Title);
-            Assert.Equal(new string[] { "Status1", "Status2" }, projectListFilters.SelectedStatuses);
+            Assert.Equal(_title, projectListFilters.Title);
+            Assert.Equal(_statuses, projectListFilters.SelectedStatuses);
         }
 
         [Fact]
@@ -93,7 +98,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
             var projectListFilters = new ProjectListFilters();
             projectListFilters.PersistUsing(new Dictionary<string, object?>
             {
-                { ProjectListFilters.FilterStatuses, new string[] { "Status1", "Status2" } }
+                { ProjectListFilters.FilterStatuses, _statuses }
             });
 
             // Act
@@ -115,12 +120,13 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
             var query = new Dictionary<string, StringValues>
             {
                 { "remove", "true" },
-                { "SelectedStatuses", new StringValues(new[] { "Status1" }) }
+                { "SelectedStatuses", new StringValues(["Status1"]) }
             };
+            var expectedStatus = new string[] { "Status2" };
 
             var store = new Dictionary<string, object?>
             {
-                { ProjectListFilters.FilterStatuses, new string[] { "Status1", "Status2" } }
+                { ProjectListFilters.FilterStatuses, _statuses }
             };
             var projectListFilters = new ProjectListFilters();
             projectListFilters.PersistUsing(store);
@@ -129,7 +135,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
             projectListFilters.PopulateFrom(query);
 
             // Assert
-            Assert.Equal(new string[] { "Status2" }, projectListFilters.SelectedStatuses);
+            Assert.Equal(expectedStatus, projectListFilters.SelectedStatuses);
         }
     }
 }
