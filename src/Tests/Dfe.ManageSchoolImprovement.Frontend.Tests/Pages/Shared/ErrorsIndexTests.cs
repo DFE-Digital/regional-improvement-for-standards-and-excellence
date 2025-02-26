@@ -8,14 +8,14 @@ using Moq;
 using Dfe.ManageSchoolImprovement.Frontend.Pages.Errors;
 using Microsoft.AspNetCore.Routing;
 
-namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Pages.Errors
+namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Pages.Shared
 {
-    public class IndexTests
+    public class ErrorsIndexTests
     {
         private readonly Mock<HttpContext> _httpContextMock;
         private readonly IndexModel _model;
 
-        public IndexTests()
+        public ErrorsIndexTests()
         {
             _httpContextMock = new Mock<HttpContext>();
 
@@ -59,7 +59,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Pages.Errors
             _httpContextMock.SetupSet(context => context.Response.StatusCode = 404).Verifiable();
 
             _model.OnGet();
-             
+
             Assert.Equal("Page not found", _model.ErrorMessage);
             _httpContextMock.Verify();
         }

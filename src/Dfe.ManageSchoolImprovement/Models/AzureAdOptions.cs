@@ -5,7 +5,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models;
 public class AzureAdOptions
 {
     public Guid ClientId { get; set; }
-    public string ClientSecret { get; set; }
+    public string ClientSecret { get; set; } = string.Empty;
     public Guid TenantId { get; set; }
     public Guid GroupId { get; set; }
     public string ApiUrl { get; set; } = "https://graph.microsoft.com/";

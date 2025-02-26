@@ -93,6 +93,6 @@ public static class Links
 
 public class LinkItem
 {
-    public string Page { get; set; }
+    public string Page { get; set; } = null!;
     public string BackText { get; set; } = "Back";
 }
