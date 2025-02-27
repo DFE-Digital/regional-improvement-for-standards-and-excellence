@@ -1,13 +1,16 @@
 @using Microsoft.AspNetCore.Http
 @inject IConfiguration Configuration
 @{
-    //ISession session = HttpContextAccessor.HttpContext.Session;
+    var analyticsConsent = Context.Request.Cookies.ContainsKey(".ManageSchoolImprovement.Consent")
+                       && bool.Parse(Context.Request.Cookies[".ManageSchoolImprovement.Consent"] ?? string.Empty);
 
+    var enableGoogleAnalytics = Configuration["GoogleAnalytics:Enable"] == "Yes" && analyticsConsent;
+    var enableAppInsightsAnalytics = Configuration["ApplicationInsights:EnableBrowserAnalytics"] == "Yes" && analyticsConsent;
+
+    //ISession session = HttpContextAccessor.HttpContext.Session;
     // var SESSION_KEY = "RoleCapabilities";
     var titleDescription = "- Manage school improvement";
     //var HasPermission = session.HasPermission($"{SESSION_KEY}_{User.Identity.Name}", RoleCapability.AddIncomingTrustReferenceNumber);
-
-
 }
 
 <!DOCTYPE html>
@@ -31,15 +34,40 @@
     <link rel="stylesheet" href="~/dist/site.css" />
     <link rel="stylesheet" href="~/dist/accessible-autocomplete.min.css" asp-add-nonce />
     <link rel="stylesheet" href="~/dist/dfefrontend-2.0.0.min.css" asp-add-nonce />
+    @if (enableGoogleAnalytics)
+    {
+        <!-- Google Tag Manager -->
+        <script asp-add-nonce>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-N94TNRLC');</script>
+        <!-- End Google Tag Manager -->
+    }
+
+    @if (enableAppInsightsAnalytics)
+    {
+        <partial name="_AppInsights" />
+    }
     <script type="text/javascript" src="~/dist/accessible-autocomplete.min.js" asp-add-nonce></script>
 </head>
 
 <body class="govuk-template__body">
-    <script asp-add-nonce>      
+    @if (enableGoogleAnalytics)
+    {
+        <!-- Google Tag Manager (noscript) -->
+        <noscript asp-add-nonce>
+            <iframe title="GATagManager" src="https://www.googletagmanager.com/ns.html?id=GTM-N94TNRLC" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    }
+    <script asp-add-nonce>
+
         document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     </script>
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
+    <partial name="_CookieBanner" />
     <header class="dfe-header" role="banner" data-module="dfe-header">
         <div class="dfe-width-container dfe-header__container">
             <div class="dfe-header__logo">
@@ -49,7 +77,7 @@
                 </a>
             </div>
 
-        </div>    
+        </div>
         <div class="dfe-width-container dfe-header__service-name">
             <a href="/" class="dfe-header__link--service">Manage school improvement</a>
         </div>
