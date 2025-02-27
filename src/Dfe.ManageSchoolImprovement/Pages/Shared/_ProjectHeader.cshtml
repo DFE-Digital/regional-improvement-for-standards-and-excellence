@@ -5,7 +5,7 @@
 
 @{
    DateTime createdDate = @Model.CreatedOn;
-   DateTime lastInspectionDate = new();
+   DateTime? lastInspectionDate = null;
 
    if (@Model.LastInspectionDate != null || !string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
    {
