@@ -234,7 +234,7 @@ public static class TaskStatusViewModel
 
         if (!supportProject.DateSupportingOrganisationContactDetailsAdded.HasValue
             && supportProject.SupportingOrganisationContactName == null
-            && supportProject.SupportingOrganisationContactEmailAddress == null)
+            && string.IsNullOrEmpty(supportProject.SupportingOrganisationContactEmailAddress))
         {
             return TaskListStatus.NotStarted;
         }

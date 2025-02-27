@@ -13,10 +13,9 @@ namespace Dfe.ManageSchoolImprovement.Application.Common.Models
         public string? Phone { get; set; }
         public required ICollection<string> Roles
         {
-            get => _roles ??= new List<string>();
+            get => _roles ??= [];
             set => _roles = value ?? [];
         }
         public required DateTime? UpdatedAt { get; set; }
-
     }
 }
