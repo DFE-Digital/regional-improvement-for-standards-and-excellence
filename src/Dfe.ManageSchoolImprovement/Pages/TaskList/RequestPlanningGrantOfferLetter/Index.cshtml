@@ -18,7 +18,7 @@
         <h1 class="govuk-heading-l">
             Request planning grant offer letter 
         </h1>
-        <p class="govuk-body">Email the grant team at <a href="mailto:@Model.EmailAddress">@Model.EmailAddress</a> and ask them to send the planning grant offer letter to the supporting organisation and responsible body.</p>
+        <p class="govuk-body">Email the grant team at <a class="govuk-link" href="mailto:@Model.EmailAddress">@Model.EmailAddress</a> and ask them to send the planning grant offer letter to the supporting organisation and responsible body.</p>
         <form method="post" novalidate>
             <govuk-date-input heading-label="false" label="Enter date grant team contacted" id="date-grant-team-contacted" name="date-grant-team-contacted" asp-for="@Model.DateGrantTeamContacted" hint="For example, 1 7 2024." />
             <button class="govuk-button" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
