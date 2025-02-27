@@ -5,7 +5,12 @@
 
 @{
    DateTime createdDate = @Model.CreatedOn;
-   DateTime lastInspectionDate = DateTime.ParseExact(Model.LastInspectionDate, "dd/mm/yyyy", CultureInfo.CurrentCulture);
+   DateTime lastInspectionDate = new();
+
+   if (@Model.LastInspectionDate != null || !string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
+   {
+      lastInspectionDate = DateTime.ParseExact(Model.LastInspectionDate, "dd/mm/yyyy", CultureInfo.CurrentCulture);
+   }
 }
 
 <div class="govuk-grid-row">
