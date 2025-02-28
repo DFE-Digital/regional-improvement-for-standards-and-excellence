@@ -71,6 +71,7 @@ jobs:
       - uses: DFE-Digital/deploy-azure-container-apps-action/.github/actions/build@v5.0.0
         with:
           build-target: ${{ matrix.stage }}
+          build-args: CI=true
           image-name: ${{ env.IMAGE_NAME }}
           tag-prefix: ${{ matrix.tag-prefix }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -84,6 +85,10 @@ jobs:
           image-name: ${{ env.IMAGE_NAME }}
           tag-prefix: ${{ matrix.tag-prefix }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID || '' }}
+          AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION_ID || '' }}
+          AZURE_ACR_CLIENT_ID: ${{ secrets.ACR_CLIENT_ID || '' }}
 
   deploy:
     name: Deploy
@@ -103,6 +108,10 @@ jobs:
           azure-acr-name: ${{ secrets.ACR_NAME }}
           # annotate-release: true
           image-name: ${{ env.IMAGE_NAME }}
+        env:
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID || '' }}
+          AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION_ID || '' }}
+          AZURE_ACA_CLIENT_ID: ${{ secrets.ACA_CLIENT_ID || '' }}
 
   create-tag:
     name: Tag and release
