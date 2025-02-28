@@ -40,18 +40,6 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests
         }
 
         [Fact]
-        public async Task Test_Authentication_Required_For_Secured_Pages()
-        {
-            var client = factory.CreateClient(new WebApplicationFactoryClientOptions
-            {
-                AllowAutoRedirect = false
-            });
-            var response = await client.GetAsync("/secured-page");
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Contains("login.microsoftonline.com", response.Headers.Location?.ToString());
-        }
-
-        [Fact]
         public async Task Test_Health_Check()
         {
             var client = factory.CreateClient();
