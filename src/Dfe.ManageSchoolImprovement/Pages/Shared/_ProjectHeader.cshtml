@@ -1,9 +1,16 @@
 @using Dfe.Academisation.ExtensionMethods
 @using Dfe.ManageSchoolImprovement.Application.Common.Models
 @using System.Security.Claims
+@using System.Globalization
 
 @{
    DateTime createdDate = @Model.CreatedOn;
+   DateTime? lastInspectionDate = null;
+
+   if (@Model.LastInspectionDate != null || !string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
+   {
+      lastInspectionDate = DateTime.ParseExact(Model.LastInspectionDate, "dd/mm/yyyy", CultureInfo.CurrentCulture);
+   }
 }
 
 <div class="govuk-grid-row">
@@ -28,7 +35,7 @@
          }
          else
          {
-            <a data-id="last-inspection">@Model.LastInspectionDate</a>
+            <a data-id="last-inspection">@lastInspectionDate.ToDateString()</a>
          }
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
