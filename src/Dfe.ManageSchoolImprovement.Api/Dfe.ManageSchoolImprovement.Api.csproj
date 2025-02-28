@@ -49,6 +49,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 	<Target Name="NSwag" BeforeTargets="AfterBuild" Condition="'$(CI)'!='true'">
 		<Exec ConsoleToMSBuild="true" ContinueOnError="true" Command="$(NSwagExe_Net80) run ../Dfe.ManageSchoolImprovement.Api.Client/nswag.json">
 			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text.Json;
 using Dfe.ManageSchoolImprovement.Api.ResponseModels;
@@ -6,6 +7,7 @@ using ValidationException = Dfe.ManageSchoolImprovement.Application.Common.Excep
 
 namespace Dfe.ManageSchoolImprovement.Api.Middleware;
 
+[ExcludeFromCodeCoverage]
 public class ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
 {
     public async Task InvokeAsync(HttpContext context)

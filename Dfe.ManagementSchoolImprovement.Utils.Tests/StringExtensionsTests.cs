@@ -1,6 +1,6 @@
 ﻿using Dfe.ManageSchoolImprovement.Utils;
 
-namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Utils
+namespace Dfe.ManagementSchoolImprovement.Utils.Tests
 {
     public class StringExtensionsTests
     {

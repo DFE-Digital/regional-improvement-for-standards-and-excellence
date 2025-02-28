@@ -1,8 +1,10 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.ManageSchoolImprovement.Api.Swagger
 {
+    [ExcludeFromCodeCoverage]
     public class AuthenticationHeaderOperationFilter : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)

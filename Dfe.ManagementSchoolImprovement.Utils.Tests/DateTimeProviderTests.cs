@@ -1,7 +1,7 @@
 ﻿using Dfe.ManageSchoolImprovement.Utils;
 using Moq;
 
-namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Utils
+namespace Dfe.ManagementSchoolImprovement.Utils.Tests
 {
     public class DateTimeProviderTests
     {
@@ -22,8 +22,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Utils
             Assert.Equal(DateTimeKind.Utc, result.Kind);
             Assert.True(result <= DateTime.UtcNow);
             Assert.True(result > DateTime.UtcNow.AddMinutes(-1));
-        } 
-         
+        }
+
         [Fact]
         public void MockDateTimeProvider_ShouldReturnMockedDateTime()
         {

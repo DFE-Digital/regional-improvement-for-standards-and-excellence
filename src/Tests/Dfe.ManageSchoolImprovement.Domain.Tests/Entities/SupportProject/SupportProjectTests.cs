@@ -1,3 +1,4 @@
+using Dfe.ManageSchoolImprovement.Domain.ValueObjects;
 using FluentAssertions;
 using Moq;
 
@@ -582,6 +583,32 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Assert
             supportProject.DeletedAt.Should().NotBeNull();
             supportProject.DeletedBy.Should().Be(deletedBy);
+        }
+
+        [Fact]
+        public void AddNote_SetsNotes()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            var supportProjectNoteId = new SupportProjectNoteId(Guid.NewGuid());
+            var note = "Note";
+            var author = "Author";
+            var date = DateTime.UtcNow;
+            var supportProjectId = new SupportProjectId(1);
+
+            // Act
+            supportProject.AddNote(supportProjectNoteId, note, author, date, supportProjectId);
+
+            // Assert
+            supportProject.Notes.Should().NotBeNull();
+            foreach (var projectNote in supportProject.Notes)
+            {
+                projectNote.Note.Should().Be(note);
+                projectNote.CreatedBy.Should().Be(author);
+                projectNote.CreatedOn.Should().Be(date);
+                projectNote.SupportProjectId.Should().Be(supportProjectId);
+                projectNote.Id.Should().Be(supportProjectNoteId); 
+            } 
         }
     }
 }

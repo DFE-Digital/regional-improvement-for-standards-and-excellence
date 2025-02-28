@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace Dfe.ManageSchoolImprovement.Api.Middleware
 {
+    [ExcludeFromCodeCoverage]
     public class UrlDecoderMiddleware(RequestDelegate next)
     {
         public async Task InvokeAsync(HttpContext context)

@@ -1,7 +1,7 @@
 ﻿using Dfe.ManageSchoolImprovement.Utils;
 using Microsoft.AspNetCore.Html;
 
-namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Utils
+namespace Dfe.ManagementSchoolImprovement.Utils.Tests
 {
     public class TypeSpaceExtensionsTests
     {

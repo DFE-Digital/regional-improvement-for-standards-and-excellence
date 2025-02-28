@@ -13,9 +13,11 @@ using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using DfE.CoreLibs.Http.Middlewares.CorrelationId;
 using DfE.CoreLibs.Http.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.ManageSchoolImprovement.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static async Task Main(string[] args)

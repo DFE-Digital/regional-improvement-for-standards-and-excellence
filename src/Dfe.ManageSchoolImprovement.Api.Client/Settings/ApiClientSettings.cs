@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Dfe.ManageSchoolImprovement.Api.Client.Settings
 {
+    [ExcludeFromCodeCoverage]
     public class ApiClientSettings
     {
         public string? BaseUrl { get; set; }
