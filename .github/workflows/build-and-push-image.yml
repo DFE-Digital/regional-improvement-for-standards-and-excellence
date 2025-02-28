@@ -14,6 +14,9 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.inputs.environment }}
 
+env:
+  IMAGE_NAME: rise-app
+
 jobs:
   set-env:
     name: Determine environment
@@ -45,36 +48,14 @@ jobs:
         with:
           environment: ${{ needs.set-env.outputs.environment }}
 
-  build:
-    name: Build
-    needs: [ set-env, validate-packages ]
+  build-import:
+    name: Build & Import
+    runs-on: ubuntu-24.04
+    needs: [ set-env ]
+    environment: ${{ needs.set-env.outputs.environment }}
     permissions:
       packages: write
-    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/build.yml@v5.0.0
-    strategy:
-      matrix:
-        stage: [
-          "final",
-          "initcontainer"
-        ]
-        include:
-          - stage: "final"
-            tag-prefix: ""
-          - stage: "initcontainer"
-            tag-prefix: "init-"
-    with:
-      environment: ${{ needs.set-env.outputs.environment }}
-      docker-image-name: 'rise-app'
-      docker-build-args: CI=true
-      docker-build-target: ${{ matrix.stage }}
-      docker-tag-prefix: ${{ matrix.tag-prefix }}
-
-  import:
-    name: Import
-    needs: [ set-env, build ]
-    permissions:
       id-token: write
-    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/import.yml@v5.0.0
     strategy:
       matrix:
         stage: [
@@ -86,39 +67,47 @@ jobs:
             tag-prefix: ""
           - stage: "initcontainer"
             tag-prefix: "init-"
-    with:
-      environment: ${{ needs.set-env.outputs.environment }}
-      docker-image-name: 'rise-app'
-      docker-tag-prefix: ${{ matrix.tag-prefix }}
-    secrets:
-      azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-      azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      azure-acr-client-id: ${{ secrets.ACR_CLIENT_ID }}
-      azure-acr-name: ${{ secrets.ACR_NAME }}
+    steps:
+      - uses: DFE-Digital/deploy-azure-container-apps-action/.github/actions/build@v5.0.0
+        with:
+          build-target: ${{ matrix.stage }}
+          image-name: ${{ env.IMAGE_NAME }}
+          tag-prefix: ${{ matrix.tag-prefix }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: DFE-Digital/deploy-azure-container-apps-action/.github/actions/import@v5.0.0
+        with:
+          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          azure-acr-client-id: ${{ secrets.ACR_CLIENT_ID }}
+          azure-acr-name: ${{ secrets.ACR_NAME }}
+          image-name: ${{ env.IMAGE_NAME }}
+          tag-prefix: ${{ matrix.tag-prefix }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy
-    needs: [ set-env, import ]
+    needs: [ set-env, build-import ]
+    runs-on: ubuntu-24.04
+    environment: ${{ needs.set-env.outputs.environment }}
     permissions:
       id-token: write
-    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/deploy.yml@v5.0.0
-    with:
-      environment: ${{ needs.set-env.outputs.environment }}
-      docker-image-name: 'rise-app'
-      # annotate-release: true
-      # app-insights-name: ${{ inputs.app-insights-name}}
-    secrets:
-      azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-      azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      azure-aca-client-id: ${{ secrets.ACA_CLIENT_ID }}
-      azure-aca-name: ${{ secrets.ACA_CONTAINERAPP_NAME }}
-      azure-aca-resource-group: ${{ secrets.ACA_RESOURCE_GROUP }}
-      azure-acr-name: ${{ secrets.ACR_NAME }}
+    steps:
+      - uses: DFE-Digital/deploy-azure-container-apps-action/.github/actions/deploy@v5.0.0
+        with:
+          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          azure-aca-client-id: ${{ secrets.ACA_CLIENT_ID }}
+          azure-aca-name: ${{ secrets.ACA_CONTAINERAPP_NAME }}
+          azure-aca-resource-group: ${{ secrets.ACA_RESOURCE_GROUP }}
+          azure-acr-name: ${{ secrets.ACR_NAME }}
+          # annotate-release: true
+          image-name: ${{ env.IMAGE_NAME }}
 
   create-tag:
     name: Tag and release
     needs: [ set-env, deploy ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
