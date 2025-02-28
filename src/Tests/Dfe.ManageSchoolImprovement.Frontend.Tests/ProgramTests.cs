@@ -38,7 +38,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests
         {
             var client = factory.CreateClient();
             var response = await client.GetAsync("/");
-            Assert.Equal(System.Net.HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
         }
 
         [Fact]
