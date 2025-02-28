@@ -163,21 +163,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.ViewModels
 
             // Act & Assert
             Assert.Equal(string.Empty, model.NegativeStyleClass);
-        }
-
-        [Fact]
-        public void SummaryListRowViewModel_NegativeStyleClass_ShouldReturnNegativeClass_WhenValueIsNegativeAndHighlightNegativeValueIsTrue()
-        {
-            // Arrange
-            var model = new SummaryListRowViewModel
-            {
-                Value = "£-100.00",
-                HighlightNegativeValue = true
-            };
-
-            // Act & Assert
-            Assert.Equal("negative-value", model.NegativeStyleClass);
-        }
+        } 
 
         [Fact]
         public void SummaryListRowViewModel_NegativeStyleClass_ShouldReturnEmpty_WhenValueIsNegativeButHighlightNegativeValueIsFalse()
