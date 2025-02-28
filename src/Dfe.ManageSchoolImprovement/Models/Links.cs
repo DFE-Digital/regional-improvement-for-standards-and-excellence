@@ -69,7 +69,7 @@ public static class Links
 
     public static class DeleteProject
     {
-        public static readonly LinkItem ConfirmToDeleteProject = AddLinkItem(page: "/TaskList/DeleteSupportProject/Index");
+        public static readonly LinkItem ConfirmToDeleteProject = AddLinkItem(page: "/DeleteSupportProject/Index");
     }
     public static class Notes
     {
