@@ -25,6 +25,10 @@ $govuk-font-family: "Inter", blinkmacsystemfont, "Segoe UI", roboto, oxygen-sans
 	font-weight: 400;
 }
 
+ul .autocomplete__option {
+	margin-bottom: 0px !important;
+}
+
 .app-\!-width-one-fifth {
 	width: 100% !important;
 	@include govuk-media-query($from: tablet) {
