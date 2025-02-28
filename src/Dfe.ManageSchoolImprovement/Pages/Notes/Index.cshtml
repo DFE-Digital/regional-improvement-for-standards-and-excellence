@@ -6,8 +6,12 @@
 
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.Notes.IndexModel
 @{
+    
+    
+    
     string DisplayDate(DateTime date) =>
         $"{date:dd} {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(date.ToString("MMMM"))} {date:yyyy} at {date:hh:mm tt}".ToLower();
+    ViewData["Title"] = "Notes";
     TempData["AssignmentReferrer"] = @Links.Notes.Index.Page;
 }
 
