@@ -12,6 +12,11 @@
     <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
 }
 
+@if (Model.ShowError)
+{
+   <partial name="_ErrorSummary"/>
+}
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">@Model.SupportProject.SchoolName</span>
@@ -23,7 +28,7 @@
             <govuk-checkbox-input label="Send conflict of interest form to proposed adviser and the school" id="send-conflict-of-interest-form-to-proposed-adviser-and-the-school" name="send-conflict-of-interest-form-to-proposed-adviser-and-the-school" asp-for="@Model.SendConflictOfInterestFormToProposedAdviserAndTheSchool" />
             <govuk-checkbox-input label="Receive completed conflict of interest form" id="receive-completed-conflict-of-interest-form" name="receive-completed-conflict-of-interest-form" asp-for="@Model.ReceiveCompletedConflictOfInterestForm" />
             <govuk-checkbox-input label="Save completed conflict of interest form in SharePoint" id="save-completed-conflict-of-interest-form-in-sharepoint" name="save-completed-conflict-of-interest-form-in-sharepoint" asp-for="@Model.SaveCompletedConflictOfinterestFormInSharePoint" />
-            <govuk-date-input heading-label="false" label="Enter date when conflicts of interest were checked" id="school-contacted-date" name="date-conflicts-of-interest-were-checked" asp-for="@Model.DateConflictsOfInterestWereChecked" hint="For example, 1 7 2024." />
+            <govuk-date-input heading-label="false" label="Enter date when conflicts of interest were checked" id="date-conflicts-of-interest-were-checked" name="date-conflicts-of-interest-were-checked" asp-for="@Model.DateConflictsOfInterestWereChecked" hint="For example, 1 7 2024." />
             <button class="govuk-button" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
                 Save and return
             </button>
