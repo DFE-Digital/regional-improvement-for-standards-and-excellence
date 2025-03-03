@@ -30,6 +30,7 @@ COPY ./src/Tests/${PROJECT_NAME}.Domain.Tests/${PROJECT_NAME}.Domain.Tests.cspro
 COPY ./src/Tests/${PROJECT_NAME}.Frontend.Tests/${PROJECT_NAME}.Frontend.Tests.csproj               ./src/Tests/${PROJECT_NAME}.Frontend.Tests/
 COPY ./src/Tests/${PROJECT_NAME}.Infrastructure.Tests/${PROJECT_NAME}.Infrastructure.Tests.csproj   ./src/Tests/${PROJECT_NAME}.Infrastructure.Tests/
 COPY ./src/Tests/${PROJECT_NAME}.Tests.Common/${PROJECT_NAME}.Tests.Common.csproj                   ./src/Tests/${PROJECT_NAME}.Tests.Common/
+COPY ./src/Tests/${PROJECT_NAME}.Utils.Tests/${PROJECT_NAME}.Utils.Tests.csproj                   ./src/Tests/${PROJECT_NAME}.Utils.Tests/
 
 # Mount GitHub Token as a Docker secret so that NuGet Feed can be accessed
 RUN --mount=type=secret,id=github_token dotnet nuget add source --username USERNAME --password $(cat /run/secrets/github_token) --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
