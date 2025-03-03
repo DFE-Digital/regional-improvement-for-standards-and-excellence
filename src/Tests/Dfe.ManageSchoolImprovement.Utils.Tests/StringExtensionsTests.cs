@@ -1,6 +1,4 @@
-﻿using Dfe.ManageSchoolImprovement.Utils;
-
-namespace Dfe.ManagementSchoolImprovement.Utils.Tests
+﻿namespace Dfe.ManageSchoolImprovement.Utils.Tests
 {
     public class StringExtensionsTests
     {

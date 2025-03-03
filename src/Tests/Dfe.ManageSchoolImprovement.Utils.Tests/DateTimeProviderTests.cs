@@ -1,7 +1,6 @@
-﻿using Dfe.ManageSchoolImprovement.Utils;
-using Moq;
+﻿using Moq;
 
-namespace Dfe.ManagementSchoolImprovement.Utils.Tests
+namespace Dfe.ManageSchoolImprovement.Utils.Tests
 {
     public class DateTimeProviderTests
     {
