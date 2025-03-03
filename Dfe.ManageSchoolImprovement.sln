@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.ManageSchoolImprovement.Application.Tests", "src\Tests\Dfe.ManageSchoolImprovement.Application.Tests\Dfe.ManageSchoolImprovement.Application.Tests.csproj", "{0E696E59-AA3D-4418-9362-141B8DD7344D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dfe.ManagementSchoolImprovement.Utils.Tests", "src\Tests\Dfe.ManagementSchoolImprovement.Utils.Tests\Dfe.ManagementSchoolImprovement.Utils.Tests.csproj", "{768C23DD-0D6F-4312-A020-D8116A2EC857}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dfe.ManageSchoolImprovement.Utils.Tests", "src\Tests\Dfe.ManagementSchoolImprovement.Utils.Tests\Dfe.ManageSchoolImprovement.Utils.Tests.csproj", "{768C23DD-0D6F-4312-A020-D8116A2EC857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
