@@ -12,9 +12,9 @@ public class GraphUserService(IGraphClientFactory graphClientFactory, IOptions<A
 
     public async Task<IEnumerable<User>> GetAllUsers()
     {
-        List<User> users = new();
+        List<User> users = [];
 
-        List<QueryOption> queryOptions = new() { new("$count", "true"), new("$top", "999") };
+        List<QueryOption> queryOptions = [new("$count", "true"), new("$top", "999")];
 
         IGroupMembersCollectionWithReferencesPage members = await _client.Groups[_azureAdOptions.GroupId.ToString()].Members
             .Request(queryOptions)

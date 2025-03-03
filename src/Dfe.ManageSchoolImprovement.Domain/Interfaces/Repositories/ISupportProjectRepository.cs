@@ -18,6 +18,6 @@ namespace Dfe.ManageSchoolImprovement.Domain.Interfaces.Repositories
         Task<IEnumerable<string>> GetAllProjectRegions(CancellationToken cancellationToken);
         Task<IEnumerable<string>> GetAllProjectLocalAuthorities(CancellationToken cancellationToken);
         
-        Task<SupportProject> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken);
+        Task<SupportProject?> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken);
     }
 }

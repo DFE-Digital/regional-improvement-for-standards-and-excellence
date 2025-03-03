@@ -6,7 +6,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Validation;
 public class NameValidationAttribute : ValidationAttribute
 {
     // Regex pattern for proper capitalization of first and last names, including double-barrelled names
-    private static readonly Regex nameRegex = new Regex(@"^[A-Z][a-z]+(-[A-Z][a-z]+)* [A-Z][a-z]+(-[A-Z][a-z]+)*$", RegexOptions.Compiled);
+    private static readonly Regex nameRegex = new(@"^[A-Z][a-z]+(-[A-Z][a-z]+)* [A-Z][a-z]+(-[A-Z][a-z]+)*$", RegexOptions.Compiled);
 
     public override bool IsValid(object value)
     {
@@ -14,7 +14,7 @@ public class NameValidationAttribute : ValidationAttribute
         if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
             return true;
 
-        string name = value as string;
+        string name = (string)value;
 
         // Check if the name matches the regex
         return nameRegex.IsMatch(name);
