@@ -14,7 +14,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
     public TaskListStatus RecordTheSchoolResponseTaskListStatus { get; set; }
     public TaskListStatus CheckThePotentialAdviserConflictsOfInterestTaskListStatus { get; set; }
     public TaskListStatus SendIntroductoryEmailTaskListStatus { get; set; }
-    public TaskListStatus AssignAdviserTaskListStatus { get; set; }
+    public TaskListStatus AllocateAdviserTaskListStatus { get; set; }
 
     public TaskListStatus AdviserVisitToSchoolTaskListStatus { get; set; }
     public TaskListStatus CompleteAndSaveAssessmentTemplateTaskListStatus { get; set; }
@@ -57,7 +57,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService, 
         ContactTheSchoolTaskListStatus = TaskStatusViewModel.ContactedTheSchoolTaskStatus(SupportProject);
         RecordTheSchoolResponseTaskListStatus = TaskStatusViewModel.RecordTheSchoolResponseTaskStatus(SupportProject);
         CheckThePotentialAdviserConflictsOfInterestTaskListStatus = TaskStatusViewModel.CheckThePotentialAdviserConflictsOfInterestTaskListStatus(SupportProject);
-        AssignAdviserTaskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(SupportProject);
+        AllocateAdviserTaskListStatus = TaskStatusViewModel.CheckAllocateAdviserTaskListStatus(SupportProject);
         SendIntroductoryEmailTaskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(SupportProject);
         AdviserVisitToSchoolTaskListStatus = TaskStatusViewModel.AdviserVisitToSchoolTaskListStatus(SupportProject);
         CompleteAndSaveAssessmentTemplateTaskListStatus = TaskStatusViewModel.CompleteAndSaveAssessmentTemplateTaskListStatus(SupportProject);

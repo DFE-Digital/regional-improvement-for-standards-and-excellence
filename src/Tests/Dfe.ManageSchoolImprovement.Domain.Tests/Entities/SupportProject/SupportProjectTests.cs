@@ -154,16 +154,16 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             var supportProject = CreateSupportProject();
 
             string? adviserEmailAddress = "test";
-            DateTime? dateAssigned = DateTime.UtcNow;
+            DateTime? dateAdviserAllocated = DateTime.UtcNow;
 
             // Act
             supportProject.SetAdviserDetails(
                 adviserEmailAddress,
-                dateAssigned);
+                dateAdviserAllocated);
 
             // Assert
             supportProject.AdviserEmailAddress.Should().Be(adviserEmailAddress);
-            supportProject.DateAdviserAssigned.Should().Be(dateAssigned);
+            supportProject.DateAdviserAllocated.Should().Be(dateAdviserAllocated);
             mockRepository.VerifyAll();
         }
 

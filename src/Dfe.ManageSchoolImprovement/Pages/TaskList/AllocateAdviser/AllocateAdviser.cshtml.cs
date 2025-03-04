@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using static Dfe.ManageSchoolImprovement.Application.SupportProject.Commands.UpdateSupportProject.SetAdviserDetails;
 
-namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.AssignAdviser;
+namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.AllocateAdviser;
 
-public class AssignAdviser(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
+public class AllocateAdviser(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
 {
     [BindProperty(Name = "adviser-email-address")]
     [RiseAdviserEmail]
     public string? AdviserEmailAddress { get; set; }
 
-    [BindProperty(Name = "date-adviser-assigned", BinderType = typeof(DateInputModelBinder))]
+    [BindProperty(Name = "date-adviser-allocated", BinderType = typeof(DateInputModelBinder))]
     [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-    [Display(Name = "date adviser was assigned")]
-    public DateTime? DateAdviserAssigned { get; set; }
+    [Display(Name = "date adviser was allocated")]
+    public DateTime? DateAdviserAllocated { get; set; }
     
     public string? Referrer { get; set; }
 
@@ -49,7 +49,7 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
 
         AdviserEmailAddress = SupportProject.AdviserEmailAddress;
 
-        DateAdviserAssigned = SupportProject.DateAdviserAssigned;
+        DateAdviserAllocated = SupportProject.DateAdviserAllocated;
 
         Referrer = TempData["AssignmentReferrer"] == null ? @Links.TaskList.Index.Page : TempData["AssignmentReferrer"].ToString();
         
@@ -66,7 +66,7 @@ public class AssignAdviser(ISupportProjectQueryService supportProjectQueryServic
             return await base.GetSupportProject(id, cancellationToken);
         }
 
-        var request = new SetAdviserDetailsCommand(new SupportProjectId(id), DateAdviserAssigned, AdviserEmailAddress);
+        var request = new SetAdviserDetailsCommand(new SupportProjectId(id), DateAdviserAllocated, AdviserEmailAddress);
 
         var result = await mediator.Send(request, cancellationToken);
 

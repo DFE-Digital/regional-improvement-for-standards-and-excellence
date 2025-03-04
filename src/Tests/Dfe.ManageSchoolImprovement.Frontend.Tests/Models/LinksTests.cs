@@ -115,7 +115,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
         [InlineData("/TaskList/ContactTheSchool/ContactTheSchool")]
         [InlineData("/TaskList/RecordTheSchoolResponse/Index")]
         [InlineData("/TaskList/AdviserConflictOfInterest/AdviserConflictOfInterest")]
-        [InlineData("/TaskList/AssignAdviser/AssignAdviser")]
+        [InlineData("/TaskList/AllocateAdviser/AllocateAdviser")]
         [InlineData("/TaskList/SendIntroductoryEmail/Index")]
         [InlineData("/TaskList/ArrangeAdviserVisitToSchool/ArrangeAdviserVisitToSchool")]
         [InlineData("/TaskList/CompleteAndSaveAssessmentTemplate/Index")]
