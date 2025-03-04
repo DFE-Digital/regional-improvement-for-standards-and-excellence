@@ -104,8 +104,8 @@
                 </li>
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name" data-cy="task-name">
-                        <a class="govuk-link" asp-page="@Links.TaskList.RecordSupportDecision.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-support-decision-status" data-cy="record-support-decision">
-                            Record support decision
+                        <a class="govuk-link" asp-page="@Links.TaskList.RecordMatchingDecision.Page" asp-route-id="@Model.SupportProject.Id" aria-describedby="record-support-decision-status" data-cy="record-support-decision">
+                            Record matching decision
                         </a>
                     </span>
                     <partial name="Shared/_TaskListStatus" model="@Model.RecordSupportDecisionTaskListStatus" />

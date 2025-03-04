@@ -14,7 +14,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
     {
         [BindProperty(Name = "decision-date", BinderType = typeof(DateInputModelBinder))]
         [DateValidation(DateRangeValidationService.DateRange.PastOrToday)]
-        [Display(Name = "record support decision")]
+        [Display(Name = "record matching decision")]
         public DateTime? RegionalDirectorDecisionDate { get; set; }
 
         [BindProperty(Name = "HasConfirmedSchoolGetTargetSupport")]
@@ -34,7 +34,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
 
         string IDateValidationMessageProvider.AllMissing(string displayName)
         {
-            return $"Enter the record support decision date";
+            return $"Enter the record matching decision date";
         }
 
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
@@ -78,12 +78,12 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
                 {
                     new() {
                         Id = "yes",
-                        Name = "Yes, school to get targeted support",
+                        Name = "Yes, school to be matched",
                         Value = "True"
                     },
                     new() {
                         Id = "no",
-                        Name = "No, school to be monitored",
+                        Name = "No, school will not be matched",
                         Value = "False",
                         Input = new TextAreaInputViewModel
                         {
