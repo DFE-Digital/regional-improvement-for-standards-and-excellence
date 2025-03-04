@@ -1,4 +1,4 @@
-namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.AssignAdviser
+namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.AllocateAdviser
 {
     using System.ComponentModel.DataAnnotations;
     using System.Text.RegularExpressions;

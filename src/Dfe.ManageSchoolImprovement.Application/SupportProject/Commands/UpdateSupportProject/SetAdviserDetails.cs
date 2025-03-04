@@ -8,7 +8,7 @@ public class SetAdviserDetails
 {
     public record SetAdviserDetailsCommand(
         SupportProjectId SupportProjectId,
-        DateTime? DateAdviserAssigned,
+        DateTime? DateAdviserAllocated,
         string? AdviserEmailAddress
     ) : IRequest<bool>;
 
@@ -25,7 +25,7 @@ public class SetAdviserDetails
                 return false;
             }
 
-            supportProject.SetAdviserDetails(request.AdviserEmailAddress, request.DateAdviserAssigned);
+            supportProject.SetAdviserDetails(request.AdviserEmailAddress, request.DateAdviserAllocated);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 

@@ -72,7 +72,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public bool? HasSavedSchoolResponseinSharePoint { get; private set; }
 
-    public DateTime? DateAdviserAssigned { get; private set; }
+    public DateTime? DateAdviserAllocated { get; private set; }
     public string? AdviserEmailAddress { get; private set; }
 
     public DateTime? IntroductoryEmailSentDate { get; private set; }
@@ -215,9 +215,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
     }
 
-    public void SetAdviserDetails(string? adviserEmailAddress, DateTime? dateAdviserAssigned)
+    public void SetAdviserDetails(string? adviserEmailAddress, DateTime? dateAdviserAllocated)
     {
-        DateAdviserAssigned = dateAdviserAssigned;
+        DateAdviserAllocated = dateAdviserAllocated;
         AdviserEmailAddress = adviserEmailAddress;
     }
 
