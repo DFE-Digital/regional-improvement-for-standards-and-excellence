@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc; 
 using System.ComponentModel.DataAnnotations;
 
-namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecision
+namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordMatchingDecision
 {
     public class IndexModel(ISupportProjectQueryService supportProjectQueryService, ErrorService errorService, IMediator mediator) : BaseSupportProjectPageModel(supportProjectQueryService, errorService), IDateValidationMessageProvider
     {
@@ -17,11 +17,11 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
         [Display(Name = "record matching decision")]
         public DateTime? RegionalDirectorDecisionDate { get; set; }
 
-        [BindProperty(Name = "HasConfirmedSchoolGetTargetSupport")]
-        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
+        [BindProperty(Name = "HasSchoolMatchedWithHighQualityOrganisation")]
+        public bool? HasSchoolMatchedWithHighQualityOrganisation { get; set; }
 
-        [BindProperty(Name = "DisapprovingTargetedSupportNotes")]
-        public string? DisapprovingTargetedSupportNotes { get; set; }
+        [BindProperty(Name = "NotMatchingSchoolWithHighQualityOrgNotes")]
+        public string? NotMatchingSchoolWithHighQualityOrgNotes { get; set; }
 
         public required IList<RadioButtonsLabelViewModel> RadioButtoons { get; set; }
 
@@ -40,15 +40,15 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)
         {
             await base.GetSupportProject(id, cancellationToken);
-            HasConfirmedSchoolGetTargetSupport = SupportProject.HasConfirmedSchoolGetTargetSupport;
+            HasSchoolMatchedWithHighQualityOrganisation = SupportProject.HasSchoolMatchedWithHighQualityOrganisation;
             RegionalDirectorDecisionDate = SupportProject.RegionalDirectorDecisionDate;
-            DisapprovingTargetedSupportNotes = SupportProject.DisapprovingTargetedSupportNotes;
+            NotMatchingSchoolWithHighQualityOrgNotes = SupportProject.NotMatchingSchoolWithHighQualityOrgNotes;
             RadioButtoons = RadioButtons;
             return Page();
         }
         public async Task<IActionResult> OnPost(int id, CancellationToken cancellationToken)
         {
-            if (!ModelState.IsValid || !IsDisapprovingTargetedSupportNotesValid())
+            if (!ModelState.IsValid || !IsNotMatchingSchoolWithHighQualityOrgNotesValid())
             {
                 RadioButtoons = RadioButtons;
                 _errorService.AddErrors(Request.Form.Keys, ModelState);
@@ -56,7 +56,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
                 return await base.GetSupportProject(id, cancellationToken);
             }
 
-            var request = new SetRecordSupportDecisionCommand(new SupportProjectId(id), RegionalDirectorDecisionDate, HasConfirmedSchoolGetTargetSupport, DisapprovingTargetedSupportNotes);
+            var request = new SetRecordMatchingDecisionCommand(new SupportProjectId(id), RegionalDirectorDecisionDate, HasSchoolMatchedWithHighQualityOrganisation, NotMatchingSchoolWithHighQualityOrgNotes);
 
             var result = await mediator.Send(request, cancellationToken);
 
@@ -87,11 +87,11 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
                         Value = "False",
                         Input = new TextAreaInputViewModel
                         {
-                            Id = nameof(DisapprovingTargetedSupportNotes),
+                            Id = nameof(NotMatchingSchoolWithHighQualityOrgNotes),
                             ValidationMessage = "You must add a note",
                             Paragraph = "Provide some details about why approval was not given.",
-                            Value = DisapprovingTargetedSupportNotes,
-                            IsValid = IsDisapprovingTargetedSupportNotesValid()
+                            Value = NotMatchingSchoolWithHighQualityOrgNotes,
+                            IsValid = IsNotMatchingSchoolWithHighQualityOrgNotesValid()
                         }
                     }
                 };
@@ -99,9 +99,9 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecis
                 return list;
             }
         }
-        private bool IsDisapprovingTargetedSupportNotesValid()
+        private bool IsNotMatchingSchoolWithHighQualityOrgNotesValid()
         { 
-            if (HasConfirmedSchoolGetTargetSupport == false && string.IsNullOrWhiteSpace(DisapprovingTargetedSupportNotes))
+            if (HasSchoolMatchedWithHighQualityOrganisation == false && string.IsNullOrWhiteSpace(NotMatchingSchoolWithHighQualityOrgNotes))
             {
                 return false;
             }

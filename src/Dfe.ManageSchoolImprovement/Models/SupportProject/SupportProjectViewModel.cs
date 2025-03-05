@@ -74,9 +74,9 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
-        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
+        public bool? HasSchoolMatchedWithHighQualityOrganisation { get; set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
-        public string? DisapprovingTargetedSupportNotes { get; set; }
+        public string? NotMatchingSchoolWithHighQualityOrgNotes { get; set; }
 
         public DateTime? DateSupportOrganisationChosen { get; set; }
 
@@ -169,8 +169,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
                 SupportOrganisationName = supportProjectDto.SupportOrganisationName,
                 SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber,
                 RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
-                HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
-                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
+                HasSchoolMatchedWithHighQualityOrganisation = supportProjectDto.HasSchoolMatchedWithHighQualityOrganisation,
+                NotMatchingSchoolWithHighQualityOrgNotes = supportProjectDto.NotMatchingSchoolWithHighQualityOrgNotes,
                 CheckOrganisationHasCapacityAndWillingToProvideSupport = supportProjectDto.CheckOrganisationHasCapacityAndWillingToProvideSupport,
                 CheckChoiceWithTrustRelationshipManagerOrLaLead = supportProjectDto.CheckChoiceWithTrustRelationshipManagerOrLaLead,
                 DiscussChoiceWithSfso = supportProjectDto.DiscussChoiceWithSfso,

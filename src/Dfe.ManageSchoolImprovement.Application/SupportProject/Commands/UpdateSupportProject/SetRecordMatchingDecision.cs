@@ -4,17 +4,17 @@ using MediatR;
 
 namespace Dfe.ManageSchoolImprovement.Application.SupportProject.Commands.UpdateSupportProject
 {
-    public record SetRecordSupportDecisionCommand(
+    public record SetRecordMatchingDecisionCommand(
         SupportProjectId SupportProjectId,
         DateTime? RegionalDirectorDecisionDate,
-        bool? HasConfirmedSchoolGetTargetSupport,
-        string? DisapprovingTargetedSupportNotes
+        bool? HasSchoolMatchedWithHighQualityOrganisation,
+        string? NotMatchingSchoolWithHighQualityOrgNotes
     ) : IRequest<bool>;
 
-    public class SetRecordSupportDecisionCommandHandler(ISupportProjectRepository supportProjectRepository)
-        : IRequestHandler<SetRecordSupportDecisionCommand, bool>
+    public class SetRecordMatchingDecisionCommandHandler(ISupportProjectRepository supportProjectRepository)
+        : IRequestHandler<SetRecordMatchingDecisionCommand, bool>
     {
-        public async Task<bool> Handle(SetRecordSupportDecisionCommand request,
+        public async Task<bool> Handle(SetRecordMatchingDecisionCommand request,
             CancellationToken cancellationToken)
         {
             var supportProject = await supportProjectRepository.FindAsync(x => x.Id == request.SupportProjectId, cancellationToken);
@@ -24,7 +24,7 @@ namespace Dfe.ManageSchoolImprovement.Application.SupportProject.Commands.Update
                 return false;
             }
 
-            supportProject.SetRecordSupportDecision(request.RegionalDirectorDecisionDate, request.HasConfirmedSchoolGetTargetSupport, request.DisapprovingTargetedSupportNotes);
+            supportProject.SetRecordMatchingDecision(request.RegionalDirectorDecisionDate, request.HasSchoolMatchedWithHighQualityOrganisation, request.NotMatchingSchoolWithHighQualityOrgNotes);
 
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
 
