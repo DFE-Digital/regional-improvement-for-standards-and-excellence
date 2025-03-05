@@ -1,6 +1,9 @@
 @page "/notes/new-note/{id:int}"
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.Notes.NewNoteModel
 
+@{
+    ViewData["Title"] = "Add note";
+}
 
 @if (Model.ShowError)
 {
