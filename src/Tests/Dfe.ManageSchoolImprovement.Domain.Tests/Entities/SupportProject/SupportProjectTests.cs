@@ -253,20 +253,20 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Arrange
             var supportProject = CreateSupportProject();
 
-            bool? hasConfirmedSchoolGetTargetSupport = false;
+            bool? hasSchoolMatchedWithHighQualityOrganisation = false;
             DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
-            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+            string? notMatchingSchoolWithHighQualityOrgNotes = "Notes only if choose no";
 
             // Act
-            supportProject.SetRecordSupportDecision(
+            supportProject.SetRecordMatchingDecision(
                 regionalDirectorDecisionDate,
-                hasConfirmedSchoolGetTargetSupport,
-                disapprovingTargetedSupportNotes);
+                hasSchoolMatchedWithHighQualityOrganisation,
+                notMatchingSchoolWithHighQualityOrgNotes);
 
             // Assert
-            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.HasSchoolMatchedWithHighQualityOrganisation.Should().Be(hasSchoolMatchedWithHighQualityOrganisation);
             supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
-            supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
+            supportProject.NotMatchingSchoolWithHighQualityOrgNotes.Should().Be(notMatchingSchoolWithHighQualityOrgNotes);
             mockRepository.VerifyAll();
         }
 
@@ -276,20 +276,20 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Arrange
             var supportProject = CreateSupportProject();
 
-            bool? hasConfirmedSchoolGetTargetSupport = true;
+            bool? hasSchoolMatchedWithHighQualityOrganisation = true;
             DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
-            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+            string? notMatchingSchoolWithHighQualityOrgNotes = "Notes only if choose no";
 
             // Act
-            supportProject.SetRecordSupportDecision(
+            supportProject.SetRecordMatchingDecision(
                 regionalDirectorDecisionDate,
-                hasConfirmedSchoolGetTargetSupport,
-                disapprovingTargetedSupportNotes);
+                hasSchoolMatchedWithHighQualityOrganisation,
+                notMatchingSchoolWithHighQualityOrgNotes);
 
             // Assert
-            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.HasSchoolMatchedWithHighQualityOrganisation.Should().Be(hasSchoolMatchedWithHighQualityOrganisation);
             supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
-            supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
+            supportProject.NotMatchingSchoolWithHighQualityOrgNotes.Should().Be(notMatchingSchoolWithHighQualityOrgNotes);
             mockRepository.VerifyAll();
         }
 

@@ -1,7 +1,7 @@
-@page "/task-list/record-support-decision/{id:int}"
-@model Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordSupportDecision.IndexModel
+@page "/task-list/record-matching-decision/{id:int}"
+@model Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordMatchingDecision.IndexModel
 @{
-    ViewData["Title"] = "Record support decision";
+    ViewData["Title"] = "Record matching decision";
 }
 
 @section BeforeMain
@@ -18,12 +18,12 @@
     <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l" data-cy="school-name">@Model.SupportProject.SchoolName</span>
         <h1 class="govuk-heading-l" data-cy="page-heading">
-            Record support decision
+            Record matching decision
         </h1>
         <form method="post" novalidate>
-            <p class="govuk-body" data-cy="school-confirmtion-target-support">Confirm if a regional director has confirmed that this school should get targeted support.</p>
-            <govuk-radiobuttons-input heading="Has a regional director confirmed that this school should get targeted support?" heading-style="govuk-fieldset__legend--m" hint="If the school will be monitored, add a note to give details."
-                name="@nameof(Model.HasConfirmedSchoolGetTargetSupport)" radio-buttons="@Model.RadioButtoons" asp-for="@Model.HasConfirmedSchoolGetTargetSupport" />
+            <p class="govuk-body" data-cy="confirm-matching-with-hqo">Confirm whether this school will be matched with a High Quality  Organisation. A regional director must have approved this decision.</p>
+            <govuk-radiobuttons-input heading="Record decision" heading-style="govuk-fieldset__legend--m" hint="If the school will not be matched with a High Quality Organisation, add details to explain why."
+                                      name="@nameof(Model.HasSchoolMatchedWithHighQualityOrganisation)" radio-buttons="@Model.RadioButtoons" asp-for="@Model.HasSchoolMatchedWithHighQualityOrganisation" />
             <govuk-date-input heading-label="false" label="Enter date the regional director made this decision" id="decision-date" name="decision-date" asp-for="@Model.RegionalDirectorDecisionDate" hint="For example, 1 7 2024." />
             <button class="govuk-button" type="submit" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">
                 Save and return

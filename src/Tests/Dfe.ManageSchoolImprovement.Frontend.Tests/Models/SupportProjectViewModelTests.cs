@@ -47,8 +47,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
                 SupportOrganisationName: "Support Org",
                 SupportOrganisationIdNumber: "SO123",
                 RegionalDirectorDecisionDate: DateTime.Now,
-                HasConfirmedSchoolGetTargetSupport: true,
-                DisapprovingTargetedSupportNotes: "Notes",
+                HasSchoolMatchedWithHighQualityOrganisation: true,
+                NotMatchingSchoolWithHighQualityOrgNotes: "Notes",
                 CheckOrganisationHasCapacityAndWillingToProvideSupport: true,
                 CheckChoiceWithTrustRelationshipManagerOrLaLead: true,
                 DiscussChoiceWithSfso: true,
@@ -119,8 +119,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
             Assert.Equal(supportProjectDto.SupportOrganisationName, viewModel.SupportOrganisationName);
             Assert.Equal(supportProjectDto.SupportOrganisationIdNumber, viewModel.SupportOrganisationIdNumber);
             Assert.Equal(supportProjectDto.RegionalDirectorDecisionDate, viewModel.RegionalDirectorDecisionDate);
-            Assert.Equal(supportProjectDto.HasConfirmedSchoolGetTargetSupport, viewModel.HasConfirmedSchoolGetTargetSupport);
-            Assert.Equal(supportProjectDto.DisapprovingTargetedSupportNotes, viewModel.DisapprovingTargetedSupportNotes);
+            Assert.Equal(supportProjectDto.HasSchoolMatchedWithHighQualityOrganisation, viewModel.HasSchoolMatchedWithHighQualityOrganisation);
+            Assert.Equal(supportProjectDto.NotMatchingSchoolWithHighQualityOrgNotes, viewModel.NotMatchingSchoolWithHighQualityOrgNotes);
             Assert.Equal(supportProjectDto.CheckOrganisationHasCapacityAndWillingToProvideSupport, viewModel.CheckOrganisationHasCapacityAndWillingToProvideSupport);
             Assert.Equal(supportProjectDto.CheckChoiceWithTrustRelationshipManagerOrLaLead, viewModel.CheckChoiceWithTrustRelationshipManagerOrLaLead);
             Assert.Equal(supportProjectDto.DiscussChoiceWithSfso, viewModel.DiscussChoiceWithSfso);
