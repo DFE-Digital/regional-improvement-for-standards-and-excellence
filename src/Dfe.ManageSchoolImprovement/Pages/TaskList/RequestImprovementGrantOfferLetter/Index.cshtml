@@ -9,13 +9,18 @@
     <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
 }
 
+@if (Model.ShowError)
+{
+   <partial name="_ErrorSummary"/>
+}
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l" data-cy="school-name">@Model.SupportProject.SchoolName</span>
         <h1 class="govuk-heading-l" data-cy="page-heading">
             Request improvement grant offer letter
         </h1>
-        <p class="govuk-body" data-cy="instruction-to-advisor">Email the grant team at <a href="mailto:@Model.EmailAddress">@Model.EmailAddress</a> and ask them to send the improvement grant offer letter to the school's responsible body.</p>
+        <p class="govuk-body" data-cy="instruction-to-advisor">Email the grant team at <a class="govuk-link" href="mailto:@Model.EmailAddress">@Model.EmailAddress</a> and ask them to send the improvement grant offer letter to the school's responsible body.</p>
         <form method="post" novalidate>
             <govuk-date-input heading-label="false" label="Enter date grant team contacted" id="grant-team-contacted-date" name="grant-team-contacted-date" asp-for="@Model.GrantTeamContactedDate" hint="For example, 1 7 2024." />
             <button class="govuk-button" type="submit" id="save-and-continue-button" data-module="govuk-button" data-cy="select-common-submitbutton">

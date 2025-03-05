@@ -2,12 +2,12 @@ namespace Dfe.ManageSchoolImprovement.Frontend.ViewModels;
 
 public class CheckboxInputViewModel
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
-    public string Value { get; set; }
-    public string Label { get; set; }
-    public string LabelHint { get; set; }
-    public string Heading { get; set; }
-    public string HeadingStyle { get; set; }
-    public string ErrorMessage { get; set; }
+    public string Id { get; set; } = null!;
+    public string Name { get; set; } = null!;
+    public string Value { get; set; } = null!;
+    public string Label { get; set; } = null!;
+    public string LabelHint { get; set; } = null!;
+    public string Heading { get; set; } = null!;
+    public string HeadingStyle { get; set; } = null!;
+    public string ErrorMessage { get; set; } = null!;
 }

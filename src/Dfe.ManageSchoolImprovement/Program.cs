@@ -136,7 +136,7 @@ app.UseForwardedHeaders(forwardOptions);
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/Errors");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -144,6 +144,7 @@ else
 {
     app.UseDeveloperExceptionPage();
 }
+app.UseStatusCodePagesWithReExecute("/Errors", "?statusCode={0}");
 
 app.UseSecurityHeaders(SecurityHeadersDefinitions.GetHeaderPolicyCollection(app.Environment.IsDevelopment()));
 app.UseHttpsRedirection();
@@ -153,6 +154,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseCookiePolicy(new CookiePolicyOptions { Secure = CookieSecurePolicy.Always, HttpOnly = HttpOnlyPolicy.Always });
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGet("/", context =>

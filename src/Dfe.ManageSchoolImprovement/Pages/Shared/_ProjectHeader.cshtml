@@ -1,9 +1,16 @@
 @using Dfe.Academisation.ExtensionMethods
 @using Dfe.ManageSchoolImprovement.Application.Common.Models
 @using System.Security.Claims
+@using System.Globalization
 
 @{
    DateTime createdDate = @Model.CreatedOn;
+   DateTime? lastInspectionDate = null;
+
+   if (@Model.LastInspectionDate != null || !string.IsNullOrWhiteSpace(@Model.LastInspectionDate))
+   {
+      lastInspectionDate = DateTime.ParseExact(Model.LastInspectionDate, "dd/mm/yyyy", CultureInfo.CurrentCulture);
+   }
 }
 
 <div class="govuk-grid-row">
@@ -28,7 +35,7 @@
          }
          else
          {
-            <a data-id="last-inspection">@Model.LastInspectionDate</a>
+            <a data-id="last-inspection">@lastInspectionDate.ToDateString()</a>
          }
       </p>
       <p class="govuk-body govuk-!-margin-bottom-1">
@@ -58,13 +65,13 @@
             <a data-id="assigned-user">@Model.AdviserEmailAddress</a>
          }
 
-         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.Id">Change</a>    
+            <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AllocateAdviser.Page" asp-route-id="@Model.Id">Change</a>
         </p>
 
-        @if (User.IsInRole(Roles.Support))
+        @if (User.IsInRole(Role.Support))
         {
             <p class="govuk-body govuk-!-margin-top-3">
-                <a class="govuk-button govuk-button--warning" asp-page="@Links.DeleteProject.ConfirmToDeleteProject.Page" asp-route-id="@Model.Id">Delete project</a>
+                <a class="govuk-button govuk-button--warning" asp-page="@Links.DeleteProject.ConfirmToDeleteProject.Page" asp-route-id="@Model.Id">Delete school</a>
             </p>
         } 
    </div>

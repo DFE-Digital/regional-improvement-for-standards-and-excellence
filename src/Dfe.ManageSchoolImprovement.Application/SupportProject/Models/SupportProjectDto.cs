@@ -21,7 +21,7 @@ namespace Dfe.ManageSchoolImprovement.Application.SupportProject.Models
         DateTime? SchoolResponseDate = null,
         bool? HasAcceeptedTargetedSupport = null,
         bool? HasSavedSchoolResponseinSharePoint = null,
-        DateTime? DateAdviserAssigned = null,
+        DateTime? DateAdviserAllocated = null,
         string? AdviserEmailAddress = null,
         DateTime? IntroductoryEmailSentDate = null,
         bool? HasShareEmailTemplateWithAdvisor = null,

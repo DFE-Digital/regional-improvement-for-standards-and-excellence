@@ -8,7 +8,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.Public;
 [AllowAnonymous]
 public class CookiePreferences(ILogger<CookiePreferences> logger) : PageModel
 {
-    private readonly string[] CONSENT_COOKIE_NAMES = [".ManageSchoolImprovement.Consent", ".ManageSchoolImprovement.Consent"];
+    private readonly string[] CONSENT_COOKIE_NAMES = [".ManageSchoolImprovement.Consent"];
     public bool? Consent { get; set; }
     public bool PreferencesSet { get; set; }
     public string ReturnPath { get; set; }
@@ -17,9 +17,9 @@ public class CookiePreferences(ILogger<CookiePreferences> logger) : PageModel
     {
         ReturnPath = returnUrl;
 
-        if (Request.Cookies.ContainsKey(CONSENT_COOKIE_NAMES[0]) && Request.Cookies.ContainsKey(CONSENT_COOKIE_NAMES[1]))
+        if (Request.Cookies.ContainsKey(CONSENT_COOKIE_NAMES[0]))
         {
-            Consent = bool.Parse(Request.Cookies[CONSENT_COOKIE_NAMES[0]] ?? string.Empty) && bool.Parse(Request.Cookies[CONSENT_COOKIE_NAMES[1]] ?? string.Empty);
+            Consent = bool.Parse(Request.Cookies[CONSENT_COOKIE_NAMES[0]] ?? string.Empty);
         }
 
         if (consent.HasValue)
@@ -42,9 +42,9 @@ public class CookiePreferences(ILogger<CookiePreferences> logger) : PageModel
     {
         ReturnPath = returnUrl;
 
-        if (Request.Cookies.ContainsKey(CONSENT_COOKIE_NAMES[0]) && Request.Cookies.ContainsKey(CONSENT_COOKIE_NAMES[1]))
+        if (Request.Cookies.ContainsKey(CONSENT_COOKIE_NAMES[0]))
         {
-            Consent = bool.Parse(Request.Cookies[CONSENT_COOKIE_NAMES[0]] ?? string.Empty) && bool.Parse(Request.Cookies[CONSENT_COOKIE_NAMES[1]] ?? string.Empty);
+            Consent = bool.Parse(Request.Cookies[CONSENT_COOKIE_NAMES[0]] ?? string.Empty);
         }
 
         if (consent.HasValue)

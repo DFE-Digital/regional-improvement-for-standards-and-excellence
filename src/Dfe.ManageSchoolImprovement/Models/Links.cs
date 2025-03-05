@@ -46,7 +46,7 @@ public static class Links
         public static readonly LinkItem ContactTheSchool = AddLinkItem(backText: "Back", page: "/TaskList/ContactTheSchool/ContactTheSchool");
         public static readonly LinkItem RecordTheSchoolResponse = AddLinkItem(backText: "Back", page: "/TaskList/RecordTheSchoolResponse/Index");
         public static readonly LinkItem CheckPotentialAdviserConflictsOfInterest = AddLinkItem(backText: "Back", page: "/TaskList/AdviserConflictOfInterest/AdviserConflictOfInterest");
-        public static readonly LinkItem AssignAnAdviser = AddLinkItem(backText: "Back", page: "/TaskList/AssignAdviser/AssignAdviser");
+        public static readonly LinkItem AllocateAdviser = AddLinkItem(backText: "Back", page: "/TaskList/AllocateAdviser/AllocateAdviser");
         public static readonly LinkItem SendIntroductoryEmail = AddLinkItem(backText: "Back", page: "/TaskList/SendIntroductoryEmail/Index");
         public static readonly LinkItem ArrangeAdviserVisitToSchool = AddLinkItem(backText: "Back", page: "/TaskList/ArrangeAdviserVisitToSchool/ArrangeAdviserVisitToSchool");
         public static readonly LinkItem CompleteAndSaveAssessmentTemplate = AddLinkItem(backText: "Back", page: "/TaskList/CompleteAndSaveAssessmentTemplate/Index");
@@ -69,7 +69,7 @@ public static class Links
 
     public static class DeleteProject
     {
-        public static readonly LinkItem ConfirmToDeleteProject = AddLinkItem(page: "/TaskList/DeleteSupportProject/Index");
+        public static readonly LinkItem ConfirmToDeleteProject = AddLinkItem(page: "/DeleteSupportProject/Index");
     }
     public static class Notes
     {
@@ -93,6 +93,6 @@ public static class Links
 
 public class LinkItem
 {
-    public string Page { get; set; }
+    public string Page { get; set; } = null!;
     public string BackText { get; set; } = "Back";
 }

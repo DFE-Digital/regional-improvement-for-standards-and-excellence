@@ -6,8 +6,12 @@
 
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.Notes.IndexModel
 @{
+    
+    
+    
     string DisplayDate(DateTime date) =>
         $"{date:dd} {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(date.ToString("MMMM"))} {date:yyyy} at {date:hh:mm tt}".ToLower();
+    ViewData["Title"] = "Notes";
     TempData["AssignmentReferrer"] = @Links.Notes.Index.Page;
 }
 
@@ -61,7 +65,7 @@
                     <h3 class="govuk-heading-m" id="@("project-note-date-" + index)">@note.CreatedBy.FullNameFromEmail()</h3>
                     <p class="govuk-body-m">@note.Note</p>
                     @if(User.Identity != null && note.CreatedBy == User.Identity.Name){
-                        <p class="govuk-body govuk-!-font-size-16"><a asp-page="@Links.Notes.EditNote.Page" asp-route-id="@note.SupportProjectId.Value" asp-route-noteid="@note.Id.Value">Edit note</a></p>
+                        <p class="govuk-body govuk-!-font-size-16"><a class="govuk-link" asp-page="@Links.Notes.EditNote.Page" asp-route-id="@note.SupportProjectId.Value" asp-route-noteid="@note.Id.Value">Edit note</a></p>
                      }
                 </div>
                 index++;

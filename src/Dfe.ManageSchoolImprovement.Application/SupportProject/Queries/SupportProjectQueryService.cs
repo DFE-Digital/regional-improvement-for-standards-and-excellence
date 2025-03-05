@@ -32,8 +32,7 @@ namespace Dfe.ManageSchoolImprovement.Application.SupportProject.Queries
         {
             var (projects, totalCount) = await supportProjectRepository.SearchForSupportProjects(title, states, advisors, regions, localAuthorities, page, count, cancellationToken);
 
-            var pageResponse = PagingResponseFactory.Create(pagePath, page, count, totalCount,
-            new Dictionary<string, object?> {});
+            var pageResponse = PagingResponseFactory.Create(pagePath, page, count, totalCount, []);
 
             var result = projects.Select(x => mapper.Map<SupportProjectDto>(x)).ToList();
 

@@ -54,7 +54,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
 
         public bool? HasSavedSchoolResponseinSharePoint { get; set; }
 
-        public DateTime? DateAdviserAssigned { get; private set; }
+        public DateTime? DateAdviserAllocated { get; private set; }
         public string? AdviserEmailAddress { get; private set; }
 
         public DateTime? IntroductoryEmailSentDate { get; set; }
@@ -156,7 +156,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
                 RemindAdvisorToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail,
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
-                DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
+                DateAdviserAllocated = supportProjectDto.DateAdviserAllocated,
                 SavedAssessmentTemplateInSharePointDate = supportProjectDto.SavedAssessmentTemplateInSharePointDate,
                 HasTalkToAdviserAboutFindings = supportProjectDto.HasTalkToAdviserAboutFindings,
                 HasCompleteAssessmentTemplate = supportProjectDto.HasCompleteAssessmentTemplate,

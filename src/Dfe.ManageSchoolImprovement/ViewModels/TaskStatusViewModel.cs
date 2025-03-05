@@ -67,16 +67,16 @@ public static class TaskStatusViewModel
         return TaskListStatus.InProgress;
     }
 
-    public static TaskListStatus CheckAssignAdviserTaskListStatus(SupportProjectViewModel supportProject)
+    public static TaskListStatus CheckAllocateAdviserTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.AdviserEmailAddress != null
-            && supportProject.DateAdviserAssigned.HasValue)
+            && supportProject.DateAdviserAllocated.HasValue)
         {
             return TaskListStatus.Complete;
         }
 
         if (supportProject.AdviserEmailAddress == null
-            && !supportProject.DateAdviserAssigned.HasValue)
+            && !supportProject.DateAdviserAllocated.HasValue)
         {
             return TaskListStatus.NotStarted;
         }
@@ -234,7 +234,7 @@ public static class TaskStatusViewModel
 
         if (!supportProject.DateSupportingOrganisationContactDetailsAdded.HasValue
             && supportProject.SupportingOrganisationContactName == null
-            && supportProject.SupportingOrganisationContactEmailAddress == null)
+            && string.IsNullOrEmpty(supportProject.SupportingOrganisationContactEmailAddress))
         {
             return TaskListStatus.NotStarted;
         }

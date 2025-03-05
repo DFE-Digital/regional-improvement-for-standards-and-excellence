@@ -72,7 +72,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public bool? HasSavedSchoolResponseinSharePoint { get; private set; }
 
-    public DateTime? DateAdviserAssigned { get; private set; }
+    public DateTime? DateAdviserAllocated { get; private set; }
     public string? AdviserEmailAddress { get; private set; }
 
     public DateTime? IntroductoryEmailSentDate { get; private set; }
@@ -151,6 +151,7 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? DateImprovementGrantOfferLetterSent { get; private set; }
     public DateTime? DeletedAt { get; private set; }
+    public string? DeletedBy { get; private set; }
 
     #endregion
 
@@ -214,9 +215,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         HasSavedSchoolResponseinSharePoint = hasSavedSchoolResponseinSharePoint;
     }
 
-    public void SetAdviserDetails(string? adviserEmailAddress, DateTime? dateAdviserAssigned)
+    public void SetAdviserDetails(string? adviserEmailAddress, DateTime? dateAdviserAllocated)
     {
-        DateAdviserAssigned = dateAdviserAssigned;
+        DateAdviserAllocated = dateAdviserAllocated;
         AdviserEmailAddress = adviserEmailAddress;
     }
 
@@ -339,9 +340,10 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         DateImprovementGrantOfferLetterSent = dateImprovementGrantOfferLetterSent;
     }
 
-    public void SetSoftDeleted()
+    public void SetSoftDeleted(string deletedBy)
     {
         DeletedAt = DateTime.UtcNow;
+        DeletedBy = deletedBy;
     }
     #endregion
 }

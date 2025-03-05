@@ -2,6 +2,10 @@
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.Notes.EditNoteModel
 
 
+@{
+    ViewData["Title"] = "Edit note";
+}
+
 @if (Model.ShowError)
 {
     <partial name="_ErrorSummary"/>

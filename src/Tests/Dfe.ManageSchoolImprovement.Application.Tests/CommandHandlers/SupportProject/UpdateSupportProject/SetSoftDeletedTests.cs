@@ -26,9 +26,10 @@ namespace Dfe.ManageSchoolImprovement.Application.Tests.CommandHandlers.SupportP
         public async Task Handle_ValidCommand_UpdatesSupportProject()
         {
             // Arrange
-
+            var deletedBy = "firstname.lastname@education.gov.uk";
             var command = new SetSoftDeletedCommand(
-                _mockSupportProject.Id
+                _mockSupportProject.Id,
+                deletedBy
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
             var handler = new SetSoftDeletedCommandHandler(_mockSupportProjectRepository.Object);
@@ -46,7 +47,8 @@ namespace Dfe.ManageSchoolImprovement.Application.Tests.CommandHandlers.SupportP
         {
             // Arrange
             var command = new SetSoftDeletedCommand(
-                _mockSupportProject.Id
+                _mockSupportProject.Id,
+                null!
             );
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync(_mockSupportProject);
             var handler = new SetSoftDeletedCommandHandler(_mockSupportProjectRepository.Object);
@@ -63,8 +65,10 @@ namespace Dfe.ManageSchoolImprovement.Application.Tests.CommandHandlers.SupportP
         public async Task Handle_ProjectNotFound_ReturnsFalse()
         {
             // Arrange
+            var deletedBy = "firstname.lastname@education.gov.uk";
             var command = new SetSoftDeletedCommand(
-                _mockSupportProject.Id
+                _mockSupportProject.Id,
+                deletedBy
             );
 
             _mockSupportProjectRepository.Setup(repo => repo.FindAsync(It.IsAny<Expression<Func<Domain.Entities.SupportProject.SupportProject, bool>>>(), It.IsAny<CancellationToken>())).ReturnsAsync((Domain.Entities.SupportProject.SupportProject)null);
