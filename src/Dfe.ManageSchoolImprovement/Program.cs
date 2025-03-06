@@ -1,10 +1,12 @@
-using Dfe.Academisation.CorrelationIdMiddleware;
 using Dfe.ManageSchoolImprovement.Frontend.Authorization;
+using Dfe.ManageSchoolImprovement.Frontend.Configuration;
 using Dfe.ManageSchoolImprovement.Frontend.Models;
 using Dfe.ManageSchoolImprovement.Frontend.Security;
 using Dfe.ManageSchoolImprovement.Frontend.Services;
 using Dfe.ManageSchoolImprovement.Frontend.Services.AzureAd;
 using Dfe.ManageSchoolImprovement.Frontend.Services.Http;
+using DfE.CoreLibs.Http.Interfaces;
+using DfE.CoreLibs.Http.Middlewares.CorrelationId;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.CookiePolicy;
@@ -105,6 +107,7 @@ builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefa
            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
    });
 
+builder.Services.Configure<ApplicationInsightsOptions>(config.GetSection("ApplicationInsights"));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ErrorService>();
 builder.Services.AddScoped<IDfeHttpClientFactory, DfeHttpClientFactory>();

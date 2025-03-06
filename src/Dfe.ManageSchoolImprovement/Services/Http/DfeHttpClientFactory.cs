@@ -1,4 +1,4 @@
-using Dfe.Academisation.CorrelationIdMiddleware;
+using DfE.CoreLibs.Http.Interfaces;
 
 namespace Dfe.ManageSchoolImprovement.Frontend.Services.Http;
 
@@ -35,7 +35,8 @@ public class DfeHttpClientFactory : IDfeHttpClientFactory
     public HttpClient CreateClient(string name)
     {
         var httpClient = _httpClientFactory.CreateClient(name);
-        httpClient.DefaultRequestHeaders.Add(Keys.HeaderKey, _correlationContext.CorrelationId.ToString());
+        // had to leave this in for now as the core libs version is set to internal
+        httpClient.DefaultRequestHeaders.Add(Academisation.CorrelationIdMiddleware.Keys.HeaderKey, _correlationContext.CorrelationId.ToString());
         return httpClient;
     }
 }
