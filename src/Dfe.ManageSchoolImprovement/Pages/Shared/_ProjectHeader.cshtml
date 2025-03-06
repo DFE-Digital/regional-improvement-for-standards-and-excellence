@@ -65,7 +65,7 @@
             <a data-id="assigned-user">@Model.AdviserEmailAddress</a>
          }
 
-         <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AssignAnAdviser.Page" asp-route-id="@Model.Id">Change</a>    
+            <a class="govuk-link govuk-!-padding-left-50" asp-page="@Links.TaskList.AllocateAdviser.Page" asp-route-id="@Model.Id">Change</a>
         </p>
 
         @if (User.IsInRole(Role.Support))

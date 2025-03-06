@@ -2,12 +2,17 @@
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.ArrangeAdviserVisitToSchool.ArrangeAdviserVisitToSchoolModel
 
 @{
-    ViewData["Title"] = "Contact the school";
+    ViewData["Title"] = "Arrange adviser visit to school";
 }
 
 @section BeforeMain
 {
     <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
+}
+
+@if (Model.ShowError)
+{
+   <partial name="_ErrorSummary"/>
 }
 
 <div class="govuk-grid-row">

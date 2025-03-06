@@ -17,7 +17,7 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.12")
+                .HasAnnotation("ProductVersion", "8.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -70,7 +70,7 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateAdviserAssigned")
+                    b.Property<DateTime?>("DateAdviserAllocated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateConflictsOfInterestWereChecked")
@@ -115,9 +115,6 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Migrations
                     b.Property<string>("DisapprovingSupportingOrgnaisationAppointmentNotes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisapprovingTargetedSupportNotes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool?>("DiscussChoiceWithSfso")
                         .HasColumnType("bit");
 
@@ -136,9 +133,6 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Migrations
                     b.Property<bool?>("HasCompleteAssessmentTemplate")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("HasConfirmedSchoolGetTargetSupport")
-                        .HasColumnType("bit");
-
                     b.Property<bool?>("HasConfirmedSupportingOrgnaisationAppointment")
                         .HasColumnType("bit");
 
@@ -149,6 +143,9 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool?>("HasSavedSchoolResponseinSharePoint")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("HasSchoolMatchedWithHighQualityOrganisation")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("HasShareEmailTemplateWithAdvisor")
@@ -171,6 +168,9 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Migrations
 
                     b.Property<string>("LocalAuthority")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NotMatchingSchoolWithHighQualityOrgNotes")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PeriodEnd")

@@ -4,7 +4,7 @@ namespace Dfe.ManageSchoolImprovement.Domain.Common
 {
     public abstract class BaseAggregateRoot : IAggregateRoot
     {
-        private readonly List<IDomainEvent> _domainEvents = new();
+        private readonly List<IDomainEvent> _domainEvents = [];
 
         [NotMapped]
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();

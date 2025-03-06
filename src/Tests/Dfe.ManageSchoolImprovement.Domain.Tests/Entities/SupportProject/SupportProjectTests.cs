@@ -1,3 +1,4 @@
+using Dfe.ManageSchoolImprovement.Domain.ValueObjects;
 using FluentAssertions;
 using Moq;
 
@@ -153,16 +154,16 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             var supportProject = CreateSupportProject();
 
             string? adviserEmailAddress = "test";
-            DateTime? dateAssigned = DateTime.UtcNow;
+            DateTime? dateAdviserAllocated = DateTime.UtcNow;
 
             // Act
             supportProject.SetAdviserDetails(
                 adviserEmailAddress,
-                dateAssigned);
+                dateAdviserAllocated);
 
             // Assert
             supportProject.AdviserEmailAddress.Should().Be(adviserEmailAddress);
-            supportProject.DateAdviserAssigned.Should().Be(dateAssigned);
+            supportProject.DateAdviserAllocated.Should().Be(dateAdviserAllocated);
             mockRepository.VerifyAll();
         }
 
@@ -252,20 +253,20 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Arrange
             var supportProject = CreateSupportProject();
 
-            bool? hasConfirmedSchoolGetTargetSupport = false;
+            bool? hasSchoolMatchedWithHighQualityOrganisation = false;
             DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
-            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+            string? notMatchingSchoolWithHighQualityOrgNotes = "Notes only if choose no";
 
             // Act
-            supportProject.SetRecordSupportDecision(
+            supportProject.SetRecordMatchingDecision(
                 regionalDirectorDecisionDate,
-                hasConfirmedSchoolGetTargetSupport,
-                disapprovingTargetedSupportNotes);
+                hasSchoolMatchedWithHighQualityOrganisation,
+                notMatchingSchoolWithHighQualityOrgNotes);
 
             // Assert
-            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.HasSchoolMatchedWithHighQualityOrganisation.Should().Be(hasSchoolMatchedWithHighQualityOrganisation);
             supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
-            supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
+            supportProject.NotMatchingSchoolWithHighQualityOrgNotes.Should().Be(notMatchingSchoolWithHighQualityOrgNotes);
             mockRepository.VerifyAll();
         }
 
@@ -275,20 +276,20 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Arrange
             var supportProject = CreateSupportProject();
 
-            bool? hasConfirmedSchoolGetTargetSupport = true;
+            bool? hasSchoolMatchedWithHighQualityOrganisation = true;
             DateTime? regionalDirectorDecisionDate = DateTime.UtcNow;
-            string? disapprovingTargetedSupportNotes = "Notes only if choose no";
+            string? notMatchingSchoolWithHighQualityOrgNotes = "Notes only if choose no";
 
             // Act
-            supportProject.SetRecordSupportDecision(
+            supportProject.SetRecordMatchingDecision(
                 regionalDirectorDecisionDate,
-                hasConfirmedSchoolGetTargetSupport,
-                disapprovingTargetedSupportNotes);
+                hasSchoolMatchedWithHighQualityOrganisation,
+                notMatchingSchoolWithHighQualityOrgNotes);
 
             // Assert
-            supportProject.HasConfirmedSchoolGetTargetSupport.Should().Be(hasConfirmedSchoolGetTargetSupport);
+            supportProject.HasSchoolMatchedWithHighQualityOrganisation.Should().Be(hasSchoolMatchedWithHighQualityOrganisation);
             supportProject.RegionalDirectorDecisionDate.Should().Be(regionalDirectorDecisionDate);
-            supportProject.DisapprovingTargetedSupportNotes.Should().Be(disapprovingTargetedSupportNotes);
+            supportProject.NotMatchingSchoolWithHighQualityOrgNotes.Should().Be(notMatchingSchoolWithHighQualityOrgNotes);
             mockRepository.VerifyAll();
         }
 
@@ -582,6 +583,32 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Assert
             supportProject.DeletedAt.Should().NotBeNull();
             supportProject.DeletedBy.Should().Be(deletedBy);
+        }
+
+        [Fact]
+        public void AddNote_SetsNotes()
+        {
+            // Arrange
+            var supportProject = CreateSupportProject();
+            var supportProjectNoteId = new SupportProjectNoteId(Guid.NewGuid());
+            var note = "Note";
+            var author = "Author";
+            var date = DateTime.UtcNow;
+            var supportProjectId = new SupportProjectId(1);
+
+            // Act
+            supportProject.AddNote(supportProjectNoteId, note, author, date, supportProjectId);
+
+            // Assert
+            supportProject.Notes.Should().NotBeNull();
+            foreach (var projectNote in supportProject.Notes)
+            {
+                projectNote.Note.Should().Be(note);
+                projectNote.CreatedBy.Should().Be(author);
+                projectNote.CreatedOn.Should().Be(date);
+                projectNote.SupportProjectId.Should().Be(supportProjectId);
+                projectNote.Id.Should().Be(supportProjectNoteId); 
+            } 
         }
     }
 }

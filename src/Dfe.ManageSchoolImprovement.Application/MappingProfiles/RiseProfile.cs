@@ -4,6 +4,7 @@ using Dfe.ManageSchoolImprovement.Domain.ValueObjects;
 
 namespace Dfe.ManageSchoolImprovement.Application.MappingProfiles
 {
+    
     public class RiseProfile : Profile
     {
         public RiseProfile()

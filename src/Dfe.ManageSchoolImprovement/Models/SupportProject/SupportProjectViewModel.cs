@@ -54,7 +54,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
 
         public bool? HasSavedSchoolResponseinSharePoint { get; set; }
 
-        public DateTime? DateAdviserAssigned { get; private set; }
+        public DateTime? DateAdviserAllocated { get; private set; }
         public string? AdviserEmailAddress { get; private set; }
 
         public DateTime? IntroductoryEmailSentDate { get; set; }
@@ -74,9 +74,9 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
         public bool? HasCompleteAssessmentTemplate { get; set; }
 
         public DateTime? SchoolVisitDate { get; set; }
-        public bool? HasConfirmedSchoolGetTargetSupport { get; set; }
+        public bool? HasSchoolMatchedWithHighQualityOrganisation { get; set; }
         public DateTime? RegionalDirectorDecisionDate { get; set; }
-        public string? DisapprovingTargetedSupportNotes { get; set; }
+        public string? NotMatchingSchoolWithHighQualityOrgNotes { get; set; }
 
         public DateTime? DateSupportOrganisationChosen { get; set; }
 
@@ -156,7 +156,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
                 RemindAdvisorToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail,
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
-                DateAdviserAssigned = supportProjectDto.DateAdviserAssigned,
+                DateAdviserAllocated = supportProjectDto.DateAdviserAllocated,
                 SavedAssessmentTemplateInSharePointDate = supportProjectDto.SavedAssessmentTemplateInSharePointDate,
                 HasTalkToAdviserAboutFindings = supportProjectDto.HasTalkToAdviserAboutFindings,
                 HasCompleteAssessmentTemplate = supportProjectDto.HasCompleteAssessmentTemplate,
@@ -169,8 +169,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
                 SupportOrganisationName = supportProjectDto.SupportOrganisationName,
                 SupportOrganisationIdNumber = supportProjectDto.SupportOrganisationIdNumber,
                 RegionalDirectorDecisionDate = supportProjectDto.RegionalDirectorDecisionDate,
-                HasConfirmedSchoolGetTargetSupport = supportProjectDto.HasConfirmedSchoolGetTargetSupport,
-                DisapprovingTargetedSupportNotes = supportProjectDto.DisapprovingTargetedSupportNotes,
+                HasSchoolMatchedWithHighQualityOrganisation = supportProjectDto.HasSchoolMatchedWithHighQualityOrganisation,
+                NotMatchingSchoolWithHighQualityOrgNotes = supportProjectDto.NotMatchingSchoolWithHighQualityOrgNotes,
                 CheckOrganisationHasCapacityAndWillingToProvideSupport = supportProjectDto.CheckOrganisationHasCapacityAndWillingToProvideSupport,
                 CheckChoiceWithTrustRelationshipManagerOrLaLead = supportProjectDto.CheckChoiceWithTrustRelationshipManagerOrLaLead,
                 DiscussChoiceWithSfso = supportProjectDto.DiscussChoiceWithSfso,

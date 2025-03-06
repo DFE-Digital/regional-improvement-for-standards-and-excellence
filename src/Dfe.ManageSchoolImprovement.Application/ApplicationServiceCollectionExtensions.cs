@@ -4,10 +4,12 @@ using Dfe.ManageSchoolImprovement.Application.SupportProject.Queries;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    [ExcludeFromCodeCoverage]
     public static class ApplicationServiceCollectionExtensions
     {
         public static IServiceCollection AddApplicationDependencyGroup(

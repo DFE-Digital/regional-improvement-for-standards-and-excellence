@@ -20,11 +20,14 @@ public class EditSupportProjectNote
         public async Task<SupportProjectNoteId> Handle(EditSupportProjectNoteCommand request, CancellationToken cancellationToken)
         {
             var supportProject = await supportProjectRepository.GetSupportProjectById(request.SupportProjectId, cancellationToken);
+            if (supportProject == null)
+            {
+                throw new ArgumentException($"Support project with id {request.SupportProjectId} not found");
+            }
+            supportProject.EditSupportProjectNote(request.Id, request.Note, request.Author, _dateTimeProvider.Now);
 
-            supportProject.EditSupportProjectNote(request.Id,request.Note,request.Author,_dateTimeProvider.Now);
-            
             await supportProjectRepository.UpdateAsync(supportProject, cancellationToken);
-            
+
             return request.Id;
         }
     }

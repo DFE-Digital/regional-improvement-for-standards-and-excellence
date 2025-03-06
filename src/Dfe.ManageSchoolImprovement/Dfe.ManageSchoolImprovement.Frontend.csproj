@@ -58,7 +58,9 @@
       <None Include="Pages\Public\CookiePreferences.cshtml" />
       <None Include="Pages\Public\Maintenance.cshtml" />
     </ItemGroup>
-
-
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="Dfe.ManageSchoolImprovement.Frontend.Tests" />
+	</ItemGroup> 
 
 </Project>

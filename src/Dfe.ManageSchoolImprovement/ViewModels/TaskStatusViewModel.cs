@@ -67,16 +67,16 @@ public static class TaskStatusViewModel
         return TaskListStatus.InProgress;
     }
 
-    public static TaskListStatus CheckAssignAdviserTaskListStatus(SupportProjectViewModel supportProject)
+    public static TaskListStatus CheckAllocateAdviserTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.AdviserEmailAddress != null
-            && supportProject.DateAdviserAssigned.HasValue)
+            && supportProject.DateAdviserAllocated.HasValue)
         {
             return TaskListStatus.Complete;
         }
 
         if (supportProject.AdviserEmailAddress == null
-            && !supportProject.DateAdviserAssigned.HasValue)
+            && !supportProject.DateAdviserAllocated.HasValue)
         {
             return TaskListStatus.NotStarted;
         }
@@ -182,14 +182,14 @@ public static class TaskStatusViewModel
     public static TaskListStatus RecordSupportDecisionTaskListStatus(SupportProjectViewModel supportProject)
     {
         if (supportProject.RegionalDirectorDecisionDate.HasValue
-            && supportProject.HasConfirmedSchoolGetTargetSupport.HasValue
-            && supportProject.HasConfirmedSchoolGetTargetSupport.Equals(true))
+            && supportProject.HasSchoolMatchedWithHighQualityOrganisation.HasValue
+            && supportProject.HasSchoolMatchedWithHighQualityOrganisation.Equals(true))
         {
             return TaskListStatus.Complete;
         }
 
         if (!supportProject.RegionalDirectorDecisionDate.HasValue
-            && !supportProject.HasConfirmedSchoolGetTargetSupport.HasValue)
+            && !supportProject.HasSchoolMatchedWithHighQualityOrganisation.HasValue)
         {
             return TaskListStatus.NotStarted;
         }

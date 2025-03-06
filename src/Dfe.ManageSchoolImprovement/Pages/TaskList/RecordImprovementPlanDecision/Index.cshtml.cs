@@ -34,7 +34,7 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordImprovementP
 
         string IDateValidationMessageProvider.AllMissing(string displayName)
         {
-            return $"Enter the record support decision date";
+            return $"Enter the record matching decision date";
         }
 
         public async Task<IActionResult> OnGet(int id, CancellationToken cancellationToken)

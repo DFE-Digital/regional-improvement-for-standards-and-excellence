@@ -1,12 +1,17 @@
 @page "/task-list/record-the-school-response/{id:int}"
 @model Dfe.ManageSchoolImprovement.Frontend.Pages.TaskList.RecordTheSchoolResponse.IndexModel
 @{
-    ViewData["Title"] = "Record the school Response";
+    ViewData["Title"] = "Record the school's Response";
 }
 
 @section BeforeMain
 {
     <a asp-page="@Links.TaskList.Index.Page" asp-route-id="@Model.SupportProject.Id" class="govuk-back-link">Back</a>
+}
+
+@if (Model.ShowError)
+{
+   <partial name="_ErrorSummary"/>
 }
 
 <div class="govuk-grid-row">

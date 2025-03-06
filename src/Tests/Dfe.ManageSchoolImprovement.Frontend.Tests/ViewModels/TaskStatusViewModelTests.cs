@@ -141,21 +141,21 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.ViewModels
             Assert.Equal(expectedTaskListStatus, taskListStatus);
         }
 
-        public static readonly TheoryData<string?, DateTime?, TaskListStatus> CheckAssignAdviserTaskListStatusCases = new()
+        public static readonly TheoryData<string?, DateTime?, TaskListStatus> CheckAllocateAdviserTaskListStatusCases = new()
         {
             {null, null, TaskListStatus.NotStarted },
             {"test@email.com", null, TaskListStatus.InProgress},
             {"test@email.com", DateTime.Now, TaskListStatus.Complete }
         };
 
-        [Theory, MemberData(nameof(CheckAssignAdviserTaskListStatusCases))]
-        public void CheckAssignAdviserTaskListStatusShouldReturnCorrectStatus(string? adviserEmailAddress, DateTime? dateAdviserAssigned, TaskListStatus expectedTaskListStatus)
+        [Theory, MemberData(nameof(CheckAllocateAdviserTaskListStatusCases))]
+        public void CheckAllocateAdviserTaskListStatusShouldReturnCorrectStatus(string? adviserEmailAddress, DateTime? dateAdviserAllocated, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateAdviserAssigned: dateAdviserAssigned, AdviserEmailAddress: adviserEmailAddress));
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, DateAdviserAllocated: dateAdviserAllocated, AdviserEmailAddress: adviserEmailAddress));
 
             //Action 
-            var taskListStatus = TaskStatusViewModel.CheckAssignAdviserTaskListStatus(supportProjectModel);
+            var taskListStatus = TaskStatusViewModel.CheckAllocateAdviserTaskListStatus(supportProjectModel);
 
             //Assert
             Assert.Equal(expectedTaskListStatus, taskListStatus);
@@ -207,11 +207,11 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.ViewModels
         };
 
         [Theory, MemberData(nameof(RecordSupportDecisionTaskListStatusCases))]
-        public void RecordSupportDecisionTaskListStatusShouldReturnCorrectStatus(DateTime? regionalDirectorDecisionDate, bool? hasConfirmedSchoolGetTargetSupport, string? disapprovingTargetedSupportNotes, TaskListStatus expectedTaskListStatus)
+        public void RecordMatchingDecisionTaskListStatusShouldReturnCorrectStatus(DateTime? regionalDirectorDecisionDate, bool? hasSchoolMatchedWithHighQualityOrganisation, string? notMatchingSchoolWithHighQualityOrgNotes, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, RegionalDirectorDecisionDate: regionalDirectorDecisionDate, HasConfirmedSchoolGetTargetSupport: hasConfirmedSchoolGetTargetSupport,
-                DisapprovingTargetedSupportNotes: disapprovingTargetedSupportNotes));
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, RegionalDirectorDecisionDate: regionalDirectorDecisionDate, HasSchoolMatchedWithHighQualityOrganisation: hasSchoolMatchedWithHighQualityOrganisation,
+                NotMatchingSchoolWithHighQualityOrgNotes: notMatchingSchoolWithHighQualityOrgNotes));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.RecordSupportDecisionTaskListStatus(supportProjectModel);

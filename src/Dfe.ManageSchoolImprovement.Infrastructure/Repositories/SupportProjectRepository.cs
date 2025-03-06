@@ -2,12 +2,10 @@ using Dfe.ManageSchoolImprovement.Domain.Entities.SupportProject;
 using Dfe.ManageSchoolImprovement.Domain.Interfaces.Repositories;
 using Dfe.ManageSchoolImprovement.Domain.ValueObjects;
 using Dfe.ManageSchoolImprovement.Infrastructure.Database;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore; 
 
 namespace Dfe.ManageSchoolImprovement.Infrastructure.Repositories
-{
-    [ExcludeFromCodeCoverage]
+{ 
     public class SupportProjectRepository(RegionalImprovementForStandardsAndExcellenceContext dbContext)
         : Repository<SupportProject, RegionalImprovementForStandardsAndExcellenceContext>(dbContext), ISupportProjectRepository
     {
@@ -107,7 +105,7 @@ namespace Dfe.ManageSchoolImprovement.Infrastructure.Repositories
 
         }
 
-        public async Task<SupportProject> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken)
+        public async Task<SupportProject?> GetSupportProjectById(SupportProjectId id, CancellationToken cancellationToken)
         {
             return await DefaultIncludes().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
