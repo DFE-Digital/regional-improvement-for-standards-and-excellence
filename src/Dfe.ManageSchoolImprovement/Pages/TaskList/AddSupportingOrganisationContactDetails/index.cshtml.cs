@@ -16,7 +16,7 @@ public class IndexModel(ISupportProjectQueryService supportProjectQueryService,E
     [NameValidation]
     public string? Name  { get; set; }
     
-    [EmailAddress(ErrorMessage = "Email address must be in correct format")]
+    [EmailValidation(ErrorMessage = "Email address must be in correct format")]
     [BindProperty(Name = "email-address")]
     
     public string? EmailAddress  { get; set; }
