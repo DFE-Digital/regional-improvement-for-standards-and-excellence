@@ -58,9 +58,9 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
         public string? AdviserEmailAddress { get; private set; }
 
         public DateTime? IntroductoryEmailSentDate { get; set; }
-        public bool? HasShareEmailTemplateWithAdvisor { get; set; }
+        public bool? HasShareEmailTemplateWithAdviser { get; set; }
 
-        public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; set; }
+        public bool? RemindAdviserToCopyRiseTeamWhenSentEmail { get; set; }
 
         public DateTime? AdviserVisitDate { get; set; }
         public bool? GiveTheAdviserTheNoteOfVisitTemplate { get; private set; }
@@ -152,8 +152,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Models.SupportProject
                 SchoolResponseDate = supportProjectDto.SchoolResponseDate,
                 HasAcceeptedTargetedSupport = supportProjectDto.HasAcceeptedTargetedSupport,
                 HasSavedSchoolResponseinSharePoint = supportProjectDto.HasSavedSchoolResponseinSharePoint,
-                HasShareEmailTemplateWithAdvisor = supportProjectDto.HasShareEmailTemplateWithAdvisor,
-                RemindAdvisorToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail,
+                HasShareEmailTemplateWithAdviser = supportProjectDto.HasShareEmailTemplateWithAdviser,
+                RemindAdviserToCopyRiseTeamWhenSentEmail = supportProjectDto.RemindAdviserToCopyRiseTeamWhenSentEmail,
                 IntroductoryEmailSentDate = supportProjectDto.IntroductoryEmailSentDate,
                 AdviserEmailAddress = supportProjectDto.AdviserEmailAddress,
                 DateAdviserAllocated = supportProjectDto.DateAdviserAllocated,

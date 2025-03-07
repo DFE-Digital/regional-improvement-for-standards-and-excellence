@@ -59,12 +59,12 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.ViewModels
         };
 
         [Theory, MemberData(nameof(SendIntroductoryEmailTaskListStatusCases))]
-        public void SendIntroductoryEmailTaskListStatusShouldReturnCorrectStatus(bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail,
+        public void SendIntroductoryEmailTaskListStatusShouldReturnCorrectStatus(bool? hasShareEmailTemplateWithAdviser, bool? remindAdviserToCopyRiseTeamWhenSentEmail,
             DateTime? introductoryEmailSentDate, TaskListStatus expectedTaskListStatus)
         {
             // Arrange
-            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, IntroductoryEmailSentDate: introductoryEmailSentDate, HasShareEmailTemplateWithAdvisor: hasShareEmailTemplateWithAdvisor,
-                RemindAdvisorToCopyRiseTeamWhenSentEmail: remindAdvisorToCopyRiseTeamWhenSentEmail));
+            var supportProjectModel = SupportProjectViewModel.Create(new SupportProjectDto(1, DateTime.Now, IntroductoryEmailSentDate: introductoryEmailSentDate, HasShareEmailTemplateWithAdviser: hasShareEmailTemplateWithAdviser,
+                RemindAdviserToCopyRiseTeamWhenSentEmail: remindAdviserToCopyRiseTeamWhenSentEmail));
 
             //Action 
             var taskListStatus = TaskStatusViewModel.SendIntroductoryEmailTaskListStatus(supportProjectModel);
