@@ -68,19 +68,19 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Arrange
             var supportProject = CreateSupportProject();
             var introductoryEmailSentDate = DateTime.UtcNow;
-            var hasShareEmailTemplateWithAdvisor = true;
-            var remindAdvisorToCopyRiseTeamWhenSentEmail = true;
+            var hasShareEmailTemplateWithAdviser = true;
+            var remindAdviserToCopyRiseTeamWhenSentEmail = true;
 
             // Act
             supportProject.SetSendIntroductoryEmail(
                 introductoryEmailSentDate,
-                hasShareEmailTemplateWithAdvisor,
-                remindAdvisorToCopyRiseTeamWhenSentEmail);
+                hasShareEmailTemplateWithAdviser,
+                remindAdviserToCopyRiseTeamWhenSentEmail);
 
             // Assert
             supportProject.IntroductoryEmailSentDate.Should().Be(introductoryEmailSentDate);
-            supportProject.HasShareEmailTemplateWithAdvisor.Should().Be(hasShareEmailTemplateWithAdvisor);
-            supportProject.RemindAdvisorToCopyRiseTeamWhenSentEmail.Should().Be(remindAdvisorToCopyRiseTeamWhenSentEmail);
+            supportProject.HasShareEmailTemplateWithAdviser.Should().Be(hasShareEmailTemplateWithAdviser);
+            supportProject.RemindAdviserToCopyRiseTeamWhenSentEmail.Should().Be(remindAdviserToCopyRiseTeamWhenSentEmail);
             mockRepository.VerifyAll();
         }
 
@@ -90,18 +90,18 @@ namespace Dfe.ManageSchoolImprovement.Domain.Tests.Entities.SupportProject
             // Arrange
             var supportProject = CreateSupportProject();
             var savedAssessmentTemplateInSharePointDate = DateTime.UtcNow;
-            var hasTalkToAdvisor = true;
+            var hasTalkToAdviser = true;
             var hasCompleteAssessmentTemplate = true;
 
             // Act
             supportProject.SetCompleteAndSaveAssessmentTemplate(
                 savedAssessmentTemplateInSharePointDate,
-                hasTalkToAdvisor,
+                hasTalkToAdviser,
                 hasCompleteAssessmentTemplate);
 
             // Assert
             supportProject.SavedAssessmentTemplateInSharePointDate.Should().Be(savedAssessmentTemplateInSharePointDate);
-            supportProject.HasTalkToAdviserAboutFindings.Should().Be(hasTalkToAdvisor);
+            supportProject.HasTalkToAdviserAboutFindings.Should().Be(hasTalkToAdviser);
             supportProject.HasCompleteAssessmentTemplate.Should().Be(hasCompleteAssessmentTemplate);
             mockRepository.VerifyAll();
         }
