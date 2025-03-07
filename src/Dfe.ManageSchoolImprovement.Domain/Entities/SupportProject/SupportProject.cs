@@ -77,9 +77,9 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
 
     public DateTime? IntroductoryEmailSentDate { get; private set; }
 
-    public bool? HasShareEmailTemplateWithAdvisor { get; private set; }
+    public bool? HasShareEmailTemplateWithAdviser { get; private set; }
 
-    public bool? RemindAdvisorToCopyRiseTeamWhenSentEmail { get; private set; }
+    public bool? RemindAdviserToCopyRiseTeamWhenSentEmail { get; private set; }
 
     public DateTime? AdviserVisitDate { get; private set; }
 
@@ -221,11 +221,11 @@ public class SupportProject : BaseAggregateRoot, IEntity<SupportProjectId>
         AdviserEmailAddress = adviserEmailAddress;
     }
 
-    public void SetSendIntroductoryEmail(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdvisor, bool? remindAdvisorToCopyRiseTeamWhenSentEmail)
+    public void SetSendIntroductoryEmail(DateTime? introductoryEmailSentDate, bool? hasShareEmailTemplateWithAdviser, bool? remindAdviserToCopyRiseTeamWhenSentEmail)
     {
         IntroductoryEmailSentDate = introductoryEmailSentDate;
-        HasShareEmailTemplateWithAdvisor = hasShareEmailTemplateWithAdvisor;
-        RemindAdvisorToCopyRiseTeamWhenSentEmail = remindAdvisorToCopyRiseTeamWhenSentEmail;
+        HasShareEmailTemplateWithAdviser = hasShareEmailTemplateWithAdviser;
+        RemindAdviserToCopyRiseTeamWhenSentEmail = remindAdviserToCopyRiseTeamWhenSentEmail;
     }
 
     public void SetAdviserVisitDate(DateTime? adviserVisitDate)

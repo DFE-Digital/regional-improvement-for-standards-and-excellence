@@ -33,8 +33,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
                 DateAdviserAllocated: DateTime.Now,
                 AdviserEmailAddress: "adviser@example.com",
                 IntroductoryEmailSentDate: DateTime.Now,
-                HasShareEmailTemplateWithAdvisor: true,
-                RemindAdvisorToCopyRiseTeamWhenSentEmail: true,
+                HasShareEmailTemplateWithAdviser: true,
+                RemindAdviserToCopyRiseTeamWhenSentEmail: true,
                 AdviserVisitDate: DateTime.Now,
                 SavedAssessmentTemplateInSharePointDate: DateTime.Now,
                 HasTalkToAdviserAboutFindings: true,
@@ -102,8 +102,8 @@ namespace Dfe.ManageSchoolImprovement.Frontend.Tests.Models
             Assert.Equal(supportProjectDto.SchoolResponseDate, viewModel.SchoolResponseDate);
             Assert.Equal(supportProjectDto.HasAcceeptedTargetedSupport, viewModel.HasAcceeptedTargetedSupport);
             Assert.Equal(supportProjectDto.HasSavedSchoolResponseinSharePoint, viewModel.HasSavedSchoolResponseinSharePoint);
-            Assert.Equal(supportProjectDto.HasShareEmailTemplateWithAdvisor, viewModel.HasShareEmailTemplateWithAdvisor);
-            Assert.Equal(supportProjectDto.RemindAdvisorToCopyRiseTeamWhenSentEmail, viewModel.RemindAdvisorToCopyRiseTeamWhenSentEmail);
+            Assert.Equal(supportProjectDto.HasShareEmailTemplateWithAdviser, viewModel.HasShareEmailTemplateWithAdviser);
+            Assert.Equal(supportProjectDto.RemindAdviserToCopyRiseTeamWhenSentEmail, viewModel.RemindAdviserToCopyRiseTeamWhenSentEmail);
             Assert.Equal(supportProjectDto.IntroductoryEmailSentDate, viewModel.IntroductoryEmailSentDate);
             Assert.Equal(supportProjectDto.AdviserEmailAddress, viewModel.AdviserEmailAddress);
             Assert.Equal(supportProjectDto.DateAdviserAllocated, viewModel.DateAdviserAllocated);
